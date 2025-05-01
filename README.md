@@ -9,21 +9,30 @@
 
 ## Getting Started
 
-### 1. install dependencies:
+### 1. install dependencies
 
 ```powershell
 npm install
 ```
 
-### 2. generate and edit the .env file:
+### 2. generate and edit the .env file
+
 ```powershell
 copy .env.example .env
 ```
 
-### 3. Run the development server:
+### 3. Create a session table
+
+```powershell
+php artisan migrate
+```
+
+### 4. Run the development server
+
 ```powershell
 composer run dev
 ```
+
 Open [http://127.0.0.1:8000]([http://127.0.0.1:8000]) with your browser to see the result.
 
 ## About Laravel
