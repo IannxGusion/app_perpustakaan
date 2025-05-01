@@ -13,6 +13,7 @@
 
 ```powershell
 npm install
+composer install
 ```
 
 ### 2. generate and edit the .env file
