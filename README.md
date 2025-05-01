@@ -33,7 +33,7 @@ php artisan migrate
 composer run dev
 ```
 
-Open [http://127.0.0.1:8000]([http://127.0.0.1:8000]) with your browser to see the result.
+Open <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a> with your browser to see the result.
 
 ## About Laravel
 
