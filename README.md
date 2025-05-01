@@ -28,6 +28,11 @@ copy .env.example .env
 php artisan migrate
 ```
 
+### 4. Create an application key
+```powershell
+php artisan key:generate
+```
+
 ### 4. Run the development server
 
 ```powershell
