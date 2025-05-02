@@ -13,9 +13,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-// import Carousel from '@/components/element/carousel';
-
 import Slider from '@/components/element/carousel';
+// Aku(fuad) ganti "Carousel" ke "Slider"
 
 export default function Dashboard() {
     return (
