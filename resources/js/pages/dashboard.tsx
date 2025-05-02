@@ -1,5 +1,5 @@
 // import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
-import AppLayout from '@/layouts/user-layout';
+import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { Donut } from '@/components/element/donut';
@@ -12,9 +12,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/dashboard',
     },
 ];
-
-import Slider from '@/components/element/carousel';
-// Aku(fuad) ganti "Carousel" ke "Slider"
 
 export default function Dashboard() {
     return (
@@ -31,7 +28,6 @@ export default function Dashboard() {
                 </div>
                 <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min">
                     <div className="flex items-center justify-center h-full w-full">
-                        <Slider></Slider>
                     </div>
                 </div>
             </div>

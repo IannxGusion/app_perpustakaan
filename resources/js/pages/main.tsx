@@ -1,5 +1,5 @@
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
-import AppLayout from '@/layouts/app-layout';
+import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
@@ -41,3 +41,4 @@ export default function Dashboard() {
         </AppLayout>
     );
 }
+
