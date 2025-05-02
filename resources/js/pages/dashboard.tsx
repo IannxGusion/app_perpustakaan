@@ -11,7 +11,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 // import Carousel from '@/components/element/carousel';
-import Carousel from '@/components/element/carousel';
+import Slider from '@/components/element/carousel';
 
 export default function Dashboard() {
     return (
@@ -34,7 +34,7 @@ export default function Dashboard() {
                 </div>
                 <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min">
                     <div className="flex items-center justify-center h-full w-full">
-                        <Carousel></Carousel>
+                        <Slider></Slider>
                     </div>
                 </div>
             </div>

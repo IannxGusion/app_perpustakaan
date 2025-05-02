@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 
-export default function Dashboard() {
+export default function Slider() {
     return (
         <Carousel opts={{ align: "start", }} className="w-full max-w-sm">
             <CarouselContent>
