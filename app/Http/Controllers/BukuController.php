@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Kategori_buku;
 use App\Http\Requests\StoreBukuRequest;
 use App\Http\Requests\UpdateBukuRequest;
 
@@ -13,7 +14,9 @@ class BukuController extends Controller
      */
     public function index()
     {
-        //
+        $buku = Buku::with('kategori_buku')->latest()->paginate(10);
+        $kategori_buku = Kategori_buku::all();
+        return inertia('daftar_buku', ['buku' => $buku], compact('buku, kategori_buku'));
     }
 
     /**
