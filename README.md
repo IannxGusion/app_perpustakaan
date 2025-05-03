@@ -9,7 +9,7 @@
 
 ## Getting Started
 
-### Assumed that you have installed [NodeJS 22+](https://nodejs.org), [Composer 2.8+](https://getcomposer.org) and [PHP 8+](https://www.php.net/) on your machine.
+### Assumed that you have installed [NodeJS 22+](https://nodejs.org), [Composer 2.8+](https://getcomposer.org) and [PHP 8+](https://www.php.net/) on your machine
 
 ### 1. install dependencies
 
@@ -19,12 +19,16 @@ composer install
 ```
 
 ### 2. generate and configure the .env file
+
 - 1. generate
+
 ```powershell
 copy .env.example .env
 ```
+
 - 2. configure database (_the kind of database and the database's name_)
-```
+
+```txt
 DB_CONNECTION=sqlite
 # DB_HOST=127.0.0.1
 # DB_PORT=3306
@@ -34,6 +38,7 @@ DB_CONNECTION=sqlite
 ```
 
 ### 3. Create an application key
+
 ```powershell
 php artisan key:generate
 ```
@@ -109,4 +114,3 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
