@@ -2,6 +2,12 @@
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
+import {
+    FaFacebookF,
+    FaInstagram,
+    FaTwitter,
+    FaGithub,
+} from 'react-icons/fa';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -10,37 +16,18 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-import {
-    FaFacebookF,
-    FaInstagram,
-    FaTwitter,
-    FaGithub,
-} from 'react-icons/fa';
-import { Input } from '@/components/ui/input'; // Adjust the path based on your project structure
-import { FaSearch } from 'react-icons/fa'; // Corrected import for the search icon
-
-
-
 export default function Dashboard() {
     return (
-
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
-            {/* Hero Section */}
-            <section className="bg-gray-50 text-center py-12 px-4">
-                <h1 className="text-4xl font-bold mb-6">Halaman Utama</h1>
-                <div className="relative w-full md:w-1/2 mx-auto">
-                    <Input
-                        type="text"
-                        placeholder="Cari buku, penulis, atau topik..."
-                        className="pl-10 pr-4 py-2 border rounded shadow-sm w-full"
-                    />
-                    <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                </div>
-            </section>
 
             {/* Placeholder / kotak kosong untuk dashboard content */}
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
+
+                {/* Hero Section */}
+                <section className="bg-gray-200 text-center py-12 px-4">
+                    <h1 className="text-4xl font-bold">Halaman Utama</h1>
+                </section>
 
                 {/* Hero Banner */}
                 <section className="relative">
@@ -95,7 +82,7 @@ export default function Dashboard() {
                     </section>
                 </div>
             </div>
-            
+
             <footer className="bg-gray-100 border-t border-gray-300 mt-10">
                 <div className="container mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-700">
 

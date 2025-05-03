@@ -22,8 +22,13 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
-        title: 'Daftar_buku',
+        title: 'Daftar Buku',
         href: '/daftar_buku',
+        icon: LayoutGrid,
+    },
+    {
+        title: 'Pinjam Buku',
+        href: '/pinjam_buku',
         icon: LayoutGrid,
     },
 ];

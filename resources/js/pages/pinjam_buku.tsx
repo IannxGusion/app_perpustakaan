@@ -26,7 +26,7 @@ export default function Dashboard() {
 
                 {/* Hero Section */}
                 <section className="bg-gray-200 text-center py-12 px-4">
-                    <h1 className="text-4xl font-bold">Daftar Buku</h1>
+                    <h1 className="text-4xl font-bold">Pinjam Buku</h1>
                 </section>
             </div>
 
