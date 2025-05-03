@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('peminjaman', function (Blueprint $table) {
+        Schema::create('borrowings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('BukuID')->constrained('buku', 'id')->onDelete('cascade');
-            $table->foreignId('UserID')->constrained('users', 'id')->onDelete('cascade');
-            $table->date('TanggalPinjam');
-            $table->date('TanggalKembali')->nullable();
-            $table->enum('Status', ['Meminjam', 'Dikembalikan/Tersedia'])->default('Meminjam');
-            $table->integer('jumlahBuku')->default(1);
+            $table->foreignId('books_id')->constrained('books', 'id')->onDelete('cascade');
+            $table->foreignId('users_id')->constrained('users', 'id')->onDelete('cascade');
+            $table->date('BorrowDate');
+            $table->date('ReturnDate')->nullable();
+            $table->enum('Status', ['Borrowing', 'Returned/Available'])->default('Borrowing');
+            $table->integer('BookQuantity')->default(1);
             $table->timestamps();
         });
     }

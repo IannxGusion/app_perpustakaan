@@ -21,6 +21,11 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
+    {
+        title: 'Daftar_buku',
+        href: '/daftar_buku',
+        icon: LayoutGrid,
+    },
 ];
 
 const rightNavItems: NavItem[] = [
