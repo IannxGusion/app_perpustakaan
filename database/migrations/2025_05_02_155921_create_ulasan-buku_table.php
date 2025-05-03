@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ulasan-buku', function (Blueprint $table) {
-            $table->id('UlasanID')->primary()->autoIncrement();
-            $table->foreignId('BukuID')->constrained('buku', 'BukuID')->onDelete('cascade');
+            $table->id();
+            $table->foreignId('BukuID')->constrained('buku', 'id')->onDelete('cascade');
             $table->foreignId('UserID')->constrained('users', 'id')->onDelete('cascade');
             $table->integer('rating');
             $table->text('komentar');

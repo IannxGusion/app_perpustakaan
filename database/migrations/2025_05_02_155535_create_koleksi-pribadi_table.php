@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('koleksi_pribadi', function (Blueprint $table) {
-            $table->id('KoleksiID')->primary()->autoIncrement();
+            $table->id();
             $table->foreignId('UserID')->constrained('users', 'id')->onDelete('cascade');
-            $table->foreignId('BukuID')->constrained('buku', 'BukuID')->onDelete('cascade');
+            $table->foreignId('BukuID')->constrained('buku', 'id')->onDelete('cascade');
             $table->string('namaKoleksi')->default('Koleksi Baru');
             $table->timestamps();
         });
