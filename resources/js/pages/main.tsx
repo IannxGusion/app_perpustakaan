@@ -4,7 +4,7 @@ import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { Donut } from '@/components/element/donut';
 import { Multiple } from '@/components/element/multiple';
-import { ApiDemo } from '@/components/element/plugin';
+import { ApiDemo } from '@/components/element/Plugin';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
