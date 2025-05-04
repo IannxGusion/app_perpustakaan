@@ -2,6 +2,8 @@
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
+import FilterSidebar from '@/components/element/FilterSidebar';
+import BookList from '@/components/element/booklist';
 import {
     FaFacebookF,
     FaInstagram,
@@ -28,6 +30,29 @@ export default function Dashboard() {
                 <section className="bg-gray-200 text-center py-12 px-4">
                     <h1 className="text-4xl font-bold">Daftar Buku</h1>
                 </section>
+            </div>
+
+            <div className="min-h-screen bg-gray-100 p-8">
+                <h1 className="text-3xl font-bold mb-6 text-center">Daftar Buku</h1>
+                <div className="flex gap-6">
+                    <FilterSidebar />
+                    <div className="flex-1">
+                        <div className="flex justify-between items-center mb-4">
+                            <input
+                                type="text"
+                                placeholder="Search"
+                                className="border p-2 rounded w-64"
+                            />
+                            <div className="space-x-2">
+                                <button className="bg-blue-700 text-white px-3 py-1 rounded">New</button>
+                                <button className="bg-gray-200 px-3 py-1 rounded">Price ↑</button>
+                                <button className="bg-gray-200 px-3 py-1 rounded">Price ↓</button>
+                                <button className="bg-gray-200 px-3 py-1 rounded">Rating</button>
+                            </div>
+                        </div>
+                        <BookList />
+                    </div>
+                </div>
             </div>
 
             <footer className="bg-gray-100 border-t border-gray-300 mt-10">
