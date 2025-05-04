@@ -2,7 +2,7 @@
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
-import FilterSidebar from '@/components/element/FilterSidebar';
+import FilterSidebar from '@/components/element/filtersidebar';
 import BookList from '@/components/element/booklist';
 import {
     FaFacebookF,
