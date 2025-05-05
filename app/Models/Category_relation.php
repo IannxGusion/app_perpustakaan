@@ -13,7 +13,7 @@ class Category_relation extends Model
 
     protected $fillable = [
         'books_id',
-        'books_category_id'
+        'books_categories_id'
     ];
     
     public function books()

@@ -13,4 +13,9 @@ class Books_category extends Model
         'category_name',
         'description'
     ];
+
+    public function books()
+    {
+        return $this->belongsTo(Category_relation::class, 'books_id');
+    }
 }

@@ -18,4 +18,9 @@ class Book extends Model
         'status',
         'books_category'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category_relation::class, 'categories_id');
+    }
 }
