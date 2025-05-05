@@ -6,6 +6,10 @@ import { Footer } from '@/components/element/footer';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
+        title: 'Daftar Buku',
+        href: '/daftar_buku',
+    },
+    {
         title: 'Dashboard',
         href: '/dashboard',
     },

@@ -3,6 +3,8 @@ import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { Footer } from '@/components/element/footer';
+import Search from '@/components/element/search';
+import Highlight from '@/components/element/highlight';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -11,26 +13,12 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-import { Input } from '@/components/ui/input'; // Adjust the path based on your project structure
-import { FaSearch } from 'react-icons/fa'; // Corrected import for the search icon
-
 export default function Dashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
 
-            {/* Hero Section */}
-            <section className="bg-gray-200 text-center py-12 px-4">
-                <h1 className="text-4xl font-bold">Halaman Utama</h1>
-                <div className="relative w-full md:w-1/2 mx-auto">
-                    <Input
-                        type="text"
-                        placeholder="Cari buku, penulis, atau topik..."
-                        className="pl-10 pr-4 py-2 border rounded shadow-sm w-full bg-gray-50"
-                    />
-                    <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                </div>
-            </section>
+            <Search />
 
             {/* Placeholder / kotak kosong untuk dashboard content */}
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
@@ -51,42 +39,7 @@ export default function Dashboard() {
                     </div>
                 </section>
 
-                <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min">
-                    <div className="flex items-center justify-center h-full w-full">
-                    </div>
-
-                    <section className="py-10 px-4">
-                        <h2 className="text-2xl font-bold mb-6">Top Readings</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {[
-                                {
-                                    title: "Dilan",
-                                    img: "/books/dilan.jpg",
-                                },
-                                {
-                                    title: "Sadako",
-                                    img: "/books/sadako.jpg",
-                                },
-                                {
-                                    title: "Bleach",
-                                    img: "/books/bleach.jpg",
-                                },
-                            ].map((book, idx) => (
-                                <div key={idx} className="border p-4 rounded shadow">
-                                    <span className="bg-black text-white text-xs px-2 py-1 rounded">
-                                        Top #{idx + 1}
-                                    </span>
-                                    <img
-                                        src={book.img}
-                                        alt={book.title}
-                                        className="mt-2 w-full h-64 object-cover"
-                                    />
-                                    <h3 className="mt-4 text-lg font-semibold">{book.title}</h3>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                </div>
+                <Highlight />
             </div>
 
             <Footer />
