@@ -1,10 +1,11 @@
+/*import React from 'react';
 import type { Book } from '@/types';
 
 interface PageProps {
     books: Book[];
 }
 
-const Mega: React.FC<PageProps> = ({ books }) => {
+const Page: React.FC<PageProps> = ({ books }) => {
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
             <h1 className="text-3xl font-bold text-gray-800 mb-6">Books</h1>
@@ -16,6 +17,11 @@ const Mega: React.FC<PageProps> = ({ books }) => {
                     >
                         <div className="text-xl font-semibold text-gray-900">{book.title}</div>
                         <div className="mt-2 text-gray-600">{book.content}</div>
+                        <div className="mt-1 text-sm text-gray-500">
+                            Category: {book.category && book.category.category
+                                ? book.category.category.map((cat: any) => cat.category_name).join(', ')
+                                : 'N/A'}
+                        </div>
                     </li>
                 ))}
             </ul>
@@ -23,4 +29,5 @@ const Mega: React.FC<PageProps> = ({ books }) => {
     );
 };
 
-export default Mega;
+export default Page;
+*/

@@ -7,7 +7,7 @@ use App\Models\Books_category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Category_relation extends Model
+class Categories_relation extends Model
 {
     use HasFactory;
 
