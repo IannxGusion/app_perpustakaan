@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-//use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookController;
 
 // USER ==================================================================================
 Route::get('/', function () {
@@ -21,9 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('pinjam_buku');
 
     // page
-    Route::get('daftar_buku', function () {
-        return Inertia::render('daftar_buku');
-    })->name('daftar_buku');
+    Route::get('daftar_buku', [BookController::class, 'index'])->name('daftar_buku');
 });
 
 // Admin ==================================================================================
