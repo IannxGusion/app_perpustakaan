@@ -11,7 +11,7 @@ import { useInitials } from '@/hooks/use-initials';
 import { cn } from '@/lib/utils';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-react';
+import { BookAIcon, BookAudio, BookOpen, BookOpenIcon, Folder, FolderIcon, LayoutDashboard, LayoutDashboardIcon, LayoutGrid, ListEndIcon, Menu, Search } from 'lucide-react';
 import AppLogo from './app-logo';
 import AppLogoIcon from './app-logo-icon';
 
@@ -19,17 +19,17 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
         href: '/dashboard',
-        icon: LayoutGrid,
+        icon: LayoutDashboardIcon,
     },
     {
         title: 'Daftar Buku',
         href: '/daftar_buku',
-        icon: LayoutGrid,
+        icon: ListEndIcon,
     },
     {
         title: 'Pinjam Buku',
         href: '/pinjam_buku',
-        icon: LayoutGrid,
+        icon: BookAIcon,
     },
 ];
 
@@ -37,12 +37,12 @@ const rightNavItems: NavItem[] = [
     {
         title: 'Repository',
         href: 'https://github.com/laravel/react-starter-kit',
-        icon: Folder,
+        icon: FolderIcon,
     },
     {
         title: 'Documentation',
         href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
+        icon: BookOpenIcon,
     },
 ];
 
