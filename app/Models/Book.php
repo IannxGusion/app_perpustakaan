@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+//use App\Models\Books_category;
 
 class Book extends Model
 {
@@ -21,6 +22,6 @@ class Book extends Model
 
     public function category()
     {
-        return $this->belongsTo(Categories_relation::class, 'categories_id');
+        return $this->belongsToMany(Books_category::class, 'book_id', 'books_categories', 'id');
     }
 }

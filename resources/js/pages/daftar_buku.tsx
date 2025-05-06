@@ -1,9 +1,13 @@
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
+// import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { Footer } from '@/components/element/footer';
 import Daftar_buku_file from '@/components/element/daftar_buku_file';
+import { Link } from '@inertiajs/react';
+
+import type { Book } from '@/types';
+
 //import Booklist from '@/components/element/booklist';
 //import type { Book, Category_relation } from '@/types';
 
@@ -14,7 +18,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Daftar() {
+export default function Daftar(/*{ books }: { books: Book[] }*/) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -29,6 +33,19 @@ export default function Daftar() {
             <div className="flex h-full flex-1 flex-col gap-4 border-2 border-accent rounded-xl p-4 m-4">
                 <Daftar_buku_file />
             </div>
+
+            {/*<div>
+                <h1>daftar buku</h1>
+                <Link href='#'>Tambah buku</Link>
+                <ul>
+                    {books.map((book) => (
+                    <li key={book.id}>
+                        {book.title}
+                    </li>
+                    ))}
+                </ul>
+            </div>
+            */}
 
             <Footer />
         </AppLayout>

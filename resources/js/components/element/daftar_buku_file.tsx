@@ -1,6 +1,7 @@
 import Booklist from '@/components/element/daftar_buku/booklist';
 import { Input } from '@/components/ui/input'; // Adjust the path based on your project structure
 import Filter from '@/components/element/daftar_buku/filter';
+import { Link } from '@inertiajs/react';
 
 export default function Daftar_buku_file() {
     return (
@@ -16,7 +17,7 @@ export default function Daftar_buku_file() {
                 </div>
 
                 {/*<Booklist />*/}
-                <div className="">
+                <div>
                     <Booklist />
                 </div>
 
