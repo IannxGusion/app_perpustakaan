@@ -51,7 +51,7 @@ export default function Dashboard() {
             </section>
 
             {/* Placeholder / kotak kosong untuk dashboard content */}
-            <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
+            <div className="flex h-full flex-1 flex-col gap-4 border-2 border-accent rounded-xl p-4 m-4">
 
                 {/* Content */}
                 <main className="max-w-6xl mx-auto p-6">

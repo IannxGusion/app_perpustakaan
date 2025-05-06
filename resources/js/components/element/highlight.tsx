@@ -1,6 +1,6 @@
 export default function Highlight() {
     return (
-        <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min">
+        <div className="relative min-h-[100vh] flex-1 overflow-hidden rounded-xl md:min-h-min">
             <div className="flex items-center justify-center h-full w-full">
             </div>
 
