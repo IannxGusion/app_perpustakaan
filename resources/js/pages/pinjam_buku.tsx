@@ -4,6 +4,20 @@ import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { Footer } from '@/components/element/footer';
 
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
+
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Daftar Buku',
@@ -76,9 +90,28 @@ export default function Dashboard() {
                                 <p className="text-gray-600 text-sm">penulis</p>
                                 <p className="text-gray-600 text-sm">Penerbit</p>
 
-                                <button className="mt-4 bg-blue-900 text-white px-80 py-3 rounded hover:bg-blue-800">
-                                    Pinjam
-                                </button>
+                                <AlertDialog>
+                                    <AlertDialogTrigger asChild className='w-full mt-4'>
+                                        <Button variant="outline" className="bg-black text-white">Show Dialog</Button>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>Syarat dan Ketentuan</AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                <p className="text-sm text-gray-700">
+                                                    Dengan meminjam buku ini, Anda setuju untuk mematuhi semua syarat dan ketentuan yang berlaku. Pastikan untuk mengembalikan buku tepat waktu dan dalam kondisi baik.
+                                                </p>
+                                                <p className="text-sm text-gray-700 mt-2">
+                                                    Jika Anda tidak setuju dengan syarat dan ketentuan ini, silakan batalkan peminjaman.
+                                                </p>
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                            <AlertDialogAction>Continue</AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
                             </div>
 
                             {/* Sinopsis */}

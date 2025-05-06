@@ -15,13 +15,8 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip"
-
+import { buttonVariants } from "@/components/ui/button"
+import { Link } from "@inertiajs/react"
 import type { Book } from '@/types';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -49,12 +44,17 @@ export default function Daftar({ ...props }: { books: Book[] }) {
                 <div className="flex gap-6">
                     <Filter />
                     <div className="flex-1">
-                        <div className="flex justify-between items-center mb-4">
+                        <div className="flex justify-between items-center mb-4 space-x-5">
                             <Input
                                 type="text"
                                 placeholder="Search..."
                                 className="w-full">
                             </Input>
+
+                            <Button className="text-white">SSD</Button>
+                            <Button className="text-white">SSD</Button>
+                            <Button className="text-white">SSD</Button>
+                            <Button className="text-white">SSD</Button>
                         </div>
 
                         {/*<Booklist />*/}
@@ -65,14 +65,9 @@ export default function Daftar({ ...props }: { books: Book[] }) {
 
                                         <CardHeader className='flex-1'>
                                             <CardTitle>
-                                                <TooltipProvider>
-                                                    <Tooltip>
-                                                        <TooltipTrigger asChild>
-                                                            <Button variant="outline">{book.author}</Button>
-                                                        </TooltipTrigger>
-                                                        <TooltipContent>{book.author}</TooltipContent>
-                                                    </Tooltip>
-                                                </TooltipProvider>
+                                                <span className="inline-block bg-black text-white text-xs px-2 py-1 rounded">
+                                                    Tag
+                                                </span>
                                             </CardTitle>
                                         </CardHeader>
 
@@ -84,9 +79,7 @@ export default function Daftar({ ...props }: { books: Book[] }) {
                                             <p>{book.title}</p>
                                         </CardFooter>
 
-                                        <Button>
-                                            Pinjam
-                                        </Button>
+                                        <Link className={buttonVariants({ variant: "outline" })} href={'/pinjam_buku'}>Click here</Link>
                                     </Card>
                                 ))}
                             </div>
