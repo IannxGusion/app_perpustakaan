@@ -52,7 +52,15 @@ export interface User {
 export interface Book {
     id: number;
     title: string;
+    content: text;
+    author: string;
+    publisher: string;
+    publication_date: date;
+    //status: ;
     image: string;
-    content: string;
-    
+}
+
+export interface Category_relation {
+    category_id: number;
+    book_id: number;
 }
