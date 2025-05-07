@@ -71,7 +71,7 @@ export default function Daftar({ ...props }: { books: Book[] }) {
                                         </CardHeader>
 
                                         <CardContent className='flex-1'>
-                                            <div className="content-center justify-center p-0.5">
+                                            <div className="content-center justify-center">
                                                 <img alt={book.title}
                                                     className="object-cover w-full h-fit border border-slate-700 dark:border-slate-300" />
                                             </div>
@@ -82,7 +82,7 @@ export default function Daftar({ ...props }: { books: Book[] }) {
                                         </CardFooter>
 
                                         <Button asChild className='#004380'>
-                                            <Link href="/pinjam_buku">Pinjam</Link>
+                                            <Link href={ route('book.show', book['id']) }>Pinjam</Link>
                                         </Button>
                                     </Card>
                                 ))}
