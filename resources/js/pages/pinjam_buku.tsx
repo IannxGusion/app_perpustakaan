@@ -57,10 +57,10 @@ const reviews = [
 export default function Dashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard" />
+            <Head title="Pinjam Buku" />
 
             {/* Hero Section */}
-            <section className="bg-gray-200 text-center py-12 px-4">
+            <section className="bg-gray-200 text-center py-12 px-4 mt-4">
                 <h1 className="text-4xl font-bold">Pinjam Buku</h1>
             </section>
 
@@ -92,7 +92,7 @@ export default function Dashboard() {
 
                                 <AlertDialog>
                                     <AlertDialogTrigger asChild className='w-full mt-4'>
-                                        <Button variant="outline" className="bg-black text-white">Show Dialog</Button>
+                                        <Button variant="outline" className="bg-primary text-white">Pinjam Buku</Button>
                                     </AlertDialogTrigger>
                                     <AlertDialogContent>
                                         <AlertDialogHeader>

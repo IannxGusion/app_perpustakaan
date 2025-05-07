@@ -8,15 +8,15 @@ import { ApiDemo } from '@/components/element/plugin';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Dashboard',
-        href: '/dashboard',
+        title: 'main',
+        href: '/main',
     },
 ];
 
 export default function Dashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard" />
+            <Head title="Main" />
 
             {/* Placeholder / kotak kosong untuk dashboard content */}
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">

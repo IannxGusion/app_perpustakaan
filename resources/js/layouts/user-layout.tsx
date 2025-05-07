@@ -2,12 +2,12 @@ import AppLayoutTemplate from '@/layouts/app/app-header-layout'; // Layout templ
 import { type BreadcrumbItem } from '@/types';
 import { type ReactNode } from 'react';
 
-interface AppLayoutProps {
+interface UserLayoutProps {
     children: ReactNode;
     breadcrumbs?: BreadcrumbItem[];
 }
 
-export default ({ children, breadcrumbs, ...props }: AppLayoutProps) => (
+export default ({ children, breadcrumbs, ...props }: UserLayoutProps) => (
     <AppLayoutTemplate breadcrumbs={breadcrumbs} {...props}>
         {children}
     </AppLayoutTemplate>
