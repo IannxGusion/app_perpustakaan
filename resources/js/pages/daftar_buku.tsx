@@ -81,7 +81,7 @@ export default function Daftar({ ...props }: { books: Book[] }) {
                                             <p>{book.title}</p>
                                         </CardFooter>
 
-                                        <Button asChild className='#004380'>
+                                        <Button asChild>
                                             <Link href={ route('book.show', book['id']) }>Pinjam</Link>
                                         </Button>
                                     </Card>
