@@ -16,6 +16,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
+
     Route::get('pinjam_buku', function () {
         return Inertia::render('pinjam_buku');
     })->name('pinjam_buku');
@@ -24,8 +25,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('koleksi_buku');
     })->name('koleksi_buku');
 
-    // page
-    Route::get('daftar_buku', [BookController::class, 'index'])->name('daftar_buku');
+
+    Route::get('daftar_buku/', [BookController::class, 'index'])->name('book.index');
+    Route::get('daftar_buku/pinjam_buku/{id}', [BookController::class, 'show'])->name('book.show');
 });
 
 // Admin ==================================================================================

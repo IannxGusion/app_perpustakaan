@@ -15,7 +15,6 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { buttonVariants } from "@/components/ui/button"
 import { Link } from "@inertiajs/react"
 import type { Book } from '@/types';
 
@@ -34,7 +33,7 @@ export default function Daftar({ ...props }: { books: Book[] }) {
                     <Head title="Dashboard" />
 
             {/* Hero Section */}
-            <section className="bg-gray-200 text-center py-12 px-4">
+            <section className="bg-gray-200 text-center py-12 px-4 mt-4">
                 <h1 className="text-4xl font-bold">Daftar Buku</h1>
             </section>
 
@@ -72,14 +71,19 @@ export default function Daftar({ ...props }: { books: Book[] }) {
                                         </CardHeader>
 
                                         <CardContent className='flex-1'>
-                                            {book.title}
+                                            <div className="content-center justify-center">
+                                                <img alt={book.title}
+                                                    className="object-cover w-full h-fit border border-slate-700 dark:border-slate-300" />
+                                            </div>
                                         </CardContent>
 
                                         <CardFooter className='flex-1'>
                                             <p>{book.title}</p>
                                         </CardFooter>
 
-                                        <Link className={buttonVariants({ variant: "outline" })} href={'/pinjam_buku'}>Click here</Link>
+                                        <Button asChild className='#004380'>
+                                            <Link href={ route('book.show', book['id']) }>Pinjam</Link>
+                                        </Button>
                                     </Card>
                                 ))}
                             </div>

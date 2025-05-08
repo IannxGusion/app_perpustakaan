@@ -3,6 +3,7 @@ import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { Footer } from '@/components/element/footer';
+import type { Book } from '@/types';
 
 import {
     AlertDialog,
@@ -24,8 +25,8 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/daftar_buku',
     },
     {
-        title: 'Dashboard',
-        href: '/dashboard',
+        title: 'Pinjam Buku',
+        href: '/pinjam_buku',
     },
 ];
 
@@ -53,14 +54,15 @@ const reviews = [
     },
 ];
 
+export default function Dashboard({ ...props }: { book: Book }) {
+    const { book } = props;
 
-export default function Dashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard" />
+            <Head title="Pinjam Buku" />
 
             {/* Hero Section */}
-            <section className="bg-gray-200 text-center py-12 px-4">
+            <section className="bg-gray-200 text-center py-12 px-4 mt-4">
                 <h1 className="text-4xl font-bold">Pinjam Buku</h1>
             </section>
 
@@ -71,10 +73,10 @@ export default function Dashboard() {
                 <main className="max-w-6xl mx-auto p-6">
                     <div className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-lg shadow-md">
                         {/* Book Image */}
-                        <div className="flex-shrink-0">
+                        <div className="flex-shrink-0 border border-slate-700">
                             <img
                                 src="/books/sadako.jpg" // Ganti sesuai lokasi gambar
-                                alt="Sadako"
+                                alt={book.title}
                                 className="w-64 h-auto rounded-md"
                             />
                         </div>
@@ -86,13 +88,13 @@ export default function Dashboard() {
                                     Tag
                                 </span>
 
-                                <h2 className="text-2xl font-semibold mt-2">Sadako</h2>
-                                <p className="text-gray-600 text-sm">penulis</p>
-                                <p className="text-gray-600 text-sm">Penerbit</p>
+                                <h2 className="text-2xl font-semibold mt-2">{book.title}</h2>
+                                <p className="text-gray-600 text-sm">{book.publisher}</p>
+                                <p className="text-gray-600 text-sm">{book.publication_date}</p>
 
                                 <AlertDialog>
                                     <AlertDialogTrigger asChild className='w-full mt-4'>
-                                        <Button variant="outline" className="bg-black text-white">Show Dialog</Button>
+                                        <Button variant="outline" className="bg-primary text-white">Pinjam Buku</Button>
                                     </AlertDialogTrigger>
                                     <AlertDialogContent>
                                         <AlertDialogHeader>
@@ -118,7 +120,7 @@ export default function Dashboard() {
                             <div className="mt-6 border rounded p-3 bg-gray-50">
                                 <h3 className="font-semibold mb-1">Sinopsis</h3>
                                 <p className="text-sm text-gray-700">
-                                    Answer the frequently asked question in a single sentence, a lengthy paragraph, or even in a list.
+                                    {book.content}
                                 </p>
                             </div>
                         </div>
