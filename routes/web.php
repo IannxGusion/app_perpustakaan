@@ -20,6 +20,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('pinjam_buku');
     })->name('pinjam_buku');
 
+    Route::get('koleksi_buku', function () {
+        return Inertia::render('koleksi_buku');
+    })->name('koleksi_buku');
+
     // page
     Route::get('daftar_buku', [BookController::class, 'index'])->name('daftar_buku');
 });

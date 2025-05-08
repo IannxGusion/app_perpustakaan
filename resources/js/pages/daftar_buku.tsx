@@ -31,7 +31,7 @@ export default function Daftar({ ...props }: { books: Book[] }) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard" />
+                    <Head title="Dashboard" />
 
             {/* Hero Section */}
             <section className="bg-gray-200 text-center py-12 px-4">
