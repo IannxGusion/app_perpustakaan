@@ -26,12 +26,6 @@ const mainNavItems: NavItem[] = [
         href: '/daftar_buku',
         icon: ListEndIcon,
     },
-
-    {
-        title: 'Pinjam Buku',
-        href: '/pinjam_buku',
-        icon: BookAIcon,
-    },
     {
         title: 'Koleksi buku',
         href: '/koleksi_buku',
