@@ -130,7 +130,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
                 <DeleteUser />
 
-                {auth.user.role === 'PUSTAKAWAN' && (
+                {auth.user.role === 'ADMIN' && (
                     <div className="space-y-6">
                         {/* Admin Mode section */}
                         <HeadingSmall title="Admin Mode" />

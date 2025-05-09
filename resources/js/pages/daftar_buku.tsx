@@ -30,7 +30,7 @@ export default function Daftar({ ...props }: { books: Book[] }) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-                    <Head title="Dashboard" />
+            <Head title="Dashboard" />
 
             {/* Hero Section */}
             <section className="bg-gray-200 text-center py-12 px-4 mt-4">
@@ -82,7 +82,7 @@ export default function Daftar({ ...props }: { books: Book[] }) {
                                         </CardFooter>
 
                                         <Button asChild>
-                                            <Link href={ route('book.show', book['id']) }>Pinjam</Link>
+                                            <Link href={route('book.show', book['id'])}>Pinjam</Link>
                                         </Button>
                                     </Card>
                                 ))}
