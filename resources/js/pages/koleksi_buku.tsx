@@ -73,7 +73,7 @@ export default function KoleksiBuku() {
                                         <p className="text-sm text-gray-600">{book.author}</p>
                                         <p className="text-sm text-gray-600">{book.publisher}</p>
                                     </div>
-                                    <button className="w-full h-7 bg-blue-800 rounded mt-3 text text-white">Pinjam</button>
+                                    <button className="w-full h-7 bg-primary rounded mt-3 text text-white">Pinjam</button>
                                 </div>
                             </div>
                         ))}
