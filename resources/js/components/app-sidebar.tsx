@@ -13,6 +13,11 @@ const mainNavItems: NavItem[] = [
         href: '/main',
         icon: LayoutGrid,
     },
+    {
+        title: 'CRUD Buku',
+        href: '/crud_buku',
+        icon: Folder,
+    },
 ];
 
 const footerNavItems: NavItem[] = [

@@ -27,8 +27,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Admin ==================================================================================
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('main', function () {
-        return Inertia::render('main');
+        return Inertia::render('admin/main');
     })->name('main');
+
+    Route::get('crud_buku', function () {
+        return Inertia::render('admin/crud_buku');
+    })->name('crud_book');
 });
 
 require __DIR__.'/settings.php';

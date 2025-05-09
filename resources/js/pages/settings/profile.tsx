@@ -9,9 +9,11 @@ import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import AppLayout from '@/layouts/user-layout';
-import SettingsLayout from '@/layouts/settings/layout';
 
+import AdminLayout from '@/layouts/app-layout';
+import UserLayout from '@/layouts/user-layout';
+
+import SettingsLayout from '@/layouts/settings/layout';
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -28,6 +30,7 @@ type ProfileForm = {
 
 export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: boolean; status?: string }) {
     const { auth } = usePage<SharedData>().props;
+    const Layout = auth.user.role === 'ADMIN' ? AdminLayout : UserLayout;
 
     const { data, setData, patch, errors, processing, reset, recentlySuccessful } = useForm<Required<ProfileForm>>({
         name: auth.user.name,
@@ -49,7 +52,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
     };
 
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <Layout breadcrumbs={breadcrumbs}>
             <Head title="Profile settings" />
 
             <SettingsLayout>
@@ -167,6 +170,6 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                 )}
 
             </SettingsLayout>
-        </AppLayout>
+        </Layout>
     );
 }
