@@ -42,6 +42,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('crud_buku', function () {
         return Inertia::render('admin/crud_buku');
     })->name('crud_book');
+
+    Route::get('crud_peminjaman', function () {
+        return Inertia::render('admin/crud_peminjaman');
+    })->name('crud_borrowings');
+
+    Route::get('crud_pustakawan', function () {
+        return Inertia::render('admin/crud_PUSTAKAWAN');
+    })->name('crud_librarian');
+    
+    Route::get('crud_peminjam', function () {
+        return Inertia::render('admin/crud_PEMINJAM');
+    })->name('crud_borrower');
 });
 
 require __DIR__.'/settings.php';

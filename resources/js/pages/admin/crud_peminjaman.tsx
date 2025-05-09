@@ -5,8 +5,8 @@ import { DataTable } from "@/components/data-table"
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'CRUD Buku',
-        href: '/crud_book',
+        title: 'CRUD Peminjaman',
+        href: '/crud_peminjaman',
     },
 ];
 
@@ -17,7 +17,7 @@ export default function Dashboard() {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="CRUD Buku" />
+            <Head title="CRUD Peminjaman" />
 
             <div className="flex flex-1 flex-col">
                 <div className="@container/main flex flex-1 flex-col gap-2">
