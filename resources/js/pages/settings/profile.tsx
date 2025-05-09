@@ -145,7 +145,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
                             <Dialog>
                                 <DialogTrigger asChild>
-                                    <Button className='bg-black'>Switch to Admin</Button>
+                                    <Button className='bg-black dark:bg-slate-50'>Switch to Admin</Button>
                                 </DialogTrigger>
                                 <DialogContent>
                                     <DialogTitle>Are you sure you want to switch your account?</DialogTitle>
