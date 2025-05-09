@@ -27,11 +27,6 @@ const mainNavItems: NavItem[] = [
         icon: ListEndIcon,
     },
     {
-        title: 'Detail Buku',
-        href: '/detail_buku',
-        icon: BookAIcon,
-    },
-    {
         title: 'Koleksi buku',
         href: '/koleksi_buku',
         icon: BookCheck,

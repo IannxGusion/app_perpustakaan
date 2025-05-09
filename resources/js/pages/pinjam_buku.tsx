@@ -113,7 +113,29 @@ export default function Dashboard({ ...props }: { book: Book }) {
                                             <AlertDialogCancel>Cancel</AlertDialogCancel>
                                             <AlertDialogAction>
                                                 <Button asChild>
-                                                    <Link href={route('detail_buku')}>Pinjam</Link>
+                                                    <Link href={route('koleksi_buku')} onClick={() => {
+                                                        localStorage.setItem('alertMessage', JSON.stringify({
+                                                            message: 'Buku berhasil dipinjam!',
+                                                            timestamp: new Date().toISOString()
+                                                        }));
+                                                        // Display a toast notification instead of an alert
+                                                        const toast = document.createElement('div');
+                                                        toast.textContent = ' Anda telah berhasil meminjam buku di perpustakaan kami!!';
+                                                        toast.style.position = 'fixed';
+                                                        toast.style.bottom = '20px';
+                                                        toast.style.right = '20px';
+                                                        toast.style.backgroundColor = '#004380';
+                                                        toast.style.color = 'white';
+                                                        toast.style.padding = '10px 20px';
+                                                        toast.style.borderRadius = '5px';
+                                                        toast.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
+                                                        document.body.appendChild(toast);
+                                                        setTimeout(() => {
+                                                            document.body.removeChild(toast);
+                                                        }, 3000);
+                                                    }}
+                                                    >
+                                                        Pinjam</Link>
                                                 </Button>
                                             </AlertDialogAction>
                                         </AlertDialogFooter>
@@ -123,10 +145,13 @@ export default function Dashboard({ ...props }: { book: Book }) {
 
                             {/* Sinopsis */}
                             <div className="mt-6 border rounded p-3 bg-gray-50">
-                                <h3 className="font-semibold mb-1">Sinopsis</h3>
-                                <p className="text-sm text-gray-700">
-                                    {book.content}
-                                </p>
+                                <Link href={route('detail_buku')}>
+                                    <h3 className="font-semibold mb-1">Sinopsis</h3>
+                                    <p className="text-sm text-gray-700">
+                                        {book.content}
+                                    </p>
+                                    Pinjam
+                                </Link>
                             </div>
                         </div>
                     </div>

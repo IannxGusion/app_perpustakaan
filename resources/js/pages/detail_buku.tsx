@@ -99,7 +99,7 @@ const ProductInfoCard = () => {
                                             <AlertDialogCancel>Cancel</AlertDialogCancel>
                                             <AlertDialogAction asChild>
                                                 <Link
-                                                    href={route('dashboard')}
+                                                    href={route('koleksi_buku')}
                                                     onClick={() => {
                                                         localStorage.setItem('alertMessage', JSON.stringify({
                                                             message: 'Buku berhasil dipinjam!',
