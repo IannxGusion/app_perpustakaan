@@ -17,6 +17,7 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
+import { Link } from "@inertiajs/react"
 
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -110,7 +111,11 @@ export default function Dashboard({ ...props }: { book: Book }) {
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
                                             <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                            <AlertDialogAction>Continue</AlertDialogAction>
+                                            <AlertDialogAction>
+                                                <Button asChild>
+                                                    <Link href={route('detail_buku')}>Pinjam</Link>
+                                                </Button>
+                                            </AlertDialogAction>
                                         </AlertDialogFooter>
                                     </AlertDialogContent>
                                 </AlertDialog>
