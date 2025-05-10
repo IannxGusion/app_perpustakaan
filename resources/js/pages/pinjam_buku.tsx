@@ -74,11 +74,11 @@ export default function Dashboard({ ...props }: { book: Book }) {
                 <main className="max-w-6xl mx-auto p-6">
                     <div className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-lg shadow-md">
                         {/* Book Image */}
-                        <div className="flex-shrink-0 border border-slate-700">
+                        <div className="flex">
                             <img
                                 src="/books/sadako.jpg" // Ganti sesuai lokasi gambar
                                 alt={book.title}
-                                className="w-64 h-auto rounded-md"
+                                className="w-64 h-auto border border-slate-700"
                             />
                         </div>
 

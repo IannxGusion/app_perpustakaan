@@ -6,6 +6,7 @@ import { Footer } from '@/components/element/footer';
 
 import { Input } from '@/components/ui/input'; // Adjust the path based on your project structure
 import Filter from '@/components/element/daftar_buku/filter';
+import Smally from '@/components/element/small-side/layout';
 
 import {
     Card,
@@ -37,6 +38,8 @@ export default function Daftar({ ...props }: { books: Book[] }) {
                 <h1 className="text-4xl font-bold">Daftar Buku</h1>
             </section>
 
+            <Smally children={undefined}/>
+
             {/* Placeholder / kotak kosong untuk dashboard content */}
             <div className="flex h-full flex-1 flex-col gap-4 border-2 border-accent rounded-xl p-4 m-4">
 
@@ -50,10 +53,10 @@ export default function Daftar({ ...props }: { books: Book[] }) {
                                 className="w-full">
                             </Input>
 
-                            <Button className="text-white">SSD</Button>
-                            <Button className="text-white">SSD</Button>
-                            <Button className="text-white">SSD</Button>
-                            <Button className="text-white">SSD</Button>
+                            <Button>SSD</Button>
+                            <Button>SSD</Button>
+                            <Button>SSD</Button>
+                            <Button>SSD</Button>
                         </div>
 
                         {/*<Booklist />*/}

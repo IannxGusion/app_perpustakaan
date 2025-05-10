@@ -4,7 +4,7 @@ import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { Donut } from '@/components/element/donut';
 import { Multiple } from '@/components/element/multiple';
-import { ApiDemo } from '@/components/element/plugin';
+import { CarouselPlugin } from '@/components/element/plugin';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -42,7 +42,7 @@ export default function Dashboard() {
                 </div>*/}
 
                 <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
-                    <ApiDemo />
+                    <CarouselPlugin />
                 </div>
             </div>
         </AppLayout>

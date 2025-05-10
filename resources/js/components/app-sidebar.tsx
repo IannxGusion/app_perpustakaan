@@ -4,17 +4,18 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import type { NavGroup, NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { BookOpen, Folder, List, Bolt } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavGroup[] = [
     {
         title: 'Main',
         href: '/main',
-        icon: LayoutGrid,
+        icon: Bolt,
     },
     {
         title: 'CRUDs',
+        icon: List,
         items: [
             {
                 title: 'CRUD: Peminjam',

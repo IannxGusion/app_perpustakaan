@@ -3,9 +3,6 @@ import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { Footer } from '@/components/element/footer';
-//import Search from '@/components/element/search';
-//import Highlight from '@/components/element/highlight';
-import React from "react";
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -50,36 +47,41 @@ export default function KoleksiBuku() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
 
-            <div className="min-h-screen w-full bg-gray-100 p-8">
-                <div className="bg-white w-full h-full p-6 shadow-md rounded-lg">
-                    <h1 className="text-3xl font-bold text-center mb-8">Koleksi Buku</h1>
-                    <div className="space-y-6">
-                        {books.map((book, index) => (
-                            <div
-                                key={index}
-                                className="flex space-x-6 bg-white px-4 py-4 rounded-lg shadow-sm items-start"
-                            >
-                                <img
-                                    src={book.imageUrl}
-                                    alt={book.title}
-                                    className="w-28 h-40 object-cover shadow border border-slate-700"
-                                />
-                                <div className="flex flex-col justify-between flex-1">
-                                    <div>
-                                        <span className="inline-block bg-black text-white text-xs px-2 py-0.5 rounded mb-1">
-                                            Tag
-                                        </span>
-                                        <h2 className="text-xl font-bold">{book.title}</h2>
-                                        <p className="text-sm text-gray-600">{book.author}</p>
-                                        <p className="text-sm text-gray-600">{book.publisher}</p>
-                                    </div>
-                                    <button className="w-full h-7 bg-primary rounded mt-3 text text-white">Pinjam</button>
+            {/* Hero Section */}
+            <section className="bg-gray-200 text-center py-12 px-4 mt-4">
+                <h1 className="text-4xl font-bold">Koleksi Buku</h1>
+            </section>
+
+            <div className="flex h-full flex-1 flex-col gap-4 border-2 border-accent rounded-xl p-4 m-4">
+
+                <div className="space-y-6">
+                    {books.map((book, index) => (
+                        <div
+                            key={index}
+                            className="flex space-x-6 bg-white px-4 py-4 rounded-lg items-start shadow-2xl"
+                        >
+                            <img
+                                src={book.imageUrl}
+                                alt={book.title}
+                                className="w-28 h-40 object-cover shadow border border-slate-700"
+                            />
+                            <div className="flex flex-col justify-between flex-1">
+                                <div>
+                                    <span className="inline-block bg-black text-white text-xs px-2 py-0.5 rounded mb-1">
+                                        Tag
+                                    </span>
+                                    <h2 className="text-xl font-bold">{book.title}</h2>
+                                    <p className="text-sm text-gray-600">{book.author}</p>
+                                    <p className="text-sm text-gray-600">{book.publisher}</p>
                                 </div>
+                                <button className="w-full h-7 bg-primary rounded mt-3 text text-white">Pinjam</button>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
+
             </div>
+
             <Footer />
         </AppLayout>
     );

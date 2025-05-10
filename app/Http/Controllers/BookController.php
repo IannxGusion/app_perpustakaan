@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
 use App\Models\Book;
-use App\Models\Books_category;
-//use App\Models\Categories_relation;
 
 class BookController extends Controller
 {
