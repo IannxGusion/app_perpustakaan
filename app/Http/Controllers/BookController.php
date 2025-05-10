@@ -26,4 +26,12 @@ class BookController extends Controller
             'book' => $book,
         ]);
     }
+
+    public function detail($id)
+    {
+        $book = Book::findOrFail($id);
+        return Inertia('detail_buku', [
+            'book' => $book,
+        ]);
+    }
 }

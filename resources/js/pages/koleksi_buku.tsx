@@ -3,8 +3,8 @@ import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { Footer } from '@/components/element/footer';
-import Search from '@/components/element/search';
-import Highlight from '@/components/element/highlight';
+//import Search from '@/components/element/search';
+//import Highlight from '@/components/element/highlight';
 import React from "react";
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -62,7 +62,7 @@ export default function KoleksiBuku() {
                                 <img
                                     src={book.imageUrl}
                                     alt={book.title}
-                                    className="w-28 h-40 object-cover rounded-md shadow"
+                                    className="w-28 h-40 object-cover shadow border border-slate-700"
                                 />
                                 <div className="flex flex-col justify-between flex-1">
                                     <div>

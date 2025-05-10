@@ -30,7 +30,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     Route::get('daftar_buku/', [BookController::class, 'index'])->name('book.index');
+
     Route::get('daftar_buku/pinjam_buku/{id}', [BookController::class, 'show'])->name('book.show');
+    
+    Route::get('pinjam_buku/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
 });
 
 // Admin ==================================================================================
@@ -50,11 +53,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('crud_pustakawan', function () {
         return Inertia::render('admin/crud_PUSTAKAWAN');
     })->name('crud_librarian');
-    
+
     Route::get('crud_peminjam', function () {
         return Inertia::render('admin/crud_PEMINJAM');
     })->name('crud_borrower');
 });
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';

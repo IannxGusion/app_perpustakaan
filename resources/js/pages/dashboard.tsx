@@ -5,6 +5,7 @@ import { Head } from '@inertiajs/react';
 import { Footer } from '@/components/element/footer';
 import Search from '@/components/element/search';
 import Highlight from '@/components/element/highlight';
+import { Pack } from '@/components/element/drawer';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -40,6 +41,8 @@ export default function Dashboard() {
             <div className="flex h-full flex-1 flex-col gap-4 border-2 border-accent rounded-xl p-4 m-4">
 
                 <Highlight />
+
+                <Pack/>
 
             </div>
 

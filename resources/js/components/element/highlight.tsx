@@ -28,7 +28,7 @@ export default function Highlight() {
                             <img
                                 src={book.img}
                                 alt={book.title}
-                                className="mt-2 w-full h-64 object-cover"
+                                className="mt-2 w-full h-64 object-cover border border-slate-700"
                             />
                             <h3 className="mt-4 text-lg font-semibold">{book.title}</h3>
                         </div>
