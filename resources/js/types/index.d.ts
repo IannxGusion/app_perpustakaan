@@ -47,6 +47,9 @@ export interface User {
 export interface Book {
     id: number;
     title: string;
+    category?: {
+        name: string;
+    };
     content: text;
     author: string;
     publisher: string;

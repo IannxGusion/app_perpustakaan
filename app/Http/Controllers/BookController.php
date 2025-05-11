@@ -11,11 +11,8 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::with('categories')->get();
-        $categories = Category::with('books')->get();
-        return Inertia('daftar_buku', [
-            'books' => $books,
-            'categories' => $categories
-        ]);
+        $categories = Category::all();
+        return Inertia('daftar_buku', compact('books', 'categories'));
     }
 
     public function show($id)

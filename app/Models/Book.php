@@ -14,6 +14,7 @@ class Book extends Model
     protected $fillable = [
         'title',
         'content',
+        'category',
         'author',
         'publisher',
         'publication_date',
@@ -22,6 +23,6 @@ class Book extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'book_categories');
+        return $this->belongsTo(Category::class);
     }
 }

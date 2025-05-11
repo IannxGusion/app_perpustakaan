@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Link } from "@inertiajs/react"
-import type { Book, Category } from '@/types';
+import type { Book } from '@/types';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -25,8 +25,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Daftar({ ...props }: { books: Book[], categories: Category[] }) {
-    const { books, categories } = props;
+export default function Daftar({ ...props }: { books: Book[]}) {
+    const { books } = props;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -64,11 +64,16 @@ export default function Daftar({ ...props }: { books: Book[], categories: Catego
 
                                         <CardHeader className='flex-1'>
                                             <CardTitle>
-                                                {categories.map((category) => (
-                                                    <span key={category.id} className="inline-block bg-black text-white text-xs px-2 py-1 rounded">
-                                                        {category.name}
+                                                {book.category ? (
+                                                    <span className="inline-block bg-black text-white text-xs px-2 py-1 rounded">
+                                                        {book.category.name}
                                                     </span>
-                                                ))}
+                                                ) : (
+                                                    <span className="inline-block bg-gray-400 text-white text-xs px-2 py-1 rounded">
+                                                        Anonymous
+                                                        
+                                                    </span>
+                                                )}
                                             </CardTitle>
                                         </CardHeader>
 
