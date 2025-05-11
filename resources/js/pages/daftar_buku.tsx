@@ -6,7 +6,6 @@ import { Footer } from '@/components/element/footer';
 
 import { Input } from '@/components/ui/input'; // Adjust the path based on your project structure
 import Filter from '@/components/element/daftar_buku/filter';
-import Smally from '@/components/element/small-side/layout';
 
 import {
     Card,
@@ -37,8 +36,6 @@ export default function Daftar({ ...props }: { books: Book[] }) {
             <section className="bg-gray-200 text-center py-12 px-4 mt-4">
                 <h1 className="text-4xl font-bold">Daftar Buku</h1>
             </section>
-
-            <Smally children={undefined}/>
 
             {/* Placeholder / kotak kosong untuk dashboard content */}
             <div className="flex h-full flex-1 flex-col gap-4 border-2 border-accent rounded-xl p-4 m-4">

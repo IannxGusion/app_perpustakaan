@@ -29,7 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('pesan_buku');
 
 
-    Route::get('daftar_buku/', [BookController::class, 'index'])->name('book.index');
+    Route::get('daftar_buku', [BookController::class, 'index'])->name('book.index');
 
     Route::get('daftar_buku/pinjam_buku/{id}', [BookController::class, 'show'])->name('book.show');
     
