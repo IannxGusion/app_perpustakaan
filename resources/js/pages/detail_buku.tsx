@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Image from "@/components/image";
+import Dilan from "@/components/element/dilan";
 import { Button } from "@/components/ui/button"
 import { Link } from "@inertiajs/react"
 import { DatePesan } from "@/components/pesan_buku";
@@ -26,7 +26,7 @@ const ProductInfoCard = ({ ...props }: { book: Book }) => {
 
             {/* Gambar Sampul */}
             <div className="border p-4 shadow rounded bg-white">
-                <Image className="flex mb-4 border border-slate-700" />
+                <Dilan className="flex mb-4 border border-slate-700" />
 
                 {/* Tag */}
                 <div className="flex space-x-2 mb-4">

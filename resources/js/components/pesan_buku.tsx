@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { addDays, format } from "date-fns"
+import { addDays, format, isBefore, isWithinInterval } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 import { DateRange } from "react-day-picker"
 
@@ -21,6 +21,19 @@ export function DatePesan({
     from: new Date(2022, 0, 20),
     to: addDays(new Date(2022, 0, 20), 20),
   })
+
+  const handleDateSelect = (selectedDate: DateRange | undefined) => {
+    if (selectedDate?.from && selectedDate?.to) {
+      const maxDate = addDays(selectedDate.from, 30)
+      if (isBefore(selectedDate.to, maxDate)) {
+        setDate(selectedDate)
+      } else {
+        setDate({ from: selectedDate.from, to: maxDate })
+      }
+    } else {
+      setDate(selectedDate)
+    }
+  }
 
   return (
     <div className={cn("grid gap-2", className)}>
@@ -55,7 +68,7 @@ export function DatePesan({
             mode="range"
             defaultMonth={date?.from}
             selected={date}
-            onSelect={setDate}
+            onSelect={handleDateSelect}
             numberOfMonths={2}
           />
         </PopoverContent>
