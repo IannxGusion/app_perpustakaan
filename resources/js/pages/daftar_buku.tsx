@@ -25,7 +25,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Daftar({ ...props }: { books: Book[]}) {
+export default function Daftar({ ...props }: { books: Book[] }) {
     const { books } = props;
 
     return (
@@ -71,7 +71,6 @@ export default function Daftar({ ...props }: { books: Book[]}) {
                                                 ) : (
                                                     <span className="inline-block bg-gray-400 text-white text-xs px-2 py-1 rounded">
                                                         Anonymous
-                                                        
                                                     </span>
                                                 )}
                                             </CardTitle>
