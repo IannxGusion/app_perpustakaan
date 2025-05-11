@@ -1,16 +1,16 @@
 <?php
 
 namespace Database\Factories;
-use App\Models\Books_category;
+use App\Models\Category;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Books_category>
  */
-class Books_categoryFactory extends Factory
+class CategoryFactory extends Factory
 {
-    protected $model = Books_category::class;
+    protected $model = Category::class;
 
     /**
      * Define the model's default state.

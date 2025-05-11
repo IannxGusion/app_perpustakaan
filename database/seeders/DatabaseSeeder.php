@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+//use App\Models\User;
 use App\Models\Book;
-use App\Models\Books_category;
-use App\Models\Categories_relation;
+use App\Models\Category;
+use App\Models\Book_category;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -24,10 +24,10 @@ class DatabaseSeeder extends Seeder
         ]);*/
 
         Book::factory(10)->create()->each(function ($book) {
-            Books_category::factory(3)->create()->each(function ($books_category) use ($book) {
-                Categories_relation::factory(5)->create([
+            Category::factory(3)->create()->each(function ($category) use ($book) {
+                Book_category::factory(5)->create([
                     'books_id' => $book->id,
-                    'books_categories_id' => $books_category->id,
+                    'categories_id' => $category->id,
                 ]);
             });
         });

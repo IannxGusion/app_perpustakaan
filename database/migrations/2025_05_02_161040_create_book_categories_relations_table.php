@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories_relations', function (Blueprint $table) {
+        Schema::create('book_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('books_categories_id')->constrained('books_categories', 'id')->onDelete('cascade');
+            $table->foreignId('categories_id')->constrained('categories', 'id')->onDelete('cascade');
             $table->foreignId('books_id')->constrained('books', 'id')->onDelete('cascade');
             $table->timestamps();
         });
@@ -24,10 +24,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kategoribuku-relasi');
-        Schema::table('kategoribuku-relasi', function (Blueprint $table) {
-            $table->dropForeign(['KategoriID']);
-            $table->dropForeign(['BukuID']);
+        Schema::dropIfExists('book_categories');
+        Schema::table('book_categories', function (Blueprint $table) {
+            $table->dropForeign(['categories_id']);
+            $table->dropForeign(['books_id']);
         });
     }
 };

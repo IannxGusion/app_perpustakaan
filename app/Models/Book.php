@@ -17,11 +17,10 @@ class Book extends Model
         'publisher',
         'publication_date',
         'status',
-        'books_category'
     ];
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsToMany(Books_category::class, 'book_id', 'books_categories', 'id');
+        //
     }
 }

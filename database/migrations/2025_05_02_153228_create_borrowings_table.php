@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('borrowings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('books_id')->constrained('books', 'id')->onDelete('cascade');
             $table->foreignId('users_id')->constrained('users', 'id')->onDelete('cascade');
+            $table->foreignId('books_id')->constrained('books', 'id')->onDelete('cascade');
             $table->date('BorrowDate');
             $table->date('ReturnDate')->nullable();
-            $table->enum('Status', ['Borrowing', 'Returned/Available'])->default('Borrowing');
+            $table->enum('Status', ['Borrows', 'Returned/Available'])->default('Borrows');
             $table->integer('BookQuantity')->default(1);
             $table->timestamps();
         });
@@ -30,8 +30,8 @@ return new class extends Migration
     {
         Schema::dropIfExists('peminjaman');
         Schema::table('buku', function (Blueprint $table) {
-            $table->dropForeign(['BukuID']);
-            $table->dropForeign(['UserID']);
+            $table->dropForeign(['users_id']);
+            $table->dropForeign(['books_id']);
         });
     }
 };

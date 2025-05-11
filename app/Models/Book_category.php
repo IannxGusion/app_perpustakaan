@@ -2,12 +2,12 @@
 
 namespace App\Models;
 use App\Models\Book;
-use App\Models\Books_category;
+use App\Models\Category;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Categories_relation extends Model
+class Book_category extends Model
 {
     use HasFactory;
 
@@ -21,8 +21,8 @@ class Categories_relation extends Model
         return $this->hasMany(Book::class);
     }
 
-    public function category()
+    public function categories()
     {
-        return $this->hasMany(Books_category::class);
+        return $this->hasMany(Category::class);
     }
 }
