@@ -1,12 +1,9 @@
-// import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/user-layout';
-import { type BreadcrumbItem } from '@/types';
+import { type BreadcrumbItem, Book } from '@/types';
 import { Head } from '@inertiajs/react';
-import { Footer } from '@/components/element/footer';
 
-import { Input } from '@/components/ui/input'; // Adjust the path based on your project structure
-import Filter from '@/components/element/daftar_buku/filter';
-
+// ui
+import { Input } from '@/components/ui/input';
 import {
     Card,
     CardContent,
@@ -16,7 +13,11 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Link } from "@inertiajs/react"
-import type { Book } from '@/types';
+import { SquareTerminal } from 'lucide-react';
+
+// element
+import Filter from '@/components/element/daftar_buku/filter';
+import { Footer } from '@/components/element/footer';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -64,15 +65,20 @@ export default function Daftar({ ...props }: { books: Book[] }) {
 
                                         <CardHeader className='flex-1'>
                                             <CardTitle>
-                                                {book.category ? (
-                                                    <span className="inline-block bg-black text-white text-xs px-2 py-1 rounded">
-                                                        {book.category.name}
-                                                    </span>
-                                                ) : (
-                                                    <span className="inline-block bg-gray-400 text-white text-xs px-2 py-1 rounded">
-                                                        Anonymous
-                                                    </span>
-                                                )}
+
+                                                <div className="flex items-center space-x-2">
+                                                    {book.category ? (
+                                                        <span className="flex items-center px-2 py-1 text-sm font-medium text-white bg-sky-300 rounded">
+                                                            <SquareTerminal className="mr-1" size={16} />
+                                                            {book.category.name}
+                                                        </span>
+                                                    ) : (
+                                                        <span className="px-2 py-1 text-sm font-medium text-gray-800 bg-gray-200 rounded">
+                                                            Anonymous
+                                                        </span>
+                                                    )}
+                                                </div>
+
                                             </CardTitle>
                                         </CardHeader>
 
