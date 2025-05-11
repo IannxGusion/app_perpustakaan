@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-//use App\Models\Books_category;
+
+use App\Models\Category;
 
 class Book extends Model
 {
@@ -21,6 +22,6 @@ class Book extends Model
 
     public function categories()
     {
-        //
+        return $this->belongsToMany(Category::class, 'book_categories');
     }
 }

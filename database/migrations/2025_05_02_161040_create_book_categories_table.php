@@ -1,4 +1,4 @@
-<?php
+*<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('book_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('categories_id')->constrained('categories', 'id')->onDelete('cascade');
-            $table->foreignId('books_id')->constrained('books', 'id')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories', 'id')->onDelete('cascade');
+            $table->foreignId('book_id')->constrained('books', 'id')->onDelete('cascade');
             $table->timestamps();
         });
     }

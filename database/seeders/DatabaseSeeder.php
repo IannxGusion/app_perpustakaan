@@ -23,13 +23,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);*/
 
-        Book::factory(10)->create()->each(function ($book) {
-            Category::factory(3)->create()->each(function ($category) use ($book) {
-                Book_category::factory(5)->create([
-                    'books_id' => $book->id,
-                    'categories_id' => $category->id,
-                ]);
-            });
-        });
+        // Seed Category using factory
+        Category::factory(10)->create();
+
+        // Seed Book using factory
+        Book::factory(5)->create();
     }
 }

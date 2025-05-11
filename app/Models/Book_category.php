@@ -13,7 +13,7 @@ class Book_category extends Model
 
     protected $fillable = [
         'books_id',
-        'books_categories_id'
+        'categories_id'
     ];
     
     public function books()

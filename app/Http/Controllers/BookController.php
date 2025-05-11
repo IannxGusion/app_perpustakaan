@@ -3,22 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
+
 
 class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::latest()->get();
-        //$categories = Books_category::all();
+        $books = Book::with('categories')->get();
+        $categories = Category::with('books')->get();
         return Inertia('daftar_buku', [
             'books' => $books,
-            //'categories' => $categories,
+            'categories' => $categories
         ]);
     }
 
     public function show($id)
     {
-        $book = Book::findOrFail($id);
+        $book = Book::with('categories')->findOrFail($id);
         return Inertia('pinjam_buku', [
             'book' => $book,
         ]);

@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Link } from "@inertiajs/react"
-import type { Book } from '@/types';
+import type { Book, Category } from '@/types';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -25,8 +25,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Daftar({ ...props }: { books: Book[] }) {
-    const { books } = props;
+export default function Daftar({ ...props }: { books: Book[], categories: Category[] }) {
+    const { books, categories } = props;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -60,13 +60,15 @@ export default function Daftar({ ...props }: { books: Book[] }) {
                         <div>
                             <div className="grid gap-5 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                                 {books.map((book) => (
-                                    <Card className="p-4 flex flex-col">
+                                    <Card key={book.id} className="p-4 flex flex-col">
 
                                         <CardHeader className='flex-1'>
                                             <CardTitle>
-                                                <span className="inline-block bg-black text-white text-xs px-2 py-1 rounded">
-                                                    Tag
-                                                </span>
+                                                {categories.map((category) => (
+                                                    <span key={category.id} className="inline-block bg-black text-white text-xs px-2 py-1 rounded">
+                                                        {category.name}
+                                                    </span>
+                                                ))}
                                             </CardTitle>
                                         </CardHeader>
 
