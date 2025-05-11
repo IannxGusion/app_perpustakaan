@@ -11,7 +11,7 @@ class Book extends Model
 {
     use HasFactory;
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
@@ -23,7 +23,6 @@ class Book extends Model
         'publisher',
         'publication_date',
         'status',
-        
         'category'
     ];
 }
