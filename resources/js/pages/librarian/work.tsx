@@ -1,22 +1,22 @@
+import { Multiple } from '@/components/element/multiple';
+import { CarouselPlugin } from '@/components/element/plugin';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
-import AppLayout from '@/pages/admin/layer/app-layout';
+import AppLayout from '@/pages/librarian/layer/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { Donut } from '@/components/element/donut';
-import { Multiple } from '@/components/element/multiple';
-import { CarouselPlugin } from '@/components/element/plugin';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'main',
-        href: '/main',
+        title: 'Dashboard',
+        href: '/dashboard',
     },
 ];
 
 export default function Dashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Main" />
+            <Head title="Dashboard" />
 
             {/* Placeholder / kotak kosong untuk dashboard content */}
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
@@ -45,6 +45,7 @@ export default function Dashboard() {
                     <CarouselPlugin />
                 </div>
             </div>
+
         </AppLayout>
     );
 }
