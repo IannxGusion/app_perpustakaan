@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-use App\Models\Borrow;
+use App\Models\Borrowing;
 
 class User extends Authenticatable
 {
@@ -50,6 +50,6 @@ class User extends Authenticatable
 
     public function borrowings()
     {
-        return $this->hasMany(Borrow::class);
+        return $this->hasMany(Borrowing::class);
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use App\Models\Category;
-use App\Models\Borrow;
+use App\Models\Borrowing;
 
 class Book extends Model
 {
@@ -19,7 +19,7 @@ class Book extends Model
 
     public function borrowings()
     {
-        return $this->hasMany(Borrow::class);
+        return $this->hasMany(Borrowing::class);
     }
 
     protected $fillable = [
@@ -29,6 +29,6 @@ class Book extends Model
         'publisher',
         'publication_date',
         'status',
-        'category'
+        'category_id'
     ];
 }

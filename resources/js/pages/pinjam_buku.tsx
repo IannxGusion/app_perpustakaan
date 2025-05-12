@@ -1,12 +1,11 @@
-//import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import type { Book } from '@/types';
 
 import {
     AlertDialog,
-    AlertDialogAction,
+    //AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
@@ -22,6 +21,7 @@ import { SquareTerminal } from 'lucide-react';
 
 // element
 import { Footer } from '@/components/element/footer';
+import { Input } from '@/components/ui/input';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -58,8 +58,8 @@ const reviews = [
     },
 ];
 
-export default function Dashboard({ ...props }: { book: Book }) {
-    const { book } = props;
+export default function Dashboard({ book }: { book: Book }) {
+    const { csrf_token } = usePage().props as never;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -79,7 +79,7 @@ export default function Dashboard({ ...props }: { book: Book }) {
                         {/* Book Image */}
                         <div className="flex">
                             <img
-                                src="/books/sadako.jpg" // Ganti sesuai lokasi gambar
+                                src="#" // Ganti sesuai lokasi gambar
                                 alt={book.title}
                                 className="w-64 h-auto border border-slate-700"
                             />
@@ -119,46 +119,22 @@ export default function Dashboard({ ...props }: { book: Book }) {
                                         <AlertDialogHeader>
                                             <AlertDialogTitle>Syarat dan Ketentuan</AlertDialogTitle>
                                             <AlertDialogDescription>
-                                                    Dengan meminjam buku ini, Anda setuju untuk mematuhi semua syarat dan ketentuan yang berlaku. Pastikan untuk mengembalikan buku tepat waktu dan dalam kondisi baik.
-                                                    <br />
-                                                    <br />
-                                                    Jika Anda tidak setuju dengan syarat dan ketentuan ini, silakan batalkan peminjaman.
+                                                Dengan meminjam buku ini, Anda setuju untuk mematuhi semua syarat dan ketentuan yang berlaku. Pastikan untuk mengembalikan buku tepat waktu dan dalam kondisi baik.
+                                                <br />
+                                                <br />
+                                                Jika Anda tidak setuju dengan syarat dan ketentuan ini, silakan batalkan peminjaman.
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
-
-                                        <AlertDialogFooter>
-                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-
-                                            <form action={route('borrow.store')} method="POST" encType="multipart/form-data">
-                                                <AlertDialogAction type='submit'>
-                                                    <a onClick={() => {
-                                                        localStorage.setItem('alertMessage', JSON.stringify({
-                                                            message: 'Buku berhasil dipinjam!',
-                                                            timestamp: new Date().toISOString()
-                                                        }));
-                                                        // Display a toast notification instead of an alert
-                                                        const toast = document.createElement('div');
-                                                        toast.textContent = ' Anda telah berhasil meminjam buku di perpustakaan kami!!';
-                                                        toast.style.position = 'fixed';
-                                                        toast.style.bottom = '20px';
-                                                        toast.style.right = '20px';
-                                                        toast.style.backgroundColor = '#004380';
-                                                        toast.style.color = 'white';
-                                                        toast.style.padding = '10px 20px';
-                                                        toast.style.borderRadius = '5px';
-                                                        toast.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
-                                                        document.body.appendChild(toast);
-                                                        setTimeout(() => {
-                                                            document.body.removeChild(toast);
-                                                        }, 3000);
-                                                    }}
-                                                    >
-                                                        Pinjam</a>
-                                                </AlertDialogAction>
-                                            </form>
-
-                                        </AlertDialogFooter>
-
+                                        <form action={route('borrow.store')} method="POST" className="w-full">
+                                            <input type="hidden" name="_token" value={csrf_token} />
+                                            <Input type="hidden" name="book_id" id="book_id" value={book.id} required />
+                                            <AlertDialogFooter>
+                                                <AlertDialogCancel type="button">Cancel</AlertDialogCancel>
+                                                <Button type="submit" className="bg-primary text-white">
+                                                    Pinjam
+                                                </Button>
+                                            </AlertDialogFooter>
+                                        </form>
                                     </AlertDialogContent>
                                 </AlertDialog>
                             </div>

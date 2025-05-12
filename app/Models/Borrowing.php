@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use App\Models\User;
 use App\Models\Book;
 
 class Borrowing extends Model
 {
+    use HasFactory;
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -20,8 +23,10 @@ class Borrowing extends Model
     }
 
     protected $fillable = [
+        'user_id',
+        'book_id',
         'BorrowDate',
         'ReturnDate',
         'Status'
-  ];
+    ];
 }

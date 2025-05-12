@@ -4,25 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 use App\Models\Borrowing;
 
 class BorrowingController extends Controller
 {
     public function store(Request $request)
     {
+        // Validate input
         $request->validate([
-            'book_id' => 'required|exists:books,id'
+            'book_id' => 'required|exists:books,id',
         ]);
 
-        $borrow = new Borrowing();
-        $borrow->borrow_date = now();
-        $borrow->return_date = now()->addDays(30);
-        $borrow->user_id = Auth::user()->id;
-        $borrow->book_id = $request->book_id;
+        // Create borrowing record
+        Borrowing::create([
+            'user_id' => Auth::id(),
+            'book_id' => $request->book_id,
+            'BorrowDate' => now(),
+            'Status' => 'borrowed',
+        ]);
 
-        $borrow->save();
-
-        return redirect()->route('koleksi_buku')->with('success', 'Borrows successfully.');
+        // Redirect back with success message
+        return redirect()->route('koleksi_buku')->with('success', 'Buku berhasil dipinjam!');
     }
 }
