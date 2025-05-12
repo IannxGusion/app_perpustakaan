@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import Dilan from "@/components/element/dilan";
 import { useState } from "react";
-import Image from "@/components/image";
+import Dilan from "@/components/element/dilan";
 import { Button } from "@/components/ui/button"
 import { Link } from "@inertiajs/react"
 import { DatePesan } from "@/components/pesan_buku";
