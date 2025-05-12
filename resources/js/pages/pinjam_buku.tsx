@@ -119,12 +119,10 @@ export default function Dashboard({ ...props }: { book: Book }) {
                                         <AlertDialogHeader>
                                             <AlertDialogTitle>Syarat dan Ketentuan</AlertDialogTitle>
                                             <AlertDialogDescription>
-                                                <p className="text-sm text-gray-700">
                                                     Dengan meminjam buku ini, Anda setuju untuk mematuhi semua syarat dan ketentuan yang berlaku. Pastikan untuk mengembalikan buku tepat waktu dan dalam kondisi baik.
-                                                </p>
-                                                <p className="text-sm text-gray-700 mt-2">
+                                                    <br />
+                                                    <br />
                                                     Jika Anda tidak setuju dengan syarat dan ketentuan ini, silakan batalkan peminjaman.
-                                                </p>
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
 

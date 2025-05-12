@@ -22,7 +22,6 @@ class Borrowing extends Model
     protected $fillable = [
         'BorrowDate',
         'ReturnDate',
-        'Status',
-        'BookQuantity'
+        'Status'
   ];
 }
