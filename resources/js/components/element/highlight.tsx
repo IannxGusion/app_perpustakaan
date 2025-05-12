@@ -6,7 +6,7 @@ export default function Highlight() {
                     {[
                         {
                             title: "Dilan",
-                            img: "/books/dilan.jpg",
+                            img: "Dilan.jpg",
                         },
                         {
                             title: "Sadako",

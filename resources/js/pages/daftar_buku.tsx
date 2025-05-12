@@ -12,6 +12,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { Link } from "@inertiajs/react"
 import { SquareTerminal } from 'lucide-react';
 
@@ -68,14 +69,14 @@ export default function Daftar({ ...props }: { books: Book[] }) {
 
                                                 <div className="flex items-center space-x-2">
                                                     {book.category ? (
-                                                        <span className="flex items-center px-2 py-1 text-sm font-medium text-white bg-sky-300 rounded">
+                                                        <Badge className="flex items-center px-2 py-1 text-sm font-medium text-white bg-sky-300 rounded">
                                                             <SquareTerminal className="mr-1" size={16} />
                                                             {book.category.name}
-                                                        </span>
+                                                        </Badge>
                                                     ) : (
-                                                        <span className="px-2 py-1 text-sm font-medium text-gray-800 bg-gray-200 rounded">
+                                                        <Badge className="px-2 py-1 text-sm font-medium text-gray-800 bg-gray-200 rounded">
                                                             Anonymous
-                                                        </span>
+                                                        </Badge>
                                                     )}
                                                 </div>
 

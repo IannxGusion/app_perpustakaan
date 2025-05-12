@@ -17,7 +17,7 @@ class BookController extends Controller
 
     public function show($id)
     {
-        $book = Book::with('categories')->findOrFail($id);
+        $book = Book::with('category')->findOrFail($id);
         return Inertia('pinjam_buku', [
             'book' => $book,
         ]);
@@ -25,7 +25,7 @@ class BookController extends Controller
 
     public function detail($id)
     {
-        $book = Book::findOrFail($id);
+        $book = Book::with('category')->findOrFail($id);
         return Inertia('detail_buku', [
             'book' => $book,
         ]);
