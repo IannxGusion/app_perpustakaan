@@ -24,12 +24,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // POST route for borrowing a book
     Route::post('pinjam_buku', [BorrowingController::class, 'store'])->name('borrow.store');
 
+    // This GET route uses a different URI, so no conflict:
     Route::get('daftar_buku', [BookController::class, 'index'])->name('book.index');
 
-    // This GET route uses a different URI, so no conflict:
-    Route::get('pinjam_buku/{id}', [BookController::class, 'show'])->name('book.show');
+    Route::get('daftar_buku/pinjam_buku/{id}', [BookController::class, 'show'])->name('book.show');
 
-    Route::get('detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
+    Route::get('daftar_buku/pinjam_buku/{id}/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
 });
 
 // Admin ==================================================================================

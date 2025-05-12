@@ -18,7 +18,6 @@ return new class extends Migration
             $table->date('BorrowDate');
             $table->date('ReturnDate')->nullable();
             $table->enum('Status', ['Borrows', 'Returned/Available'])->default('Borrows');
-            $table->integer('BookQuantity')->default(1);
             $table->timestamps();
         });
     }

@@ -1,6 +1,6 @@
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head, usePage } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import type { Book } from '@/types';
 
 import {
@@ -59,7 +59,6 @@ const reviews = [
 ];
 
 export default function Dashboard({ book }: { book: Book }) {
-    const { csrf_token } = usePage().props as never;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -126,7 +125,6 @@ export default function Dashboard({ book }: { book: Book }) {
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
                                         <form action={route('borrow.store')} method="POST" className="w-full">
-                                            <input type="hidden" name="_token" value={csrf_token} />
                                             <Input type="hidden" name="book_id" id="book_id" value={book.id} required />
                                             <AlertDialogFooter>
                                                 <AlertDialogCancel type="button">Cancel</AlertDialogCancel>
