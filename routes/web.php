@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\BorrowingController;
+//use App\Http\Controllers\BorrowingController;
 
 // USER ==================================================================================
 Route::get('/', function () {
@@ -22,14 +22,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('koleksi_buku');
 
     // POST route for borrowing a book
-    Route::post('pinjam_buku', [BorrowingController::class, 'store'])->name('borrow.store');
+    //Route::post('pinjam_buku', [BorrowingController::class, 'store'])->name('borrow.store');
 
     // This GET route uses a different URI, so no conflict:
     Route::get('daftar_buku', [BookController::class, 'index'])->name('book.index');
 
     Route::get('daftar_buku/pinjam_buku/{id}', [BookController::class, 'show'])->name('book.show');
 
-    Route::get('daftar_buku/pinjam_buku/{id}/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
+    Route::get('/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
 });
 
 // Admin ==================================================================================
