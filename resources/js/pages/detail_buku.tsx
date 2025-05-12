@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import Dilan from "@/components/element/dilan";
 import { useState } from "react";
 import Image from "@/components/image";
 import { Button } from "@/components/ui/button"
@@ -27,7 +29,7 @@ const ProductInfoCard = ({ ...props }: { book: Book }) => {
 
             {/* Gambar Sampul */}
             <div className="border p-4 shadow rounded bg-white">
-                <Image className="flex mb-4 border border-slate-700" />
+                <Dilan className="flex mb-4 border border-slate-700" />
 
                 {/* Tag */}
                 <div className="flex items-center space-x-2">
