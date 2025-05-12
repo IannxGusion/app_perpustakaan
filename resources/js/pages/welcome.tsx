@@ -1,6 +1,6 @@
 import { type SharedData } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
-import logo from '@/components/element/logo.png';
+import AppLogoIcon from '@/components/app-logo-icon';
 
 export default function Welcome() {
     const { auth } = usePage<SharedData>().props;
@@ -125,7 +125,7 @@ export default function Welcome() {
                             </ul>
                         </div>
                         <div className="flex-1 flex items-center justify-center p-6 lg:p-20">
-                            <img src={logo} alt="App Logo" />
+                            <AppLogoIcon />
                         </div>
                     </main>
                 </div>
