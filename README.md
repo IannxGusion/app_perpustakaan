@@ -9,7 +9,7 @@
 
 ## Getting Started
 
-### Assumed that you have installed [NodeJS 22+](https://nodejs.org), [Composer 2.8+](https://getcomposer.org) and [PHP 8+](https://www.php.net/) on your machine.
+### Assumed that you have installed [NodeJS 22](https://nodejs.org), [Composer 2.8](https://getcomposer.org) and [PHP 8](https://www.php.net/) on your machine.
 
 ### 1. install dependencies
 
@@ -43,7 +43,7 @@ DB_CONNECTION=sqlite
 php artisan key:generate
 ```
 
-### 4. Create a session table
+### 4. Database migration
 
 ```powershell
 php artisan migrate
