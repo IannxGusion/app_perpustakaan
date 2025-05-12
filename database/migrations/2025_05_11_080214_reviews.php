@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('book_reviews', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('books_id')->constrained('books', 'id')->onDelete('cascade');
-            $table->foreignId('users_id')->constrained('users', 'id')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
+            $table->foreignId('book_id')->constrained('books', 'id')->onDelete('cascade');
             $table->integer('rating');
             $table->text('comment');
             $table->timestamps();
@@ -26,10 +26,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ulasan-buku');
-        Schema::table('ulasan-buku', function (Blueprint $table) {
-            $table->dropForeign(['BukuID']);
-            $table->dropForeign(['UserID']);
+        Schema::dropIfExists('reviews');
+        Schema::table('reviews', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['book_id']);
         });
     }
 };

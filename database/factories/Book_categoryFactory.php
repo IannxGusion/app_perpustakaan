@@ -1,17 +1,17 @@
 <?php
 
 namespace Database\Factories;
-use App\Models\Categories_relation;
-use App\Models\Books_category;
+use App\Models\Book_category;
+use App\Models\Category;
 use App\Models\Book;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category_relation>
  */
-class Categories_relationFactory extends Factory
+class Book_categoryFactory extends Factory
 {
-    protected $model = Categories_relation::class;
+    protected $model = Book_category::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class Categories_relationFactory extends Factory
     {
         return [
             'books_id' => Book::factory(),
-            'books_categories_id' => Books_category::factory(),
+            'categories_id' => category::factory(),
         ];
     }
 }

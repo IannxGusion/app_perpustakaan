@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personal_collections', function (Blueprint $table) {
+        Schema::create('collections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')->constrained('users', 'id')->onDelete('cascade');
-            $table->foreignId('books_id')->constrained('books', 'id')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
+            $table->foreignId('book_id')->constrained('books', 'id')->onDelete('cascade');
             $table->string('collection_name')->default('New Collection');
             $table->timestamps();
         });
@@ -25,10 +25,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('koleksi_pribadi');
-        Schema::table('koleksi_pribadi', function (Blueprint $table) {
-            $table->dropForeign(['UserID']);
-            $table->dropForeign(['BukuID']);
+        Schema::dropIfExists('collections');
+        Schema::table('collections', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['book_id']);
         });
     }
 };

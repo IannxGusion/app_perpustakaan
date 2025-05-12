@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Dilan from "@/components/element/dilan";
+import { useState } from "react";
+import Image from "@/components/image";
 import { Button } from "@/components/ui/button"
 import { Link } from "@inertiajs/react"
 import { DatePesan } from "@/components/pesan_buku";
@@ -14,7 +16,9 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import { Badge } from "@/components/ui/badge"
 import type { Book } from '@/types';
+import { SquareTerminal } from 'lucide-react';
 
 const ProductInfoCard = ({ ...props }: { book: Book }) => {
     const [rating, setRating] = useState(0); // Add state for rating
@@ -22,17 +26,23 @@ const ProductInfoCard = ({ ...props }: { book: Book }) => {
 
     return (
         <div className="max-w-100 mx-auto p-4">
-            <h2 className="text-gray-400 text-sm mb-2">Product Info Card</h2>
 
             {/* Gambar Sampul */}
             <div className="border p-4 shadow rounded bg-white">
                 <Dilan className="flex mb-4 border border-slate-700" />
 
                 {/* Tag */}
-                <div className="flex space-x-2 mb-4">
-                    <span className="bg-black text-white text-xs px-2 py-1 rounded">School</span>
-                    <span className="bg-black text-white text-xs px-2 py-1 rounded">Romance</span>
-                    <span className="bg-black text-white text-xs px-2 py-1 rounded">Action</span>
+                <div className="flex items-center space-x-2">
+                    {book.category ? (
+                        <Badge className="flex items-center px-2 py-1 text-sm font-medium text-white bg-sky-300 rounded">
+                            <SquareTerminal className="mr-1" size={16} />
+                            {book.category.name}
+                        </Badge>
+                    ) : (
+                        <Badge className="px-2 py-1 text-sm font-medium text-gray-800 bg-gray-200 rounded">
+                            Anonymous
+                        </Badge>
+                    )}
                 </div>
 
                 {/* Info Buku */}
@@ -90,12 +100,19 @@ const ProductInfoCard = ({ ...props }: { book: Book }) => {
                                     <Button className="bg-primary text-white mt-2">Pinjam</Button>
                                 </AlertDialogTrigger>
                                 <AlertDialogContent>
+
                                     <AlertDialogHeader>
-                                        <AlertDialogTitle>Konfirmasi Peminjaman</AlertDialogTitle>
+                                        <AlertDialogTitle>Syarat dan Ketentuan</AlertDialogTitle>
                                         <AlertDialogDescription>
-                                            Apakah Anda yakin ingin meminjam buku ini?
+                                            <p className="text-sm text-gray-700">
+                                                Dengan meminjam buku ini, Anda setuju untuk mematuhi semua syarat dan ketentuan yang berlaku. Pastikan untuk mengembalikan buku tepat waktu dan dalam kondisi baik.
+                                            </p>
+                                            <p className="text-sm text-gray-700 mt-2">
+                                                Jika Anda tidak setuju dengan syarat dan ketentuan ini, silakan batalkan peminjaman.
+                                            </p>
                                         </AlertDialogDescription>
                                     </AlertDialogHeader>
+
                                     <AlertDialogFooter>
                                         <AlertDialogCancel>Cancel</AlertDialogCancel>
                                         <AlertDialogAction asChild>
@@ -127,6 +144,7 @@ const ProductInfoCard = ({ ...props }: { book: Book }) => {
                                             </Link>
                                         </AlertDialogAction>
                                     </AlertDialogFooter>
+
                                 </AlertDialogContent>
                             </AlertDialog>
                         </div>

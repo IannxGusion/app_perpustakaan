@@ -2,11 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use App\Models\Book;
-use App\Models\Books_category;
-use App\Models\Categories_relation;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,20 +13,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        /* User::factory(10)->create();
 
-        /*User::factory()->create([
+        User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);*/
 
-        Book::factory(10)->create()->each(function ($book) {
-            Books_category::factory(3)->create()->each(function ($books_category) use ($book) {
-                Categories_relation::factory(5)->create([
-                    'books_id' => $book->id,
-                    'books_categories_id' => $books_category->id,
-                ]);
-            });
+        Category::factory(3)->create()->each(function ($category) {
+            Book::factory(5)->create([
+                'category_id' => $category->id, // Ensure 'category_id' exists in the 'books' table
+            ]);
         });
     }
 }

@@ -4,11 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-//use App\Models\Books_category;
+
+use App\Models\Category;
+use App\Models\Borrowing;
 
 class Book extends Model
 {
     use HasFactory;
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function borrowings()
+    {
+        return $this->hasMany(Borrowing::class);
+    }
 
     protected $fillable = [
         'title',
@@ -17,11 +29,6 @@ class Book extends Model
         'publisher',
         'publication_date',
         'status',
-        'books_category'
+        'category_id'
     ];
-
-    public function category()
-    {
-        return $this->belongsToMany(Books_category::class, 'book_id', 'books_categories', 'id');
-    }
 }

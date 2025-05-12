@@ -44,25 +44,22 @@ export interface User {
     [key: string]: unknown; // This allows for additional properties...
 }
 
-/*        'content',
-        'author',
-        'publisher',
-        'publication_date',
-        'status',
-        'books_category'*/
-
 export interface Book {
     id: number;
     title: string;
+    category: {
+        id: number;
+        name: string;
+    };
     content: text;
     author: string;
     publisher: string;
     publication_date: date;
-    //status: ;
+    status: string;
     image: string;
 }
 
-export interface Category_relation {
-    category_id: number;
-    book_id: number;
+export interface Category {
+    id: number;
+    name: string;
 }

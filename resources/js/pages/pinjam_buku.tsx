@@ -1,13 +1,12 @@
-//import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
-import { Footer } from '@/components/element/footer';
 import type { Book } from '@/types';
 
 import {
     AlertDialog,
     AlertDialogAction,
+    //AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
@@ -17,8 +16,12 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { Link } from "@inertiajs/react"
+import { SquareTerminal } from 'lucide-react';
 
+// element
+import { Footer } from '@/components/element/footer';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -55,8 +58,7 @@ const reviews = [
     },
 ];
 
-export default function Dashboard({ ...props }: { book: Book }) {
-    const { book } = props;
+export default function Dashboard({ book }: { book: Book }) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -76,7 +78,7 @@ export default function Dashboard({ ...props }: { book: Book }) {
                         {/* Book Image */}
                         <div className="flex">
                             <img
-                                src="/books/sadako.jpg" // Ganti sesuai lokasi gambar
+                                src="#" // Ganti sesuai lokasi gambar
                                 alt={book.title}
                                 className="w-64 h-auto border border-slate-700"
                             />
@@ -85,9 +87,19 @@ export default function Dashboard({ ...props }: { book: Book }) {
                         {/* Book Info */}
                         <div className="flex flex-col justify-between w-full">
                             <div>
-                                <span className="inline-block bg-black text-white text-xs px-2 py-1 rounded">
-                                    Tag
-                                </span>
+
+                                <div className="flex items-center space-x-2">
+                                    {book.category ? (
+                                        <Badge className="flex items-center px-2 py-1 text-sm font-medium text-white bg-sky-300 rounded">
+                                            <SquareTerminal className="mr-1" size={16} />
+                                            {book.category.name}
+                                        </Badge>
+                                    ) : (
+                                        <Badge className="px-2 py-1 text-sm font-medium text-gray-800 bg-gray-200 rounded">
+                                            Anonymous
+                                        </Badge>
+                                    )}
+                                </div>
 
                                 <h2 className="text-2xl font-semibold mt-2">
                                     <Link href={route('book.detail', book['id'])}>
@@ -102,43 +114,45 @@ export default function Dashboard({ ...props }: { book: Book }) {
                                         <Button variant="outline" className="bg-primary text-white">Pinjam Buku</Button>
                                     </AlertDialogTrigger>
                                     <AlertDialogContent>
+
                                         <AlertDialogHeader>
                                             <AlertDialogTitle>Syarat dan Ketentuan</AlertDialogTitle>
                                             <AlertDialogDescription>
-                                                <p className="text-sm text-gray-700">
-                                                    Dengan meminjam buku ini, Anda setuju untuk mematuhi semua syarat dan ketentuan yang berlaku. Pastikan untuk mengembalikan buku tepat waktu dan dalam kondisi baik.
-                                                </p>
-                                                <p className="text-sm text-gray-700 mt-2">
-                                                    Jika Anda tidak setuju dengan syarat dan ketentuan ini, silakan batalkan peminjaman.
-                                                </p>
+                                                Dengan meminjam buku ini, Anda setuju untuk mematuhi semua syarat dan ketentuan yang berlaku. Pastikan untuk mengembalikan buku tepat waktu dan dalam kondisi baik.
+                                                <br />
+                                                <br />
+                                                Jika Anda tidak setuju dengan syarat dan ketentuan ini, silakan batalkan peminjaman.
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
-                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                            <AlertDialogAction>
-                                                <Link href={route('koleksi_buku')} onClick={() => {
-                                                    localStorage.setItem('alertMessage', JSON.stringify({
-                                                        message: 'Buku berhasil dipinjam!',
-                                                        timestamp: new Date().toISOString()
-                                                    }));
-                                                    // Display a toast notification instead of an alert
-                                                    const toast = document.createElement('div');
-                                                    toast.textContent = ' Anda telah berhasil meminjam buku di perpustakaan kami!!';
-                                                    toast.style.position = 'fixed';
-                                                    toast.style.bottom = '20px';
-                                                    toast.style.right = '20px';
-                                                    toast.style.backgroundColor = '#004380';
-                                                    toast.style.color = 'white';
-                                                    toast.style.padding = '10px 20px';
-                                                    toast.style.borderRadius = '5px';
-                                                    toast.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
-                                                    document.body.appendChild(toast);
-                                                    setTimeout(() => {
-                                                        document.body.removeChild(toast);
-                                                    }, 3000);
-                                                }}
+                                            <AlertDialogCancel type="button">Cancel</AlertDialogCancel>
+                                            <AlertDialogAction asChild>
+                                                <Link
+                                                    href={route('koleksi_buku')}
+                                                    onClick={() => {
+                                                        localStorage.setItem('alertMessage', JSON.stringify({
+                                                            message: 'Buku berhasil dipinjam!',
+                                                            timestamp: new Date().toISOString()
+                                                        }));
+                                                        // Display a toast notification instead of an alert
+                                                        const toast = document.createElement('div');
+                                                        toast.textContent = ' Anda telah berhasil meminjam buku di perpustakaan kami!!';
+                                                        toast.style.position = 'fixed';
+                                                        toast.style.bottom = '20px';
+                                                        toast.style.right = '20px';
+                                                        toast.style.backgroundColor = '#004380';
+                                                        toast.style.color = 'white';
+                                                        toast.style.padding = '10px 20px';
+                                                        toast.style.borderRadius = '5px';
+                                                        toast.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
+                                                        document.body.appendChild(toast);
+                                                        setTimeout(() => {
+                                                            document.body.removeChild(toast);
+                                                        }, 3000);
+                                                    }}
                                                 >
-                                                    Pinjam</Link>
+                                                    Pinjam
+                                                </Link>
                                             </AlertDialogAction>
                                         </AlertDialogFooter>
                                     </AlertDialogContent>
@@ -181,9 +195,9 @@ export default function Dashboard({ ...props }: { book: Book }) {
                         </div>
                     </section>
                 </main>
-            </div>
+            </div >
 
             <Footer />
-        </AppLayout>
+        </AppLayout >
     );
 }

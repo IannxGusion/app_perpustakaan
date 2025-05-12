@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BookController;
+//use App\Http\Controllers\BorrowingController;
 
 // USER ==================================================================================
 Route::get('/', function () {
@@ -20,20 +21,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('koleksi_buku');
     })->name('koleksi_buku');
 
-    Route::get('detail_buku', function () {
-        return Inertia::render('detail_buku');
-    })->name('detail_buku');
+    // POST route for borrowing a book
+    //Route::post('pinjam_buku', [BorrowingController::class, 'store'])->name('borrow.store');
 
-    Route::get('pesan_buku', function () {
-        return Inertia::render('pesan_buku');
-    })->name('pesan_buku');
-
-
+    // This GET route uses a different URI, so no conflict:
     Route::get('daftar_buku', [BookController::class, 'index'])->name('book.index');
 
     Route::get('daftar_buku/pinjam_buku/{id}', [BookController::class, 'show'])->name('book.show');
-    
-    Route::get('pinjam_buku/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
+
+    Route::get('/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
 });
 
 // Admin ==================================================================================
@@ -48,7 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('crud_peminjaman', function () {
         return Inertia::render('admin/crud_peminjaman');
-    })->name('crud_borrowings');
+    })->name('crud_borrowing');
 
     Route::get('crud_pustakawan', function () {
         return Inertia::render('admin/crud_PUSTAKAWAN');

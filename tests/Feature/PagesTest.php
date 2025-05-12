@@ -13,3 +13,15 @@ test('authenticated users can visit the dashboard', function () {
 
     $this->get('/dashboard')->assertOk();
 });
+
+test('authenticated users can visit the daftar_buku', function () {
+    $this->actingAs($user = User::factory()->create());
+
+    $this->get('/daftar_buku')->assertOk();
+});
+
+/*test('authenticated users can visit the pinjam_buku', function () {
+    $this->actingAs($user = User::factory()->create());
+
+    $this->get('/pinjam_buku/1')->assertOk();
+});*/
