@@ -31,7 +31,7 @@ const ProductInfoCard = ({ ...props }: { book: Book }) => {
                 {/* Tag */}
                 <div className="flex items-center space-x-2">
                     {book.category ? (
-                        <Badge className="flex items-center px-2 py-1 text-sm font-medium text-white bg-sky-300 rounded">
+                        <Badge className="flex items-center px-2 py-1 text-sm font-medium text-white bg-black rounded">
                             <SquareTerminal className="mr-1" size={16} />
                             {book.category.name}
                         </Badge>
