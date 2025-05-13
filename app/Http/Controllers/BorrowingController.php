@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use App\Models\Book;
+use App\Models\Category;
 use App\Models\Borrowing;
 
 class BorrowingController extends Controller
@@ -20,10 +23,18 @@ class BorrowingController extends Controller
             'user_id' => Auth::id(),
             'book_id' => $request->book_id,
             'BorrowDate' => now(),
-            'Status' => 'borrowed',
+            'ReturnDate' => now()->addMonth(),
+            'Status' => 'Borrows',
         ]);
 
         // Redirect back with success message
-        return redirect()->route('koleksi_buku')->with('success', 'Buku berhasil dipinjam!');
+        return redirect()->route('borrow.index');
+    }
+
+    public function index()
+    {
+        $books = Book::with('category')->get();
+        $categories = Category::all();
+        return Inertia('koleksi_buku', compact('books', 'categories'));
     }
 }

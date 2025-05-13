@@ -4,6 +4,8 @@ import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { Footer } from '@/components/element/footer';
 
+import type { Book } from '@/types';
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Dashboard',
@@ -11,38 +13,9 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-type Book = {
-    title: string;
-    author: string;
-    publisher: string;
-    imageUrl: string;
-};
+export default function KoleksiBuku({ ...props }: { books: Book[] }) {
+    const { books } = props;
 
-const books: Book[] = [
-    {
-        title: "Dragon Ball",
-        author: "penulis",
-        publisher: "Penerbit",
-        imageUrl:
-            "https://upload.wikimedia.org/wikipedia/en/2/22/Dragon_Ball_vol._1.png",
-    },
-    {
-        title: "Ratu Ilmu Hitam",
-        author: "penulis",
-        publisher: "Penerbit",
-        imageUrl:
-            "https://upload.wikimedia.org/wikipedia/id/3/35/Ratu_Ilmu_Hitam_2019.jpg",
-    },
-    {
-        title: "Dilan 1990",
-        author: "penulis",
-        publisher: "Penerbit",
-        imageUrl:
-            "https://upload.wikimedia.org/wikipedia/id/0/03/Dilan_1990_poster.jpg",
-    },
-];
-
-export default function KoleksiBuku() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
@@ -55,13 +28,13 @@ export default function KoleksiBuku() {
             <div className="flex h-full flex-1 flex-col gap-4 border-2 border-accent rounded-xl p-4 m-4">
 
                 <div className="space-y-6">
-                    {books.map((book, index) => (
+                    {books.map((book) => (
                         <div
-                            key={index}
+                            key={book.id}
                             className="flex space-x-6 bg-white px-4 py-4 rounded-lg items-start shadow-2xl"
                         >
                             <img
-                                src={book.imageUrl}
+                                src={book.image}
                                 alt={book.title}
                                 className="w-28 h-40 object-cover shadow border border-slate-700"
                             />

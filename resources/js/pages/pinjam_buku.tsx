@@ -6,7 +6,6 @@ import type { Book } from '@/types';
 import {
     AlertDialog,
     AlertDialogAction,
-    //AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
@@ -124,11 +123,19 @@ export default function Dashboard({ book }: { book: Book }) {
                                                 Jika Anda tidak setuju dengan syarat dan ketentuan ini, silakan batalkan peminjaman.
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
+
                                         <AlertDialogFooter>
                                             <AlertDialogCancel type="button">Cancel</AlertDialogCancel>
-                                            <AlertDialogAction asChild>
-                                                <Link
-                                                    href={route('koleksi_buku')}
+
+                                            <form action={route("borrow.store")} method="POST" encType="multipart/form-data">
+                                                {/* CSRF */}
+                                                <input
+                                                    type="hidden"
+                                                    name="_token"
+                                                    value={typeof window !== "undefined" ? (document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '') : ''}
+                                                />
+                                                <input type="hidden" name="book_id" id="book_id" value={book.id} required />
+                                                <AlertDialogAction type="submit"
                                                     onClick={() => {
                                                         localStorage.setItem('alertMessage', JSON.stringify({
                                                             message: 'Buku berhasil dipinjam!',
@@ -150,11 +157,12 @@ export default function Dashboard({ book }: { book: Book }) {
                                                             document.body.removeChild(toast);
                                                         }, 3000);
                                                     }}
-                                                >
-                                                    Pinjam
-                                                </Link>
-                                            </AlertDialogAction>
+                                                    >Pinjam
+                                                </AlertDialogAction>
+                                            </form>
+
                                         </AlertDialogFooter>
+
                                     </AlertDialogContent>
                                 </AlertDialog>
                             </div>
