@@ -5,19 +5,19 @@ use Inertia\Inertia;
 use App\Http\Controllers\BookController;
 //use App\Http\Controllers\BorrowingController;
 
-// *USER* ==================================================================================
+// *USER* =====================================================================================
 Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
 
-// Pustakawan ==================================================================================
+// Pustakawan ----------------------------------------------------------------------------------
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('work', function () {
         return Inertia::render('librarian/work');
     })->name('work');
 });
 
-// Peminjam
+// Peminjam ------------------------------------------------------------------------------------
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
@@ -26,6 +26,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('koleksi_buku', function () {
         return Inertia::render('koleksi_buku');
     })->name('koleksi_buku');
+    
+    Route::get('s&k', function () {
+        return Inertia::render('s&k');
+    })->name('s&k');
+    
 
     // POST route for borrowing a book
     //Route::post('pinjam_buku', [BorrowingController::class, 'store'])->name('borrow.store');
@@ -37,7 +42,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
 });
-// *USER* ==================================================================================
+// *USER* ===================================================================================
 
 // *Admin* ==================================================================================
 Route::middleware(['auth', 'verified'])->group(function () {
