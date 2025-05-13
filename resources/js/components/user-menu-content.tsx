@@ -2,8 +2,12 @@ import { DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSep
 import { UserInfo } from '@/components/user-info';
 import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
 import { type User } from '@/types';
-import { Link, router } from '@inertiajs/react';
-import { LogOut, Settings } from 'lucide-react';
+
+import { router } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
+import { SharedData } from '@/types';
+
+import { LogOut, ArrowRightLeft, Settings } from 'lucide-react';
 
 interface UserMenuContentProps {
     user: User;
@@ -11,6 +15,8 @@ interface UserMenuContentProps {
 
 export function UserMenuContent({ user }: UserMenuContentProps) {
     const cleanup = useMobileNavigation();
+    const { auth } = usePage<SharedData>().props;
+
 
     const handleLogout = () => {
         cleanup();
@@ -34,6 +40,21 @@ export function UserMenuContent({ user }: UserMenuContentProps) {
                 </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
+
+            {auth.user.role !== "PEMINJAM" && (
+                <div>
+                    <DropdownMenuGroup asChild>
+                        <DropdownMenuItem asChild>
+                            <Link className="block w-full" href={route('role')} as="button" prefetch onClick={cleanup}>
+                                <ArrowRightLeft className="mr-2" />
+                                Role
+                            </Link>
+                        </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                    <DropdownMenuSeparator />
+                </div>
+            )}
+
             <DropdownMenuItem asChild>
                 <Link className="block w-full" method="post" href={route('logout')} as="button" onClick={handleLogout}>
                     <LogOut className="mr-2" />
