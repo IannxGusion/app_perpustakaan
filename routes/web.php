@@ -5,12 +5,18 @@ use Inertia\Inertia;
 use App\Http\Controllers\BookController;
 //use App\Http\Controllers\BorrowingController;
 
-// USER ==================================================================================
+// *USER* ==================================================================================
 Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
 
-// User ==================================================================================
+// Pustakawan ==================================================================================
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('work', function () {
+        return Inertia::render('librarian/work');
+    })->name('work');
+});
+
 // Peminjam
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
@@ -31,8 +37,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
 });
+// *USER* ==================================================================================
 
-// Admin ==================================================================================
+// *Admin* ==================================================================================
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('main', function () {
         return Inertia::render('admin/main');
@@ -54,6 +61,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('admin/crud_PEMINJAM');
     })->name('crud_borrower');
 });
+// *Admin* ==================================================================================
 
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';

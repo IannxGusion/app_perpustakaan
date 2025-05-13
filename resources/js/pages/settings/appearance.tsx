@@ -1,11 +1,14 @@
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 
 import AppearanceTabs from '@/components/appearance-tabs';
 import HeadingSmall from '@/components/heading-small';
-import { type BreadcrumbItem } from '@/types';
+import { SharedData, type BreadcrumbItem } from '@/types';
 
-import AppLayout from '@/layouts/user-layout';
 import SettingsLayout from '@/layouts/settings/layout';
+
+import UserLayout from '@/layouts/user-layout';
+import AdminLayout from '@/pages/admin/layer/app-layout';
+import PustakawanLayout from '@/pages/librarian/layer/user-layout';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -15,8 +18,16 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function Appearance() {
+    const { auth } = usePage<SharedData>().props;
+    const Layout =
+        auth.user.role === 'ADMIN'
+            ? AdminLayout
+            : auth.user.role === 'PUSTAKAWAN'
+                ? PustakawanLayout
+                : UserLayout;
+
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <Layout breadcrumbs={breadcrumbs}>
             <Head title="Appearance settings" />
 
             <SettingsLayout>
@@ -25,6 +36,6 @@ export default function Appearance() {
                     <AppearanceTabs />
                 </div>
             </SettingsLayout>
-        </AppLayout>
+        </Layout>
     );
 }
