@@ -109,7 +109,7 @@ export default function Daftar({ ...props }: { books: Book[] }) {
                                         </CardContent>
 
                                         <CardFooter className='flex-1'>
-                                            <p>{book.title}</p>
+                                            <p className='text-xl font-bold'>{book.title}</p>
                                         </CardFooter>
 
                                         <Button asChild>

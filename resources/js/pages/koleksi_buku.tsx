@@ -1,13 +1,22 @@
 import React from 'react';
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { Footer } from '@/components/element/footer';
 
 import type { Book } from '@/types';
 import { Badge } from '@/components/ui/badge';
 import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon, SquareTerminal } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
+
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -64,11 +73,54 @@ export default function KoleksiBuku({ ...props }: { books: Book[] }) {
                                         )}
                                     </div>
 
-                                    <h2 className="text-xl font-bold">{book.title}</h2>
+                                    <Dialog>
+
+                                        <DialogTrigger asChild>
+                                            <button>
+                                                <h2 className="text-xl font-bold">
+                                                    {book.title}
+                                                </h2>
+                                            </button>
+                                        </DialogTrigger>
+
+                                        <DialogContent className="sm:max-w-[425px]">
+                                            <DialogHeader>
+                                                <DialogTitle>Info Buku</DialogTitle>
+                                            </DialogHeader>
+
+                                            <table className="min-w-full border border-gray-300">
+                                                <tbody>
+                                                    <tr className="border-b border-gray-300">
+                                                        <td className="px-4 py-2 font-medium text-gray-700">Judul</td>
+                                                        <td className="px-4 py-2 text-gray-900">{book.title}</td>
+                                                    </tr>
+                                                    <tr className="border-b border-gray-300">
+                                                        <td className="px-4 py-2 font-medium text-gray-700">Genre</td>
+                                                        <td className="px-4 py-2 text-gray-900">{book.category.name}</td>
+                                                    </tr>
+                                                    <tr className="border-b border-gray-300">
+                                                        <td className="px-4 py-2 font-medium text-gray-700">Penulis</td>
+                                                        <td className="px-4 py-2 text-gray-900">{book.author}</td>
+                                                    </tr>
+                                                    <tr className="border-b border-gray-300">
+                                                        <td className="px-4 py-2 font-medium text-gray-700">Penerbit</td>
+                                                        <td className="px-4 py-2 text-gray-900">{book.publisher}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="px-4 py-2 font-medium text-gray-700">Tgl. Terbit</td>
+                                                        <td className="px-4 py-2 text-gray-900">{book.publication_date}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </DialogContent>
+                                    </Dialog>
+
                                     <p className="text-sm text-gray-600">{book.author}</p>
-                                    <p className="text-sm text-gray-600">{book.publisher}</p>
                                 </div>
-                                <button className="w-full h-7 bg-primary rounded mt-3 text text-white">Baca</button>
+                                <Button asChild className="w-full h-7 bg-primary rounded mt-3 text text-white" >
+                                    <Link target="_blank" href={`koleksi_buku/${book.id}`}>Baca</Link>
+                                </Button>
                             </div>
                         </div>
                     ))}
