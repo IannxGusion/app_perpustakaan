@@ -28,7 +28,7 @@ export default function TabsDemo() {
                 </CardHeader>
                 <CardFooter>
                     <Button className="w-full" asChild>
-                        <Link href={route('main')}>Switch</Link>
+                        <Link href={route('work')}>Switch</Link>
                     </Button>
                 </CardFooter>
             </Card>
@@ -49,7 +49,7 @@ export default function TabsDemo() {
                         </CardHeader>
                         <CardFooter>
                             <Button className="w-full" asChild>
-                                <Link href={route('main')}>Switch</Link>
+                                <Link href={route('work')}>Switch</Link>
                             </Button>
                         </CardFooter>
                     </Card>
@@ -64,7 +64,7 @@ export default function TabsDemo() {
                         </CardHeader>
                         <CardFooter>
                             <Button className="w-full" asChild>
-                                <Link href={route('work')}>Switch</Link>
+                                <Link href={route('main')}>Switch</Link>
                             </Button>
                         </CardFooter>
                     </Card>

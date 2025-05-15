@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\User;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Borrowing;
@@ -36,5 +37,13 @@ class BorrowingController extends Controller
         $books = Book::with('category')->get();
         $categories = Category::all();
         return Inertia('koleksi_buku', compact('books', 'categories'));
+    }
+
+    public function crud_index()
+    {
+        $borrowings = Borrowing::with('user', 'book')->get();
+        $users = User::all();
+        $books = Book::all();
+        return Inertia('admin/peminjaman/crud_peminjaman', compact('borrowings', 'users', 'books'));
     }
 }

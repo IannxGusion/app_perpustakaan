@@ -33,13 +33,11 @@ export default function Dashboard() {
 */
 }
             {/* Placeholder / kotak kosong untuk dashboard content */}
-            <div className="flex h-full flex-1 flex-col gap-4 border-2 border-accent rounded-xl p-4 m-4">
 
                 <Highlight />
 
                 <Pack />
 
-            </div>
 
             <Footer />
         </AppLayout>

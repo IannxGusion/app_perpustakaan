@@ -13,7 +13,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
-import { ChevronDown, MoreHorizontal, SquareTerminal } from "lucide-react"
+import { ChevronDown, MoreHorizontal } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -35,11 +35,10 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import type { Book } from '@/types';
+import type { Borrowing } from '@/types';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
 
-export const columns: ColumnDef<Book>[] = [
+export const columns: ColumnDef<Borrowing>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -68,30 +67,24 @@ export const columns: ColumnDef<Book>[] = [
     cell: ({ row }) => <div className="font-medium">{row.getValue("id")}</div>,
   },
   {
-    accessorKey: "title",
-    header: "Judul",
-    cell: ({ row }) => <div className="text-lg font-extrabold">{row.getValue("title")}</div>,
+    accessorKey: "user",
+    header: "Book",
+    cell: ({ row }) => <div className="text-lg font-extrabold">{row.original.book?.name}</div>,
   },
   {
-    accessorKey: "category",
-    header: "Kategori",
-    cell: ({ row }) => <Badge className="text-lg font-extrabold flex items-center px-2 py-1 text-white bg-black rounded"><SquareTerminal className="mr-1" size={16} />{row.original.category?.name}</Badge>
-    ,
+    accessorKey: "book",
+    header: "Peminjam",
+    cell: ({ row }) => <div className="text-lg font-extrabold">{row.original.user?.name}</div>,
   },
   {
-    accessorKey: "author",
-    header: "Penulis",
-    cell: ({ row }) => <div>{row.getValue("author")}</div>,
+    accessorKey: "borrow_date",
+    header: "Tanggal Pinjam",
+    cell: ({ row }) => <div>{row.getValue("borrow_date")}</div>,
   },
   {
-    accessorKey: "publisher",
-    header: "Penerbit",
-    cell: ({ row }) => <div>{row.getValue("publisher")}</div>,
-  },
-  {
-    accessorKey: "publication_date",
-    header: "Tanggal Terbit",
-    cell: ({ row }) => <div>{row.getValue("publication_date")}</div>,
+    accessorKey: "return_date",
+    header: "Tanggal Kembali",
+    cell: ({ row }) => <div>{row.getValue("return_date")}</div>,
   },
   {
     accessorKey: "status",
@@ -102,7 +95,7 @@ export const columns: ColumnDef<Book>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const book = row.original
+      const borrowing = row.original
 
       return (
         <DropdownMenu>
@@ -116,9 +109,9 @@ export const columns: ColumnDef<Book>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(String(book.id))}
+              onClick={() => navigator.clipboard.writeText(String(borrowing.id))}
               className="underline">
-              Copy book ID
+              Copy borrowing ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
 
@@ -126,24 +119,26 @@ export const columns: ColumnDef<Book>[] = [
               <Table className="min-w-full border border-gray-300">
                 <TableBody>
                   <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Judul</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.title}</TableCell>
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Buku</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{borrowing.book.name}</TableCell>
+                  </TableRow>
+
+                  <TableRow className="border-b border-gray-300">
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Peminjam</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{borrowing.user.name}</TableCell>
+                  </TableRow>
+
+                  <TableRow className="border-b border-gray-300">
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Tanggal Pinjam</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{borrowing.borrow_date}</TableCell>
                   </TableRow>
                   <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Genre</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.category.name}</TableCell>
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Tanggal Kembali</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{borrowing.return_date}</TableCell>
                   </TableRow>
                   <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Penulis</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.author}</TableCell>
-                  </TableRow>
-                  <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Penerbit</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.publisher}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Tgl. Terbit</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.publication_date}</TableCell>
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Status</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{borrowing.status}</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -169,14 +164,14 @@ export const columns: ColumnDef<Book>[] = [
   },
 ]
 
-export function DataTable({ books }: { books: Book[] }) {
+export function DataTable({ borrowings }: { borrowings: Borrowing[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
 
   const table = useReactTable({
-    data: books,
+    data: borrowings,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
