@@ -27,6 +27,11 @@ const mainNavItems: NavItem[] = [
         href: '/laporan',
         icon: User,
     },
+    {
+        title: 'Pendataan',
+        href: '/pendataan',
+        icon: User,
+    },
 ];
 
 const rightNavItems: NavItem[] = [
