@@ -11,15 +11,21 @@ import { useInitials } from '@/hooks/use-initials';
 import { cn } from '@/lib/utils';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpenIcon, FolderIcon, Briefcase, Menu } from 'lucide-react';
+import { BookOpenIcon, FolderIcon, Briefcase, Menu, User } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import AppLogoIcon from '@/components/app-logo-icon';
+import { IconLabelImportant } from '@tabler/icons-react';
 
 const mainNavItems: NavItem[] = [
     {
         title: 'Work',
         href: '/work',
         icon: Briefcase,
+    },
+    {
+        title: 'Laporan',
+        href: '/laporan',
+        icon: User,
     },
 ];
 
