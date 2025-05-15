@@ -21,6 +21,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
      Route::get('laporan', function () {
         return Inertia::render('librarian/laporan');
     })->name('laporan');
+
+     Route::get('pendataan', function () {
+        return Inertia::render('librarian/pendataan');
+    })->name('pendataan');
 });
 
 // Peminjam ------------------------------------------------------------------------------------
