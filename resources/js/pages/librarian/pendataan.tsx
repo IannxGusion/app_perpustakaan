@@ -1,13 +1,12 @@
 import { Head } from '@inertiajs/react';
 import AppLayout from '@/pages/librarian/layer/user-layout';
 import { Footer } from '@/components/element/footer';
-import { type BreadcrumbItem } from '@/types';
 import { Book, BookA, Calendar } from 'lucide-react';
 import React from 'react';
 import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
+   AlertDialog,
+   AlertDialogAction,
+   AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
     AlertDialogFooter,
@@ -15,11 +14,6 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-
-
-const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Dashboard', href: '/dashboard' },
-];
 
 export default function Pendataan() {
      const [form, setForm] = React.useState({
@@ -103,41 +97,42 @@ export default function Pendataan() {
                         name="genre"
                         value={form.genre}
                         onChange={handleChange}
-                        className="w-full border rounded px-3 py-2"
-                        placeholder="Value"
-                        required
-                    />
-                </div>
-                <div>
-                    <label className="block font-medium mb-1">Tanggal Rilis</label>
-                    <input
-                        type="date"
-                        name="releaseDate"
-                        value={form.releaseDate}
-                        onChange={handleChange}
-                        className="w-full border rounded px-3 py-2"
-                        required
-                    />
-                </div>
-                <div>
-                    <label className="block font-medium mb-1">Deskripsi Buku</label>
-                    <textarea
-                        name="description"
-                        value={form.description}
-                        onChange={handleChange}
-                        className="w-full border rounded px-3 py-2"
-                        placeholder="Value"
-                        rows={3}
-                        required
-                    />
-                </div>
-                <button
-                    type="submit"
-                    className="w-full bg-blue-700 text-white py-2 rounded hover:bg-blue-800 transition"
-                >
-                    input barang
-                </button>
-            </form>
-        </div>
-    );
-}
+                         className="w-full border rounded px-3 py-2"
+                         placeholder="Value"
+                         required
+                     />
+                 </div>
+                 <div>
+                     <label className="block font-medium mb-1">Tanggal Rilis</label>
+                     <input
+                         type="date"
+                         name="releaseDate"
+                         value={form.releaseDate}
+                         onChange={handleChange}
+                         className="w-full border rounded px-3 py-2"
+                         required
+                     />
+                 </div>
+                 <div>
+                     <label className="block font-medium mb-1">Deskripsi Buku</label>
+                     <textarea
+                         name="description"
+                         value={form.description}
+                         onChange={handleChange}
+                         className="w-full border rounded px-3 py-2"
+                         placeholder="Value"
+                         rows={3}
+                         required
+                     />
+                 </div>
+                 <button
+                     type="submit"
+                     className="w-full bg-blue-700 text-white py-2 rounded hover:bg-blue-800 transition"
+                 >
+                     input barang
+                 </button>
+             </form>
+         </div>
+     );
+ }
+ 
