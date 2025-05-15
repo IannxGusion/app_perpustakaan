@@ -17,6 +17,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('work', function () {
         return Inertia::render('librarian/work');
     })->name('work');
+
+     Route::get('laporan', function () {
+        return Inertia::render('librarian/laporan');
+    })->name('laporan');
 });
 
 // Peminjam ------------------------------------------------------------------------------------
