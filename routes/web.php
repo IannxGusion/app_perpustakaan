@@ -5,7 +5,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowingController;
 
-use Illuminate\Http\Request;
+Route::get("koleksi_buku/{id}", [BookController::class, 'download'])->name("book.download");
 
 // *USER* =====================================================================================
 Route::get('/', function () {
