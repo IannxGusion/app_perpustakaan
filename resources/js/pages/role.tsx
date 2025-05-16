@@ -16,7 +16,7 @@ import { SharedData } from "@/types";
 import { Link, usePage } from "@inertiajs/react"
 
 // Assume role is passed as a prop, e.g., "PUSTAKAWAN" or "ADMIN"
-export default function TabsDemo({ role }: { role: string }) {
+export default function TabsDemo() {
     const { auth } = usePage<SharedData>().props;
 
 
