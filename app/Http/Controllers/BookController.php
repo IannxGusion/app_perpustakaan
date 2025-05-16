@@ -22,6 +22,12 @@ class BookController extends Controller
         return Inertia('admin/buku/crud_buku', compact('books', 'categories'));
     }
 
+    public function chart()
+    {
+        $books = Book::with('category')->get();
+        $categories = Category::all();
+        return Inertia('admin/main', compact('books', 'categories'));
+    }
 
     public function show($id)
     {
@@ -39,12 +45,26 @@ class BookController extends Controller
         ]);
     }
 
+    public function detail2($id)
+    {
+        $book = Book::with('category')->findOrFail($id);
+        return Inertia('detail_buku2', [
+            'book' => $book,
+        ]);
+    }
+
+    public function detail3($id)
+    {
+        $book = Book::with('category')->findOrFail($id);
+        return Inertia('detail_buku3', [
+            'book' => $book,
+        ]);
+    }
+
+
     public function download($id)
     {
         $book = Book::with('category')->findOrFail($id);
-        //$pdf = Pdf::loadView('pdf', $data);
-        //return $pdf->download('book.pdf');
-
         return View('pdf', [
             'book' => $book,
         ]);

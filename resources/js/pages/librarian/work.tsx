@@ -6,8 +6,8 @@ import { Button } from '@/components/ui/button';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Dashboard',
-        href: '/dashboard',
+        title: 'Work',
+        href: '/work',
     },
 ];
 
@@ -27,7 +27,7 @@ const dataPeminjaman: Peminjaman[] = [
 export default function Dashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard" />
+            <Head title="Work" />
 
             {/* Hero Section */}
             <section className="bg-gray-200 text-center py-10 px-4 mt-4">

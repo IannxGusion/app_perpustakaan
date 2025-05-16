@@ -4,14 +4,18 @@ import { Footer } from '@/components/element/footer';
 import { type BreadcrumbItem } from '@/types';
 import { Book, BookA, Calendar } from 'lucide-react';
 
+import { DateRangePicker } from '@/components/element/datepick'
+import { Button } from '@/components/ui/button';
+
 const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Dashboard', href: '/dashboard' },
+    { title: 'Laporan',
+    href: '/aporan' },
 ];
 
 export default function Dashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard" />
+            <Head title="Laporan" />
 
            <section className="bg-gray-200 text-center py-10 px-4 mt-4">
                 <h1 className="text-4xl font-bold">Laporan</h1>
@@ -61,38 +65,12 @@ export default function Dashboard() {
                     </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row justify-center items-start gap-10 mb-10">
-                    {[
-                        { month: 'April 2025', days: 30, highlight: 15 },
-                        { month: 'May 2025', days: 31, highlight: 10 },
-                    ].map(({ month, days, highlight }) => (
-                        <div key={month} className="bg-white shadow p-4 rounded w-full max-w-xs">
-                            <div className="text-center font-semibold mb-2 text-blue-700">{month}</div>
-                            <div className="grid grid-cols-7 text-sm gap-1 text-center">
-                                {["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"].map((day) => (
-                                    <div key={day} className="font-medium text-gray-500">{day}</div>
-                                ))}
-                                {Array.from({ length: days }, (_, i) => (
-                                    <div
-                                        key={i}
-                                        className={`p-1 rounded cursor-pointer transition ${
-                                            i + 1 === highlight
-                                                ? "bg-blue-600 text-white font-bold"
-                                                : "hover:bg-blue-100"
-                                        }`}
-                                    >
-                                        {i + 1}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                <DateRangePicker/>
 
                 <div className="text-center">
-                    <button className="bg-blue-700 text-white px-8 py-3 rounded shadow hover:bg-blue-800 font-semibold transition">
+                    <Button className="text-white px-8 py-3 rounded shadow hover:bg-blue-800 font-semibold transition">
                         Download
-                    </button>
+                    </Button>
                 </div>
             
             <Footer />

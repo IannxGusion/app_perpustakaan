@@ -47,14 +47,24 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('daftar_buku/pinjam_buku/{id}', [BookController::class, 'show'])->name('book.show');
 
     Route::get('/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
+
+    Route::get('/detail_buku2/{id}', [BookController::class, 'detail2'])->name('book.detail2');
+
+    Route::get('/detail_buku3/{id}', [BookController::class, 'detail3'])->name('book.detail3');
+
+    
 });
 // *USER* ===================================================================================
 
 // *Admin* ==================================================================================
 Route::middleware(['auth', 'verified'])->group(function () {
+<<<<<<< HEAD
     Route::get('main', function () {
         return Inertia::render('admin/main');
     })->name('main');
+=======
+    Route::get('main', [BookController::class, 'chart'])->name('chart');
+>>>>>>> 894b6cd8f883526aaf41ac6eb397d914fa32404e
 
     Route::get('crud_buku', [BookController::class, 'crud_index'])->name('crud_book');
 

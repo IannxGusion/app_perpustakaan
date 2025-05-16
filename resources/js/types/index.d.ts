@@ -1,4 +1,4 @@
-import { LucideIcon } from 'lucide-react';
+import { Book, LucideIcon } from 'lucide-react';
 import type { Config } from 'ziggy-js';
 
 export interface Auth {
@@ -66,6 +66,7 @@ export interface Borrowing {
         name: string;
     };
 
+<<<<<<< HEAD
     user: {
         id: number;
         name: string;
@@ -75,3 +76,12 @@ export interface Borrowing {
     return_date: string;
     status: string;
 }
+=======
+export interface Borrowing {
+    id: number;
+    borrow_date: string;
+    return_date: string;
+    book: Book; //interface book
+    status: string;
+}
+>>>>>>> 894b6cd8f883526aaf41ac6eb397d914fa32404e
