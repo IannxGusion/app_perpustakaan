@@ -2,6 +2,7 @@
 
 import { TrendingUp } from "lucide-react"
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"
+import { useMemo } from "react"
 
 import {
     Card,
@@ -19,6 +20,7 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/ui/chart"
+import { Book } from "@/types"
 
 const chartData = [
     { month: "January", desktop: 186, mobile: 80 },
@@ -40,22 +42,44 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
-export function Donut() {
+export function Donut({ books }: { books: Book[] }) {
+    // Aggregate books by category
+    const booksPerCategory = useMemo(() => {
+        const result: Record<string, number> = {}
+        books.forEach(book => {
+            const category = book.category.name
+            result[category] = (result[category] || 0) + 1
+        })
+        // Transform to array for chart
+        return Object.entries(result).map(([category, count]) => ({
+            category,
+            count,
+        }))
+    }, [books])
+
+    // Example chart config for categories
+    const categoryChartConfig = {
+        count: {
+            label: "Books",
+            color: "var(--color-desktop)",
+        },
+    } satisfies ChartConfig
+
     return (
         <Card>
             <CardHeader className="items-center pb-4">
-                <CardTitle>Radar Chart - Legend</CardTitle>
+                <CardTitle>Books per Category</CardTitle>
                 <CardDescription>
-                    Showing total visitors for the last 6 months
+                    Number of books in each category
                 </CardDescription>
             </CardHeader>
             <CardContent>
                 <ChartContainer
-                    config={chartConfig}
+                    config={categoryChartConfig}
                     className="mx-auto aspect-square max-h-[250px]"
                 >
                     <RadarChart
-                        data={chartData}
+                        data={booksPerCategory}
                         margin={{
                             top: -40,
                             bottom: -10,
@@ -65,14 +89,13 @@ export function Donut() {
                             cursor={false}
                             content={<ChartTooltipContent indicator="line" />}
                         />
-                        <PolarAngleAxis dataKey="month" />
+                        <PolarAngleAxis dataKey="category" />
                         <PolarGrid />
                         <Radar
-                            dataKey="desktop"
+                            dataKey="count"
                             fill="var(--color-desktop)"
                             fillOpacity={0.6}
                         />
-                        <Radar dataKey="mobile" fill="var(--color-mobile)" />
                         <ChartLegend className="mt-8" content={<ChartLegendContent />} />
                     </RadarChart>
                 </ChartContainer>
