@@ -33,8 +33,10 @@ class BorrowingController extends Controller
 
     public function index()
     {
-        $books = Book::with('category')->get();
-        $categories = Category::all();
-        return Inertia('koleksi_buku', compact('books', 'categories'));
+        // Get borrowings for the logged-in user
+        $borrowings = Borrowing::with(['book.category'])->get();
+
+        // Pass data to the view
+        return inertia('koleksi_buku', compact('borrowings'));
     }
 }

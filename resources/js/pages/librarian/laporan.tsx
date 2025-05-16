@@ -5,13 +5,14 @@ import { type BreadcrumbItem } from '@/types';
 import { Book, BookA, Calendar } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Dashboard', href: '/dashboard' },
+    { title: 'Laporan',
+    href: '/laporan' },
 ];
 
 export default function Dashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard" />
+            <Head title="Laporan" />
 
            <section className="bg-gray-200 text-center py-10 px-4 mt-4">
                 <h1 className="text-4xl font-bold">Laporan</h1>
