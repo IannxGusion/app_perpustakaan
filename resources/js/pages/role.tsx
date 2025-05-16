@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/tabs"
 import { Link } from "@inertiajs/react"
 
+
 export default function TabsDemo() {
     return (
         <div className="flex h-screen justify-center items-center">
