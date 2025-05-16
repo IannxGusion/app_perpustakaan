@@ -19,10 +19,6 @@ import { Link, usePage } from "@inertiajs/react"
 export default function TabsDemo() {
     const { auth } = usePage<SharedData>().props;
 
-
-
-export default function TabsDemo() {
-
     return (
         <div className="flex h-screen justify-center items-center">
             {/* Show Card 1 only for PUSTAKAWAN */}
