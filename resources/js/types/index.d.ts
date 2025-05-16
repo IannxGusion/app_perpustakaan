@@ -61,27 +61,9 @@ export interface Book {
 
 export interface Borrowing {
     id: number;
-    book: {
-        id: number;
-        name: string;
-    };
-
-<<<<<<< HEAD
-    user: {
-        id: number;
-        name: string;
-    };
-    
+    book: Book;
+    user: User;
     borrow_date: string;
     return_date: string;
     status: string;
 }
-=======
-export interface Borrowing {
-    id: number;
-    borrow_date: string;
-    return_date: string;
-    book: Book; //interface book
-    status: string;
-}
->>>>>>> 894b6cd8f883526aaf41ac6eb397d914fa32404e

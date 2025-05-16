@@ -69,7 +69,7 @@ export const columns: ColumnDef<Borrowing>[] = [
   {
     accessorKey: "user",
     header: "Book",
-    cell: ({ row }) => <div className="text-lg font-extrabold">{row.original.book?.name}</div>,
+    cell: ({ row }) => <div className="text-lg font-extrabold">{row.original.book?.title}</div>,
   },
   {
     accessorKey: "book",
@@ -120,7 +120,7 @@ export const columns: ColumnDef<Borrowing>[] = [
                 <TableBody>
                   <TableRow className="border-b border-gray-300">
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Buku</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{borrowing.book.name}</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{borrowing.book.title}</TableCell>
                   </TableRow>
 
                   <TableRow className="border-b border-gray-300">

@@ -58,13 +58,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // *Admin* ==================================================================================
 Route::middleware(['auth', 'verified'])->group(function () {
-<<<<<<< HEAD
     Route::get('main', function () {
         return Inertia::render('admin/main');
     })->name('main');
-=======
+    
     Route::get('main', [BookController::class, 'chart'])->name('chart');
->>>>>>> 894b6cd8f883526aaf41ac6eb397d914fa32404e
 
     Route::get('crud_buku', [BookController::class, 'crud_index'])->name('crud_book');
 

@@ -5,12 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-<<<<<<< HEAD
 use App\Models\User;
 use App\Models\Book;
 use App\Models\Category;
-=======
->>>>>>> 894b6cd8f883526aaf41ac6eb397d914fa32404e
 use App\Models\Borrowing;
 
 class BorrowingController extends Controller
@@ -44,5 +41,11 @@ class BorrowingController extends Controller
         $users = User::all();
         $books = Book::all();
         return Inertia('admin/peminjaman/crud_peminjaman', compact('borrowings', 'users', 'books'));
+    }
+
+    public function collection()
+    {
+        $borrowings = Borrowing::with(['book.category'])->get();
+        return inertia('koleksi_buku', compact('borrowings'));
     }
 }
