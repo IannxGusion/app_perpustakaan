@@ -1,4 +1,4 @@
-import { LucideIcon } from 'lucide-react';
+import { Book, LucideIcon } from 'lucide-react';
 import type { Config } from 'ziggy-js';
 
 export interface Auth {
@@ -64,14 +64,10 @@ export interface Category {
     name: string;
 }
 
-import { z } from "zod";
-
-export const schema = z.object({
-  id: z.number(),
-  header: z.string(),
-  type: z.string(),
-  status: z.string(),
-  target: z.string(),
-  limit: z.string(),
-  reviewer: z.string(),
-});
+export interface Borrowing {
+    id: number;
+    borrow_date: string;
+    return_date: string;
+    book: Book; //interface book
+    status: string;
+}
