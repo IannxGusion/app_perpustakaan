@@ -7,17 +7,17 @@ export default function Highlight() {
     const books = [
         {
             id: 1,
-            title: "Dilan",
+            d: "Dilan",
             dilan: <Dilan />,
         },
         {
             id: 2,
-            title: "Sadako",
+            s: "Sadako",
             sadako: <Sadako />,
         },
         {
             id: 3,
-            title: "Bleach",
+            b: "Bleach",
             bleach: <Bleach />,
         },
     ];
@@ -33,14 +33,16 @@ export default function Highlight() {
                         </span>
                         <h3 className="mt-4 text-lg font-semibold">
                             <Link href={route('book.detail', 1)}>
-                                {book.title}
+                                {book.d}
                                 {book.dilan}
                             </Link>
                             <Link href={route('book.detail2', 2)}>
-                            {book.sadako}
+                                {book.s}
+                                {book.sadako}
                             </Link>
-                            <Link href={route('book.detail3', 2)}>
-                            {book.bleach}
+                            <Link href={route('book.detail3', 3)}>
+                                {book.b}
+                                {book.bleach}
                             </Link>
                         </h3>
                     </div>

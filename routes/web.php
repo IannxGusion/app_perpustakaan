@@ -51,6 +51,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/detail_buku2/{id}', [BookController::class, 'detail2'])->name('book.detail2');
 
     Route::get('/detail_buku3/{id}', [BookController::class, 'detail3'])->name('book.detail3');
+
+    
 });
 // *USER* ===================================================================================
 

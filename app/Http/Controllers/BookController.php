@@ -55,6 +55,7 @@ class BookController extends Controller
         ]);
     }
 
+    
     public function download($id)
     {
         $book = Book::with('category')->findOrFail($id);

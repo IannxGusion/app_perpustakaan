@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { FaSearch } from 'react-icons/fa';
+import { Link } from '@inertiajs/react';
 
+// Buku dengan masing-masing route detail
+export default function Search() {
 const books = [
-    { id: 1, title: 'Dilan', author: 'Pidibaiq', topic: 'Romantic' },
-    { id: 2, title: 'Sadako', author: 'Asep dombang', topic: 'Horor' },
-    { id: 3, title: 'Bleach', author: 'Tite Kubo', topic: 'Fantasy' },
-    // Add more books as needed
+    { id: 1, title: 'Dilan', author: 'Pidibaiq', topic: 'Romantic', route: 'book.detail' },
+    { id: 2, title: 'Sadako', author: 'Asep Dombang', topic: 'Horor', route: 'book.detail2' },
+    { id: 3, title: 'Bleach', author: 'Tite Kubo', topic: 'Fantasy', route: 'book.detail3' },
 ];
 
-export default function Search() {
+
     const [query, setQuery] = useState('');
 
     const filteredBooks = books.filter(
@@ -32,14 +34,27 @@ export default function Search() {
                 />
                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
             </div>
+
             {query && (
                 <div className="mt-6 bg-white rounded shadow p-4 w-full md:w-1/2 mx-auto text-left">
                     <h2 className="font-semibold mb-2">Hasil Pencarian:</h2>
                     {filteredBooks.length > 0 ? (
                         <ul>
                             {filteredBooks.map((book) => (
-                                <li key={book.id} className="py-1 border-b last:border-b-0">
-                                    <strong>{book.title}</strong> oleh {book.author} ({book.topic})
+                                <li key={book.id} className="py-2 border-b last:border-b-0">
+                                    <Link
+                                        href={route(book.route, 1)}
+                                        className="text-black-600 hover:underline"
+                                    >
+                                        <strong>{book.title}</strong> oleh {book.author} ({book.topic})
+                                    </Link>
+
+                                    <Link
+                                        href={route(book.route, 2)}
+                                        className="text-black-600 hover:underline"
+                                    >
+                                        
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
