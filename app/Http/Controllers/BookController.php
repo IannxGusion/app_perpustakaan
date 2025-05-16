@@ -39,6 +39,23 @@ class BookController extends Controller
         ]);
     }
 
+    public function detail2($id)
+    {
+        $book = Book::with('category')->findOrFail($id);
+        return Inertia('detail_buku2', [
+            'book' => $book,
+        ]);
+    }
+
+    public function detail3($id)
+    {
+        $book = Book::with('category')->findOrFail($id);
+        return Inertia('detail_buku3', [
+            'book' => $book,
+        ]);
+    }
+
+    
     public function download($id)
     {
         $book = Book::with('category')->findOrFail($id);
