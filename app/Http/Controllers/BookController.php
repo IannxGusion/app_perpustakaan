@@ -15,6 +15,14 @@ class BookController extends Controller
         return Inertia('daftar_buku', compact('books', 'categories'));
     }
 
+    public function crud_index()
+    {
+        $books = Book::with('category')->get();
+        $categories = Category::all();
+        return Inertia('admin/buku/crud_buku', compact('books', 'categories'));
+    }
+
+
     public function show($id)
     {
         $book = Book::with('category')->findOrFail($id);
