@@ -162,7 +162,7 @@ export const columns: ColumnDef<Book>[] = [
                 <CSRF />
 
                 <Button className="w-full" type="submit" variant={'destructive'}>
-                  Delete
+                  Hapus
                 </Button>
               </form>
 
@@ -206,7 +206,7 @@ export function DataTable({ books }: { books: Book[] }) {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown />
+              Kolom <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -282,7 +282,7 @@ export function DataTable({ books }: { books: Book[] }) {
       </div>
       <div className="flex items-center justify-between py-4">
         <div className="flex items-center space-x-2">
-          <p className="text-sm font-medium">Rows per page</p>
+          <p className="text-sm font-medium">Baris per halaman</p>
           <Select
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value: string) => {
@@ -303,8 +303,8 @@ export function DataTable({ books }: { books: Book[] }) {
         </div>
         <div className="flex items-center space-x-2">
           <div className="flex-1 text-sm text-muted-foreground">
-            {table.getFilteredSelectedRowModel().rows.length} of{" "}
-            {table.getFilteredRowModel().rows.length} row(s) selected.
+            Memilih {table.getFilteredSelectedRowModel().rows.length} dari{" "}
+            {table.getFilteredRowModel().rows.length} baris.
           </div>
           <div className="space-x-2">
             <Button
@@ -313,7 +313,7 @@ export function DataTable({ books }: { books: Book[] }) {
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
             >
-              Previous
+              Mundur
             </Button>
             <Button
               variant="outline"
@@ -321,7 +321,7 @@ export function DataTable({ books }: { books: Book[] }) {
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
             >
-              Next
+              Maju
             </Button>
           </div>
         </div>

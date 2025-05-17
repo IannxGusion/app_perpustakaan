@@ -62,6 +62,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('crud_buku/{id}', [BookController::class, 'crud_remove'])->name('book.remove');
 
     Route::get('crud_peminjaman', [BorrowingController::class, 'crud_index'])->name('crud_borrowing');
+    Route::get('crud_peminjaman/{id}', [BorrowingController::class, 'crud_remove'])->name('borrowing.remove');
 
     Route::get('crud_pustakawan', function () {
         return Inertia::render('admin/crud_PUSTAKAWAN');

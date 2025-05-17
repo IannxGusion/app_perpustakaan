@@ -22,7 +22,7 @@ class BorrowingController extends Controller
             'book_id' => $request->book_id,
             'borrow_date' => now(),
             'return_date' => now()->addMonth(),
-            'Status' => 'Borrows',
+            'status' => 'Borrows',
         ]);
 
         return redirect()->route('borrow.index');
@@ -31,9 +31,17 @@ class BorrowingController extends Controller
     // CRUD ===================================================================================
     public function crud_index()
     {
-        $borrowings = Borrowing::with(['book.category'])->get();
+        $borrowings = Borrowing::with(['book.category', 'user'])->get();
 
         return inertia('admin/peminjaman/crud_peminjaman', compact('borrowings'));
+    }
+
+    public function crud_remove($id)
+    {
+        $borrowing = Borrowing::findOrFail($id);
+        $borrowing->delete();
+
+        return redirect()->back();
     }
     // CRUD ===================================================================================
 
