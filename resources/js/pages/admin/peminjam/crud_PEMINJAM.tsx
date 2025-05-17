@@ -1,8 +1,8 @@
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem, Book } from '@/types';
+import { type BreadcrumbItem, User } from '@/types';
 import { Head } from '@inertiajs/react';
 
-import { DataTable } from "@/pages/admin/buku/data-table";
+import { DataTable } from "@/pages/admin/peminjam/data-table"
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -11,8 +11,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Dashboard({ ...props }: { books: Book[] }) {
-    const { books } = props;
+export default function Dashboard({ ...props }: { users: User[] }) {
+    const { users } = props;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -22,7 +22,7 @@ export default function Dashboard({ ...props }: { books: Book[] }) {
                 <div className="@container/main flex flex-1 flex-col gap-2">
                     <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6 p-5">
 
-                        <DataTable books={books} />
+                        <DataTable users={users} />
 
                     </div>
                 </div>

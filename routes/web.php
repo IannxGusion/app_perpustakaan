@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowingController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get("koleksi_buku/{id}", [BookController::class, 'download'])->name("book.download");
 
@@ -18,11 +20,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('librarian/work');
     })->name('work');
 
-     Route::get('laporan', function () {
+    Route::get('laporan', function () {
         return Inertia::render('librarian/laporan');
     })->name('laporan');
 
-     Route::get('pendataan', function () {
+    Route::get('pendataan', function () {
         return Inertia::render('librarian/pendataan');
     })->name('pendataan');
 });
@@ -33,7 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
-    Route::get('koleksi_buku', [BorrowingController::class, 'index'])->name('borrow.index');
+    Route::get('koleksi_buku', [BorrowingController::class, 'collection'])->name('borrow.index');
 
     // POST route for borrowing a book
     Route::controller(BorrowingController::class)->group(function () {
@@ -47,9 +49,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('daftar_buku/pinjam_buku/{id}', [BookController::class, 'show'])->name('book.show');
 
     Route::get('/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
-
     Route::get('/detail_buku2/{id}', [BookController::class, 'detail2'])->name('book.detail2');
-
     Route::get('/detail_buku3/{id}', [BookController::class, 'detail3'])->name('book.detail3');
 
     
@@ -58,23 +58,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // *Admin* ==================================================================================
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('main', function () {
-        return Inertia::render('admin/main');
-    })->name('main');
+    Route::get('main', [BookController::class, 'chart'])->name('main');
 
     Route::get('crud_buku', [BookController::class, 'crud_index'])->name('crud_book');
+    Route::get('crud_buku/{id}', [BookController::class, 'crud_remove'])->name('book.remove');
 
-    Route::get('crud_peminjaman', function () {
-        return Inertia::render('admin/crud_peminjaman');
-    })->name('crud_borrowing');
+    Route::get('crud_peminjaman', [BorrowingController::class, 'crud_index'])->name('crud_borrowing');
+    Route::get('crud_peminjaman/{id}', [BorrowingController::class, 'crud_remove'])->name('borrowing.remove');
 
     Route::get('crud_pustakawan', function () {
         return Inertia::render('admin/crud_PUSTAKAWAN');
     })->name('crud_librarian');
 
-    Route::get('crud_peminjam', function () {
-        return Inertia::render('admin/crud_PEMINJAM');
-    })->name('crud_borrower');
+    Route::get('crud_peminjam', [UserController::class, 'crud_index'])->name('crud_borrower');
+    Route::get('crud_peminjam/{id}', [AuthenticatedSessionController::class, 'destroy'])->name('borrower.remove');
 });
 // *Admin* ==================================================================================
 

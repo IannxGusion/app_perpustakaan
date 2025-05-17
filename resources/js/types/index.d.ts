@@ -59,15 +59,11 @@ export interface Book {
     image: string;
 }
 
-export interface Category {
-    id: number;
-    name: string;
-}
-
 export interface Borrowing {
     id: number;
+    book: Book;
+    user: User;
     borrow_date: string;
     return_date: string;
-    book: Book; //interface book
     status: string;
 }

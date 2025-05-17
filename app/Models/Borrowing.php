@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use App\Models\User;
 use App\Models\Book;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Borrowing extends Model
 {
+    use SoftDeletes;
+
     use HasFactory;
 
     public function user()
@@ -25,8 +28,8 @@ class Borrowing extends Model
     protected $fillable = [
         'user_id',
         'book_id',
-        'BorrowDate',
-        'ReturnDate',
-        'Status'
+        'borrow_date',
+        'return_date',
+        'status'
     ];
 }

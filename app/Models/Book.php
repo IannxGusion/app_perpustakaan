@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use App\Models\Category;
 use App\Models\Borrowing;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Book extends Model
 {
+    use SoftDeletes;
+
     use HasFactory;
 
     public function category()

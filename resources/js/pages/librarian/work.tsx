@@ -1,11 +1,8 @@
-import { Multiple } from '@/components/element/multiple';
-import { CarouselPlugin } from '@/components/element/plugin';
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/pages/librarian/layer/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
-import { Donut } from '@/components/element/donut';
 import { Footer } from '@/components/element/footer';
+import { Button } from '@/components/ui/button';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -39,7 +36,7 @@ export default function Dashboard() {
             </section>
 
             {/* Main Content */}
-            <main className="flex-grow p-8 bg-gray-100">
+            <main className="flex-grow p-8">
                 <div className="space-y-4 max-w-3xl mx-auto">
                     {dataPeminjaman.map((item) => (
                         <div key={item.id} className="bg-white p-4 shadow flex justify-between items-center rounded">
@@ -48,12 +45,12 @@ export default function Dashboard() {
                                 <div className="text-sm text-gray-600">{item.buku}</div>
                             </div>
                             <div className="flex space-x-2">
-                                <button className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded">
-                                    EDIT
-                                </button>
-                                <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                                <Button variant={'outline'}>
+                                    edit
+                                </Button>
+                                <Button variant={'destructive'}>
                                     hapus
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     ))}

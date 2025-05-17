@@ -1,6 +1,6 @@
 import React from 'react';
 import AppLayout from '@/layouts/user-layout';
-import { type BreadcrumbItem, Borrowing, Book } from '@/types';
+import { type BreadcrumbItem, Borrowing } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import { Footer } from '@/components/element/footer';
 

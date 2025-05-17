@@ -1,19 +1,4 @@
-import { Head } from '@inertiajs/react';
-import AppLayout from '@/pages/librarian/layer/user-layout';
-import { Footer } from '@/components/element/footer';
-import { Book, BookA, Calendar } from 'lucide-react';
 import React from 'react';
-import {
-   AlertDialog,
-   AlertDialogAction,
-   AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
 
 export default function Pendataan() {
      const [form, setForm] = React.useState({

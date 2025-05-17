@@ -15,12 +15,30 @@ class BookController extends Controller
         return Inertia('daftar_buku', compact('books', 'categories'));
     }
 
+    // CRUD ===================================================================================
     public function crud_index()
     {
         $books = Book::with('category')->get();
         $categories = Category::all();
         return Inertia('admin/buku/crud_buku', compact('books', 'categories'));
     }
+
+    public function crud_remove($id)
+    {
+        $book = Book::findOrFail($id);
+        $book->delete();
+
+        return redirect()->back();
+    }
+
+    // MAI -----------------------------------------------------------------------------
+    public function chart()
+    {
+        $books = Book::with('category')->get();
+        $categories = Category::all();
+        return Inertia('admin/main', compact('books', 'categories'));
+    }
+    // CRUD ===================================================================================
 
 
     public function show($id)
@@ -55,13 +73,10 @@ class BookController extends Controller
         ]);
     }
 
-    
+
     public function download($id)
     {
         $book = Book::with('category')->findOrFail($id);
-        //$pdf = Pdf::loadView('pdf', $data);
-        //return $pdf->download('book.pdf');
-
         return View('pdf', [
             'book' => $book,
         ]);

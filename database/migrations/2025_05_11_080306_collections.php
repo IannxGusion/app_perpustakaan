@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('book_id')->constrained('books', 'id')->onDelete('cascade');
             $table->string('collection_name')->default('New Collection');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
