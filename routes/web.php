@@ -5,6 +5,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get("koleksi_buku/{id}", [BookController::class, 'download'])->name("book.download");
 
@@ -70,7 +71,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('crud_librarian');
 
     Route::get('crud_peminjam', [UserController::class, 'crud_index'])->name('crud_borrower');
-    Route::get('crud_peminjam/{id}', [UserController::class, 'crud_remove'])->name('borrower.remove');
+    Route::get('crud_peminjam/{id}', [AuthenticatedSessionController::class, 'destroy'])->name('borrower.remove');
 });
 // *Admin* ==================================================================================
 
