@@ -21,6 +21,7 @@ import { SquareTerminal } from 'lucide-react';
 
 // element
 import { Footer } from '@/components/element/footer';
+import CSRF from "@/components/element/csrf"
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -128,11 +129,8 @@ export default function Dashboard({ book }: { book: Book }) {
 
                                         <form action={route("borrow.store")} method="POST" encType="multipart/form-data">
                                             {/* CSRF */}
-                                            <input
-                                                type="hidden"
-                                                name="_token"
-                                                value={typeof window !== "undefined" ? (document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '') : ''}
-                                            />
+                                            <CSRF />
+                                            
                                             <input type="hidden" name="book_id" id="book_id" value={book.id} required />
                                             <AlertDialogAction type="submit"
                                                 onClick={() => {

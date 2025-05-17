@@ -38,6 +38,7 @@ import {
 import type { Book } from '@/types';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
+import CSRF from "@/components/element/csrf"
 
 export const columns: ColumnDef<Book>[] = [
   {
@@ -157,9 +158,14 @@ export const columns: ColumnDef<Book>[] = [
             </DropdownMenuItem>
 
             <DropdownMenuItem>
-              <Button className="w-full" variant={'destructive'}>
-                Delete
-              </Button>
+              <form action={ route('book.remove', book['id']) } method="DELETE" className="w-full">
+                <CSRF />
+
+                <Button className="w-full" type="submit" variant={'destructive'}>
+                  Delete
+                </Button>
+              </form>
+
             </DropdownMenuItem>
 
           </DropdownMenuContent>
