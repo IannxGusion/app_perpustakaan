@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowingController;
+use App\Http\Controllers\UserController;
 
 Route::get("koleksi_buku/{id}", [BookController::class, 'download'])->name("book.download");
 
@@ -68,9 +69,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('admin/crud_PUSTAKAWAN');
     })->name('crud_librarian');
 
-    Route::get('crud_peminjam', function () {
-        return Inertia::render('admin/crud_PEMINJAM');
-    })->name('crud_borrower');
+    Route::get('crud_peminjam', [UserController::class, 'crud_index'])->name('crud_borrower');
+    Route::get('crud_peminjam/{id}', [UserController::class, 'crud_remove'])->name('borrower.remove');
 });
 // *Admin* ==================================================================================
 

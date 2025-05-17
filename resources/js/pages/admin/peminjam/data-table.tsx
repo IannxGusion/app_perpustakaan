@@ -35,11 +35,11 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import type { Borrowing } from '@/types';
+import type { User } from '@/types';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import CSRF from "@/components/element/csrf"
 
-export const columns: ColumnDef<Borrowing>[] = [
+export const columns: ColumnDef<User>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -68,35 +68,40 @@ export const columns: ColumnDef<Borrowing>[] = [
     cell: ({ row }) => <div className="font-medium">{row.getValue("id")}</div>,
   },
   {
-    accessorKey: "book",
-    header: "Buku",
-    cell: ({ row }) => <div className="text-lg font-extrabold">{row.original.book?.title}</div>,
+    accessorKey: "name",
+    header: "Nama",
+    cell: ({ row }) => <div className="text-lg font-extrabold">{row.getValue("name")}</div>,
   },
   {
-    accessorKey: "user",
-    header: "Peminjam",
-    cell: ({ row }) => <div className="text-lg font-extrabold">{row.original.user?.name}</div>,
+    accessorKey: "avatar",
+    header: "Avatar",
+    cell: ({ row }) => <div>{row.getValue("avatar")}</div>,
   },
   {
-    accessorKey: "borrow_date",
-    header: "Tanggal Pinjam",
-    cell: ({ row }) => <div>{row.getValue("borrow_date")}</div>,
+    accessorKey: "email",
+    header: "E-mail",
+    cell: ({ row }) => <div>{row.getValue("email")}</div>,
   },
   {
-    accessorKey: "return_date",
-    header: "Tanggal Kembali",
-    cell: ({ row }) => <div>{row.getValue("return_date")}</div>,
+    accessorKey: "created_at",
+    header: "Dibuat",
+    cell: ({ row }) => <div>{row.getValue("created_at")}</div>,
   },
   {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => <div>{row.getValue("status")}</div>,
+    accessorKey: "updated_at",
+    header: "Diperbarui",
+    cell: ({ row }) => <div>{row.getValue("updated_at")}</div>,
+  },
+  {
+    accessorKey: "email_verified_at",
+    header: "Terverivikasi pada",
+    cell: ({ row }) => <div>{row.getValue("email_verified_at")}</div>,
   },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const borrowing = row.original
+      const user = row.original
 
       return (
         <DropdownMenu>
@@ -110,9 +115,9 @@ export const columns: ColumnDef<Borrowing>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(String(borrowing.id))}
+              onClick={() => navigator.clipboard.writeText(String(user.id))}
               className="underline">
-              Copy borrowing ID
+              Copy book ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
 
@@ -120,26 +125,32 @@ export const columns: ColumnDef<Borrowing>[] = [
               <Table className="min-w-full border border-gray-300">
                 <TableBody>
                   <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Buku</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{borrowing.book?.title}</TableCell>
-                  </TableRow>
-
-                  <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Peminjam</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{borrowing.user?.name}</TableCell>
-                  </TableRow>
-
-                  <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Tanggal Pinjam</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{borrowing.borrow_date}</TableCell>
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Nama</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{user.name}</TableCell>
                   </TableRow>
                   <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Tanggal Kembali</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{borrowing.return_date}</TableCell>
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">E-mail</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{user.email}</TableCell>
                   </TableRow>
                   <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Status</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{borrowing.status}</TableCell>
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Avatar</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{user.avatar}</TableCell>
+                  </TableRow>
+                  <TableRow className="border-b border-gray-300">
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">E-mail</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{user.email}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Dibuat</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{user.created_at}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Diperbarui</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{user.updated_at}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Terverivikasi pada</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{user.email_verified_at}</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -153,13 +164,14 @@ export const columns: ColumnDef<Borrowing>[] = [
             </DropdownMenuItem>
 
             <DropdownMenuItem>
-              <form action={route('borrowing.remove', borrowing['id'])} method="DELETE" className="w-full">
+              <form action={route('borrower.remove', user['id'])} method="DELETE" className="w-full">
                 <CSRF />
 
                 <Button className="w-full" type="submit" variant={'destructive'}>
                   Hapus
                 </Button>
               </form>
+
             </DropdownMenuItem>
 
           </DropdownMenuContent>
@@ -169,14 +181,14 @@ export const columns: ColumnDef<Borrowing>[] = [
   },
 ]
 
-export function DataTable({ borrowings }: { borrowings: Borrowing[] }) {
+export function DataTable({ users }: { users: User[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
 
   const table = useReactTable({
-    data: borrowings,
+    data: users,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
