@@ -87,7 +87,7 @@ export default function Dashboard({ book }: { book: Book }) {
                             </div>
 
                             <h2 className="text-2xl font-semibold mt-2">
-                                <Link href={route('book.detail', book['id'])}>
+                                <Link href={route('book.detail', book['id'])} className='hover:cursor-help'>
                                     {book.title}
                                 </Link>
                             </h2>

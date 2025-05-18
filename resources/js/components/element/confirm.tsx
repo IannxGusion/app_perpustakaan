@@ -17,7 +17,7 @@ import CSRF from "./csrf";
 export default function Confirm({ book }: { book: Book }) {
     return (
         <AlertDialog>
-            <AlertDialogTrigger asChild className='w-full mt-4'>
+            <AlertDialogTrigger asChild className='w-full mt-4 hover:cursor-pointer'>
                 <Button variant="outline" className="bg-primary text-white">Pinjam Buku</Button>
             </AlertDialogTrigger>
             <AlertDialogContent>

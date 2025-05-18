@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Category;
-//use Barryvdh\DomPDF\Facade\Pdf;
 
 class BookController extends Controller
 {
@@ -13,6 +12,14 @@ class BookController extends Controller
         $books = Book::with('category')->get();
         $categories = Category::all();
         return Inertia('daftar_buku', compact('books', 'categories'));
+    }
+
+    public function download($id)
+    {
+        $book = Book::with('category')->findOrFail($id);
+        return View('pdf', [
+            'book' => $book,
+        ]);
     }
 
     // CRUD ===================================================================================
@@ -31,15 +38,14 @@ class BookController extends Controller
         return redirect()->back();
     }
 
-    // MAI -----------------------------------------------------------------------------
+    // CRUD -----------------------------------------------------------------------------
     public function chart()
     {
         $books = Book::with('category')->get();
         $categories = Category::all();
         return Inertia('admin/main', compact('books', 'categories'));
     }
-    // CRUD ===================================================================================
-
+    // CRUD =============================================================================
 
     public function show($id)
     {
@@ -69,15 +75,6 @@ class BookController extends Controller
     {
         $book = Book::with('category')->findOrFail($id);
         return Inertia('detail_buku3', [
-            'book' => $book,
-        ]);
-    }
-
-
-    public function download($id)
-    {
-        $book = Book::with('category')->findOrFail($id);
-        return View('pdf', [
             'book' => $book,
         ]);
     }

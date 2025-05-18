@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\User;
-use App\Models\Book;
 use App\Models\Borrowing;
 
 class BorrowingController extends Controller
 {
+
+    public function index()
+    {
+        $borrowings = Borrowing::with(['book.category'])->latest()->get();
+
+        return inertia('pinjaman', compact('borrowings'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -44,11 +50,4 @@ class BorrowingController extends Controller
         return redirect()->back();
     }
     // CRUD ===================================================================================
-
-    public function collection()
-    {
-        $borrowings = Borrowing::with(['book.category'])->get();
-
-        return inertia('koleksi_buku', compact('borrowings'));
-    }
 }
