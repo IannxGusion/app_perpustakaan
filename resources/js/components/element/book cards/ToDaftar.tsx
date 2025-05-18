@@ -8,7 +8,7 @@ import { Link } from "@inertiajs/react";
 
 export default function ToDaftar({ book }: { book: Book }) {
     return (
-        <Card key={book.id} className="p-4 flex flex-col drop-shadow-sm hover:border-2 hover:border-black">
+        <Card key={book.id} className="p-4 flex flex-col drop-shadow-sm hover:border-2 hover:border-black hover:drop-shadow-none">
 
             <CardHeader className='flex-1'>
                 <div className="flex items-center space-x-2">
@@ -27,7 +27,7 @@ export default function ToDaftar({ book }: { book: Book }) {
 
             <CardContent className='flex-1'>
                 <div className="content-center justify-center">
-                    <img alt={book.title}
+                    <img src={book.cover} alt={book.title}
                         className="object-cover w-full h-fit border border-slate-700 dark:border-slate-300" />
                 </div>
             </CardContent>

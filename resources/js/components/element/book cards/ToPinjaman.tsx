@@ -10,17 +10,17 @@ import { Link } from "@inertiajs/react";
 
 export default function ToPinjaman({ borrowing }: { borrowing: Borrowing }) {
     return (
-        <Card className='flex flex-row drop-shadow-lg hover:border-2 hover:border-black' key={borrowing.book.id}>
+        <Card className='flex flex-row drop-shadow-lg hover:drop-shadow-none hover:border-2 hover:border-black' key={borrowing.book.id}>
             <CardHeader className='w-56'>
                 <img
-                    src={borrowing.book.image}
+                    src={borrowing.book.cover}
                     alt={borrowing.book.title}
                     className="w-full h-full object-cover shadow border border-slate-700 dark:border-slate-300" />
             </CardHeader>
 
             <CardContent className="w-full h-full my-8">
 
-                <CardTitle>
+                <CardTitle className="flex flex-row justify-between">
                     <div className="flex items-center space-x-2">
                         {borrowing.book.category ? (
                             <Badge className="flex items-center px-2 py-1 text-sm font-medium text-white bg-black rounded">
@@ -32,6 +32,9 @@ export default function ToPinjaman({ borrowing }: { borrowing: Borrowing }) {
                                 Anonymous
                             </Badge>
                         )}
+                    </div>
+                    <div>
+                        COLLECT
                     </div>
                 </CardTitle>
 

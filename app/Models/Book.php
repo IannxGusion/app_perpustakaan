@@ -26,12 +26,13 @@ class Book extends Model
     }
 
     protected $fillable = [
+        'category_id',
         'title',
         'content',
+        'cover',
         'author',
         'publisher',
         'publication_date',
         'status',
-        'category_id'
     ];
 }

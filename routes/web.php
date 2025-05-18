@@ -64,13 +64,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('main', [BookController::class, 'chart'])->name('main');
 
-    Route::get('crud_buku', [BookController::class, 'crud_index'])->name('crud_book');
-    Route::get('crud_buku/{id}', [BookController::class, 'crud_remove'])->name('book.remove');
+    Route::get('crud_buku', [BookController::class, 'crud_book_index'])->name('crud_book.index');
+    Route::get('crud_buku/{id}', [BookController::class, 'crud_remove'])->name('crud_book.remove');
 
-    Route::get('crud_peminjaman', [BorrowingController::class, 'crud_index'])->name('crud_borrowing');
-    Route::get('crud_peminjaman/{id}', [BorrowingController::class, 'crud_remove'])->name('borrowing.remove');
+    Route::get('crud_peminjaman', [BorrowingController::class, 'crud_index'])->name('crud_borrowing.index');
+    Route::get('crud_peminjaman/{id}', [BorrowingController::class, 'crud_remove'])->name('crud_borrowing.remove');
 
-    Route::get('crud_pustakawan', [UserController::class, 'crud_pustakawan_index'])->name('crud_librarian');
+    Route::get('crud_pustakawan', [UserController::class, 'crud_pustakawan_index'])->name('librarian.index');
     Route::get('crud_pustakawan/{id}', [AuthenticatedSessionController::class, 'destroy'])->name('librarian.remove');
 
     Route::get('crud_peminjam', [UserController::class, 'crud_peminjam_index'])->name('crud_borrower');

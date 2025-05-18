@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
+
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -23,11 +26,72 @@ class BookController extends Controller
     }
 
     // CRUD ===================================================================================
-    public function crud_index()
+    public function chart()
+    {
+        $books = Book::with('category')->get();
+        $categories = Category::all();
+        return Inertia('admin/main', compact('books', 'categories'));
+    }
+
+    public function crud_book_index()
     {
         $books = Book::with('category')->get();
         $categories = Category::all();
         return Inertia('admin/buku/crud_buku', compact('books', 'categories'));
+    }
+
+    /*public function store(Request $request)
+    {
+        $request->validate([
+            'book_id' => 'required|exists:books,id',
+        ]);
+
+        Borrowing::create([
+            'user_id' => Auth::id(),
+            'book_id' => $request->book_id,
+            'borrow_date' => now(),
+            'return_date' => now()->addMonth(),
+            'status' => 'Borrows',
+        ]);
+
+        return redirect()->route('borrow.index');
+    }*/
+
+    public function edit($id)
+    {
+        $post = Book::findOrFail($id);
+        $categories = Category::all();
+        return Inertia('admin/buku/edit', compact('post', 'categories'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'category_id' => 'nullable|exists:categories,id',
+            'title' => 'nullable|string|max:255',
+            'content' => 'nullable|string',
+            'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'author' => 'nullable|string|max:50',
+            'publisher' => 'nullable|string|max:50',
+            //'publication_date' => ''
+            'status' => 'required|enum'
+        ]);
+
+        $book = Book::findOrFail($id);
+        $book->category_id = $request->category_id;
+        $book->title = $request->title;
+        $book->content = $request->content;
+        $book->author = $request->author;
+        $book->publisher = $request->publisher;
+
+        if ($request->hasFile('cover')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $book->cover = $imagePath;
+        }
+
+        $book->save();
+
+        return redirect()->route('crud_book.index');
     }
 
     public function crud_remove($id)
@@ -36,14 +100,6 @@ class BookController extends Controller
         $book->delete();
 
         return redirect()->back();
-    }
-
-    // CRUD -----------------------------------------------------------------------------
-    public function chart()
-    {
-        $books = Book::with('category')->get();
-        $categories = Category::all();
-        return Inertia('admin/main', compact('books', 'categories'));
     }
     // CRUD =============================================================================
 

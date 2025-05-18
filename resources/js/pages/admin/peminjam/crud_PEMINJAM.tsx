@@ -6,8 +6,8 @@ import { DataTable } from "@/pages/admin/peminjam/data-table"
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'CRUD Buku',
-        href: '/crud_book',
+        title: 'CRUD Peminjam',
+        href: '/crud_borrower',
     },
 ];
 

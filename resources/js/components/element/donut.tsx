@@ -41,30 +41,28 @@ export function Donut({ books }: { books: Book[] }) {
     const categoryChartConfig = {
         count: {
             label: "Books",
-            color: "var(--color-desktop)",
+            color: "red",
         },
     } satisfies ChartConfig
 
     return (
         <Card>
             <CardHeader className="items-center pb-4">
-                <CardTitle>Books per Category</CardTitle>
+                <CardTitle>Buku per Kategori</CardTitle>
                 <CardDescription>
-                    Number of books in each category
+                    Jumlah books setiap kategori
                 </CardDescription>
             </CardHeader>
             <CardContent>
                 <ChartContainer
                     config={categoryChartConfig}
-                    className="mx-auto aspect-square max-h-[250px]"
-                >
+                    className="mx-auto aspect-square max-h-[250px]">
                     <RadarChart
                         data={booksPerCategory}
                         margin={{
                             top: -40,
                             bottom: -10,
-                        }}
-                    >
+                        }}>
                         <ChartTooltip
                             cursor={false}
                             content={<ChartTooltipContent indicator="line" />}
@@ -73,7 +71,7 @@ export function Donut({ books }: { books: Book[] }) {
                         <PolarGrid />
                         <Radar
                             dataKey="count"
-                            fill="var(--color-desktop)"
+                            fill="var(--color-count)"
                             fillOpacity={0.6}
                         />
                         <ChartLegend className="mt-8" content={<ChartLegendContent />} />
