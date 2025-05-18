@@ -4,20 +4,11 @@ import { Head } from '@inertiajs/react';
 
 // ui
 import { Input } from '@/components/ui/input';
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardFooter,
-    CardTitle,
-} from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Link } from "@inertiajs/react"
-import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon, SquareTerminal } from 'lucide-react';
+import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react';
 
 // element
-import Filter from '@/components/element/daftar_buku/filter';
+import Filter from '@/components/element/book cards/filter';
 import { Footer } from '@/components/element/footer';
 import React from 'react';
 
@@ -28,6 +19,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import ToDaftar from '@/components/element/book cards/ToDaftar';
 
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -77,44 +69,9 @@ export default function Daftar({ ...props }: { books: Book[] }) {
 
                         {/*<Booklist />*/}
                         <div>
-                            <div className="grid gap-5 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                            <div className="border-b-2 pb-5 grid gap-5 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                                 {paginatedBooks.map((book) => (
-                                    <Card key={book.id} className="p-4 flex flex-col">
-
-                                        <CardHeader className='flex-1'>
-                                            <CardTitle>
-
-                                                <div className="flex items-center space-x-2">
-                                                    {book.category ? (
-                                                        <Badge className="flex items-center px-2 py-1 text-sm font-medium text-white bg-black rounded">
-                                                            <SquareTerminal className="mr-1" size={16} />
-                                                            {book.category.name}
-                                                        </Badge>
-                                                    ) : (
-                                                        <Badge className="px-2 py-1 text-sm font-medium text-gray-800 bg-gray-200 rounded">
-                                                            Anonymous
-                                                        </Badge>
-                                                    )}
-                                                </div>
-
-                                            </CardTitle>
-                                        </CardHeader>
-
-                                        <CardContent className='flex-1'>
-                                            <div className="content-center justify-center">
-                                                <img alt={book.title}
-                                                    className="object-cover w-full h-fit border border-slate-700 dark:border-slate-300" />
-                                            </div>
-                                        </CardContent>
-
-                                        <CardFooter className='flex-1'>
-                                            <p className='text-xl font-bold'>{book.title}</p>
-                                        </CardFooter>
-
-                                        <Button asChild>
-                                            <Link href={route('book.show', book['id'])}>Pinjam</Link>
-                                        </Button>
-                                    </Card>
+                                    <ToDaftar book={book} />
                                 ))}
                             </div>
 
