@@ -1,7 +1,8 @@
-//import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
+
+// element
 import { Footer } from '@/components/element/footer';
 import Search from '@/components/element/search';
 import Highlight from '@/components/element/highlight';
@@ -25,18 +26,11 @@ export default function Dashboard() {
 
             {/* Hero Banner */}
 
-{            /*<LibaryVI />
-
-            SVG fail: 
-            "WELCOM The"
-
-*/
-}
             {/* Placeholder / kotak kosong untuk dashboard content */}
 
-                <Highlight />
+            <Highlight />
 
-                <Pack />
+            <Pack />
 
 
             <Footer />

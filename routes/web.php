@@ -66,11 +66,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('crud_peminjaman', [BorrowingController::class, 'crud_index'])->name('crud_borrowing');
     Route::get('crud_peminjaman/{id}', [BorrowingController::class, 'crud_remove'])->name('borrowing.remove');
 
-    Route::get('crud_pustakawan', function () {
-        return Inertia::render('admin/crud_PUSTAKAWAN');
-    })->name('crud_librarian');
+    Route::get('crud_pustakawan', [UserController::class, 'crud_pustakawan_index'])->name('crud_librarian');
+    Route::get('crud_pustakawan/{id}', [AuthenticatedSessionController::class, 'destroy'])->name('librarian.remove');
 
-    Route::get('crud_peminjam', [UserController::class, 'crud_index'])->name('crud_borrower');
+    Route::get('crud_peminjam', [UserController::class, 'crud_peminjam_index'])->name('crud_borrower');
     Route::get('crud_peminjam/{id}', [AuthenticatedSessionController::class, 'destroy'])->name('borrower.remove');
 });
 // *Admin* ==================================================================================
