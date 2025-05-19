@@ -37,7 +37,7 @@ export default function Pinjaman({ ...props }: { borrowings: Borrowing[] }) {
             </section>
 
             {/* List */}
-            <div className="border-b-2 pb-5 space-y-7 mx-5">
+            <div className="border-b-2 pb-20 space-y-7 mx-5">
                 {paginatedBorrowings.map((borrowing) => (
                     <ToPinjaman borrowing={borrowing} />
                 ))}

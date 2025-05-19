@@ -44,9 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Pustakawan> ----------------------------------------------------------------------------------
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('work', function () {
-        return Inertia::render('librarian/work');
-    })->name('work');
+    Route::get('work', [BorrowingController::class, 'librarian_index'])->name('work');
 
     Route::get('laporan', function () {
         return Inertia::render('librarian/laporan');

@@ -69,7 +69,7 @@ export default function Daftar({ ...props }: { books: Book[] }) {
 
                         {/*<Booklist />*/}
                         <div>
-                            <div className="border-b-2 pb-5 grid gap-5 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                            <div className="border-b-2 pb-20 grid gap-5 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                                 {paginatedBooks.map((book) => (
                                     <ToDaftar book={book} />
                                 ))}

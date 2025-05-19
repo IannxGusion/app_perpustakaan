@@ -42,6 +42,13 @@ class BorrowingController extends Controller
         return inertia('admin/peminjaman/crud_peminjaman', compact('borrowings'));
     }
 
+    public function librarian_index()
+    {
+        $borrowings = Borrowing::with(['book.category', 'user'])->get();
+
+        return inertia('librarian/work', compact('borrowings'));
+    }
+
     public function crud_remove($id)
     {
         $borrowing = Borrowing::findOrFail($id);
