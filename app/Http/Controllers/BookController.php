@@ -40,22 +40,14 @@ class BookController extends Controller
         return Inertia('admin/buku/crud_buku', compact('books', 'categories'));
     }
 
-    /*public function store(Request $request)
+    // librarian --------------------------------------------------------------------------------
+        public function librarian_book_index()
     {
-        $request->validate([
-            'book_id' => 'required|exists:books,id',
-        ]);
-
-        Borrowing::create([
-            'user_id' => Auth::id(),
-            'book_id' => $request->book_id,
-            'borrow_date' => now(),
-            'return_date' => now()->addMonth(),
-            'status' => 'Borrows',
-        ]);
-
-        return redirect()->route('borrow.index');
-    }*/
+        $books = Book::with('category')->get();
+        $categories = Category::all();
+        return Inertia('librarian/pendataan', compact('books', 'categories'));
+    }
+    // librarian --------------------------------------------------------------------------------
 
     public function edit($id)
     {

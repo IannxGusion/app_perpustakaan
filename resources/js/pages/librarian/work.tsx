@@ -3,7 +3,7 @@ import { Borrowing, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { Footer } from '@/components/element/footer';
 
-import { DataTable } from './data-table';
+import { DataTable } from './work_data';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

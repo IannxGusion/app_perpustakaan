@@ -7,6 +7,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LaporanController;
+
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get("borrowings/{id}", [BookController::class, 'download'])->name("book.download");
@@ -49,10 +51,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('laporan', function () {
         return Inertia::render('librarian/laporan');
     })->name('laporan');
+    Route::get('laporan/download', [LaporanController::class, 'report_index'])->name('report.download');
 
-    Route::get('pendataan', function () {
-        return Inertia::render('librarian/pendataan');
-    })->name('pendataan');
+    Route::get('pendataan', [BookController::class, 'librarian_book_index'])->name('pendataan');
 });
 
 // *USER* ===================================================================================
