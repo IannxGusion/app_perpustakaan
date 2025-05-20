@@ -5,34 +5,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-use App\Models\Category;
+use App\Models\User;
 use App\Models\Borrowing;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Book extends Model
+class Collection extends Model
 {
     use SoftDeletes;
 
     use HasFactory;
 
-    public function category()
+    public function user()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function borrowings()
+    public function borrowing()
     {
         return $this->hasMany(Borrowing::class);
     }
 
+
     protected $fillable = [
-        'category_id',
-        'title',
-        'content',
-        'cover',
-        'author',
-        'publisher',
-        'publication_date',
-        'status',
+        'user_id',
+        'borrowing_id',
+        'name',
     ];
 }

@@ -56,7 +56,7 @@ export interface Book {
     publisher: string;
     publication_date: date;
     status: string;
-    image: string;
+    cover: string;
 }
 
 export interface Borrowing {

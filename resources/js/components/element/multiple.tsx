@@ -17,6 +17,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+
 const chartData = [
   { month: "January", desktop: 186, mobile: 80 },
   { month: "February", desktop: 305, mobile: 200 },
@@ -73,6 +74,18 @@ export function Multiple() {
               strokeWidth={2}
               dot={{
                 fill: "var(--color-desktop)",
+              }}
+              activeDot={{
+                r: 6,
+              }}
+            />
+            <Line
+              dataKey="mobile"
+              type="natural"
+              stroke="var(--color-mobile)"
+              strokeWidth={2}
+              dot={{
+                fill: "var(--color-mobile)",
               }}
               activeDot={{
                 r: 6,

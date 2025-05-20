@@ -17,11 +17,12 @@ return new class extends Migration
             $table->timestamps();
             $table->string('title');
             $table->text('content');
+            $table->string('cover')->nullable();
             $table->string('author');
             $table->string('publisher');
             $table->date('publication_date');
             $table->enum('status', ['Available', 'Not Available'])->default('Available');
-            
+
             $table->softDeletes();
         });
     }

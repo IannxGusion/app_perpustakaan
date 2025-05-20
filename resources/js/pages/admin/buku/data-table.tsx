@@ -13,7 +13,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
-import { ChevronDown, MoreHorizontal, SquareTerminal } from "lucide-react"
+import { ChevronDown, MoreHorizontal, Plus, SquareTerminal } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -39,6 +39,7 @@ import type { Book } from '@/types';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
 import CSRF from "@/components/element/csrf"
+import { AlertDialogHeader, AlertDialogFooter, AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel, AlertDialogAction } from "@/components/ui/alert-dialog"
 
 export const columns: ColumnDef<Book>[] = [
   {
@@ -78,6 +79,20 @@ export const columns: ColumnDef<Book>[] = [
     header: "Kategori",
     cell: ({ row }) => <Badge className="text-lg font-extrabold flex items-center px-2 py-1 text-white bg-black rounded"><SquareTerminal className="mr-1" size={16} />{row.original.category?.name}</Badge>
     ,
+  },
+  {
+    accessorKey: "cover",
+    header: "Sampul",
+    cell: ({ row }) => <img
+      src={row.getValue("cover")} // Ganti sesuai lokasi gambar
+      alt={row.getValue("title")}
+      className="w-full h-full border border-slate-700 dark:border-slate-300"
+    />,
+  },
+  {
+    accessorKey: "content",
+    header: "Isi",
+    cell: ({ row }) => <div>{row.getValue("content")}</div>,
   },
   {
     accessorKey: "author",
@@ -135,6 +150,20 @@ export const columns: ColumnDef<Book>[] = [
                     <TableCell className="px-4 py-2 text-gray-900">{book.category.name}</TableCell>
                   </TableRow>
                   <TableRow className="border-b border-gray-300">
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Sampul</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">
+                      <img
+                        src={book.cover} // Ganti sesuai lokasi gambar
+                        alt={book.title}
+                        className="w-full h-full border border-slate-700 dark:border-slate-300"
+                      />
+                    </TableCell>
+                  </TableRow>
+                  <TableRow className="border-b border-gray-300">
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Isi</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{book.content}</TableCell>
+                  </TableRow>
+                  <TableRow className="border-b border-gray-300">
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Penulis</TableCell>
                     <TableCell className="px-4 py-2 text-gray-900">{book.author}</TableCell>
                   </TableRow>
@@ -158,7 +187,7 @@ export const columns: ColumnDef<Book>[] = [
             </DropdownMenuItem>
 
             <DropdownMenuItem>
-              <form action={ route('book.remove', book['id']) } method="DELETE" className="w-full">
+              <form action={route('crud_book.remove', book['id'])} method="DELETE" className="w-full">
                 <CSRF />
 
                 <Button className="w-full" type="submit" variant={'destructive'}>
@@ -202,34 +231,65 @@ export function DataTable({ books }: { books: Book[] }) {
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+      <div className="flex justify-end py-4 space-x-2">
+
+        <AlertDialog>
+
+          <AlertDialogTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Kolom <ChevronDown />
+              Tambah <Plus />
             </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                )
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+          </AlertDialogTrigger>
+
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Tambah item</AlertDialogTitle>
+              <AlertDialogDescription>
+                <form action="#"></form>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction>Continue</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+
+        </AlertDialog>
+
+        <div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="ml-auto">
+                Kolom <ChevronDown />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => {
+                  return (
+                    <DropdownMenuCheckboxItem
+                      key={column.id}
+                      className="capitalize"
+                      checked={column.getIsVisible()}
+                      onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
+                      }
+                    >
+                      {column.id}
+                    </DropdownMenuCheckboxItem>
+                  )
+                })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+
       </div>
+
       <div className="rounded-md border">
         <Table>
           <TableHeader>

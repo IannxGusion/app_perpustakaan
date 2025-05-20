@@ -11,10 +11,9 @@ import { useInitials } from '@/hooks/use-initials';
 import { cn } from '@/lib/utils';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpenIcon, FolderIcon, Briefcase, Menu, User } from 'lucide-react';
+import { BookOpenIcon, FolderIcon, Briefcase, Menu, User, Magnet } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import AppLogoIcon from '@/components/app-logo-icon';
-import { IconLabelImportant } from '@tabler/icons-react';
 
 const mainNavItems: NavItem[] = [
     {
@@ -30,7 +29,7 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Pendataan',
         href: '/pendataan',
-        icon: User,
+        icon: Magnet,
     },
 ];
 
