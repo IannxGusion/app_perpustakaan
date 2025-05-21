@@ -4,7 +4,6 @@ import { Head } from '@inertiajs/react';
 import type { Book } from '@/types';
 
 // element
-import { Footer } from '@/components/element/footer';
 import ToPinjam from '@/components/element/book cards/ToPinjam';
 import Review from '@/components/element/review';
 
@@ -48,7 +47,6 @@ export default function Dashboard({ book }: { book: Book }) {
                 </section>
             </main>
 
-            <Footer />
         </AppLayout >
     );
 }

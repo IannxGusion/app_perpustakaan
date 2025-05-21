@@ -3,7 +3,6 @@ import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
 // element
-import { Footer } from '@/components/element/footer';
 import Search from '@/components/element/search';
 import Highlight from '@/components/element/highlight';
 import { Pack } from '@/components/element/drawer';
@@ -33,7 +32,6 @@ export default function Dashboard() {
             <Pack />
 
 
-            <Footer />
         </AppLayout>
     );
 }
