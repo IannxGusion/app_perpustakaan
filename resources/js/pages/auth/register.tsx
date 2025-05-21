@@ -32,8 +32,8 @@ export default function Register() {
     };
 
     return (
-        <AuthLayout title="Create an account" description="Enter your details below to create your account">
-            <Head title="Register" />
+        <AuthLayout title="Buat akun" description="Masukkan detail Anda untuk membuat akun">
+            <Head title="Daftar" />
             <form className="flex flex-col gap-6" onSubmit={submit}>
                 <div className="grid gap-6">
                     <div className="grid gap-2">
@@ -103,12 +103,12 @@ export default function Register() {
 
                     <Button type="submit" className="mt-2 w-full" tabIndex={5} disabled={processing}>
                         {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
-                        Create account
+                        Buat akun
                     </Button>
                 </div>
 
                 <div className="text-muted-foreground text-center text-sm">
-                    Already have an account?{' '}
+                    Sudah punya akun?{' '}
                     <TextLink href={route('login')} tabIndex={6}>
                         Log in
                     </TextLink>

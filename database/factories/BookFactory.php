@@ -23,6 +23,7 @@ class BookFactory extends Factory
             'title' => fake()->sentence(),
             'content' => fake()->paragraph(),
             'author' => fake()->name(),
+            'cover' => fake()->imageUrl(640, 480, 'animals', true),
             'publisher' => fake()->company(),
             'publication_date' => fake()->date(),
             'status' => fake()->randomElement(['Available', 'Not Available']),

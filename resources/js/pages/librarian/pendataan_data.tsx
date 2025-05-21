@@ -235,6 +235,12 @@ export function DataTable({ books }: { books: Book[] }) {
 
         <AlertDialog>
 
+          <AlertDialogTrigger asChild>
+            <Button variant="outline" className="ml-auto">
+              Tambah <Plus />
+            </Button>
+          </AlertDialogTrigger>
+
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>Tambah item</AlertDialogTitle>
