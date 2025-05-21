@@ -67,3 +67,12 @@ export interface Borrowing {
     return_date: string;
     status: string;
 }
+
+export interface ErrReview {
+    id: number;
+    book: Book;
+    user: User;
+    star: number;
+    comment: string;
+    created_at: string;
+}

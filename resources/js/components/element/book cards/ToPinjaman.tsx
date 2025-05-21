@@ -12,6 +12,8 @@ import { Link } from "@inertiajs/react";
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 export default function ToPinjaman({ borrowing }: { borrowing: Borrowing }) {
     const [value, setValue] = React.useState<number | null>(2);
@@ -40,6 +42,8 @@ export default function ToPinjaman({ borrowing }: { borrowing: Borrowing }) {
                             </Badge>
                         )}
                     </div>
+
+                    {/* KOLEKSI */}
                     <div>
                         COLLECT
                     </div>
@@ -58,8 +62,8 @@ export default function ToPinjaman({ borrowing }: { borrowing: Borrowing }) {
 
                         <p>{borrowing.book.author}</p>
 
-                        <DialogContent className="sm:max-w-[425px]">
-                            <ScrollArea className="h-[500px] w-[350] p-4 mr-5 border-r-2">
+                        <DialogContent className="sm:max-w-[600px]">
+                            <ScrollArea className="h-[500px] px-10 border-r-2 mt-5">
 
                                 <DialogHeader>
                                     <DialogTitle>Info Buku</DialogTitle>
@@ -92,21 +96,24 @@ export default function ToPinjaman({ borrowing }: { borrowing: Borrowing }) {
                                     </tbody>
                                 </table>
 
-                                <form className="mt-5">
+                                <form className="mt-10" action="#">
                                     <div className="mb-5">
-                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><DialogTitle>Ulas Buku</DialogTitle></label>
-                                        
-                                        <Box sx={{ '& > legend': { mt: 2 } }}>
-                                            <Rating
-                                                name="simple-controlled"
-                                                value={value}
-                                                onChange={(event, newValue) => {
-                                                    setValue(newValue);
-                                                }}
-                                            />
-                                        </Box>
+                                        <Label htmlFor="comment" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><DialogTitle>Ulas Buku</DialogTitle></Label>
 
-                                        <textarea id="message" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tulis ulasan..."></textarea>
+                                        <input type="number" name="star" id="star">
+                                            <Box sx={{ '& > legend': { mt: 2 } }}>
+                                                <Rating
+                                                    name="simple-controlled"
+                                                    value={value}
+                                                    onChange={(_, newValue) => {
+                                                        setValue(newValue);
+                                                    }}
+                                                />
+                                            </Box>
+                                        </input>
+
+
+                                        <Textarea name="comment" id="comment" placeholder="Tulis ulasan..." />
                                     </div>
                                     <button type="submit" className="min-w-full text-white bg-primary hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                                 </form>

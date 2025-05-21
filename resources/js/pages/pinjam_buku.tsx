@@ -1,7 +1,7 @@
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
-import type { Book } from '@/types';
+import type { Book, ErrReview } from '@/types';
 
 // element
 import ToPinjam from '@/components/element/book cards/ToPinjam';
@@ -21,7 +21,13 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 
-export default function Dashboard({ book }: { book: Book }) {
+type Props = {
+  book: Book;
+  reviews: ErrReview[];
+};
+
+export default function Pinjam_buku({...props}: Props) {
+  const { book, reviews } = props;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -42,7 +48,8 @@ export default function Dashboard({ book }: { book: Book }) {
                         Ulasan
                         <Divider className='mt-10'/>
                     </h3>
-                    <Review />
+
+                    <Review reviews={reviews}/>
 
                 </section>
             </main>

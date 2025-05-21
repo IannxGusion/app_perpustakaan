@@ -12,7 +12,9 @@ import {
 } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '../ui/carousel';
 
-export default function Review() {
+import type { ErrReview } from '@/types';
+
+export default function Review({ reviews = [] }: { reviews?: ErrReview[] }) {
   //const [value, setValue] = React.useState<number | null>(2);
 
   return (
@@ -32,27 +34,29 @@ export default function Review() {
             align: "start",
           }}
           className="w-full">
+
           <CarouselContent>
-            {Array.from({ length: 5 }).map((_, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+            {reviews.map((review) => (
+              <CarouselItem key={review.id} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-1">
                   <Card>
                     <CardHeader>
                       <CardTitle>
-                        <Rating name="read-only" value={0} readOnly />
+                        <Rating name="read-only" value={review.star} readOnly />
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p>Review body</p>
+                      <p>{review.comment}</p>
                     </CardContent>
                     <CardFooter>
-                      <p>Reviewer name • Date</p>
+                      <p>{review.user.name} • {review.created_at}</p>
                     </CardFooter>
                   </Card>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
+
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
