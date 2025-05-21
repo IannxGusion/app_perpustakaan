@@ -22,8 +22,8 @@ export default function ForgotPassword({ status }: { status?: string }) {
     };
 
     return (
-        <AuthLayout title="Forgot password" description="Enter your email to receive a password reset link">
-            <Head title="Forgot password" />
+        <AuthLayout title="Lupa password" description="Masukkan email Anda untuk menerima link untuk reset password">
+            <Head title="Lupa password" />
 
             {status && <div className="mb-4 text-center text-sm font-medium text-green-600">{status}</div>}
 
@@ -54,7 +54,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
                 </form>
 
                 <div className="text-muted-foreground space-x-1 text-center text-sm">
-                    <span>Or, return to</span>
+                    <span>Atau, kembali ke</span>
                     <TextLink href={route('login')}>log in</TextLink>
                 </div>
             </div>

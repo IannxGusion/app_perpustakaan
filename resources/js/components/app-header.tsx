@@ -27,7 +27,7 @@ const mainNavItems: NavItem[] = [
         icon: ListEndIcon,
     },
     {
-        title: 'Pinjaman',
+        title: 'Riwayat Pinjaman',
         href: '/borrowings',
         icon: BookCheck,
     },
