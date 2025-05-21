@@ -2,7 +2,6 @@ import React from 'react';
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem, Borrowing } from '@/types';
 import { Head } from '@inertiajs/react';
-import { Footer } from '@/components/element/footer';
 
 import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -104,7 +103,6 @@ export default function Pinjaman({ ...props }: { borrowings: Borrowing[] }) {
                 </div>
             </div>
 
-            <Footer />
         </AppLayout>
     );
 }

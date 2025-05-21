@@ -9,7 +9,6 @@ import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon 
 
 // element
 import Filter from '@/components/element/book cards/filter';
-import { Footer } from '@/components/element/footer';
 import React from 'react';
 
 import {
@@ -142,7 +141,6 @@ export default function Daftar({ ...props }: { books: Book[] }) {
                 </div>
             </div>
 
-            <Footer />
         </AppLayout>
     );
 }

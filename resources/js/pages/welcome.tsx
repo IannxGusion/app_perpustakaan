@@ -48,7 +48,7 @@ export default function Welcome() {
                                 {auth.user ? (
                                     <Link
                                         href={route('dashboard')}
-                                        className="inline-block dark:text-white rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A]  dark:hover:border-[#62605b]"
+                                        className="inline-block dark:text-white rounded-sm border border-[#19140035] px-36 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A]  dark:hover:border-[#62605b]"
                                     >
                                         Dashboard
                                     </Link>
@@ -56,13 +56,13 @@ export default function Welcome() {
                                     <>
                                         <Link
                                             href={route('login')}
-                                            className="inline-block dark:text-white rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035]  dark:hover:border-[#3E3E3A]"
+                                            className="inline-block dark:text-white rounded-sm border border-transparent px-19 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035]  dark:hover:border-[#3E3E3A]"
                                         >
                                             Log in
                                         </Link>
                                         <Link
                                             href={route('register')}
-                                            className="inline-block dark:text-white rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A]  dark:hover:border-[#62605b]"
+                                            className="inline-block dark:text-white rounded-sm border border-[#19140035] px-12 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A]  dark:hover:border-[#62605b]"
                                         >
                                             Daftar
                                         </Link>
@@ -77,6 +77,8 @@ export default function Welcome() {
 
             <br></br>
             <br />
+
+            
 
             <div className="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0">
                 <main className="flex w-full max-w-[335px] flex-col-reverse lg:max-w-4xl lg:flex-row">
@@ -249,6 +251,7 @@ export default function Welcome() {
                     </div>
                 </div>
             </section>
+
 
             <div className="hidden h-14.5 lg:block"></div>
             <section className="bg-white dark:bg-gray-900">
