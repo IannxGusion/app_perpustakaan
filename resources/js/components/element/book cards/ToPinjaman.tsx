@@ -4,11 +4,18 @@ import { Borrowing } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { SquareTerminal } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@inertiajs/react";
 
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+
 export default function ToPinjaman({ borrowing }: { borrowing: Borrowing }) {
+    const [value, setValue] = React.useState<number | null>(2);
+
     return (
         <Card className='flex flex-row drop-shadow-lg hover:drop-shadow-none hover:border-2 hover:border-black' key={borrowing.book.id}>
             <CardHeader className='w-56'>
@@ -52,36 +59,59 @@ export default function ToPinjaman({ borrowing }: { borrowing: Borrowing }) {
                         <p>{borrowing.book.author}</p>
 
                         <DialogContent className="sm:max-w-[425px]">
-                            <DialogHeader>
-                                <DialogTitle>Info Buku</DialogTitle>
-                            </DialogHeader>
+                            <ScrollArea className="h-[500px] w-[350] p-4 mr-5 border-r-2">
 
-                            <table className="min-w-full border border-gray-300">
-                                <tbody>
-                                    <tr className="border-b border-gray-300">
-                                        <td className="px-4 py-2 font-medium text-gray-700">Judul</td>
-                                        <td className="px-4 py-2 text-gray-900">{borrowing.book.title}</td>
-                                    </tr>
-                                    <tr className="border-b border-gray-300">
-                                        <td className="px-4 py-2 font-medium text-gray-700">Genre</td>
-                                        <td className="px-4 py-2 text-gray-900">
-                                            {borrowing.book.category ? borrowing.book.category.name : "Anonymous"}
-                                        </td>
-                                    </tr>
-                                    <tr className="border-b border-gray-300">
-                                        <td className="px-4 py-2 font-medium text-gray-700">Penulis</td>
-                                        <td className="px-4 py-2 text-gray-900">{borrowing.book.author}</td>
-                                    </tr>
-                                    <tr className="border-b border-gray-300">
-                                        <td className="px-4 py-2 font-medium text-gray-700">Penerbit</td>
-                                        <td className="px-4 py-2 text-gray-900">{borrowing.book.publisher}</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="px-4 py-2 font-medium text-gray-700">Tgl. Terbit</td>
-                                        <td className="px-4 py-2 text-gray-900">{borrowing.book.publication_date}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                <DialogHeader>
+                                    <DialogTitle>Info Buku</DialogTitle>
+                                </DialogHeader>
+
+                                <table className="min-w-full border border-gray-300 mt-2">
+                                    <tbody>
+                                        <tr className="border-b border-gray-300">
+                                            <td className="px-4 py-2 font-medium text-gray-700">Judul</td>
+                                            <td className="px-4 py-2 text-gray-900">{borrowing.book.title}</td>
+                                        </tr>
+                                        <tr className="border-b border-gray-300">
+                                            <td className="px-4 py-2 font-medium text-gray-700">Genre</td>
+                                            <td className="px-4 py-2 text-gray-900">
+                                                {borrowing.book.category ? borrowing.book.category.name : "Anonymous"}
+                                            </td>
+                                        </tr>
+                                        <tr className="border-b border-gray-300">
+                                            <td className="px-4 py-2 font-medium text-gray-700">Penulis</td>
+                                            <td className="px-4 py-2 text-gray-900">{borrowing.book.author}</td>
+                                        </tr>
+                                        <tr className="border-b border-gray-300">
+                                            <td className="px-4 py-2 font-medium text-gray-700">Penerbit</td>
+                                            <td className="px-4 py-2 text-gray-900">{borrowing.book.publisher}</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="px-4 py-2 font-medium text-gray-700">Tgl. Terbit</td>
+                                            <td className="px-4 py-2 text-gray-900">{borrowing.book.publication_date}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <form className="mt-5">
+                                    <div className="mb-5">
+                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><DialogTitle>Ulas Buku</DialogTitle></label>
+                                        
+                                        <Box sx={{ '& > legend': { mt: 2 } }}>
+                                            <Rating
+                                                name="simple-controlled"
+                                                value={value}
+                                                onChange={(event, newValue) => {
+                                                    setValue(newValue);
+                                                }}
+                                            />
+                                        </Box>
+
+                                        <textarea id="message" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tulis ulasan..."></textarea>
+                                    </div>
+                                    <button type="submit" className="min-w-full text-white bg-primary hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                                </form>
+                            </ScrollArea>
+
                         </DialogContent>
                     </Dialog>
 

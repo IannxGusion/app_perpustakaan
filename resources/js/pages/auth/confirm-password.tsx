@@ -24,10 +24,10 @@ export default function ConfirmPassword() {
 
     return (
         <AuthLayout
-            title="Confirm your password"
-            description="This is a secure area of the application. Please confirm your password before continuing."
+            title="Konfirmasi password anda"
+            description="Ini adalah area ketat. Silahkan konfirmasi password anda sebelum melanjutkan."
         >
-            <Head title="Confirm password" />
+            <Head title="Konfirmasi password" />
 
             <form onSubmit={submit}>
                 <div className="space-y-6">
@@ -50,7 +50,7 @@ export default function ConfirmPassword() {
                     <div className="flex items-center">
                         <Button className="w-full" disabled={processing}>
                             {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
-                            Confirm password
+                            Konfirmasi
                         </Button>
                     </div>
                 </div>

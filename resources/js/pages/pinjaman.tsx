@@ -10,7 +10,7 @@ import ToPinjaman from '@/components/element/book cards/ToPinjaman';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Pinjaman',
+        title: 'Riwayat Pinjaman',
         href: '/borrowings',
     },
 ];
@@ -28,7 +28,7 @@ export default function Pinjaman({ ...props }: { borrowings: Borrowing[] }) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard" />
+            <Head title="Riwayat Pinjaman" />
 
             {/* Hero Section */}
             <section className="bg-gray-200 text-center py-12 px-4 mt-4">
