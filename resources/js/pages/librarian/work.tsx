@@ -1,7 +1,6 @@
 import AppLayout from '@/pages/librarian/layer/user-layout';
 import { Borrowing, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
-import { Footer } from '@/components/element/footer';
 
 import { DataTable } from './work_data';
 
@@ -29,7 +28,6 @@ export default function Dashboard({ ...props }: { borrowings: Borrowing[] }) {
                 <DataTable borrowings={borrowings} />
             </main>
 
-            <Footer />
 
         </AppLayout>
     );

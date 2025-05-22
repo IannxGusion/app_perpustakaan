@@ -1,7 +1,6 @@
 import AppLayout from '@/pages/librarian/layer/user-layout';
 import { Book, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
-import { Footer } from '@/components/element/footer';
 
 import { DataTable } from './pendataan_data';
 
@@ -29,7 +28,6 @@ export default function Dashboard({ ...props }: { books: Book[] }) {
                 <DataTable books={books} />
             </main>
 
-            <Footer />
 
         </AppLayout>
     );
