@@ -8,6 +8,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\ReviewController;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -28,7 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // This GET route uses a different URI, so no conflict:
     Route::get('daftar_buku', [BookController::class, 'index'])->name('book.index');
 
-    Route::get('daftar_buku/pinjam_buku/{id}', [BookController::class, 'show'])->name('book.show');
+    Route::get('daftar_buku/pinjam_buku/{id}', [BookController::class, 'show'], [ReviewController::class, 'index'])->name('book.show');
 
     // POST route for borrowing a book
     Route::controller(BorrowingController::class)->group(function () {
@@ -36,9 +37,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('detail_buku', 'store')->name('borrow.store');
     });
 
-    Route::get('borrowings', [BorrowingController::class, 'index'])->name('borrow.index');
+    Route::get('borrowings', [BorrowingController::class, 'index'], [ReviewController::class, 'store'])->name('borrow.index');
 
-    Route::get('/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
+    Route::get('/detail_buku/{id}', [BookController::class, 'detail'], [BookController::class, 'detail'])->name('book.detail');
     Route::get('/detail_buku2/{id}', [BookController::class, 'detail2'])->name('book.detail2');
     Route::get('/detail_buku3/{id}', [BookController::class, 'detail3'])->name('book.detail3');
 });
