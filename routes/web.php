@@ -67,6 +67,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('crud_buku', [BookController::class, 'crud_book_index'])->name('crud_book.index');
     Route::get('crud_buku/{id}', [BookController::class, 'crud_remove'])->name('crud_book.remove');
 
+    Route::get('crud_buku/edit-book/{id}', [BookController::class, 'edit'])->name('crud_book.edit');
+    Route::put('/crud_buku/{id}', [BookController::class, 'update'])->name('crud_book.update');
+
     Route::get('crud_peminjaman', [BorrowingController::class, 'crud_index'])->name('crud_borrowing.index');
     Route::get('crud_peminjaman/{id}', [BorrowingController::class, 'crud_remove'])->name('crud_borrowing.remove');
 

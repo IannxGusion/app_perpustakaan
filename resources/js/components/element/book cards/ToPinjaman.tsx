@@ -101,7 +101,8 @@ export default function ToPinjaman({ borrowing }: { borrowing: Borrowing }) {
                                         <Label htmlFor="comment" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><DialogTitle>Ulas Buku</DialogTitle></Label>
 
                                         <input type="number" name="star" id="star">
-                                            <Box sx={{ '& > legend': { mt: 2 } }}>
+                                            {/* 
+                                                                                        <Box sx={{ '& > legend': { mt: 2 } }}>
                                                 <Rating
                                                     name="simple-controlled"
                                                     value={value}
@@ -110,8 +111,9 @@ export default function ToPinjaman({ borrowing }: { borrowing: Borrowing }) {
                                                     }}
                                                 />
                                             </Box>
-                                        </input>
+                                             */}
 
+                                        </input>
 
                                         <Textarea name="comment" id="comment" placeholder="Tulis ulasan..." />
                                     </div>

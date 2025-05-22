@@ -8,7 +8,7 @@
 
     @vite('resources/css/app.css')
     
-    <title>the book</title>
+    <title>local book</title>
 </head>
 
 <body class="bg-white text-gray-800 font-serif leading-relaxed text-justify px-16 py-12 space-y-16">

@@ -53,33 +53,24 @@ class BookController extends Controller
     {
         $post = Book::findOrFail($id);
         $categories = Category::all();
-        return Inertia('admin/buku/edit', compact('post', 'categories'));
+        return Inertia('admin/buku/edit-book', compact('post', 'categories'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'category_id' => 'nullable|exists:categories,id',
-            'title' => 'nullable|string|max:255',
-            'content' => 'nullable|string',
-            'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'author' => 'nullable|string|max:50',
-            'publisher' => 'nullable|string|max:50',
-            //'publication_date' => ''
             'status' => 'required|enum'
         ]);
 
         $book = Book::findOrFail($id);
         $book->category_id = $request->category_id;
-        $book->title = $request->title;
-        $book->content = $request->content;
-        $book->author = $request->author;
-        $book->publisher = $request->publisher;
+        $book->status = $request->status;
 
-        if ($request->hasFile('cover')) {
+        /*if ($request->hasFile('cover')) {
             $imagePath = $request->file('image')->store('images', 'public');
             $book->cover = $imagePath;
-        }
+        }*/
 
         $book->save();
 
