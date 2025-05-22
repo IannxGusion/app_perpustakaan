@@ -91,11 +91,6 @@ export const columns: ColumnDef<Book>[] = [
     />,
   },
   {
-    accessorKey: "content",
-    header: "Isi",
-    cell: ({ row }) => <div>{row.getValue("content")}</div>,
-  },
-  {
     accessorKey: "author",
     header: "Penulis",
     cell: ({ row }) => <div>{row.getValue("author")}</div>,
@@ -113,7 +108,7 @@ export const columns: ColumnDef<Book>[] = [
   {
     accessorKey: "status",
     header: "Status",
-    cell: ({ row }) => <div>{row.getValue("status")}</div>,
+    cell: ({ row }) => <div className="underline font-bold">{row.getValue("status")}</div>,
   },
   {
     id: "actions",
@@ -154,15 +149,11 @@ export const columns: ColumnDef<Book>[] = [
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Sampul</TableCell>
                     <TableCell className="px-4 py-2 text-gray-900">
                       <img
-                        src={book.cover} // Ganti sesuai lokasi gambar
+                        src={`/storage/${book.cover}`}
                         alt={book.title}
                         className="w-full h-full border border-slate-700 dark:border-slate-300"
                       />
                     </TableCell>
-                  </TableRow>
-                  <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Isi</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.content}</TableCell>
                   </TableRow>
                   <TableRow className="border-b border-gray-300">
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Penulis</TableCell>
@@ -175,6 +166,10 @@ export const columns: ColumnDef<Book>[] = [
                   <TableRow>
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Tgl. Terbit</TableCell>
                     <TableCell className="px-4 py-2 text-gray-900">{book.publication_date}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Status</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900 underline">{book.status}</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>

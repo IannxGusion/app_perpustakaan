@@ -1,18 +1,16 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\BookController;
+// Controllers
+use App\Http\Controllers\BorrowingController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// Controllers
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\BorrowingController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\ReviewController;
-
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-
-Route::get("borrowings/{id}", [BookController::class, 'download'])->name("book.download");
+Route::get('borrowings/{id}', [BookController::class, 'download'])->name('book.download');
 
 // *USER* =====================================================================================
 Route::get('/', function () {
@@ -67,8 +65,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('crud_buku', [BookController::class, 'crud_book_index'])->name('crud_book.index');
     Route::get('crud_buku/{id}', [BookController::class, 'crud_remove'])->name('crud_book.remove');
 
-    Route::get('crud_buku/edit-book/{id}', [BookController::class, 'edit'])->name('crud_book.edit');
-    Route::put('/crud_buku/{id}', [BookController::class, 'update'])->name('crud_book.update');
+    // pusta || admi -----
+    Route::get('edit-book/{id}', [BookController::class, 'edit'])->name('crud_book.edit');
+    // pusta || admi -----
+
+    Route::put('crud_buku/{id}', [BookController::class, 'update'])->name('crud_book.update');
 
     Route::get('crud_peminjaman', [BorrowingController::class, 'crud_index'])->name('crud_borrowing.index');
     Route::get('crud_peminjaman/{id}', [BorrowingController::class, 'crud_remove'])->name('crud_borrowing.remove');
@@ -81,5 +82,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 // *Admin* ==================================================================================
 
-require __DIR__ . '/settings.php';
-require __DIR__ . '/auth.php';
+require __DIR__.'/settings.php';
+require __DIR__.'/auth.php';

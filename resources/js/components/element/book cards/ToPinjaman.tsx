@@ -9,20 +9,22 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@inertiajs/react";
 
+/*
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
+*/
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 export default function ToPinjaman({ borrowing }: { borrowing: Borrowing }) {
-    const [value, setValue] = React.useState<number | null>(2);
+    //const [value, setValue] = React.useState<number | null>(2);
 
     return (
         <Card className='flex flex-row drop-shadow-lg hover:drop-shadow-none hover:border-2 hover:border-black' key={borrowing.book.id}>
             <CardHeader className='w-56'>
                 <img
-                    src={borrowing.book.cover}
+                    src={`/storage/${borrowing.book.cover}`}
                     alt={borrowing.book.title}
                     className="w-full h-full object-cover shadow border border-slate-700 dark:border-slate-300" />
             </CardHeader>

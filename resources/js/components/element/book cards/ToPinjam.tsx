@@ -13,7 +13,7 @@ export default function ToPinjam({ book }: { book: Book }) {
             {/* Book Image */}
             <CardHeader className="flex-1/2">
                 <img
-                    src={book.cover} // Ganti sesuai lokasi gambar
+                    src={`/storage/${book.cover}`}
                     alt={book.title}
                     className="w-full h-full border border-slate-700 dark:border-slate-300"
                 />

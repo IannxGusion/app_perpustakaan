@@ -10,6 +10,7 @@ class UserController extends Controller
     public function crud_peminjam_index()
     {
         $users = User::get();
+
         return Inertia('admin/peminjam/crud_PEMINJAM', compact('users'));
     }
 
@@ -26,6 +27,7 @@ class UserController extends Controller
     public function crud_pustakawan_index()
     {
         $users = User::get();
+
         return Inertia('admin/pustakawan/crud_PUSTAKAWAN', compact('users'));
     }
     // CRUD ===================================================================================

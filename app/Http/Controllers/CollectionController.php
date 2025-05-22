@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-use App\Models\Collection;
 
 class BorrowingController extends Controller
 {

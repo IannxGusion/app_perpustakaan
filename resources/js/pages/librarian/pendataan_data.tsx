@@ -40,6 +40,7 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { Badge } from "@/components/ui/badge"
 import CSRF from "@/components/element/csrf"
 import { AlertDialogHeader, AlertDialogFooter, AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel, AlertDialogAction } from "@/components/ui/alert-dialog"
+import { Link } from "@inertiajs/react"
 
 export const columns: ColumnDef<Book>[] = [
   {
@@ -181,8 +182,10 @@ export const columns: ColumnDef<Book>[] = [
             <DropdownMenuSeparator />
 
             <DropdownMenuItem>
-              <Button className="w-full" variant={'outline'}>
-                Edit
+              <Button asChild className="w-full" variant={'outline'}>
+                <Link href={route('crud_book.edit', [book.id])}>
+                  Edit
+                </Link>
               </Button>
             </DropdownMenuItem>
 

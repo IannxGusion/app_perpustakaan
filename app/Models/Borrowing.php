@@ -2,18 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-use App\Models\User;
-use App\Models\Book;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Borrowing extends Model
 {
-    use SoftDeletes;
-
     use HasFactory;
+    use SoftDeletes;
 
     public function user()
     {
@@ -30,6 +26,6 @@ class Borrowing extends Model
         'book_id',
         'borrow_date',
         'return_date',
-        'status'
+        'status',
     ];
 }

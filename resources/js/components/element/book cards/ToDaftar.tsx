@@ -27,7 +27,8 @@ export default function ToDaftar({ book }: { book: Book }) {
 
             <CardContent className='flex-1'>
                 <div className="content-center justify-center">
-                    <img src={book.cover} alt={book.title}
+                    <img src={`/storage/${book.cover}`}
+                        alt={book.title}
                         className="object-cover w-full h-fit border border-slate-700 dark:border-slate-300" />
                 </div>
             </CardContent>
