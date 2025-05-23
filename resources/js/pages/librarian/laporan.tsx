@@ -1,6 +1,5 @@
 import { Head } from '@inertiajs/react';
 import AppLayout from '@/pages/librarian/layer/user-layout';
-import { Footer } from '@/components/element/footer';
 import { type BreadcrumbItem } from '@/types';
 
 import { DateRangePicker } from '@/components/element/datepick'
@@ -32,7 +31,7 @@ export default function Dashboard() {
                 </Button>
             </div>
 
-            <Footer />
+            
         </AppLayout >
     );
 }
