@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-import { Book } from "@/types"
+import type { Book, Category } from "@/types"
 import CSRF from "@/components/element/csrf"
 import { Textarea } from "@/components/ui/textarea"
 
@@ -21,11 +21,6 @@ import {
   TableCell,
   TableRow,
 } from "@/components/ui/table"
-
-type Category = {
-  id: string;
-  name: string;
-};
 
 type EditProps = {
   book?: Book;

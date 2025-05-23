@@ -15,7 +15,7 @@ export default function ToPinjam({ book }: { book: Book }) {
                 <img
                     src={`/storage/${book.cover}`}
                     alt={book.title}
-                    className="w-full h-full border border-slate-700 dark:border-slate-300"
+                    className="w-full border border-slate-700 dark:border-slate-300"
                 />
             </CardHeader>
 
@@ -51,9 +51,11 @@ export default function ToPinjam({ book }: { book: Book }) {
 
                 {/* Sinopsis */}
                 <CardFooter className="flex-col mt-6 rounded p-3 border-2 border-slate-100">
-                    <h3 className="font-semibold">Sinopsis</h3>
+                    <div className="flex justify-start items-start">
+                        <h3 className="font-semibold text-start">Sinopsis</h3>
+                    </div>
                     <p className="text-sm">
-                        {book.content}
+                        {book.content.length > 300 ? book.content.slice(0, 300) + "..." : book.content}
                     </p>
                 </CardFooter>
             </CardContent>

@@ -41,6 +41,8 @@ import { Badge } from "@/components/ui/badge"
 import CSRF from "@/components/element/csrf"
 import { AlertDialogHeader, AlertDialogFooter, AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel, AlertDialogAction } from "@/components/ui/alert-dialog"
 import { Link } from "@inertiajs/react"
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
 
 export const columns: ColumnDef<Book>[] = [
   {
@@ -242,19 +244,31 @@ export function DataTable({ books }: { books: Book[] }) {
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>Tambah item</AlertDialogTitle>
+
               <AlertDialogDescription>
-                <form action="#"></form>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
+                <form
+                  action={route('crud_book.import')}
+                  method="POST"
+                  encType="multipart/form-data"
+                >
+                  <CSRF />
+                  <Label htmlFor="json">Upload JSON Buku</Label>
+                  <Input
+                    id="json"
+                    name="json"
+                    type="file"
+                    accept=".json"
+                    required
+                  />
+                  <div className="mt-4 flex justify-end">
+                    <AlertDialogCancel type="button">Cancel</AlertDialogCancel>
+                    <Button type="submit" className="ml-2">Import</Button>
+                  </div>
+                </form>
               </AlertDialogDescription>
+              
             </AlertDialogHeader>
-
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction>Continue</AlertDialogAction>
-            </AlertDialogFooter>
           </AlertDialogContent>
-
         </AlertDialog>
 
         <div>

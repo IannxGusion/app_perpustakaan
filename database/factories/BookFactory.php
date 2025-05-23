@@ -21,7 +21,7 @@ class BookFactory extends Factory
     {
         return [
             'title' => fake()->sentence(),
-            'content' => fake()->paragraph(),
+            'content' => fake()->paragraphs(50, true),
             'author' => fake()->name(),
             'cover' => fake()->imageUrl(640, 480, 'animals', true),
             'publisher' => fake()->company(),

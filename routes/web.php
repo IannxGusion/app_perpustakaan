@@ -63,11 +63,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('main', [BookController::class, 'chart'])->name('main');
 
     Route::get('crud_buku', [BookController::class, 'crud_book_index'])->name('crud_book.index');
+
+    Route::post('crud_buku/import', [BookController::class, 'import'])->name('crud_book.import');
+    
     Route::get('crud_buku/{id}', [BookController::class, 'crud_remove'])->name('crud_book.remove');
 
-    // pusta || admi -----
+    // pustakawan || admin -----
     Route::get('edit-book/{id}', [BookController::class, 'edit'])->name('crud_book.edit');
-    // pusta || admi -----
+    // pustakawan || admin -----
 
     Route::put('crud_buku/{id}', [BookController::class, 'update'])->name('crud_book.update');
 
@@ -82,5 +85,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 // *Admin* ==================================================================================
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';

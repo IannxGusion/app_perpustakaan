@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -14,6 +15,36 @@ class BookController extends Controller
         $categories = Category::all();
 
         return Inertia('daftar_buku', compact('books', 'categories'));
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'json' => 'required|file|mimes:json,txt',
+        ]);
+
+        $jsonFile = $request->file('json');
+        $jsonData = json_decode(file_get_contents($jsonFile->getRealPath()), true);
+
+        if (!is_array($jsonData)) {
+            return back()->withErrors(['json' => 'File JSON tidak valid.']);
+        }
+
+        foreach ($jsonData as $item) {
+            // Adjust keys as per your JSON structure
+            Book::create([
+                'title' => $item['title'] ?? '',
+                'content' => $item['content'] ?? '',
+                'author' => $item['author'] ?? '',
+                'publisher' => $item['publisher'] ?? '',
+                'publication_date' => $item['publication_date'] ?? now(),
+                'category_id' => $item['category_id'] ?? 1,
+                'status' => $item['status'] ?? 'Available',
+                'cover' => $item['cover'] ?? null,
+            ]);
+        }
+
+        return redirect()->route('crud_book.index')->with('success', 'Import berhasil!');
     }
 
     public function download($id)
@@ -64,7 +95,6 @@ class BookController extends Controller
             'publisher' => 'required|string|max:255',
             'publication_date' => 'required|date',
 
-            'category_id' => 'nullable|exists:categories,id',
             'status' => 'required|in:Available,Not Available',
             'cover' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
