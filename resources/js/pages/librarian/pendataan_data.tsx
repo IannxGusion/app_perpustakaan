@@ -94,11 +94,16 @@ export const columns: ColumnDef<Book>[] = [
   {
     accessorKey: "cover",
     header: "Sampul",
-    cell: ({ row }) => <img
-      src={row.getValue("cover")} // Ganti sesuai lokasi gambar
-      alt={row.getValue("title")}
-      className="w-full h-full border border-slate-700 dark:border-slate-300"
-    />,
+    cell: ({ row }) => {
+      const book = row.original;
+      return (
+        <img
+          src={`/storage/${book.cover}`}
+          alt={row.getValue("title")}
+          className="w-full h-full border border-slate-700 dark:border-slate-300"
+        />
+      );
+    },
   },
   {
     accessorKey: "author",

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Models\Category;
 use App\Models\Borrowing;
 
 class LaporanController extends Controller

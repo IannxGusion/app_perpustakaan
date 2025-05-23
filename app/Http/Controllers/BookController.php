@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Storage;
+
+// use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -26,7 +27,7 @@ class BookController extends Controller
         $jsonFile = $request->file('json');
         $jsonData = json_decode(file_get_contents($jsonFile->getRealPath()), true);
 
-        if (!is_array($jsonData)) {
+        if (! is_array($jsonData)) {
             return back()->withErrors(['json' => 'File JSON tidak valid.']);
         }
 

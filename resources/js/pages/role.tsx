@@ -23,7 +23,7 @@ export default function TabsDemo() {
         <div className="flex h-screen justify-center items-center">
             {/* Show Card 1 only for PUSTAKAWAN */}
             {auth.user.role === "PUSTAKAWAN" && (
-                <Card>
+                <Card className="w-[400px]">
                     <CardHeader>
                         <CardTitle>Pustakawan</CardTitle>
                         <CardDescription>

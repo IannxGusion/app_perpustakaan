@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Middleware\AminMiddleware;
+use App\Http\Middleware\LibrarianMiddleware;
+
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\BookController;
-// Controllers
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\LaporanController;
+// Controllers
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -43,7 +46,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 // Pustakawan> ----------------------------------------------------------------------------------
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(function () {
 
     Route::get('work', [BorrowingController::class, 'librarian_index'])->name('work');
 
@@ -59,7 +62,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // *USER* ===================================================================================
 
 // *Admin* ==================================================================================
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function () {
 
     Route::get('main', [BookController::class, 'chart'])->name('main');
 
@@ -83,5 +86,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 // *Admin* ==================================================================================
 
-require __DIR__ . '/settings.php';
-require __DIR__ . '/auth.php';
+require __DIR__.'/settings.php';
+require __DIR__.'/auth.php';
