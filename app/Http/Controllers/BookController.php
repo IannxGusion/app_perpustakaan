@@ -87,24 +87,23 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'book_id' => 'required|exists:books,id',
-            'category_id' => 'required|exists:categories,id',
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'author' => 'required|string|max:255',
-            'publisher' => 'required|string|max:255',
-            'publication_date' => 'required|date',
+            'category_id' => 'nullable|exists:categories,id',
+            'title' => 'nullable|string|max:255',
+            'content' => 'nullable|string',
+            'author' => 'nullable|string|max:255',
+            'publisher' => 'nullable|string|max:255',
+            //'publication_date' => 'nullable|date',
 
-            'status' => 'required|in:Available,Not Available',
+            'status' => 'nullable|in:Available,Not Available',
             'cover' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $book = $request->book_id;
+        $book = Book::findOrFail($id);
         $book->title = $request->title;
         $book->content = $request->content;
         $book->author = $request->author;
         $book->publisher = $request->publisher;
-        $book->publication_date = $request->publication_date;
+        //$book->publication_date = $request->publication_date;
 
         $book->category_id = $request->category_id;
         $book->status = $request->status;

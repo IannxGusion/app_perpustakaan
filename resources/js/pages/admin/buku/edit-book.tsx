@@ -87,8 +87,9 @@ export default function Edit({ book, categories = [] }: EditProps) {
 
         </CardHeader>
 
-        <form action={ route('crud_book.update', book.id) } method="PUT">
+        <form action={route('crud_book.update', book.id)} method="POST" encType="multipart/form-data">
           <CSRF />
+          <input type="hidden" name="_method" value="PUT" />
 
           <CardContent className="space-y-4">
             <div>
@@ -96,6 +97,7 @@ export default function Edit({ book, categories = [] }: EditProps) {
               <Input
                 id="title" name="title"
                 placeholder="Masukkan judul buku"
+                defaultValue={book.title}
               />
             </div>
 
@@ -104,22 +106,24 @@ export default function Edit({ book, categories = [] }: EditProps) {
               <Textarea
                 id="content" name="content"
                 placeholder="Masukkan Konten buku"
+                defaultValue={book.content.length > 150 ? book.content.slice(0, 150) + "..." : book.content}
               />
             </div>
 
-            <div>
+            {/*<div>
               <Label htmlFor="cover">Sampul</Label>
               <Input
                 id="cover" name="cover"
                 type="file"
               />
-            </div>
+            </div>*/}
 
             <div>
               <Label htmlFor="author">Penulis</Label>
               <Input
                 id="author" name="author"
                 placeholder="Masukkan nama penulis"
+                defaultValue={book.author}
               />
             </div>
 
@@ -128,6 +132,7 @@ export default function Edit({ book, categories = [] }: EditProps) {
               <Input
                 id="publisher" name="publisher"
                 placeholder="Masukkan nama penerbit"
+                defaultValue={book.publisher}
               />
             </div>
 
@@ -136,6 +141,7 @@ export default function Edit({ book, categories = [] }: EditProps) {
               <Input
                 id="publication_date" name="publication_date"
                 type="date"
+                defaultValue={book.publication_date}
               />
             </div>
 
@@ -162,7 +168,10 @@ export default function Edit({ book, categories = [] }: EditProps) {
             <div>
               <Label htmlFor="status">Status</Label>
 
-              <Select>
+              <Select
+                name="status"
+                defaultValue={book.status}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Pilih status" />
                 </SelectTrigger>

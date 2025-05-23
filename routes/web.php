@@ -53,6 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('laporan/download', [LaporanController::class, 'report_index'])->name('report.download');
 
     Route::get('pendataan', [BookController::class, 'librarian_book_index'])->name('pendataan');
+    Route::put('pendataan/{id}', [BookController::class, 'update'])->name('crud_book.update');
 });
 
 // *USER* ===================================================================================
@@ -65,13 +66,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('crud_buku', [BookController::class, 'crud_book_index'])->name('crud_book.index');
 
     Route::post('crud_buku/import', [BookController::class, 'import'])->name('crud_book.import');
-    
+
     Route::get('crud_buku/{id}', [BookController::class, 'crud_remove'])->name('crud_book.remove');
 
-    // pustakawan || admin -----
-    Route::get('edit-book/{id}', [BookController::class, 'edit'])->name('crud_book.edit');
-    // pustakawan || admin -----
-
+    Route::get('/{id}/edit', [BookController::class, 'edit'])->name('crud_book.edit');
     Route::put('crud_buku/{id}', [BookController::class, 'update'])->name('crud_book.update');
 
     Route::get('crud_peminjaman', [BorrowingController::class, 'crud_index'])->name('crud_borrowing.index');
