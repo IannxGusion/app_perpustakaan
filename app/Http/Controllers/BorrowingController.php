@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Borrowing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Borrowing;
-
 class BorrowingController extends Controller
 {
-
     public function index()
     {
         $borrowings = Borrowing::with(['book.category'])->latest()->get();

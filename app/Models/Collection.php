@@ -2,18 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-use App\Models\User;
-use App\Models\Borrowing;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Collection extends Model
 {
-    use SoftDeletes;
-
     use HasFactory;
+    use SoftDeletes;
 
     public function user()
     {
@@ -24,7 +20,6 @@ class Collection extends Model
     {
         return $this->hasMany(Borrowing::class);
     }
-
 
     protected $fillable = [
         'user_id',

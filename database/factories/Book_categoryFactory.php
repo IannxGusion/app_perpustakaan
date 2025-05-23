@@ -1,9 +1,10 @@
 <?php
 
 namespace Database\Factories;
+
+use App\Models\Book;
 use App\Models\Book_category;
 use App\Models\Category;
-use App\Models\Book;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
