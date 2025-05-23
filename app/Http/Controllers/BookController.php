@@ -92,7 +92,7 @@ class BookController extends Controller
             'content' => 'nullable|string',
             'author' => 'nullable|string|max:255',
             'publisher' => 'nullable|string|max:255',
-            //'publication_date' => 'nullable|date',
+            'publication_date' => 'nullable|date',
 
             'status' => 'nullable|in:Available,Not Available',
             'cover' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
@@ -103,13 +103,13 @@ class BookController extends Controller
         $book->content = $request->content;
         $book->author = $request->author;
         $book->publisher = $request->publisher;
-        //$book->publication_date = $request->publication_date;
+        $book->publication_date = $request->publication_date;
 
         $book->category_id = $request->category_id;
         $book->status = $request->status;
 
         if ($request->hasFile('cover')) {
-            $imagePath = $request->file('image')->store('images', 'public');
+            $imagePath = $request->file('cover')->store('covers', 'public');
             $book->cover = $imagePath;
         }
 

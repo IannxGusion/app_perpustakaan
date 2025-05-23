@@ -21,9 +21,6 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
@@ -39,10 +36,21 @@ import type { Book } from '@/types';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
 import CSRF from "@/components/element/csrf"
-import { AlertDialogHeader, AlertDialogFooter, AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel, AlertDialogAction } from "@/components/ui/alert-dialog"
+import { AlertDialogHeader, AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel } from "@/components/ui/alert-dialog"
 import { Link } from "@inertiajs/react"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
+import TableInfo from "@/components/element/table-info"
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 export const columns: ColumnDef<Book>[] = [
   {
@@ -119,86 +127,59 @@ export const columns: ColumnDef<Book>[] = [
       const book = row.original
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+        <div className="flex">
 
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(String(book.id))}
-              className="underline">
-              Copy book ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-
-            <DropdownMenuItem>
-              <Table className="min-w-full border border-gray-300">
-                <TableBody>
-                  <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Judul</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.title}</TableCell>
-                  </TableRow>
-                  <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Genre</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.category.name}</TableCell>
-                  </TableRow>
-                  <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Sampul</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">
-                      <img
-                        src={`/storage/${book.cover}`}
-                        alt={book.title}
-                        className="w-full h-full border border-slate-700 dark:border-slate-300"
-                      />
-                    </TableCell>
-                  </TableRow>
-                  <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Penulis</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.author}</TableCell>
-                  </TableRow>
-                  <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Penerbit</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.publisher}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Tgl. Terbit</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.publication_date}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Status</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900 underline">{book.status}</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-
-            <DropdownMenuItem>
-              <Button asChild className="w-full" variant={'outline'}>
-                <Link href={route('crud_book.edit', [book.id])}>
-                  Edit
-                </Link>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal />
               </Button>
-            </DropdownMenuItem>
+            </DialogTrigger>
 
-            <DropdownMenuItem>
-              <form action={route('crud_book.remove', book['id'])} method="DELETE" className="w-full">
-                <CSRF />
+            <DialogContent className="p-5">
+              <ScrollArea className="h-[500px] mt-5 p-5 border-t-2 border-b-2">
 
-                <Button className="w-full" type="submit" variant={'destructive'}>
-                  Hapus
-                </Button>
-              </form>
+                <DialogHeader className="pt-2">
+                  <DialogTitle>Aksi Buku</DialogTitle>
+                  <DialogDescription>
+                    Pilih aksi untuk buku ini.
+                  </DialogDescription>
+                </DialogHeader>
 
-            </DropdownMenuItem>
+                <div className="space-y-2">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start underline"
+                    onClick={() => {
+                      navigator.clipboard.writeText(String(book.id))
+                    }}
+                  >
+                    Copy book ID
+                  </Button>
 
-          </DropdownMenuContent>
-        </DropdownMenu>
+                  <div className="@container/main flex flex-1 flex-col gap-2">
+                    <TableInfo book={book} />
+                  </div>
+
+                  <Button asChild className="w-full" variant="outline">
+                    <Link href={route('crud_book.edit', [book.id])}>
+                      Edit
+                    </Link>
+                  </Button>
+                  <form action={route('crud_book.remove', book['id'])} method="DELETE" className="w-full">
+                    <CSRF />
+                    <Button className="w-full" type="submit" variant="destructive">
+                      Hapus
+                    </Button>
+                  </form>
+                </div>
+
+              </ScrollArea>
+            </DialogContent>
+          </Dialog>
+
+        </div>
       )
     },
   },
@@ -266,7 +247,7 @@ export function DataTable({ books }: { books: Book[] }) {
                   </div>
                 </form>
               </AlertDialogDescription>
-              
+
             </AlertDialogHeader>
           </AlertDialogContent>
         </AlertDialog>

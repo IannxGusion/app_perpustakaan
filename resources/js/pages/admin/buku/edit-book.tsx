@@ -15,12 +15,7 @@ import type { Book, Category } from "@/types"
 import CSRF from "@/components/element/csrf"
 import { Textarea } from "@/components/ui/textarea"
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from "@/components/ui/table"
+import TableInfo from "@/components/element/table-info"
 
 type EditProps = {
   book?: Book;
@@ -42,49 +37,10 @@ export default function Edit({ book, categories = [] }: EditProps) {
           <CardDescription className="mb-5"><h1>Update informasi buku</h1></CardDescription>
 
           <CardTitle className="mb-1 italic"><h2>info saat ini</h2></CardTitle>
-          <Table className="min-w-full border border-gray-300">
-            <TableBody>
-              <TableRow className="border-b border-gray-300">
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Id</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">{book.id}</TableCell>
-              </TableRow>
-              <TableRow className="border-b border-gray-300">
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Judul</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">{book.title}</TableCell>
-              </TableRow>
-              <TableRow className="border-b border-gray-300">
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Genre</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">{book.category.name}</TableCell>
-              </TableRow>
-              <TableRow className="border-b border-gray-300">
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Sampul</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">
-                  <img
-                    src={`/storage/${book.cover}`}
-                    alt={book.title}
-                    className="w-full h-full border border-slate-700 dark:border-slate-300"
-                  />
-                </TableCell>
-              </TableRow>
-              <TableRow className="border-b border-gray-300">
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Penulis</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">{book.author}</TableCell>
-              </TableRow>
-              <TableRow className="border-b border-gray-300">
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Penerbit</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">{book.publisher}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Tgl. Terbit</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">{book.publication_date}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Status</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900 underline">{book.status}</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
 
+          {/* TableInfo */}
+          <TableInfo book={book} />
+          
         </CardHeader>
 
         <form action={route('crud_book.update', book.id)} method="POST" encType="multipart/form-data">
@@ -110,13 +66,13 @@ export default function Edit({ book, categories = [] }: EditProps) {
               />
             </div>
 
-            {/*<div>
+            <div>
               <Label htmlFor="cover">Sampul</Label>
               <Input
                 id="cover" name="cover"
                 type="file"
               />
-            </div>*/}
+            </div>
 
             <div>
               <Label htmlFor="author">Penulis</Label>
