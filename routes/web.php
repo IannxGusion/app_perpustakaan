@@ -32,12 +32,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // POST route for borrowing a book
     Route::controller(BorrowingController::class)->group(function () {
         Route::post('pinjam_buku', 'store')->name('borrow.store');
-        Route::post('detail_buku', 'store')->name('borrow.store');
+        Route::post('/detail_buku', 'store')->name('borrow.store');
     });
 
     Route::get('borrowings', [BorrowingController::class, 'index'], [ReviewController::class, 'store'])->name('borrow.index');
 
-    Route::get('/detail_buku/{id}', [BookController::class, 'detail'], [BookController::class, 'detail'])->name('book.detail');
+    Route::get('/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
     Route::get('/detail_buku2/{id}', [BookController::class, 'detail2'])->name('book.detail2');
     Route::get('/detail_buku3/{id}', [BookController::class, 'detail3'])->name('book.detail3');
 });
@@ -55,7 +55,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('pendataan', [BookController::class, 'librarian_book_index'])->name('pendataan');
 });
 
-// *USER* ===================================================================================
+// *USER* ====================================================================================
 
 // *Admin* ==================================================================================
 Route::middleware(['auth', 'verified'])->group(function () {
