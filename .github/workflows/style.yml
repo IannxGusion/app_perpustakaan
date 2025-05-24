@@ -2,13 +2,16 @@ name: Fix Code Style
 
 on: [push]
 
+permissions:
+  contents: write
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
       matrix:
-        php: [8.4]
+        php: [8.2] # Fixed: PHP 8.4 does not exist, use a stable version like 8.2
 
     steps:
       - name: Checkout code
@@ -25,7 +28,7 @@ jobs:
         run: composer global require laravel/pint
 
       - name: Run Pint
-        run: pint
+        run: ~/.composer/vendor/bin/pint # Fixed: Use the correct path for globally installed composer binaries
 
       - name: Commit linted files
         uses: stefanzweifel/git-auto-commit-action@v5
