@@ -3,15 +3,11 @@ import { type BreadcrumbItem, Book } from '@/types';
 import { Head } from '@inertiajs/react';
 
 // ui
-import { Input } from '@/components/ui/input';
-import { Button } from "@/components/ui/button"
 import * as React from 'react';
 import TablePagination from '@mui/material/TablePagination';
 
 // element
-import Filter from '@/pages/book cards/filter';
 import ToBooks from '@/pages/book cards/ToBooks';
-
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -53,42 +49,23 @@ export default function List({ ...props }: { books: Book[] }) {
                 <h1 className="text-4xl font-bold">Daftar Buku</h1>
             </section>
 
-            <div className="flex h-full flex-1 flex-col p-4">
-                <div className="flex gap-6">
-                    <Filter />
-                    <div className="flex-1">
-                        <div className="flex justify-between items-center mb-4 space-x-5">
-                            <Input
-                                type="text"
-                                placeholder="Search..."
-                                className="w-full">
-                            </Input>
-
-                            <Button>SSD</Button>
-                            <Button>SSD</Button>
-                            <Button>SSD</Button>
-                            <Button>SSD</Button>
-                        </div>
-
-                        {/*<Booklist />*/}
-                        <div className="border-b-2 pb-20 grid gap-5 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                            {paginatedBooks.map((book) => (
-                                <ToBooks key={book.id} book={book} />
-                            ))}
-                        </div>
-                        <div className="flex justify-center mt-4">
-                            <TablePagination
-                                component="div"
-                                count={books.length}
-                                page={page}
-                                onPageChange={handleChangePage}
-                                rowsPerPage={rowsPerPage}
-                                onRowsPerPageChange={handleChangeRowsPerPage}
-                                rowsPerPageOptions={[4, 8, 16, 32]}
-                            />
-                        </div>
-                    </div>
-
+            <div className="p-4">
+                {/*<Booklist />*/}
+                <div className="border-b-2 pb-20 grid gap-5 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    {paginatedBooks.map((book) => (
+                        <ToBooks key={book.id} book={book} />
+                    ))}
+                </div>
+                <div className="flex justify-center mt-4">
+                    <TablePagination
+                        component="div"
+                        count={books.length}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        rowsPerPage={rowsPerPage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                        rowsPerPageOptions={[4, 8, 16, 32]}
+                    />
                 </div>
             </div>
 

@@ -1,6 +1,6 @@
 import Dilan from "./dilan";
 import Sadako from "./sadako";
-import Bleach from "./Bleach";
+import Bleach from "./bleach";
 import { Link } from "@inertiajs/react"; // or wherever your Link comes from
 
 export default function Highlight() {

@@ -28,9 +28,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('books/borrow/{id}', [BookController::class, 'show'])->name('books.show');
     Route::get('books/borrow/detail/{id}', [BookController::class, 'detail'])->name('books.detail');
 
-    Route::get('dashboard/details1/{id}', [BookController::class, 'details1'])->name('books.details1');
-    Route::get('dashboard/details2/{id}', [BookController::class, 'details2'])->name('books.details2');
-    Route::get('dashboard/details3/{id}', [BookController::class, 'details3'])->name('books.details3');
+    Route::get('dashboard/details1/{id}', [BookController::class, 'details1'])->name('books.detail1');
+    Route::get('dashboard/details2/{id}', [BookController::class, 'details2'])->name('books.detail2');
+    Route::get('dashboard/details3/{id}', [BookController::class, 'details3'])->name('books.detail3');
 
     Route::controller(BorrowingController::class)->group(function () {
         Route::post('books/borrow/borrows/{id}', 'store')->name('borrowings.store');
