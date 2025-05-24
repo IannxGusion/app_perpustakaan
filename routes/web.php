@@ -34,7 +34,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('books/borrow/{id}', [BookController::class, 'show'])->name('books.show');
     Route::get('books/borrow/detail/{id}', [BookController::class, 'detail'])->name('books.detail');
 
-
     Route::controller(BorrowingController::class)->group(function () {
         Route::post('books/borrow/borrows/{id}', 'store')->name('borrowings.store');
     });
@@ -88,5 +87,5 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 });
 // *Admin* ==================================================================================
 
-require __DIR__ . '/settings.php';
-require __DIR__ . '/auth.php';
+require __DIR__.'/settings.php';
+require __DIR__.'/auth.php';
