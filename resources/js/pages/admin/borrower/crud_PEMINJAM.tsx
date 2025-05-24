@@ -1,13 +1,13 @@
-import AppLayout from '@/layouts/app-layout';
+import AppLayout from '@/pages/admin/layer/app-sidebar-layout';
 import { type BreadcrumbItem, User } from '@/types';
 import { Head } from '@inertiajs/react';
 
-import { DataTable } from "@/pages/admin/peminjam/data-table"
+import { DataTable } from "@/pages/admin/borrower/data-table"
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'CRUD Peminjam',
-        href: '/crud_borrower',
+        href: '/borrowers',
     },
 ];
 

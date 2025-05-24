@@ -3,6 +3,9 @@
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
 use App\Http\Middleware\AminMiddleware;
 use App\Http\Middleware\LibrarianMiddleware;
 // Controllers
@@ -70,6 +73,12 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 
     Route::get('main/borrowings', [BorrowingController::class, 'adminIndex'])->name('admin.borrowings.index');
     Route::delete('main/borrowings/{id}', [BorrowingController::class, 'adminDelete'])->name('admin.borrowings.delete');
+
+    Route::get('main/borrowers', [UserController::class, 'adminBorrowerIndex'])->name('admin.borrowers.index');
+    Route::get('main/borrowers/{id}', [AuthenticatedSessionController::class, 'destroy'])->name('admin.borrowers.delete');
+
+    Route::get('main/librarians', [UserController::class, 'adminLibrarianIndex'])->name('admin.librarian.index');
+    Route::get('main/librarians/{id}', [AuthenticatedSessionController::class, 'destroy'])->name('admin.librarian.delete');
 });
 // *Admin* ==================================================================================
 

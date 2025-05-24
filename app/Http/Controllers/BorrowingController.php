@@ -45,7 +45,7 @@ class BorrowingController extends Controller
     {
         $borrowings = Borrowing::with(['book.category', 'user'])->get();
 
-        return inertia('admin/borrowings/index', compact('borrowings'));
+        return inertia('admin/borrowings/crud_peminjaman', compact('borrowings'));
     }
 
     /**

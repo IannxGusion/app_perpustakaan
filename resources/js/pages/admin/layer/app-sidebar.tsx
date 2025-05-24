@@ -1,46 +1,67 @@
-import { NavFooter } from '@/components/nav-footer';
-import { NavMain } from '@/components/nav-main';
-import { NavUser } from '@/components/nav-user';
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
-import type { NavGroup, NavItem } from '@/types';
-import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, List, Bolt } from 'lucide-react';
-import AppLogo from '@/components/app-logo';
+"use client"
 
-const mainNavItems: NavGroup[] = [
-    {
-        title: 'Main',
-        href: '/main',
-        icon: Bolt,
-    },
-    {
-        title: 'CRUDs',
-        icon: List,
-        items: [
-            {
-                title: 'CRUD: Peminjam',
-                href: '/crud_peminjam',
-                icon: Folder,
-            },
-            {
-                title: 'CRUD: Pustakawan',
-                href: '/crud_pustakawan',
-                icon: Folder,
-            },
-            {
-                title: 'CRUD: Peminjaman',
-                href: '/borrowings',
-                icon: Folder,
-            },
-            {
-                title: 'CRUD: Buku',
-                href: 'main/books',
-                icon: Folder,
-            }
-        ]
-    },
-    
-];
+import * as React from "react"
+import {
+    Bolt,
+    BookOpen,
+    Folder,
+    List,
+} from "lucide-react"
+
+import { NavMain } from "@/components/nav-main"
+import { NavHome } from "@/components/nav-cruds"
+import { NavUser } from "@/components/nav-user"
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarHeader,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+    SidebarRail,
+} from "@/components/ui/sidebar"
+import { Link } from "@inertiajs/react"
+import AppLogo from "@/components/app-logo"
+import { NavFooter } from "@/components/nav-footer"
+import { NavItem } from "@/types"
+
+// This is sample data.
+const data = {
+    home: [
+        {
+            name: "Main",
+            url: "/main",
+            icon: Bolt,
+        },
+    ],
+    navMain: [
+        {
+            title: "CRUD",
+            url: "#",
+            icon: List,
+            isActive: true,
+            items: [
+                {
+                    title: "Buku",
+                    url: "books",
+                },
+                {
+                    title: "Peminjaman",
+                    url: "borrowings",
+                },
+                {
+                    title: "Pustakawan",
+                    url: "borrowers",
+                },
+                {
+                    title: "Peminjam",
+                    url: "librarians",
+                },
+            ],
+        },
+    ],
+}
 
 const footerNavItems: NavItem[] = [
     {
@@ -55,9 +76,9 @@ const footerNavItems: NavItem[] = [
     },
 ];
 
-export function AppSidebar() {
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     return (
-        <Sidebar collapsible="icon" variant="inset">
+        <Sidebar collapsible="icon" {...props} variant="inset">
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
@@ -71,13 +92,15 @@ export function AppSidebar() {
             </SidebarHeader>
 
             <SidebarContent>
-                <NavMain items={mainNavItems} />
+                <NavHome home={data.home} />
+                <NavMain items={data.navMain} />
             </SidebarContent>
 
             <SidebarFooter>
                 <NavFooter items={footerNavItems} className="mt-auto" />
                 <NavUser />
             </SidebarFooter>
+            <SidebarRail />
         </Sidebar>
-    );
+    )
 }

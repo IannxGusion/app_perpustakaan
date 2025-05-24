@@ -6,29 +6,19 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    // CRUD ===================================================================================
-    public function crud_peminjam_index()
+    public function adminBorrowerIndex()
     {
         $users = User::get();
 
-        return Inertia('admin/peminjam/crud_PEMINJAM', compact('users'));
+        return Inertia('admin/borrower/crud_PEMINJAM', compact('users'));
     }
-
-    /*public function crud_peminjam_remove($id)
-    {
-        $user = User::findOrFail($id);
-        $user->delete();
-
-        return redirect()->back();
-    }*/
     // PEMIJAM< -----------------------------------------------------------------------------
 
     // PUSTAKAWAN> -----------------------------------------------------------------------------
-    public function crud_pustakawan_index()
+    public function adminLibrarianIndex()
     {
         $users = User::get();
 
-        return Inertia('admin/pustakawan/crud_PUSTAKAWAN', compact('users'));
+        return Inertia('admin/librarian/crud_PUSTAKAWAN', compact('users'));
     }
-    // CRUD ===================================================================================
 }

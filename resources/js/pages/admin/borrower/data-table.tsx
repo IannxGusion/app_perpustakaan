@@ -164,7 +164,7 @@ export const columns: ColumnDef<User>[] = [
             </DropdownMenuItem>
 
             <DropdownMenuItem>
-              <form action={route('borrower.remove', user['id'])} method="DELETE" className="w-full">
+              <form action={route('admin.borrowers.delete', user['id'])} method="DELETE" className="w-full">
                 <CSRF />
 
                 <Button className="w-full" type="submit" variant={'destructive'}>

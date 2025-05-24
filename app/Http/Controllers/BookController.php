@@ -103,7 +103,7 @@ class BookController extends Controller
         $books = Book::with('category')->get();
         $categories = Category::all();
 
-        return Inertia('admin/buku/crud_buku', compact('books', 'categories'));
+        return Inertia('admin/books/crud_buku', compact('books', 'categories'));
     }
 
     /**
@@ -114,7 +114,7 @@ class BookController extends Controller
         $book = Book::with('category')->findOrFail($id);
         $categories = Category::all();
 
-        return Inertia('admin/buku/edit-book', [
+        return Inertia('admin/books/edit-book', [
             'book' => $book,
             'categories' => $categories,
         ]);
