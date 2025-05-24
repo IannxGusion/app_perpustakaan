@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/react';
 import type { Book, ErrReview } from '@/types';
 
 // element
-import ToPinjam from '@/components/element/book cards/ToPinjam';
+import ToPinjam from '@/pages/book cards/ToBorrows';
 import Review from '@/components/element/review';
 
 import Divider from '@mui/material/Divider';
@@ -12,11 +12,11 @@ import Divider from '@mui/material/Divider';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Daftar Buku',
-        href: '/daftar_buku',
+        href: '/books',
     },
     {
         title: 'Pinjam Buku',
-        href: '/pinjam_buku',
+        href: '/borrow',
     },
 ];
 

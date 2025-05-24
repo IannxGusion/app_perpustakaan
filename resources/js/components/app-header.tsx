@@ -23,7 +23,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Daftar Buku',
-        href: '/daftar_buku',
+        href: '/books',
         icon: ListEndIcon,
     },
     {

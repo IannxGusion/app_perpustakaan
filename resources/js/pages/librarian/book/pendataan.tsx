@@ -28,7 +28,6 @@ export default function Dashboard({ ...props }: { books: Book[] }) {
                 <DataTable books={books} />
             </main>
 
-
         </AppLayout>
     );
 }

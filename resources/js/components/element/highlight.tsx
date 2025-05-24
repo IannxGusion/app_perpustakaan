@@ -32,15 +32,15 @@ export default function Highlight() {
                             Top #{idx + 1}
                         </span>
                         <h3 className="mt-4 text-lg font-semibold">
-                            <Link href={route('book.detail', 1)}>
+                            <Link href={route('books.detail1', 1)}>
                                 {book.d}
                                 {book.dilan}
                             </Link>
-                            <Link href={route('book.detail2', 2)}>
+                            <Link href={route('books.detail2', 2)}>
                                 {book.s}
                                 {book.sadako}
                             </Link>
-                            <Link href={route('book.detail3', 3)}>
+                            <Link href={route('books.detail3', 3)}>
                                 {book.b}
                                 {book.bleach}
                             </Link>

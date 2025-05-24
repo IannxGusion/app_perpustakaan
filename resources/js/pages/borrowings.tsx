@@ -6,7 +6,7 @@ import { Head } from '@inertiajs/react';
 import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
-import ToPinjaman from '@/components/element/book cards/ToPinjaman';
+import ToPinjaman from '@/pages/book cards/ToBorrowings';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

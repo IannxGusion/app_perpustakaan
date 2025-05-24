@@ -1,3 +1,4 @@
+import React from 'react';
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem, Book } from '@/types';
 import { Head } from '@inertiajs/react';
@@ -6,11 +7,6 @@ import { Head } from '@inertiajs/react';
 import { Input } from '@/components/ui/input';
 import { Button } from "@/components/ui/button"
 import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react';
-
-// element
-import Filter from '@/components/element/book cards/filter';
-import React from 'react';
-
 import {
     Select,
     SelectContent,
@@ -18,7 +14,10 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import ToDaftar from '@/components/element/book cards/ToDaftar';
+
+// element
+import Filter from '@/pages/book cards/filter';
+import ToDaftar from '@/pages/book cards/ToBooks';
 
 
 const breadcrumbs: BreadcrumbItem[] = [

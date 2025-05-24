@@ -1,10 +1,13 @@
 import { SquareTerminal } from "lucide-react";
-import Confirm from "../confirm";
+import { Link } from "@inertiajs/react";
 import { Book } from "@/types";
 
+// ui
 import { Badge } from "@/components/ui/badge";
-import { Link } from "@inertiajs/react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+
+// element
+import Confirm from "@/components/element/confirm";
 
 export default function ToPinjam({ book }: { book: Book }) {
     return (

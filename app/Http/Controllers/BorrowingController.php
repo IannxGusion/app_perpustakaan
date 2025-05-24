@@ -8,13 +8,19 @@ use Illuminate\Support\Facades\Auth;
 
 class BorrowingController extends Controller
 {
+    /**
+     * Display a listing of the borrowings.
+     */
     public function index()
     {
         $borrowings = Borrowing::with(['book.category'])->latest()->get();
 
-        return inertia('pinjaman', compact('borrowings'));
+        return inertia('borrowings/index', compact('borrowings'));
     }
 
+    /**
+     * Store a new borrowing record.
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -29,30 +35,37 @@ class BorrowingController extends Controller
             'status' => 'Borrows',
         ]);
 
-        return redirect()->route('borrow.index');
+        return redirect()->route('borrowings.index');
     }
 
-    // CRUD ===================================================================================
+    /**
+     * Admin: List all borrowings.
+     */
     public function crud_index()
     {
         $borrowings = Borrowing::with(['book.category', 'user'])->get();
 
-        return inertia('admin/peminjaman/crud_peminjaman', compact('borrowings'));
+        return inertia('admin/borrowings/index', compact('borrowings'));
     }
 
+    /**
+     * Librarian: List all borrowings.
+     */
     public function librarian_index()
     {
         $borrowings = Borrowing::with(['book.category', 'user'])->get();
 
-        return inertia('librarian/work', compact('borrowings'));
+        return inertia('librarian/borrowings/index', compact('borrowings'));
     }
 
-    public function crud_remove($id)
+    /**
+     * Remove the specified borrowing.
+     */
+    public function destroy($id)
     {
         $borrowing = Borrowing::findOrFail($id);
         $borrowing->delete();
 
         return redirect()->back();
     }
-    // CRUD ===================================================================================
 }
