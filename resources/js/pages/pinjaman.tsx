@@ -31,8 +31,11 @@ export default function Pinjaman({ ...props }: { borrowings: Borrowing[] }) {
             <Head title="Riwayat Pinjaman" />
 
             {/* Hero Section */}
-            <section className="bg-gray-200 text-center py-12 px-4 mt-4">
-                <h1 className="text-4xl font-bold">Pinjaman</h1>
+            <section
+                className="text-center py-12 px-4 mt-4 bg-cover bg-center"
+                style={{ backgroundImage: "url('/images/pemandangan.jpg')" }}
+            >
+                <h1 className="text-4xl font-bold text-white">Riwayat Pinjaman</h1>
             </section>
 
             {/* List */}

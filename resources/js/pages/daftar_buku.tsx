@@ -44,8 +44,11 @@ export default function Daftar({ ...props }: { books: Book[] }) {
             <Head title="Dashboard" />
 
             {/* Hero Section */}
-            <section className="bg-gray-200 text-center py-12 px-4 mt-4">
-                <h1 className="text-4xl font-bold">Daftar Buku</h1>
+            <section
+                className="text-center py-12 px-4 mt-4 bg-cover bg-center"
+                style={{ backgroundImage: "url('/images/pemandangan.jpg')" }}
+            >
+                <h1 className="text-4xl font-bold text-white">Daftar Buku</h1>
             </section>
 
             {/* Placeholder / kotak kosong untuk dashboard content */}

@@ -19,17 +19,21 @@ export default function Dashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
-            <section className='bg-gray-200 text-center py-12 px-4 mt-4'>
-            <h1 className="text-4xl font-bold">Halaman Utama</h1>
-            <Search />
+            <section
+                className="text-center py-12 px-4 mt-4 bg-cover bg-center"
+                style={{ backgroundImage: "url('/images/pemandangan.jpg')" }}
+            >
+                <h1 className="text-4xl font-bold text-white">Halaman Utama</h1>
+                <br />
+                <Search />
             </section>
 
-            {/* Hero Banner */}
+            {/* Hero Banner */ }
 
-            {/* Placeholder / kotak kosong untuk dashboard content */}
+    {/* Placeholder / kotak kosong untuk dashboard content */ }
 
-            <Highlight />
+    <Highlight />
 
-        </AppLayout>
+        </AppLayout >
     );
 }

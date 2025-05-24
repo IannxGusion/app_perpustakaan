@@ -22,20 +22,23 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 
 type Props = {
-  book: Book;
-  reviews: ErrReview[];
+    book: Book;
+    reviews: ErrReview[];
 };
 
-export default function Pinjam_buku({...props}: Props) {
-  const { book, reviews } = props;
+export default function Pinjam_buku({ ...props }: Props) {
+    const { book, reviews } = props;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Pinjam Buku" />
 
             {/* Hero Section */}
-            <section className="bg-gray-200 text-center py-12 px-4 mt-4">
-                <h1 className="text-4xl font-bold">Pinjam Buku</h1>
+            <section
+                className="text-center py-12 px-4 mt-4 bg-cover bg-center"
+                style={{ backgroundImage: "url('/images/pemandangan.jpg')" }}
+            >
+                <h1 className="text-4xl font-bold text-white">Pinjam</h1>
             </section>
 
             {/* Content */}
@@ -46,10 +49,10 @@ export default function Pinjam_buku({...props}: Props) {
                 <section className="mt-10 border p-5 rounded-lg">
                     <h3 className="text-xl font-semibold mb-4">
                         Ulasan
-                        <Divider className='mt-10'/>
+                        <Divider className='mt-10' />
                     </h3>
 
-                    <Review reviews={reviews}/>
+                    <Review reviews={reviews} />
 
                 </section>
             </main>

@@ -30,14 +30,14 @@ const ProductInfoCard = ({ ...props }: { book: Book }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-primary-50 p-6">
       {/* Tombol Kembali */}
       <Button
         variant="outline"
         className="mb-6"
         onClick={() => window.location.href = route("dashboard")}
       >
-        ← Kembali
+      Kembali
       </Button>
 
       {/* Kartu Informasi */}
