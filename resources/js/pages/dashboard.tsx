@@ -19,8 +19,10 @@ export default function Dashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
-
+            <section className='bg-gray-200 text-center py-12 px-4 mt-4'>
+            <h1 className="text-4xl font-bold">Halaman Utama</h1>
             <Search />
+            </section>
 
             {/* Hero Banner */}
 
