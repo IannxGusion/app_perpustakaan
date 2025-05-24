@@ -43,7 +43,7 @@ export default function Edit({ book, categories = [] }: EditProps) {
           
         </CardHeader>
 
-        <form action={route('crud_book.update', book.id)} method="POST" encType="multipart/form-data">
+        <form action={route('admin.books.update', book.id)} method="POST" encType="multipart/form-data">
           <CSRF />
           <input type="hidden" name="_method" value="PUT" />
 

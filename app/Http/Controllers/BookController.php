@@ -28,7 +28,17 @@ class BookController extends Controller
     {
         $book = Book::with('category')->findOrFail($id);
 
-        return Inertia('borrows', ['book' => $book]);
+        return Inertia('borrows_book', ['book' => $book]);
+    }
+
+    /**
+     * Show book details.
+     */
+    public function detail($id)
+    {
+        $book = Book::with('category')->findOrFail($id);
+
+        return Inertia('book_detail', ['book' => $book]);
     }
 
     /**
@@ -73,10 +83,11 @@ class BookController extends Controller
         return view('pdf', ['book' => $book]);
     }
 
+    // ============================================================================================
     /**
      * Admin main.
      */
-    public function main()
+    public function adminMain()
     {
         $books = Book::with('category')->get();
         $categories = Category::all();
@@ -147,15 +158,16 @@ class BookController extends Controller
     /**
      * Admin: Delete a book.
      */
-    public function adminDestroy($id)
+    public function adminDelete($id)
     {
         $book = Book::findOrFail($id);
         $book->delete();
 
         return redirect()->back();
     }
+    // ============================================================================================
 
-    //============================================================================================
+    // ============================================================================================
     /**
      * Librarian: List all books.
      */
@@ -219,16 +231,16 @@ class BookController extends Controller
     /**
      * Librarian: Delete a book.
      */
-    public function librarianDestroy($id)
+    public function librarianDelete($id)
     {
         $book = Book::findOrFail($id);
         $book->delete();
 
         return redirect()->back();
     }
-    //============================================================================================
+    // ============================================================================================
 
-    //============================================================================================
+    // ============================================================================================
     /**
      * Show book details (variant 1).
      */
@@ -236,7 +248,7 @@ class BookController extends Controller
     {
         $book = Book::with('category')->findOrFail($id);
 
-        return Inertia('books/details', ['book' => $book]);
+        return Inertia('detail_buku1', ['book' => $book]);
     }
 
     /**
@@ -246,7 +258,7 @@ class BookController extends Controller
     {
         $book = Book::with('category')->findOrFail($id);
 
-        return Inertia('books/details2', ['book' => $book]);
+        return Inertia('detail_buku2', ['book' => $book]);
     }
 
     /**
@@ -256,7 +268,7 @@ class BookController extends Controller
     {
         $book = Book::with('category')->findOrFail($id);
 
-        return Inertia('books/details3', ['book' => $book]);
+        return Inertia('detail_buku3', ['book' => $book]);
     }
-    //============================================================================================
+    // ============================================================================================
 }

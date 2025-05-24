@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/react';
 import type { Book, ErrReview } from '@/types';
 
 // element
-import ToPinjam from '@/pages/book cards/ToBorrows';
+import ToBorrows from '@/pages/book cards/ToBorrows';
 import Review from '@/components/element/review';
 
 import Divider from '@mui/material/Divider';
@@ -26,7 +26,7 @@ type Props = {
   reviews: ErrReview[];
 };
 
-export default function Pinjam_buku({...props}: Props) {
+export default function Borrows_book({...props}: Props) {
   const { book, reviews } = props;
 
     return (
@@ -40,7 +40,7 @@ export default function Pinjam_buku({...props}: Props) {
 
             {/* Content */}
             <main className="max-w-6xl mx-auto p-6">
-                <ToPinjam book={book} />
+                <ToBorrows book={book} />
 
                 {/* Reviews */}
                 <section className="mt-10 border p-5 rounded-lg">

@@ -29,12 +29,12 @@ const mainNavItems: NavGroup[] = [
             },
             {
                 title: 'CRUD: Peminjaman',
-                href: '/crud_peminjaman',
+                href: '/borrowings',
                 icon: Folder,
             },
             {
                 title: 'CRUD: Buku',
-                href: '/crud_buku',
+                href: 'main/books',
                 icon: Folder,
             }
         ]

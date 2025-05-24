@@ -168,12 +168,13 @@ export const columns: ColumnDef<Book>[] = [
                   </div>
 
                   <Button asChild className="w-full" variant="outline">
-                    <Link href={route('crud_book.edit', [book.id])}>
+                    <Link href={route('librarian.books.edit', [book.id])}>
                       Edit
                     </Link>
                   </Button>
-                  <form action={route('crud_book.remove', book['id'])} method="DELETE" className="w-full">
+                  <form action={route('librarian.books.delete', book['id'])} method="DELETE" className="w-full">
                     <CSRF />
+                    
                     <Button className="w-full" type="submit" variant="destructive">
                       Hapus
                     </Button>
@@ -233,7 +234,7 @@ export function DataTable({ books }: { books: Book[] }) {
 
               <AlertDialogDescription>
                 <form
-                  action={route('crud_book.import')}
+                  action={route('librarian.books.import')}
                   method="POST"
                   encType="multipart/form-data"
                 >

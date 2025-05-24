@@ -7,7 +7,7 @@ import { DataTable } from './pendataan_data';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Pendataan',
-        href: '/Pendataan',
+        href: '/management',
     },
 ];
 

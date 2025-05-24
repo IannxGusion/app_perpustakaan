@@ -35,7 +35,7 @@ export default function Confirm({ book }: { book: Book }) {
                 <AlertDialogFooter>
                     <AlertDialogCancel type="button">Batal</AlertDialogCancel>
 
-                    <form action={route("borrow.store")} method="POST" encType="multipart/form-data">
+                    <form action={route("borrowings.store", book.id)} method="POST" encType="multipart/form-data">
                         {/* CSRF */}
                         <CSRF />
 

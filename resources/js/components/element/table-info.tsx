@@ -12,6 +12,10 @@ export default function TableInfo({ book }: { book: Book }) {
         <Table className="min-w-full border border-gray-300">
             <TableBody>
                 <TableRow className="border-b border-gray-300">
+                    <TableCell className="px-4 py-2 font-medium text-gray-700">Id</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">{book.id}</TableCell>
+                </TableRow>
+                <TableRow className="border-b border-gray-300">
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Judul</TableCell>
                     <TableCell className="px-4 py-2 text-gray-900">{book.title}</TableCell>
                 </TableRow>

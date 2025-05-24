@@ -20,14 +20,13 @@ export default function Dashboard() {
 
             <section className="bg-gray-200 text-center py-10 px-4 mt-4">
                 <h1 className="text-4xl font-bold">Laporan</h1>
-                <h2 className="text-xl font-semibold mb-6">Laporan Bulan Ini</h2>
             </section>
 
             <DateRangePicker />
 
             <div className="text-center">
                 <Button asChild className="h-7 bg-primary rounded mt-3 text text-white" >
-                    <Link target="_blank" href={route('report.download')}>Buat Laporan</Link>
+                    <Link target="_blank" href={route('librarian.report.download')}>Buat Laporan</Link>
                 </Button>
             </div>
 

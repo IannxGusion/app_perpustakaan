@@ -43,8 +43,10 @@ export default function Edit({ book, categories = [] }: EditProps) {
           
         </CardHeader>
 
-        <form action={route('crud_book.update', book.id)} method="POST" encType="multipart/form-data">
+        <form action={route('librarian.books.update', book.id)} method="POST" encType="multipart/form-data">
           <CSRF />
+
+          {/* custom methot */}
           <input type="hidden" name="_method" value="PUT" />
 
           <CardContent className="space-y-4">

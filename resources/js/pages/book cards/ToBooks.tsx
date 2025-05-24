@@ -6,8 +6,9 @@ import { Book } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@inertiajs/react";
 
-export default function ToDaftar({ book }: { book: Book }) {
+export default function ToBooks({ book }: { book: Book }) {
     return (
+
         <Card key={book.id} className="p-4 flex flex-col drop-shadow-sm hover:border-2 hover:border-black hover:drop-shadow-none">
 
             <CardHeader className='flex-1'>
@@ -40,8 +41,9 @@ export default function ToDaftar({ book }: { book: Book }) {
             </CardFooter>
 
             <Button asChild>
-                <Link href={route('book.show', book['id'])}>Pinjam</Link>
+                <Link href={route('books.show', book['id'])}>Pinjam</Link>
             </Button>
         </Card>
+    
     )
 }

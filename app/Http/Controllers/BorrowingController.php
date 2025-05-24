@@ -15,7 +15,7 @@ class BorrowingController extends Controller
     {
         $borrowings = Borrowing::with(['book.category'])->latest()->get();
 
-        return inertia('borrowings/index', compact('borrowings'));
+        return inertia('borrowings', compact('borrowings'));
     }
 
     /**
@@ -41,7 +41,7 @@ class BorrowingController extends Controller
     /**
      * Admin: List all borrowings.
      */
-    public function crud_index()
+    public function adminIndex()
     {
         $borrowings = Borrowing::with(['book.category', 'user'])->get();
 
@@ -49,19 +49,30 @@ class BorrowingController extends Controller
     }
 
     /**
-     * Librarian: List all borrowings.
+     * Remove the specified borrowing.
      */
-    public function librarian_index()
+    public function adminDelete($id)
     {
-        $borrowings = Borrowing::with(['book.category', 'user'])->get();
+        $borrowing = Borrowing::findOrFail($id);
+        $borrowing->delete();
 
-        return inertia('librarian/borrowings/index', compact('borrowings'));
+        return redirect()->back();
     }
 
     /**
-     * Remove the specified borrowing.
+     * Librarian: List all borrowings.
      */
-    public function destroy($id)
+    public function librarianIndex()
+    {
+        $borrowings = Borrowing::with(['book.category', 'user'])->get();
+
+        return inertia('librarian/work', compact('borrowings'));
+    }
+
+    /**
+     * Librarian: List all borrowings.
+     */
+    public function librarianDelete($id)
     {
         $borrowing = Borrowing::findOrFail($id);
         $borrowing->delete();

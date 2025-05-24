@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 // element
 import Confirm from "@/components/element/confirm";
 
-export default function ToPinjam({ book }: { book: Book }) {
+export default function ToBorrows({ book }: { book: Book }) {
     return (
         <Card className="flex flex-col md:flex-row gap-6 p-6 rounded-lg shadow-md">
 
@@ -39,7 +39,7 @@ export default function ToPinjam({ book }: { book: Book }) {
 
                 <CardTitle>
                     <h2 className="text-2xl font-semibold mt-2">
-                        <Link href={route('book.detail', book['id'])} className='hover:cursor-help'>
+                        <Link href={route('books.detail', book['id'])} className='hover:cursor-help'>
                             {book.title}
                         </Link>
                     </h2>

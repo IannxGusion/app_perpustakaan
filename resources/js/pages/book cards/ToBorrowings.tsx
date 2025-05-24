@@ -18,7 +18,7 @@ import Rating from '@mui/material/Rating';
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
-export default function ToPinjaman({ borrowing }: { borrowing: Borrowing }) {
+export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
     //const [value, setValue] = React.useState<number | null>(2);
 
     return (

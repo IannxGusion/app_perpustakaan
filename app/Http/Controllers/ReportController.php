@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Borrowing;
 
-class LaporanController extends Controller
+class ReportController extends Controller
 {
-    public function report_index()
+    public function librarianReport()
     {
         $books = Book::with('category')->latest()->get();
         $borrowings = Borrowing::with(['book.category'])->latest()->get();
