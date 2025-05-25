@@ -21,8 +21,7 @@ const books = [
     );
 
     return (
-        <section className="bg-gray-200 text-center py-12 px-4 mt-4">
-            <h1 className="text-4xl font-bold">Halaman Utama</h1>
+        <section>
             <div className="relative w-full md:w-1/2 mx-auto">
                 <Input
                     type="text"

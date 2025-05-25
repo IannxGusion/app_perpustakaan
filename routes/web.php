@@ -35,13 +35,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('books/borrow/detail/{id}', [BookController::class, 'detail'])->name('books.detail');
 
     Route::controller(BorrowingController::class)->group(function () {
+
+        Route::post('pinjam_buku', 'store')->name('borrow.store');
+        Route::post('/detail_buku', 'store')->name('borrow.store');
+
         Route::post('books/borrow/borrows/{id}', 'store')->name('borrowings.store');
+
     });
     Route::get('borrowings', [BorrowingController::class, 'index'])->name('borrowings.index');
+
+    Route::get('borrowings', [BorrowingController::class, 'index'])->name('borrow.index');
+
+    Route::get('/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
+    Route::get('/detail_buku2/{id}', [BookController::class, 'detail2'])->name('book.detail2');
+    Route::get('/detail_buku3/{id}', [BookController::class, 'detail3'])->name('book.detail3');
 
     Route::get('collections', function () {
         return Inertia::render('collections');
     })->name('collections');
+
 });
 
 // Pustakawan> ----------------------------------------------------------------------------------
@@ -63,6 +75,8 @@ Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(funct
     Route::put('management/{id}', [BookController::class, 'librarianUpdate'])->name('librarian.books.update');
 });
 // *USER* =====================================================================================
+
+// *USER* ====================================================================================
 
 // *Admin* ====================================================================================
 Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function () {
