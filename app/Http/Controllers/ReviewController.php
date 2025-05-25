@@ -12,7 +12,7 @@ class ReviewController extends Controller
     {
         $reviews = Review::with(['book.category', 'user'])->latest()->get();
 
-        return inertia('pinjam_buku', compact('reviews'));
+        return inertia('borrows_book', compact('reviews'));
     }
 
     public function store(Request $request)
@@ -28,7 +28,6 @@ class ReviewController extends Controller
             'book_id' => $request->book_id,
             'star' => $request->star,
             'comment' => $request->comment,
-            'created_at' => now(),
         ]);
 
         return redirect()->back();

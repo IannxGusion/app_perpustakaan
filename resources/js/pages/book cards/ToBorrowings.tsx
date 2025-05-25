@@ -103,7 +103,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
 
                                 <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="w-full mt-10">
                                     <CSRF />
-                                    
+
                                     <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
                                     <input type="hidden" name="borrowing_id" id="borrowing_id" value={borrowing.id} required />
                                     <Button className="w-full" type="submit">
@@ -115,9 +115,11 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                                     <div className="mb-5">
                                         <Label htmlFor="comment" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><DialogTitle>Ulas Buku</DialogTitle></Label>
 
+                                        <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
                                         <input type="number" name="star" id="star" className="mb-2">
+                                            
                                             {/* 
-                                                                                        <Box sx={{ '& > legend': { mt: 2 } }}>
+                                            <Box sx={{ '& > legend': { mt: 2 } }}>
                                                 <Rating
                                                     name="simple-controlled"
                                                     value={value}

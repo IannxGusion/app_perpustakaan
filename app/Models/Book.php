@@ -21,6 +21,11 @@ class Book extends Model
         return $this->hasMany(Borrowing::class);
     }
 
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     protected $fillable = [
         'category_id',
         'title',
