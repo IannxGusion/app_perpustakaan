@@ -44,7 +44,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
     Route::get('borrowings', [BorrowingController::class, 'index'])->name('borrowings.index');
 
-
     Route::get('borrowings', [BorrowingController::class, 'index'])->name('borrow.index');
 
     Route::get('/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
@@ -77,13 +76,11 @@ Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(funct
 });
 // *USER* =====================================================================================
 
-
 // *USER* ====================================================================================
 
 // *Admin* ====================================================================================
 Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function () {
     Route::get('main', [BookController::class, 'adminMain'])->name('admin.main');
-
 
     Route::get('main/books', [BookController::class, 'adminIndex'])->name('admin.books.index');
     Route::post('main/books/import', [BookController::class, 'import'])->name('admin.books.import');
