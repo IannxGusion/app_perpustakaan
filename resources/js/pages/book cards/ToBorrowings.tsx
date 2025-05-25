@@ -140,7 +140,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
 
                 <CardAction className="w-full h-full">
                     <Button asChild className="w-full h-7 bg-primary rounded mt-3 text text-white" >
-                        <Link target="_blank" href={`borrowings/${borrowing.book.id}`}>Baca</Link>
+                        <Link target="_blank" href={`borrowings/download/${borrowing.book.id}`}>Baca</Link>
                     </Button>
                 </CardAction>
             </CardContent>

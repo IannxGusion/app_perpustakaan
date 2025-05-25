@@ -31,19 +31,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard/details3/{id}', [BookController::class, 'details3'])->name('books.detail3');
     // static ------------
 
-    Route::get('books', [BookController::class, 'index'])->name('books.index');
-    Route::get('books/borrow/{id}', [BookController::class, 'show'])->name('books.show');
-    Route::get('books/borrow/detail/{id}', [BookController::class, 'detail'])->name('books.detail');
+    Route::controller(BookController::class)->group(function () {
+        Route::get('books', 'index')->name('books.index');
+        Route::get('books/borrow/{id}', 'show')->name('books.show');
+        Route::get('books/borrow/detail/{id}', 'detail')->name('books.detail');
+        Route::get('borrowings/download/{id}', 'download')->name('book.download');
+    });
 
     Route::controller(BorrowingController::class)->group(function () {
         Route::post('books/borrow/borrows/{id}', 'store')->name('borrowings.store');
+        Route::get('borrowings', 'index')->name('borrowings.index');
+        Route::get('borrowings/{id}', 'return')->name('borrowings.return');
     });
 
-    Route::get('borrowings', [BorrowingController::class, 'index'])->name('borrowings.index');
-
-    Route::get('borrowings/{id}', [BorrowingController::class, 'return'])->name('borrowings.return');
-
     Route::post('borrowings/{id}', [CollectionController::class, 'store'])->name('collections.store');
+    
     Route::get('collections', [CollectionController::class, 'index'])->name('collections.index');
 });
 
@@ -90,5 +92,5 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 });
 // *Admin* ==================================================================================
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';
