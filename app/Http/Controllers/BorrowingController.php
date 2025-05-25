@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Borrowing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,32 @@ class BorrowingController extends Controller
             'status' => 'Borrows',
         ]);
 
+        $book = Book::findOrFail($request->book_id);
+        $book->status = 'Not Available';
+        $book->save();
+
         return redirect()->route('borrowings.index');
+    }
+
+    /**
+     * Delete a borrowing record (return).
+     */
+    public function return(Request $request)
+    {
+        $request->validate([
+            'borrowing_id' => 'required|exists:borrowings,id',
+            'book_id' => 'required|exists:books,id',
+        ]);
+
+        $borrowing = Borrowing::findOrFail($request->borrowing_id);
+        $borrowing->status = 'Returned';
+        $borrowing->delete();
+
+        $book = Book::findOrFail($request->book_id);
+        $book->status = 'Available';
+        $book->save();
+
+        return redirect()->route('dashboard');
     }
 
     /**

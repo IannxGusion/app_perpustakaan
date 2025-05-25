@@ -21,6 +21,11 @@ class Borrowing extends Model
         return $this->belongsTo(Book::class);
     }
 
+    public function collection()
+    {
+        return $this->belongsTo(Collection::class);
+    }
+
     protected $fillable = [
         'user_id',
         'book_id',

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowingController;
+use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AminMiddleware;
@@ -30,30 +31,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard/details3/{id}', [BookController::class, 'details3'])->name('books.detail3');
     // static ------------
 
-    Route::get('books', [BookController::class, 'index'])->name('books.index');
-    Route::get('books/borrow/{id}', [BookController::class, 'show'])->name('books.show');
-    Route::get('books/borrow/detail/{id}', [BookController::class, 'detail'])->name('books.detail');
+    Route::controller(BookController::class)->group(function () {
+        Route::get('books', 'index')->name('books.index');
+        Route::get('books/borrow/{id}', 'show')->name('books.show');
+        Route::get('books/borrow/detail/{id}', 'detail')->name('books.detail');
+        Route::get('borrowings/download/{id}', 'download')->name('book.download');
+    });
 
     Route::controller(BorrowingController::class)->group(function () {
-
-        Route::post('pinjam_buku', 'store')->name('borrow.store');
-        Route::post('/detail_buku', 'store')->name('borrow.store');
-
         Route::post('books/borrow/borrows/{id}', 'store')->name('borrowings.store');
-
+        Route::get('borrowings', 'index')->name('borrowings.index');
+        Route::get('borrowings/{id}', 'return')->name('borrowings.return');
     });
-    Route::get('borrowings', [BorrowingController::class, 'index'])->name('borrowings.index');
 
-    Route::get('borrowings', [BorrowingController::class, 'index'])->name('borrow.index');
+    Route::post('borrowings/{id}', [CollectionController::class, 'store'])->name('collections.store');
 
-    Route::get('/detail_buku/{id}', [BookController::class, 'detail'])->name('book.detail');
-    Route::get('/detail_buku2/{id}', [BookController::class, 'detail2'])->name('book.detail2');
-    Route::get('/detail_buku3/{id}', [BookController::class, 'detail3'])->name('book.detail3');
-
-    Route::get('collections', function () {
-        return Inertia::render('collections');
-    })->name('collections');
-
+    Route::get('collections', [CollectionController::class, 'index'])->name('collections.index');
 });
 
 // Pustakawan> ----------------------------------------------------------------------------------
@@ -76,28 +69,26 @@ Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(funct
 });
 // *USER* =====================================================================================
 
-// *USER* ====================================================================================
-
 // *Admin* ====================================================================================
 Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function () {
     Route::get('main', [BookController::class, 'adminMain'])->name('admin.main');
 
-    Route::get('main/books', [BookController::class, 'adminIndex'])->name('admin.books.index');
-    Route::post('main/books/import', [BookController::class, 'import'])->name('admin.books.import');
+    Route::get('/crud_books', [BookController::class, 'adminIndex'])->name('admin.books.index');
+    Route::post('/crud_books/import', [BookController::class, 'import'])->name('admin.books.import');
 
-    Route::get('main/books/{id}', [BookController::class, 'adminDelete'])->name('admin.books.delete');
+    Route::get('/crud_books/{id}', [BookController::class, 'adminDelete'])->name('admin.books.delete');
 
-    Route::get('main/books/{id}/edit', [BookController::class, 'adminEdit'])->name('admin.books.edit');
-    Route::put('main/books/{id}', [BookController::class, 'adminUpdate'])->name('admin.books.update');
+    Route::get('/crud_books/{id}/edit', [BookController::class, 'adminEdit'])->name('admin.books.edit');
+    Route::put('/crud_books/{id}', [BookController::class, 'adminUpdate'])->name('admin.books.update');
 
-    Route::get('main/borrowings', [BorrowingController::class, 'adminIndex'])->name('admin.borrowings.index');
-    Route::delete('main/borrowings/{id}', [BorrowingController::class, 'adminDelete'])->name('admin.borrowings.delete');
+    Route::get('/crud_borrowings', [BorrowingController::class, 'adminIndex'])->name('admin.borrowings.index');
+    Route::delete('/crud_borrowings/{id}', [BorrowingController::class, 'adminDelete'])->name('admin.borrowings.delete');
 
-    Route::get('main/borrowers', [UserController::class, 'adminBorrowerIndex'])->name('admin.borrowers.index');
-    Route::get('main/borrowers/{id}', [AuthenticatedSessionController::class, 'destroy'])->name('admin.borrowers.delete');
+    Route::get('/crud_borrowers', [UserController::class, 'adminBorrowerIndex'])->name('admin.borrowers.index');
+    Route::get('/borrowers/{id}', [AuthenticatedSessionController::class, 'destroy'])->name('admin.borrowers.delete');
 
-    Route::get('main/librarians', [UserController::class, 'adminLibrarianIndex'])->name('admin.librarian.index');
-    Route::get('main/librarians/{id}', [AuthenticatedSessionController::class, 'destroy'])->name('admin.librarian.delete');
+    Route::get('/crud_librarians', [UserController::class, 'adminLibrarianIndex'])->name('admin.librarian.index');
+    Route::get('/crud_librarians/{id}', [AuthenticatedSessionController::class, 'destroy'])->name('admin.librarian.delete');
 });
 // *Admin* ==================================================================================
 

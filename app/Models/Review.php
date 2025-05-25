@@ -26,6 +26,5 @@ class Review extends Model
         'book_id',
         'star',
         'comment',
-        'created_at',
     ];
 }

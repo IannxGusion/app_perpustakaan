@@ -78,3 +78,9 @@ export interface ErrReview {
     comment: string;
     created_at: string;
 }
+
+export interface Collection {
+    id: number;
+    name: string;
+    borrowing: Borrowing;
+}

@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
-            $table->foreignId('borrowings_id')->constrained('borrowings', 'id')->onDelete('cascade');
-            $table->string('collection_name')->default('My Collection');
+            $table->foreignId('borrowing_id')->constrained('borrowings', 'id')->onDelete('cascade');
+            $table->string('name')->default('My Collection');
             $table->timestamps();
-
             $table->softDeletes();
         });
     }
@@ -27,10 +26,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('collections');
         Schema::table('collections', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
-            $table->dropForeign(['book_id']);
+            $table->dropForeign(['borrowing_id']);
         });
+        Schema::dropIfExists('collections');
     }
 };

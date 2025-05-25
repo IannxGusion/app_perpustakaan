@@ -17,6 +17,8 @@ import Rating from '@mui/material/Rating';
 */
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import Collect from "@/components/element/collect";
+import CSRF from "@/components/element/csrf";
 
 export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
     //const [value, setValue] = React.useState<number | null>(2);
@@ -48,7 +50,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
 
                     {/* KOLEKSI */}
                     <div>
-                        COLLECT
+                        <Collect borrowing={borrowing} />
                     </div>
                 </CardTitle>
 
@@ -66,7 +68,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                         <p>{borrowing.book.author}</p>
 
                         <DialogContent className="sm:max-w-[600px]">
-                            <ScrollArea className="h-[500px] px-10 border-r-2 mt-5">
+                            <ScrollArea className="h-[400px] px-10 border-r-2 mt-5">
 
                                 <DialogHeader>
                                     <DialogTitle>Info Buku</DialogTitle>
@@ -99,13 +101,25 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                                     </tbody>
                                 </table>
 
+                                <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="w-full mt-10">
+                                    <CSRF />
+
+                                    <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
+                                    <input type="hidden" name="borrowing_id" id="borrowing_id" value={borrowing.id} required />
+                                    <Button className="w-full" type="submit">
+                                        Kembalikan
+                                    </Button>
+                                </form>
+
                                 <form className="mt-10" action="#">
                                     <div className="mb-5">
                                         <Label htmlFor="comment" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><DialogTitle>Ulas Buku</DialogTitle></Label>
 
-                                        <input type="number" name="star" id="star">
+                                        <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
+                                        <input type="number" name="star" id="star" className="mb-2">
+                                            
                                             {/* 
-                                                                                        <Box sx={{ '& > legend': { mt: 2 } }}>
+                                            <Box sx={{ '& > legend': { mt: 2 } }}>
                                                 <Rating
                                                     name="simple-controlled"
                                                     value={value}
@@ -131,7 +145,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
 
                 <CardAction className="w-full h-full">
                     <Button asChild className="w-full h-7 bg-primary rounded mt-3 text text-white" >
-                        <Link target="_blank" href={`borrowings/${borrowing.book.id}`}>Baca</Link>
+                        <Link target="_blank" href={`borrowings/download/${borrowing.book.id}`}>Baca</Link>
                     </Button>
                 </CardAction>
             </CardContent>

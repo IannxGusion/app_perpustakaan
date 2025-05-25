@@ -4,14 +4,17 @@ import { Donut } from '@/components/element/donut';
 import { Multiple } from '@/components/element/multiple';
 import { CarouselPlugin } from '@/components/element/plugin';
 
-import type { Book, BreadcrumbItem } from '@/types';
+import type { Book, BreadcrumbItem, Category } from '@/types';
 
 const breadcrumbs: BreadcrumbItem[] = [
   { title: 'Dashboard', href: '/main' },
 ];
 
-export default function Dashboard({ books }: { books: Book[] }) {
+export default function Dashboard({ ...props }: { books: Book[], categories: Category[] }) {
+  const { books, categories } = props;
+
   const totalBooks = books.length;
+  const totalCategories = categories.length;
   const activeBooks = books.filter(b => b.status === 'active').length;
   const latestBooks = books.slice(0, 5);
 
@@ -38,7 +41,7 @@ export default function Dashboard({ books }: { books: Book[] }) {
           <section className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <StatCard title="Total Buku" value={totalBooks.toString()} icon="📚" />
             <StatCard title="Buku Aktif" value={activeBooks.toString()} icon="✅" />
-            <StatCard title="Kategori" value="12" icon="🏷️" />
+            <StatCard title="Kategori" value={totalCategories.toString()} icon="🏷️" />
           </section>
 
           {/* Main Content Grid */}
