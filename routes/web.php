@@ -45,7 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::post('borrowings/{id}', [CollectionController::class, 'store'])->name('collections.store');
-
+    
     Route::get('collections', [CollectionController::class, 'index'])->name('collections.index');
 });
 
@@ -92,5 +92,5 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 });
 // *Admin* ==================================================================================
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';
