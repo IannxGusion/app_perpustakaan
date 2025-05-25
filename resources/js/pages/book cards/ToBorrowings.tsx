@@ -18,6 +18,7 @@ import Rating from '@mui/material/Rating';
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import Collect from "@/components/element/collect";
+import CSRF from "@/components/element/csrf";
 
 export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
     //const [value, setValue] = React.useState<number | null>(2);
@@ -49,7 +50,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
 
                     {/* KOLEKSI */}
                     <div>
-                        <Collect borrowing={borrowing}/>
+                        <Collect borrowing={borrowing} />
                     </div>
                 </CardTitle>
 
@@ -100,11 +101,18 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                                     </tbody>
                                 </table>
 
+                                <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="w-full mt-10">
+                                    <CSRF />
+                                    <Button className="w-full" type="submit">
+                                        Kembalikan
+                                    </Button>
+                                </form>
+
                                 <form className="mt-10" action="#">
                                     <div className="mb-5">
                                         <Label htmlFor="comment" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><DialogTitle>Ulas Buku</DialogTitle></Label>
 
-                                        <input type="number" name="star" id="star">
+                                        <input type="number" name="star" id="star" className="mb-2">
                                             {/* 
                                                                                         <Box sx={{ '& > legend': { mt: 2 } }}>
                                                 <Rating

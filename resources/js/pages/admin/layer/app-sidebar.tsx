@@ -26,7 +26,6 @@ import AppLogo from "@/components/app-logo"
 import { NavFooter } from "@/components/nav-footer"
 import { NavItem } from "@/types"
 
-// This is sample data.
 const data = {
     home: [
         {
@@ -44,19 +43,19 @@ const data = {
             items: [
                 {
                     title: "Buku",
-                    url: "books",
+                    url: "/crud_books",
                 },
                 {
                     title: "Peminjaman",
-                    url: "borrowings",
+                    url: "/crud_borrowings",
                 },
                 {
                     title: "Pustakawan",
-                    url: "borrowers",
+                    url: "/crud_borrowers",
                 },
                 {
                     title: "Peminjam",
-                    url: "librarians",
+                    url: "/crud_librarians",
                 },
             ],
         },

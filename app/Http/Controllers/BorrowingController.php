@@ -39,6 +39,17 @@ class BorrowingController extends Controller
     }
 
     /**
+     * Delete a borrowing record (return).
+     */
+    public function return($id)
+    {
+        $borrowing = Borrowing::findOrFail($id);
+        $borrowing->delete();
+
+        return redirect()->back();
+    }
+
+    /**
      * Admin: List all borrowings.
      */
     public function adminIndex()

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,8 +26,9 @@ class CollectionController extends Controller
 
     public function index()
     {
-        $collections = Collection::with(['borrowing'])->get();
+        $collections = Collection::with(['borrowing'])->latest()->get();
+        $books = Book::with(['category'])->get();
 
-        return inertia('collections', compact('collections'));
+        return inertia('collections', compact('collections', 'books'));
     }
 }
