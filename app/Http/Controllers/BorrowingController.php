@@ -23,7 +23,7 @@ class BorrowingController extends Controller
     /**
      * Store a new borrowing record.
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $request->validate([
             'book_id' => 'required|exists:books,id',
@@ -37,7 +37,7 @@ class BorrowingController extends Controller
             'status' => 'Borrows',
         ]);
 
-        $book = Book::findOrFail($id);
+        $book = Book::findOrFail($request->book_id);
         $book->status = 'Not Available';
         $book->save();
 
@@ -47,12 +47,22 @@ class BorrowingController extends Controller
     /**
      * Delete a borrowing record (return).
      */
-    public function return($id)
+    public function return(Request $request)
     {
-        $borrowing = Borrowing::findOrFail($id);
+        $request->validate([
+            'borrowing_id' => 'required|exists:borrowings,id',
+            'book_id' => 'required|exists:books,id',
+        ]);
+
+        $borrowing = Borrowing::findOrFail($request->borrowing_id);
+        $borrowing->status = 'Returned';
         $borrowing->delete();
 
-        return redirect()->back();
+        $book = Book::findOrFail($request->book_id);
+        $book->status = 'Available';
+        $book->save();
+
+        return redirect()->route('dashboard');
     }
 
     /**

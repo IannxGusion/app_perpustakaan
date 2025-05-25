@@ -103,6 +103,9 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
 
                                 <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="w-full mt-10">
                                     <CSRF />
+                                    
+                                    <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
+                                    <input type="hidden" name="borrowing_id" id="borrowing_id" value={borrowing.id} required />
                                     <Button className="w-full" type="submit">
                                         Kembalikan
                                     </Button>
