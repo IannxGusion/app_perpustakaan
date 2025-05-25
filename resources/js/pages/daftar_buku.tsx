@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react';
 
 // element
-import Filter from '@/components/element/book-cards/filter';
+import Filter from '@/pages/book cards/filter';
 import React from 'react';
 
 import {
@@ -18,7 +18,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import ToDaftar from '@/components/element/book-cards/ToDaftar';
+import ToDaftar from '@/pages/book cards/ToBooks';
 
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -46,7 +46,7 @@ export default function Daftar({ ...props }: { books: Book[] }) {
             {/* Hero Section */}
             <section
                 className="text-center py-12 px-4 mt-4 bg-cover bg-center"
-                style={{ backgroundImage: "url('/images/pemandangan.jpg')" }}
+                style={{ backgroundImage: "url('/images/8.jpg')" }}
             >
                 <h1 className="text-4xl font-bold text-white">Daftar Buku</h1>
             </section>

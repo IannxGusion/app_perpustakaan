@@ -19,7 +19,7 @@ export default function Dashboard() {
             <Head title="Dashboard" />
             <section
                 className="text-center py-12 px-4 mt-4 bg-cover bg-center"
-                style={{ backgroundImage: "url('/images/pemandangan.jpg')" }}
+                style={{ backgroundImage: "url('/images/5.jpg')" }}
             >
                 <h1 className="text-4xl font-bold text-white">Halaman Utama</h1>
                 <br />

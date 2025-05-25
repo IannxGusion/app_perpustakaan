@@ -40,7 +40,7 @@ export default function Register() {
   return (
     <div
       className="relative min-h-screen w-full bg-cover bg-center"
-      style={{ backgroundImage: "url('/images/daun.jpg')" }}
+      style={{ backgroundImage: "url('/images/3.jpg')" }}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70 z-0" />
 

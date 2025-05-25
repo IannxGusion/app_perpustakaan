@@ -6,7 +6,7 @@ import { Head } from '@inertiajs/react';
 import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
-import ToPinjaman from '@/components/element/book cards/ToPinjaman';
+import ToPinjaman from '@/pages/book cards/ToBorrowings';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -33,9 +33,10 @@ export default function Pinjaman({ ...props }: { borrowings: Borrowing[] }) {
             {/* Hero Section */}
             <section
                 className="text-center py-12 px-4 mt-4 bg-cover bg-center"
-                style={{ backgroundImage: "url('/images/pemandangan.jpg')" }}
+                style={{ backgroundImage: "url('/images/5.jpg')" }}
             >
-                <h1 className="text-4xl font-bold text-white">Riwayat Pinjaman</h1>
+                <h1 className="text-4xl font-bold text-white">Pinjaman</h1>
+                <br />
             </section>
 
             {/* List */}

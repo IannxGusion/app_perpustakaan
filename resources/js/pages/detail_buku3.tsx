@@ -1,13 +1,11 @@
 import { useState } from "react";
-
 import { Button } from "@/components/ui/button";
 import { DatePesan } from "@/components/pesan_buku";
 import { Badge } from "@/components/ui/badge";
 import type { Book } from "@/types";
 import { SquareTerminal } from "lucide-react";
-import Bleach from "@/components/element/Bleach";
 import Confirm from "@/components/element/confirm";
-
+import Bleach from "@/components/element/Bleach";
 
 const ProductInfoCard = ({ ...props }: { book: Book }) => {
   const { book } = props;
@@ -47,58 +45,6 @@ const ProductInfoCard = ({ ...props }: { book: Book }) => {
         {/* Gambar */}
         <div className="md:w-1/3 w-full border-r border-gray-200 p-4 flex justify-center items-start bg-white">
           <Bleach className="w-full h-auto rounded-md object-cover border" />
-
-                    {/* Rating */}
-                    <div className="flex items-center space-x-1 mb-4">
-                        {[...Array(5)].map((_, i) => (
-                            <span
-                                key={i}
-                                className={`cursor-pointer text-lg ${i < rating ? "text-yellow-500" : "text-gray-400"}`}
-                                onClick={() => setRating(i + 1)}
-                                aria-label={`Rate ${i + 1} star${i === 0 ? "" : "s"}`}
-                            >
-                                ★
-                            </span>
-                        ))}
-                    <p className="text-sm text-gray-600">
-                        {rating > 0
-                            ? `You rated this book ${rating} star${rating > 1 ? "s" : ""}.`
-                            : "Click on a star to rate this book!"}
-                    </p>
-
-                    {/* Review */}
-                    <div className="mt-4">
-                        <textarea
-                            className="w-full border rounded p-2 text-sm"
-                            rows={4}
-                            placeholder="Write your review here..."
-                        ></textarea>
-                        <Button className="mt-2 bg-primary text-white">Submit Review</Button>
-
-                    {/* Sinopsis */}
-                    <details className="mb-4">
-                        <summary className="cursor-pointer font-medium">Sinopsis</summary>
-                        <p className="mt-2 text-sm">
-                            {book.content}
-                        </p>
-                    </details>
-
-                    <details className="mb-4">
-                        <summary className="cursor-pointer font-medium bg-primary text-white px-4 py-2 rounded">
-                            Pinjam Buku
-                        </summary>
-                        <div className="mt-2 border p-4 rounded shadow bg-white">
-                            <h4 className="text-lg font-semibold mb-2">Tanggal peminjaman</h4>
-                            <DatePesan />
-
-                            {/* Confirm dialog */}
-                            <Confirm book={book} />
-
-                        </div>
-                    </details>
-                </div>
-            </div>
-
         </div>
 
         {/* Konten */}
