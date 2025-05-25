@@ -17,6 +17,7 @@ import Rating from '@mui/material/Rating';
 */
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import Collect from "@/components/element/collect";
 
 export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
     //const [value, setValue] = React.useState<number | null>(2);
@@ -48,7 +49,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
 
                     {/* KOLEKSI */}
                     <div>
-                        COLLECT
+                        <Collect borrowing={borrowing}/>
                     </div>
                 </CardTitle>
 
@@ -66,7 +67,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                         <p>{borrowing.book.author}</p>
 
                         <DialogContent className="sm:max-w-[600px]">
-                            <ScrollArea className="h-[500px] px-10 border-r-2 mt-5">
+                            <ScrollArea className="h-[400px] px-10 border-r-2 mt-5">
 
                                 <DialogHeader>
                                     <DialogTitle>Info Buku</DialogTitle>

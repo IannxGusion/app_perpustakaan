@@ -5,6 +5,8 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CollectionController;
+
 use App\Http\Middleware\AminMiddleware;
 use App\Http\Middleware\LibrarianMiddleware;
 // Controllers
@@ -39,9 +41,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
     Route::get('borrowings', [BorrowingController::class, 'index'])->name('borrowings.index');
 
-    Route::get('collections', function () {
-        return Inertia::render('collections');
-    })->name('collections');
+    Route::post('borrowings/{id}', [CollectionController::class, 'store'])->name('collections.store');
+    Route::get('collections', [CollectionController::class, 'index'])->name('collections.index');
 });
 
 // Pustakawan> ----------------------------------------------------------------------------------

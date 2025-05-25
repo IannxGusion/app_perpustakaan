@@ -18,7 +18,7 @@ class Collection extends Model
 
     public function borrowing()
     {
-        return $this->hasMany(Borrowing::class);
+        return $this->belongsTo(Borrowing::class);
     }
 
     protected $fillable = [

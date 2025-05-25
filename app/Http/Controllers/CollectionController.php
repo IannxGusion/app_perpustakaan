@@ -3,29 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
+use App\Models\Borrowing;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class BorrowingController extends Controller
+class CollectionController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $request->validate([
-            'borrowings_id' => 'required|exists:borrowings,id',
+            'collection_name' => 'required|max:50',
         ]);
 
         Collection::create([
             'user_id' => Auth::id(),
-            'borrowing_id' => $request->borrowing_id,
+            'borrowing_id' => $id,
+            'name' => $request->collection_name
         ]);
 
-        return redirect()->route('collection');
+        return redirect()->route('collections.index');
     }
 
-    public function collection()
+    public function index()
     {
-        $collections = Collection::with(['collection.borrowing'])->get();
+        $collections = Collection::with(['borrowing'])->get();
 
-        return inertia('koleksi', compact('collection'));
+        return inertia('collections', compact('collections'));
     }
 }
