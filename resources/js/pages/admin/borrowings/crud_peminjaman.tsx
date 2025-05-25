@@ -1,18 +1,18 @@
-import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem, User } from '@/types';
+import AppLayout from '@/pages/admin/layer/app-sidebar-layout';
+import { type BreadcrumbItem, Borrowing } from '@/types';
 import { Head } from '@inertiajs/react';
 
-import { DataTable } from "@/pages/admin/peminjam/data-table"
+import { DataTable } from "@/pages/admin/borrowings/data-table"
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'CRUD Pustakawan',
-        href: '/crud_librarian',
+        title: 'CRUD Peminjaman',
+        href: '/crud_borrowing',
     },
 ];
 
-export default function Dashboard({ ...props }: { users: User[] }) {
-    const { users } = props;
+export default function Dashboard({ ...props }: { borrowings: Borrowing[] }) {
+    const { borrowings } = props;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -22,7 +22,7 @@ export default function Dashboard({ ...props }: { users: User[] }) {
                 <div className="@container/main flex flex-1 flex-col gap-2">
                     <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6 p-5">
 
-                        <DataTable users={users} />
+                        <DataTable borrowings={borrowings} />
 
                     </div>
                 </div>

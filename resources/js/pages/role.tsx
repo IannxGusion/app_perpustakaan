@@ -23,7 +23,7 @@ export default function TabsDemo() {
         <div className="flex h-screen justify-center items-center">
             {/* Show Card 1 only for PUSTAKAWAN */}
             {auth.user.role === "PUSTAKAWAN" && (
-                <Card>
+                <Card className="w-[400px]">
                     <CardHeader>
                         <CardTitle>Pustakawan</CardTitle>
                         <CardDescription>
@@ -32,7 +32,7 @@ export default function TabsDemo() {
                     </CardHeader>
                     <CardFooter>
                         <Button className="w-full" asChild>
-                            <Link href={route('work')}>Switch</Link>
+                            <Link href={route('librarian.borrowings.index')}>Switch</Link>
                         </Button>
                     </CardFooter>
                 </Card>
@@ -55,7 +55,7 @@ export default function TabsDemo() {
                             </CardHeader>
                             <CardFooter>
                                 <Button className="w-full" asChild>
-                                    <Link href={route('work')}>Switch</Link>
+                                    <Link href={route('librarian.borrowings.index')}>Switch</Link>
                                 </Button>
                             </CardFooter>
                         </Card>
@@ -70,7 +70,7 @@ export default function TabsDemo() {
                             </CardHeader>
                             <CardFooter>
                                 <Button className="w-full" asChild>
-                                    <Link href={route('main')}>Switch</Link>
+                                    <Link href={route('admin.main')}>Switch</Link>
                                 </Button>
                             </CardFooter>
                         </Card>

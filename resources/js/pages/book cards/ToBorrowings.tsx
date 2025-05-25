@@ -1,13 +1,14 @@
-import { Card, CardHeader, CardContent, CardTitle, CardDescription, CardAction } from "@/components/ui/card";
-import { DialogHeader } from "@/components/ui/dialog";
 import { Borrowing } from "@/types";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { SquareTerminal } from "lucide-react";
-import { ScrollArea } from "@/components/ui/scroll-area"
-
-import { Badge } from "@/components/ui/badge";
 import { Link } from "@inertiajs/react";
+
+// ui
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { DialogHeader } from "@/components/ui/dialog";
+import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Card, CardHeader, CardContent, CardTitle, CardDescription, CardAction } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 /*
 import * as React from 'react';
@@ -17,7 +18,7 @@ import Rating from '@mui/material/Rating';
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
-export default function ToPinjaman({ borrowing }: { borrowing: Borrowing }) {
+export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
     //const [value, setValue] = React.useState<number | null>(2);
 
     return (

@@ -23,12 +23,12 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Laporan',
-        href: '/laporan',
+        href: '/report',
         icon: User,
     },
     {
         title: 'Pendataan',
-        href: '/pendataan',
+        href: '/management',
         icon: Magnet,
     },
 ];

@@ -6,11 +6,10 @@ import { Link } from '@inertiajs/react';
 // Buku dengan masing-masing route detail
 export default function Search() {
 const books = [
-    { id: 1, title: 'Dilan', author: 'Pidibaiq', topic: 'Romantic', route: 'book.detail' },
-    { id: 2, title: 'Sadako', author: 'Asep Dombang', topic: 'Horor', route: 'book.detail2' },
-    { id: 3, title: 'Bleach', author: 'Tite Kubo', topic: 'Fantasy', route: 'book.detail3' },
+    { id: 1, title: 'Dilan', author: 'Pidibaiq', topic: 'Romantic', route: 'books.detail1' },
+    { id: 2, title: 'Sadako', author: 'Asep Dombang', topic: 'Horor', route: 'books.detail2' },
+    { id: 3, title: 'Bleach', author: 'Tite Kubo', topic: 'Fantasy', route: 'books.detail3' },
 ];
-
 
     const [query, setQuery] = useState('');
 

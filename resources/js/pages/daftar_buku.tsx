@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react';
 
 // element
-import Filter from '@/components/element/book cards/filter';
+import Filter from '@/components/element/book-cards/filter';
 import React from 'react';
 
 import {
@@ -18,7 +18,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import ToDaftar from '@/components/element/book cards/ToDaftar';
+import ToDaftar from '@/components/element/book-cards/ToDaftar';
 
 
 const breadcrumbs: BreadcrumbItem[] = [

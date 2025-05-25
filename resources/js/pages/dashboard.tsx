@@ -6,8 +6,6 @@ import { Head } from '@inertiajs/react';
 import Search from '@/components/element/search';
 import Highlight from '@/components/element/highlight';
 
-//import LibaryVI from '@/components/element/LIbaryVI'; SVG fail
-
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Dashboard',
@@ -28,12 +26,11 @@ export default function Dashboard() {
                 <Search />
             </section>
 
-            {/* Hero Banner */ }
+            {/* Hero Banner */}
 
-    {/* Placeholder / kotak kosong untuk dashboard content */ }
+            {/* Placeholder / kotak kosong untuk dashboard content */}
 
-    <Highlight />
-
-        </AppLayout >
+            <Highlight />
+        </AppLayout>
     );
 }

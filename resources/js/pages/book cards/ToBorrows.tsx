@@ -1,12 +1,15 @@
 import { SquareTerminal } from "lucide-react";
-import Confirm from "../confirm";
+import { Link } from "@inertiajs/react";
 import { Book } from "@/types";
 
+// ui
 import { Badge } from "@/components/ui/badge";
-import { Link } from "@inertiajs/react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function ToPinjam({ book }: { book: Book }) {
+// element
+import Confirm from "@/components/element/confirm";
+
+export default function ToBorrows({ book }: { book: Book }) {
     return (
         <Card className="flex flex-col md:flex-row gap-6 p-6 rounded-lg shadow-md">
 
@@ -36,7 +39,7 @@ export default function ToPinjam({ book }: { book: Book }) {
 
                 <CardTitle>
                     <h2 className="text-2xl font-semibold mt-2">
-                        <Link href={route('book.detail', book['id'])} className='hover:cursor-help'>
+                        <Link href={route('books.detail', book['id'])} className='hover:cursor-help'>
                             {book.title}
                         </Link>
                     </h2>

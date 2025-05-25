@@ -1,13 +1,13 @@
-import AppLayout from '@/layouts/app-layout';
+import AppLayout from '@/pages/admin/layer/app-sidebar-layout';
 import { type BreadcrumbItem, Book } from '@/types';
 import { Head } from '@inertiajs/react';
 
-import { DataTable } from "@/pages/admin/buku/data-table";
+import { DataTable } from "@/pages/admin/books/data-table";
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'CRUD Buku',
-        href: '/crud_book',
+        href: '/main/books',
     },
 ];
 

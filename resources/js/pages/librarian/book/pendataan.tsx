@@ -7,7 +7,7 @@ import { DataTable } from './pendataan_data';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Pendataan',
-        href: '/Pendataan',
+        href: '/management',
     },
 ];
 
@@ -27,7 +27,6 @@ export default function Dashboard({ ...props }: { books: Book[] }) {
             <main className="flex-grow p-8">
                 <DataTable books={books} />
             </main>
-
 
         </AppLayout>
     );

@@ -15,12 +15,7 @@ import type { Book, Category } from "@/types"
 import CSRF from "@/components/element/csrf"
 import { Textarea } from "@/components/ui/textarea"
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from "@/components/ui/table"
+import TableInfo from "@/components/element/table-info"
 
 type EditProps = {
   book?: Book;
@@ -42,53 +37,17 @@ export default function Edit({ book, categories = [] }: EditProps) {
           <CardDescription className="mb-5"><h1>Update informasi buku</h1></CardDescription>
 
           <CardTitle className="mb-1 italic"><h2>info saat ini</h2></CardTitle>
-          <Table className="min-w-full border border-gray-300">
-            <TableBody>
-              <TableRow className="border-b border-gray-300">
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Id</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">{book.id}</TableCell>
-              </TableRow>
-              <TableRow className="border-b border-gray-300">
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Judul</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">{book.title}</TableCell>
-              </TableRow>
-              <TableRow className="border-b border-gray-300">
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Genre</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">{book.category.name}</TableCell>
-              </TableRow>
-              <TableRow className="border-b border-gray-300">
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Sampul</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">
-                  <img
-                    src={`/storage/${book.cover}`}
-                    alt={book.title}
-                    className="w-full h-full border border-slate-700 dark:border-slate-300"
-                  />
-                </TableCell>
-              </TableRow>
-              <TableRow className="border-b border-gray-300">
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Penulis</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">{book.author}</TableCell>
-              </TableRow>
-              <TableRow className="border-b border-gray-300">
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Penerbit</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">{book.publisher}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Tgl. Terbit</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900">{book.publication_date}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="px-4 py-2 font-medium text-gray-700">Status</TableCell>
-                <TableCell className="px-4 py-2 text-gray-900 underline">{book.status}</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
 
+          {/* TableInfo */}
+          <TableInfo book={book} />
+          
         </CardHeader>
 
-        <form action={ route('crud_book.update', book.id) } method="PUT">
+        <form action={route('librarian.books.update', book.id)} method="POST" encType="multipart/form-data">
           <CSRF />
+
+          {/* custom methot */}
+          <input type="hidden" name="_method" value="PUT" />
 
           <CardContent className="space-y-4">
             <div>
@@ -96,6 +55,7 @@ export default function Edit({ book, categories = [] }: EditProps) {
               <Input
                 id="title" name="title"
                 placeholder="Masukkan judul buku"
+                defaultValue={book.title}
               />
             </div>
 
@@ -104,6 +64,7 @@ export default function Edit({ book, categories = [] }: EditProps) {
               <Textarea
                 id="content" name="content"
                 placeholder="Masukkan Konten buku"
+                defaultValue={book.content.length > 150 ? book.content.slice(0, 150) + "..." : book.content}
               />
             </div>
 
@@ -120,6 +81,7 @@ export default function Edit({ book, categories = [] }: EditProps) {
               <Input
                 id="author" name="author"
                 placeholder="Masukkan nama penulis"
+                defaultValue={book.author}
               />
             </div>
 
@@ -128,6 +90,7 @@ export default function Edit({ book, categories = [] }: EditProps) {
               <Input
                 id="publisher" name="publisher"
                 placeholder="Masukkan nama penerbit"
+                defaultValue={book.publisher}
               />
             </div>
 
@@ -136,6 +99,7 @@ export default function Edit({ book, categories = [] }: EditProps) {
               <Input
                 id="publication_date" name="publication_date"
                 type="date"
+                defaultValue={book.publication_date}
               />
             </div>
 
@@ -162,7 +126,10 @@ export default function Edit({ book, categories = [] }: EditProps) {
             <div>
               <Label htmlFor="status">Status</Label>
 
-              <Select>
+              <Select
+                name="status"
+                defaultValue={book.status}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Pilih status" />
                 </SelectTrigger>
