@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "@inertiajs/react";
 
 export default function ToBooks({ book }: { book: Book }) {
+
     return (
 
         <Card key={book.id} className="p-4 flex flex-col drop-shadow-sm hover:border-2 hover:border-black hover:drop-shadow-none">
@@ -40,10 +41,18 @@ export default function ToBooks({ book }: { book: Book }) {
                 </CardTitle>
             </CardFooter>
 
-            <Button asChild>
-                <Link href={route('books.show', book['id'])}>Pinjam</Link>
-            </Button>
+            {book.status === 'Available' && (
+                <Button asChild>
+                    <Link href={route('books.show', book['id'])}>Pinjam</Link>
+                </Button>
+            )}
+
+            {book.status === 'Not Available' && (
+                <Button variant={'ghost'}>
+                    Tidak tersedia
+                </Button>
+            )}
         </Card>
-    
+
     )
 }

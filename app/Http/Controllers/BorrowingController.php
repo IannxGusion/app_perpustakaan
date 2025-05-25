@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Borrowing;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +23,7 @@ class BorrowingController extends Controller
     /**
      * Store a new borrowing record.
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $request->validate([
             'book_id' => 'required|exists:books,id',
@@ -34,6 +36,10 @@ class BorrowingController extends Controller
             'return_date' => now()->addMonth(),
             'status' => 'Borrows',
         ]);
+
+        $book = Book::findOrFail($id);
+        $book->status = 'Not Available';
+        $book->save();
 
         return redirect()->route('borrowings.index');
     }
