@@ -9,14 +9,18 @@ import { Collection } from "@/types"
 
 export default function CollectionCard({ collection }: { collection: Collection }) {
     return (
-        <Card className='w-full h-full drop-shadow-lg hover:drop-shadow-none hover:border-2 hover:border-black'>
+        <Card className='w-full drop-shadow-lg hover:drop-shadow-none hover:border-2 hover:border-black'>
             <CardHeader>
-                <CardTitle>{collection.borrowing.book.title}</CardTitle>
-                <CardDescription>{collection.borrowing.book.author}</CardDescription>
+                <CardTitle>
+                    {collection?.borrowing?.book?.title ?? 'Judul tidak tersedia'}
+                </CardTitle>
+                <CardDescription>
+                    {collection?.borrowing?.book?.author ?? 'Penulis tidak tersedia'}
+                </CardDescription>
             </CardHeader>
             <CardContent>
-                <p>Di pinjam pada: {collection.borrowing.borrow_date}</p>
-                <p>Tenggat kembali: {collection.borrowing.return_date}</p>
+                <p>Di pinjam pada: {collection?.borrowing?.borrow_date ?? '-'}</p>
+                <p>Tenggat kembali: {collection?.borrowing?.return_date ?? '-'}</p>
             </CardContent>
         </Card>
     )
