@@ -25,7 +25,7 @@ return new class extends Migration
                 'heart',
                 'menu',
                 'check',
-                'x'
+                'x',
             ])->default('x');
             $table->text('description')->nullable();
             $table->timestamps();

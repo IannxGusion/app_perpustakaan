@@ -32,7 +32,7 @@ class CategoryFactory extends Factory
                 'heart',
                 'menu',
                 'check',
-                'x'
+                'x',
             ]),
             'description' => fake()->sentence(),
         ];
