@@ -9,7 +9,6 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AminMiddleware;
 use App\Http\Middleware\LibrarianMiddleware;
-
 // Controllers
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -96,5 +95,5 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 });
 // *Admin* ==================================================================================
 
-require __DIR__ . '/settings.php';
-require __DIR__ . '/auth.php';
+require __DIR__.'/settings.php';
+require __DIR__.'/auth.php';
