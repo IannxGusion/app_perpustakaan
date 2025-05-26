@@ -6,14 +6,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 import type { Book, Category } from "@/types"
 import CSRF from "@/components/element/csrf"
-import { Textarea } from "@/components/ui/textarea"
 
 import TableInfo from "@/components/element/table-info"
 
@@ -50,59 +48,6 @@ export default function Edit({ book, categories = [] }: EditProps) {
           <input type="hidden" name="_method" value="PUT" />
 
           <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="title">Judul</Label>
-              <Input
-                id="title" name="title"
-                placeholder="Masukkan judul buku"
-                defaultValue={book.title}
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="content">Konten buku</Label>
-              <Textarea
-                id="content" name="content"
-                placeholder="Masukkan Konten buku"
-                defaultValue={book.content.length > 150 ? book.content.slice(0, 150) + "..." : book.content}
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="cover">Sampul</Label>
-              <Input
-                id="cover" name="cover"
-                type="file"
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="author">Penulis</Label>
-              <Input
-                id="author" name="author"
-                placeholder="Masukkan nama penulis"
-                defaultValue={book.author}
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="publisher">Penerbit</Label>
-              <Input
-                id="publisher" name="publisher"
-                placeholder="Masukkan nama penerbit"
-                defaultValue={book.publisher}
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="publication_date">Tgl. Terbit</Label>
-              <Input
-                id="publication_date" name="publication_date"
-                type="date"
-                defaultValue={book.publication_date}
-              />
-            </div>
-
             <div>
               <Label htmlFor="category_id">Kategori</Label>
 

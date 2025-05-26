@@ -47,6 +47,7 @@ export interface User {
 export interface Category {
     id: number;
     name: string;
+    colour: string;
 }
 
 export interface Book {

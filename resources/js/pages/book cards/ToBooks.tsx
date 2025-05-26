@@ -1,10 +1,9 @@
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { SquareTerminal } from "lucide-react";
 import { Book } from "@/types";
 
-import { Badge } from "@/components/ui/badge";
 import { Link } from "@inertiajs/react";
+import Category from "@/components/element/category";
 
 export default function ToBooks({ book }: { book: Book }) {
 
@@ -14,16 +13,7 @@ export default function ToBooks({ book }: { book: Book }) {
 
             <CardHeader className='flex-1'>
                 <div className="flex items-center space-x-2">
-                    {book.category ? (
-                        <Badge className="flex items-center px-2 py-1 text-sm font-medium text-white bg-black rounded">
-                            <SquareTerminal className="mr-1" size={16} />
-                            {book.category.name}
-                        </Badge>
-                    ) : (
-                        <Badge className="px-2 py-1 text-sm font-medium text-gray-800 bg-gray-200 rounded">
-                            Anonymous
-                        </Badge>
-                    )}
+                    <Category book={book} />
                 </div>
             </CardHeader>
 

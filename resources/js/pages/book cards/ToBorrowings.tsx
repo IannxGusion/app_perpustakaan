@@ -10,18 +10,11 @@ import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/
 import { Card, CardHeader, CardContent, CardTitle, CardDescription, CardAction } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-/*
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Rating from '@mui/material/Rating';
-*/
 import { Textarea } from "@/components/ui/textarea";
 import Collect from "@/components/element/collect";
 import CSRF from "@/components/element/csrf";
 
 export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
-    //const [value, setValue] = React.useState<number | null>(2);
-
     return (
         <Card className='flex flex-row drop-shadow-lg hover:drop-shadow-none hover:border-2 hover:border-black' key={borrowing.book.id}>
             <CardHeader className='w-56'>
@@ -115,25 +108,11 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                                     </summary>
                                     <form action={route("reviews.store", borrowing.book.id)} method="POST" encType="multipart/form-data">
                                         <CSRF />
-                                        <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
-                                        <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
 
+                                        <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
+                                        <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
                                         <input type="number" name="star" id="star" defaultValue={0} className="my-2">
-
-                                            {/* 
-                                            <Box sx={{ '& > legend': { mt: 2 } }}>
-                                                <Rating
-                                                    name="simple-controlled"
-                                                    value={value}
-                                                    onChange={(_, newValue) => {
-                                                        setValue(newValue);
-                                                    }}
-                                                />
-                                            </Box>
-                                             */}
-
                                         </input>
-
                                         <Textarea name="comment" id="comment" placeholder="Tulis ulasan..." />
                                         <Button className="w-full mt-2" type="submit">
                                             Submit

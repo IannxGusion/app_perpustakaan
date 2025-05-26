@@ -21,6 +21,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => fake()->word(),
+            'colour' => fake()->safeHexColor(),
             'description' => fake()->sentence(),
         ];
     }
