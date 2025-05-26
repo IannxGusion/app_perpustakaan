@@ -1,6 +1,6 @@
 import { Book } from "@/types";
 import { Badge } from "@/components/ui/badge";
-import { SquareTerminal } from "lucide-react";
+import { DynamicIcon, IconName } from 'lucide-react/dynamic';
 
 export default function Category({ book }: { book: Book }) {
     return (
@@ -8,9 +8,9 @@ export default function Category({ book }: { book: Book }) {
             {book.category ? (
                 <Badge
                     className="flex items-center px-2 py-1 text-sm font-medium text-white rounded"
-                    style={{ backgroundColor: book.category.colour }}
+                    style={{ backgroundColor: `${book.category.colour}90` }}
                 >
-                    <SquareTerminal className="mr-1" size={16} />
+                    <DynamicIcon name={book.category.icon as IconName} color={book.category.colour} size={16} />
                     {book.category.name}
                 </Badge>
             ) : (

@@ -13,7 +13,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
-import { ChevronDown, MoreHorizontal, Plus, SquareTerminal } from "lucide-react"
+import { ChevronDown, MoreHorizontal, Plus } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -34,7 +34,6 @@ import {
 
 import type { Book } from '@/types';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
 import CSRF from "@/components/element/csrf"
 import { AlertDialogHeader, AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel } from "@/components/ui/alert-dialog"
 import { Link } from "@inertiajs/react"
@@ -51,6 +50,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import Category from "@/components/element/category"
 
 export const columns: ColumnDef<Book>[] = [
   {
@@ -88,8 +88,7 @@ export const columns: ColumnDef<Book>[] = [
   {
     accessorKey: "category",
     header: "Kategori",
-    cell: ({ row }) => <Badge className="text-lg font-extrabold flex items-center px-2 py-1 text-white bg-black rounded"><SquareTerminal className="mr-1" size={16} />{row.original.category?.name}</Badge>
-    ,
+    cell: ({ row }) => <Category book={row.original} />
   },
   {
     accessorKey: "cover",

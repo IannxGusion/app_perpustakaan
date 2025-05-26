@@ -1,9 +1,7 @@
 import { Borrowing } from "@/types";
-import { SquareTerminal } from "lucide-react";
 import { Link } from "@inertiajs/react";
 
 // ui
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DialogHeader } from "@/components/ui/dialog";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -13,6 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Textarea } from "@/components/ui/textarea";
 import Collect from "@/components/element/collect";
 import CSRF from "@/components/element/csrf";
+import Category from "@/components/element/category";
 
 export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
     return (
@@ -28,16 +27,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
 
                 <CardTitle className="flex flex-row justify-between">
                     <div className="flex items-center space-x-2">
-                        {borrowing.book.category ? (
-                            <Badge className="flex items-center px-2 py-1 text-sm font-medium text-white bg-black rounded">
-                                <SquareTerminal className="mr-1" size={16} />
-                                {borrowing.book.category.name}
-                            </Badge>
-                        ) : (
-                            <Badge className="px-2 py-1 text-sm font-medium text-gray-800 bg-gray-200 rounded">
-                                Anonymous
-                            </Badge>
-                        )}
+                    <Category book={borrowing.book} />
                     </div>
 
                     {/* KOLEKSI */}

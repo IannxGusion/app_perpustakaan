@@ -48,6 +48,7 @@ export interface Category {
     id: number;
     name: string;
     colour: string;
+    icon: string;
 }
 
 export interface Book {

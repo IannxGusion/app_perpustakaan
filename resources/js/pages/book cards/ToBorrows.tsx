@@ -1,13 +1,12 @@
-import { SquareTerminal } from "lucide-react";
 import { Link } from "@inertiajs/react";
 import { Book } from "@/types";
 
 // ui
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 // element
 import Confirm from "@/components/element/confirm";
+import Category from "@/components/element/category";
 
 export default function ToBorrows({ book }: { book: Book }) {
     return (
@@ -25,16 +24,7 @@ export default function ToBorrows({ book }: { book: Book }) {
             {/* Book Info */}
             <CardContent className="flex flex-col justify-between w-full">
                 <div className="flex items-center space-x-2">
-                    {book.category ? (
-                        <Badge className="flex items-center px-2 py-1 text-sm font-medium text-white bg-black rounded">
-                            <SquareTerminal className="mr-1" size={16} />
-                            {book.category.name}
-                        </Badge>
-                    ) : (
-                        <Badge className="px-2 py-1 text-sm font-medium text-gray-800 bg-gray-200 rounded">
-                            Anonymous
-                        </Badge>
-                    )}
+                    <Category book={book} />
                 </div>
 
                 <CardTitle>

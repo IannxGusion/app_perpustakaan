@@ -15,6 +15,18 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('colour');
+            $table->enum('icon', [
+                'home',
+                'search',
+                'user',
+                'settings',
+                'bell',
+                'camera',
+                'heart',
+                'menu',
+                'check',
+                'x'
+            ])->default('x');
             $table->text('description')->nullable();
             $table->timestamps();
 
