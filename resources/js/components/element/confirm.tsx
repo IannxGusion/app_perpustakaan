@@ -13,6 +13,7 @@ import {
 
 import type { Book } from '@/types';
 import CSRF from "./csrf";
+import { toast } from "sonner";
 
 export default function Confirm({ book }: { book: Book }) {
     return (
@@ -40,27 +41,7 @@ export default function Confirm({ book }: { book: Book }) {
                         <CSRF />
 
                         <input type="hidden" name="book_id" id="book_id" value={book.id} required />
-                        <AlertDialogAction type="submit" onClick={() => {
-                            localStorage.setItem('alertMessage', JSON.stringify({
-                                message: 'Buku berhasil dipinjam!',
-                                timestamp: new Date().toISOString()
-                            }));
-                            // Display a toast notification instead of an alert
-                            const toast = document.createElement('div');
-                            toast.textContent = ' Anda telah berhasil meminjam buku di perpustakaan kami!!';
-                            toast.style.position = 'fixed';
-                            toast.style.bottom = '20px';
-                            toast.style.right = '20px';
-                            toast.style.backgroundColor = '#004380';
-                            toast.style.color = 'white';
-                            toast.style.padding = '10px 20px';
-                            toast.style.borderRadius = '5px';
-                            toast.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
-                            document.body.appendChild(toast);
-                            setTimeout(() => {
-                                document.body.removeChild(toast);
-                            }, 3000);
-                        }}
+                        <AlertDialogAction type="submit" onClick={() => toast.success("Anda telah berhasil meminjam buku di perpustakaan kami!!")}
                         >Pinjam
                         </AlertDialogAction>
                     </form>

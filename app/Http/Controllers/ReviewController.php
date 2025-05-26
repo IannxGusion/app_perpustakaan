@@ -8,13 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
-    public function index()
-    {
-        $reviews = Review::with(['book.category', 'user'])->latest()->get();
-
-        return inertia('borrows_book', compact('reviews'));
-    }
-
     public function store(Request $request)
     {
         $request->validate([

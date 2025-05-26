@@ -26,7 +26,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $book = Book::with('category')->findOrFail($id);
+        $book = Book::with('category', 'review.user')->findOrFail($id);
 
         return Inertia('borrows_book', ['book' => $book]);
     }

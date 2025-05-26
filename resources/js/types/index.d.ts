@@ -59,6 +59,8 @@ export interface Book {
     publication_date: date;
     status: string;
     cover: string;
+
+    review: ErrReview;
 }
 
 export interface Borrowing {
@@ -72,8 +74,6 @@ export interface Borrowing {
 
 export interface ErrReview {
     id: number;
-    book: Book;
-    user: User;
     star: number;
     comment: string;
     created_at: string;

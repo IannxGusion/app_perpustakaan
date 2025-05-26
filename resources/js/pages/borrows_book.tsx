@@ -1,7 +1,7 @@
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
-import type { Book, ErrReview } from '@/types';
+import type { Book } from '@/types';
 
 // element
 import ToBorrows from '@/pages/book cards/ToBorrows';
@@ -23,12 +23,12 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 type Props = {
     book: Book;
-    reviews: ErrReview[];
+    books: Book[];
 };
 
 
 export default function Borrows_book({ ...props }: Props) {
-    const { book, reviews } = props;
+    const { book, books } = props;
 
 
     return (
@@ -38,7 +38,7 @@ export default function Borrows_book({ ...props }: Props) {
             {/* Hero Section */}
             <section
                 className="text-center py-12 px-4 mt-4 bg-cover bg-center"
-                style={{ backgroundImage: "url('/images/')" }}
+                style={{ backgroundImage: "url('/images/7.jpg')" }}
             >
                 <h1 className="text-4xl font-bold text-white">Pinjam</h1>
             </section>
@@ -53,9 +53,7 @@ export default function Borrows_book({ ...props }: Props) {
                         Ulasan
                         <Divider className='mt-10' />
                     </h3>
-
-                    <Review reviews={reviews} />
-
+                    <Review books={books} />
                 </section>
             </main>
 

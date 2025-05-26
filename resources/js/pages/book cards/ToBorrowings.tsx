@@ -16,7 +16,6 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 */
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import Collect from "@/components/element/collect";
 import CSRF from "@/components/element/csrf";
 
@@ -101,9 +100,8 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                                     </tbody>
                                 </table>
 
-                                <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="w-full mt-10">
+                                <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="w-full mt-3">
                                     <CSRF />
-
                                     <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
                                     <input type="hidden" name="borrowing_id" id="borrowing_id" value={borrowing.id} required />
                                     <Button className="w-full" type="submit">
@@ -111,13 +109,17 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                                     </Button>
                                 </form>
 
-                                <form className="mt-10" action="#">
-                                    <div className="mb-5">
-                                        <Label htmlFor="comment" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><DialogTitle>Ulas Buku</DialogTitle></Label>
-
+                                <details className="mt-10 hover:cursor-pointer rounded-sm border-2 p-2 border-primary-100">
+                                    <summary className="border-b-2 font-bold text-lg">
+                                        Ulas Buku
+                                    </summary>
+                                    <form action={route("reviews.store", borrowing.book.id)} method="POST" encType="multipart/form-data">
+                                        <CSRF />
                                         <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
-                                        <input type="number" name="star" id="star" className="mb-2">
-                                            
+                                        <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
+
+                                        <input type="number" name="star" id="star" defaultValue={0} className="my-2">
+
                                             {/* 
                                             <Box sx={{ '& > legend': { mt: 2 } }}>
                                                 <Rating
@@ -133,9 +135,12 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                                         </input>
 
                                         <Textarea name="comment" id="comment" placeholder="Tulis ulasan..." />
-                                    </div>
-                                    <button type="submit" className="min-w-full text-white bg-primary hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-                                </form>
+                                        <Button className="w-full mt-2" type="submit">
+                                            Submit
+                                        </Button>
+                                    </form>
+                                </details>
+
                             </ScrollArea>
 
                         </DialogContent>

@@ -5,9 +5,11 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AminMiddleware;
 use App\Http\Middleware\LibrarianMiddleware;
+
 // Controllers
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -44,7 +46,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('borrowings/{id}', 'return')->name('borrowings.return');
     });
 
-    Route::post('borrowings/{id}', [CollectionController::class, 'store'])->name('collections.store');
+    Route::post('borrowings/review/{id}', [ReviewController::class, 'store'])->name('reviews.store');
+
+    Route::post('borrowings/collect/{id}', [CollectionController::class, 'store'])->name('collections.store');
 
     Route::get('collections', [CollectionController::class, 'index'])->name('collections.index');
 });
@@ -92,5 +96,5 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 });
 // *Admin* ==================================================================================
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';

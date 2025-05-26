@@ -24,6 +24,7 @@ export default function Dashboard() {
                 <h1 className="text-4xl font-bold text-white">Halaman Utama</h1>
                 <br />
                 <Search />
+
             </section>
 
             {/* Hero Banner */}

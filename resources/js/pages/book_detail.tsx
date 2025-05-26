@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button"
 import { DatePesan } from "@/components/pesan_buku";
 
 import { Badge } from "@/components/ui/badge"
@@ -11,7 +9,6 @@ import Dilan from "@/components/element/dilan";
 import Confirm from '@/components/element/confirm';
 
 export default function BookDetail({ ...props }: { book: Book }) {
-    const [rating, setRating] = useState(0); // Add state for rating
     const { book } = props;
 
     return (
@@ -41,40 +38,11 @@ export default function BookDetail({ ...props }: { book: Book }) {
                     <p className="text-sm text-gray-600">{book.author}</p>
                     <p className="text-sm text-gray-600 mb-2">{book.publisher}</p>
 
-                    {/* Rating */}
-                    <div className="flex items-center space-x-1 mb-4">
-                        {[...Array(5)].map((_, i) => (
-                            <span
-                                key={i}
-                                className={`cursor-pointer text-lg ${i < rating ? "text-yellow-500" : "text-gray-400"}`}
-                                onClick={() => setRating(i + 1)}
-                                aria-label={`Rate ${i + 1} star${i === 0 ? "" : "s"}`}
-                            >
-                                ★
-                            </span>
-                        ))}
-                    </div>
-                    <p className="text-sm text-gray-600">
-                        {rating > 0
-                            ? `You rated this book ${rating} star${rating > 1 ? "s" : ""}.`
-                            : "Click on a star to rate this book!"}
-                    </p>
-
-                    {/* Review */}
-                    <div className="mt-4">
-                        <textarea
-                            className="w-full border rounded p-2 text-sm"
-                            rows={4}
-                            placeholder="Write your review here..."
-                        ></textarea>
-                        <Button className="mt-2 bg-primary text-white">Submit Review</Button>
-                    </div>
-
                     {/* Sinopsis */}
                     <details className="mb-4">
                         <summary className="cursor-pointer font-medium">Sinopsis</summary>
                         <p className="mt-2 text-sm">
-                            {book.content}
+                            {book.content.length > 300 ? book.content.slice(0, 300) + "..." : book.content}
                         </p>
                     </details>
 
