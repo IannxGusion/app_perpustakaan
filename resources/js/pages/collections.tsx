@@ -1,5 +1,5 @@
 import AppLayout from '@/layouts/user-layout';
-import { Book, Collection, type BreadcrumbItem } from '@/types';
+import { Collection, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
 // ui
@@ -18,8 +18,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Dashboard({ ...props }: { collections: Collection[], books: Book[] }) {
-    const { collections, books } = props;
+export default function Dashboard({ ...props }: { collections: Collection[] }) {
+    const { collections } = props;
 
     // Pagination state
     const [page, setPage] = React.useState(0);
@@ -38,6 +38,9 @@ export default function Dashboard({ ...props }: { collections: Collection[], boo
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
+
+    // Extract all books from collections
+    const books = collections.map((collection) => collection.borrowing.book);
 
     // Slice books for current page
     const paginatedBooks = books.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);

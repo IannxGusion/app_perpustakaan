@@ -36,6 +36,7 @@ export default function Collect({ borrowing }: { borrowing: Borrowing }) {
                     {/* CSRF */}
                     <CSRF />
 
+                    <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
                     <div className="grid gap-4 py-4">
                         <Label htmlFor="collection_name">
                             Nama Koleksi

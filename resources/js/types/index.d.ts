@@ -63,6 +63,7 @@ export interface Book {
     cover: string;
 
     review: ErrReview;
+    collected: string;
 }
 
 export interface Borrowing {

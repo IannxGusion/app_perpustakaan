@@ -27,12 +27,17 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
 
                 <CardTitle className="flex flex-row justify-between">
                     <div className="flex items-center space-x-2">
-                    <Category book={borrowing.book} />
+                        <Category book={borrowing.book} />
                     </div>
 
                     {/* KOLEKSI */}
                     <div>
-                        <Collect borrowing={borrowing} />
+                        {borrowing.book.collected === 'Yes' && (
+                            <Button variant="ghost">Disimpan</Button>
+                        )}
+                        {borrowing.book.collected === 'No' && (
+                            <Collect borrowing={borrowing} />
+                        )}
                     </div>
                 </CardTitle>
 

@@ -35,5 +35,6 @@ class Book extends Model
         'publisher',
         'publication_date',
         'status',
+        'collected',
     ];
 }

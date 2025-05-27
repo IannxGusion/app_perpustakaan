@@ -13,6 +13,7 @@ class CollectionController extends Controller
     {
         $request->validate([
             'collection_name' => 'required|max:50',
+            'book_id' => 'required|exists:books,id',
         ]);
 
         Collection::create([
@@ -21,14 +22,17 @@ class CollectionController extends Controller
             'name' => $request->collection_name,
         ]);
 
+        $book = Book::findOrFail($request->book_id);
+        $book->collected = 'Yes';
+        $book->save();
+
         return redirect()->route('collections.index');
     }
 
     public function index()
     {
-        $collections = Collection::with(['borrowing'])->latest()->get();
-        $books = Book::with(['category'])->get();
+        $collections = Collection::with(['borrowing.book.category'])->latest()->get();
 
-        return inertia('collections', compact('collections', 'books'));
+        return inertia('collections', compact('collections'));
     }
 }

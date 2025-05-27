@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('publisher');
             $table->date('publication_date');
             $table->enum('status', ['Available', 'Not Available'])->default('Available');
+            $table->enum('collected', ['Yes', 'No'])->default('No');
 
             $table->softDeletes();
         });
