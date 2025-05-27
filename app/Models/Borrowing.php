@@ -21,7 +21,7 @@ class Borrowing extends Model
         return $this->belongsTo(Book::class);
     }
 
-    public function collection()
+    public function collections()
     {
         return $this->belongsTo(Collection::class);
     }

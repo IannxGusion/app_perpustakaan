@@ -21,7 +21,7 @@ class Book extends Model
         return $this->hasMany(Borrowing::class);
     }
 
-    public function review()
+    public function reviews()
     {
         return $this->hasMany(Review::class);
     }
@@ -35,6 +35,7 @@ class Book extends Model
         'publisher',
         'publication_date',
         'status',
+
         'collected',
     ];
 }

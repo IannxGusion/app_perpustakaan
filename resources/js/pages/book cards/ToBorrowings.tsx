@@ -61,7 +61,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                                     <DialogTitle>Info Buku</DialogTitle>
                                 </DialogHeader>
 
-                                <table className="min-w-full border border-gray-300 mt-2">
+                                <table className="min-w-full border border-gray-300 my-3">
                                     <tbody>
                                         <tr className="border-b border-gray-300">
                                             <td className="px-4 py-2 font-medium text-gray-700">Judul</td>
@@ -88,7 +88,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                                     </tbody>
                                 </table>
 
-                                <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="w-full mt-3">
+                                <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="w-full">
                                     <CSRF />
                                     <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
                                     <input type="hidden" name="borrowing_id" id="borrowing_id" value={borrowing.id} required />
@@ -115,6 +115,9 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                                     </form>
                                 </details>
 
+                                <div className="bg-slate-200">
+                                    {borrowing.book.review?.comment}
+                                </div>
                             </ScrollArea>
 
                         </DialogContent>

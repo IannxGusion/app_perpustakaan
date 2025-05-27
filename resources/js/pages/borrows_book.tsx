@@ -20,15 +20,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-
-type Props = {
-    book: Book;
-    books: Book[];
-};
-
-
-export default function Borrows_book({ ...props }: Props) {
-    const { book, books } = props;
+export default function Borrows_book({ ...props }: { book: Book }) {
+    const { book, } = props;
 
 
     return (
@@ -53,7 +46,10 @@ export default function Borrows_book({ ...props }: Props) {
                         Ulasan
                         <Divider className='mt-10' />
                     </h3>
-                    <Review books={books} />
+
+                    {book.review ? (
+                        <Review book={book} />
+                    ) : null}
                 </section>
             </main>
 
