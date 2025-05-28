@@ -2,7 +2,6 @@ import type { Categories } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { DynamicIcon, IconName } from 'lucide-react/dynamic';
 
-
 // ui
 import {
     Tooltip,
@@ -19,9 +18,7 @@ export default function Category({ categories }: { categories: Categories[] }) {
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <Badge
-                                className="
-        flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-xs
-        text-white shadow-sm transition-transform duration-200"
+                                className="hover:cursor-zoom-in dark:text-white"
                                 style={{ backgroundColor: `${category.colour}90` }}
                             >
                                 <DynamicIcon
