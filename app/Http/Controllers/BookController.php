@@ -15,7 +15,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::with('category')->get();
+        $books = Book::with('categories')->get();
         $categories = Category::all();
 
         return Inertia('books', compact('books', 'categories'));
@@ -26,7 +26,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $book = Book::with('category', 'review.user')->findOrFail($id);
+        $book = Book::with('categories', 'reviews.user')->findOrFail($id);
 
         return Inertia('borrows_book', ['book' => $book]);
     }
@@ -36,7 +36,7 @@ class BookController extends Controller
      */
     public function detail($id)
     {
-        $book = Book::with('category')->findOrFail($id);
+        $book = Book::with('categories')->findOrFail($id);
 
         return Inertia('book_detail', ['book' => $book]);
     }
@@ -58,16 +58,19 @@ class BookController extends Controller
         }
 
         foreach ($jsonData as $item) {
-            Book::create([
+            $book = Book::create([
                 'title' => $item['title'] ?? '',
                 'content' => $item['content'] ?? '',
                 'author' => $item['author'] ?? '',
                 'publisher' => $item['publisher'] ?? '',
                 'publication_date' => $item['publication_date'] ?? now(),
-                'category_id' => $item['category_id'] ?? 1,
                 'status' => $item['status'] ?? 'Available',
                 'cover' => $item['cover'] ?? null,
             ]);
+
+            if (isset($item['category_ids']) && is_array($item['category_ids'])) {
+                $book->categories()->sync($item['category_ids']);
+            }
         }
 
         return redirect()->back();
@@ -78,7 +81,7 @@ class BookController extends Controller
      */
     public function download($id)
     {
-        $book = Book::with('category')->findOrFail($id);
+        $book = Book::with('categories')->findOrFail($id);
 
         return view('pdf', ['book' => $book]);
     }
@@ -89,7 +92,7 @@ class BookController extends Controller
      */
     public function adminMain()
     {
-        $books = Book::with('category')->get();
+        $books = Book::with('categories')->get();
         $categories = Category::all();
 
         return Inertia('admin/main', compact('books', 'categories'));
@@ -100,7 +103,7 @@ class BookController extends Controller
      */
     public function adminIndex()
     {
-        $books = Book::with('category')->get();
+        $books = Book::with('categories')->get();
         $categories = Category::all();
 
         return Inertia('admin/books/crud_buku', compact('books', 'categories'));
@@ -111,7 +114,7 @@ class BookController extends Controller
      */
     public function adminEdit($id)
     {
-        $book = Book::with('category')->findOrFail($id);
+        $book = Book::with('categories')->findOrFail($id);
         $categories = Category::all();
 
         return Inertia('admin/books/edit-book', [
@@ -126,7 +129,8 @@ class BookController extends Controller
     public function adminUpdate(Request $request, $id)
     {
         $request->validate([
-            'category_id' => 'nullable|exists:categories,id',
+            'category_ids' => 'nullable|array',
+            'category_ids.*' => 'exists:categories,id',
             'title' => 'nullable|string|max:255',
             'content' => 'nullable|string',
             'author' => 'nullable|string|max:255',
@@ -142,7 +146,6 @@ class BookController extends Controller
         $book->author = $request->author;
         $book->publisher = $request->publisher;
         $book->publication_date = $request->publication_date;
-        $book->category_id = $request->category_id;
         $book->status = $request->status;
 
         if ($request->hasFile('cover')) {
@@ -151,6 +154,10 @@ class BookController extends Controller
         }
 
         $book->save();
+
+        if ($request->has('category_ids')) {
+            $book->categories()->sync($request->category_ids);
+        }
 
         return redirect()->route('admin.books.index');
     }
@@ -173,7 +180,7 @@ class BookController extends Controller
      */
     public function librarianIndex()
     {
-        $books = Book::with('category')->get();
+        $books = Book::with('categories')->get();
         $categories = Category::all();
 
         return Inertia('librarian/book/pendataan', compact('books', 'categories'));
@@ -184,7 +191,7 @@ class BookController extends Controller
      */
     public function librarianEdit($id)
     {
-        $book = Book::with('category')->findOrFail($id);
+        $book = Book::with('categories')->findOrFail($id);
         $categories = Category::all();
 
         return Inertia('librarian/book/edit-book', [
@@ -199,7 +206,8 @@ class BookController extends Controller
     public function librarianUpdate(Request $request, $id)
     {
         $request->validate([
-            'category_id' => 'nullable|exists:categories,id',
+            'category_ids' => 'nullable|array',
+            'category_ids.*' => 'exists:categories,id',
             'title' => 'nullable|string|max:255',
             'content' => 'nullable|string',
             'author' => 'nullable|string|max:255',
@@ -215,7 +223,6 @@ class BookController extends Controller
         $book->author = $request->author;
         $book->publisher = $request->publisher;
         $book->publication_date = $request->publication_date;
-        $book->category_id = $request->category_id;
         $book->status = $request->status;
 
         if ($request->hasFile('cover')) {
@@ -224,6 +231,10 @@ class BookController extends Controller
         }
 
         $book->save();
+
+        if ($request->has('category_ids')) {
+            $book->categories()->sync($request->category_ids);
+        }
 
         return redirect()->route('librarian.books.index');
     }
@@ -246,7 +257,7 @@ class BookController extends Controller
      */
     public function details1($id)
     {
-        $book = Book::with('category')->findOrFail($id);
+        $book = Book::with('categories')->findOrFail($id);
 
         return Inertia('detail_buku1', ['book' => $book]);
     }
@@ -256,7 +267,7 @@ class BookController extends Controller
      */
     public function details2($id)
     {
-        $book = Book::with('category')->findOrFail($id);
+        $book = Book::with('categories')->findOrFail($id);
 
         return Inertia('detail_buku2', ['book' => $book]);
     }
@@ -266,7 +277,7 @@ class BookController extends Controller
      */
     public function details3($id)
     {
-        $book = Book::with('category')->findOrFail($id);
+        $book = Book::with('categories')->findOrFail($id);
 
         return Inertia('detail_buku3', ['book' => $book]);
     }

@@ -24,7 +24,7 @@ export default function ToBorrows({ book }: { book: Book }) {
             {/* Book Info */}
             <CardContent className="flex flex-col justify-between w-full">
                 <div className="flex items-center space-x-2">
-                    <Category book={book} />
+                    <Category categories={Array.isArray(book.categories) ? book.categories : [book.categories]} />
                 </div>
 
                 <CardTitle>

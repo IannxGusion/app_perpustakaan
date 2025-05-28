@@ -1,23 +1,43 @@
-import { Book } from "@/types";
+import type { Categories } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { DynamicIcon, IconName } from 'lucide-react/dynamic';
 
-export default function Category({ book }: { book: Book }) {
+
+// ui
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
+
+export default function Category({ categories }: { categories: Categories[] }) {
     return (
-        <>
-            {book.category ? (
-                <Badge
-                    className="flex items-center px-2 py-1 text-sm font-medium text-white rounded"
-                    style={{ backgroundColor: `${book.category.colour}90` }}
-                >
-                    <DynamicIcon name={book.category.icon as IconName} color={book.category.colour} size={16} />
-                    {book.category.name}
-                </Badge>
-            ) : (
-                <Badge className="px-2 py-1 text-sm font-medium text-gray-800 bg-gray-200 rounded">
-                    Anonymous
-                </Badge>
-            )}
-        </>
+        <div className="flex flex-wrap gap-2">
+            {categories.map((category) => (
+                <TooltipProvider key={category.id}>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Badge
+                                className="
+        flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-xs
+        text-white shadow-sm transition-transform duration-200"
+                                style={{ backgroundColor: `${category.colour}90` }}
+                            >
+                                <DynamicIcon
+                                    name={category.icon as IconName}
+                                    color={category.colour}
+                                    size={18}
+                                />
+                                <span className="truncate max-w-[120px]">{category.name}</span>
+                            </Badge>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>{category.name}</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+            ))}
+        </div>
     )
 }

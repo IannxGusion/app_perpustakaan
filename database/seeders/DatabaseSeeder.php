@@ -20,10 +20,17 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);*/
 
-        Category::factory(3)->create()->each(function ($category) {
-            Book::factory(5)->create([
-                'category_id' => $category->id, // Ensure 'category_id' exists in the 'books' table
-            ]);
-        });
+        // Create 10 categories
+        $categories = Category::factory(10)->create();
+
+        // Create 20 books
+        $books = Book::factory(20)->create();
+
+        // Attach random categories to each book (many-to-many)
+        foreach ($books as $book) {
+            $book->categories()->attach(
+                $categories->random(rand(1, 3))->pluck('id')->toArray()
+            );
+        }
     }
 }

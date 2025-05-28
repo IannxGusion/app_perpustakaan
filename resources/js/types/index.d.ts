@@ -44,7 +44,7 @@ export interface User {
     [key: string]: unknown; // This allows for additional properties...
 }
 
-export interface Category {
+export interface Categories {
     id: number;
     name: string;
     colour: string;
@@ -54,7 +54,7 @@ export interface Category {
 export interface Book {
     id: number;
     title: string;
-    category: Category;
+    categories: Categories;
     content: text;
     author: string;
     publisher: string;

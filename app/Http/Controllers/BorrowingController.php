@@ -14,7 +14,7 @@ class BorrowingController extends Controller
      */
     public function index()
     {
-        $borrowings = Borrowing::with(['book.category'])->latest()->get();
+        $borrowings = Borrowing::with(['book.categories'])->latest()->get();
 
         return inertia('borrowings', compact('borrowings'));
     }

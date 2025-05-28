@@ -56,7 +56,7 @@ export default function Dashboard({ ...props }: { collections: Collection[] }) {
 
             <main className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
 
-                <section className="flex h-screen overflow-hidden border border-sidebar-border/70 dark:border-sidebar-border rounded-xl">
+                <section className="flex h-screen overflow-hidden border border-sidebar-border/70 dark:border-sidebar-border rounded-sm">
 
                     {/* Sidebar with scroll */}
                     <ScrollArea className="border-r h-full w-1/4">

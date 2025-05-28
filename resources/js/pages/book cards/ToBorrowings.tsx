@@ -12,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import Collect from "@/components/element/collect";
 import CSRF from "@/components/element/csrf";
 import Category from "@/components/element/category";
+import { Check } from "lucide-react";
 
 export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
     return (
@@ -27,13 +28,13 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
 
                 <CardTitle className="flex flex-row justify-between">
                     <div className="flex items-center space-x-2">
-                        <Category book={borrowing.book} />
+                        <Category categories={Array.isArray(borrowing.book.categories) ? borrowing.book.categories : [borrowing.book.categories]} />
                     </div>
 
                     {/* KOLEKSI */}
                     <div>
                         {borrowing.book.collected === 'Yes' && (
-                            <Button variant="ghost">Disimpan</Button>
+                            <Button variant="ghost"><Check/>Disimpan</Button>
                         )}
                         {borrowing.book.collected === 'No' && (
                             <Collect borrowing={borrowing} />
@@ -70,7 +71,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                                         <tr className="border-b border-gray-300">
                                             <td className="px-4 py-2 font-medium text-gray-700">Genre</td>
                                             <td className="px-4 py-2 text-gray-900">
-                                                {borrowing.book.category ? borrowing.book.category.name : "Anonymous"}
+                                                {borrowing.book.categories ? borrowing.book.categories.name : "Anonymous"}
                                             </td>
                                         </tr>
                                         <tr className="border-b border-gray-300">

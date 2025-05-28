@@ -13,7 +13,7 @@ export default function ToBooks({ book }: { book: Book }) {
 
             <CardHeader className='flex-1'>
                 <div className="flex items-center space-x-2">
-                    <Category book={book} />
+                    <Category categories={Array.isArray(book.categories) ? book.categories : [book.categories]} />
                 </div>
             </CardHeader>
 

@@ -31,7 +31,7 @@ class CollectionController extends Controller
 
     public function index()
     {
-        $collections = Collection::with(['borrowing.book.category'])->latest()->get();
+        $collections = Collection::with(['borrowing.book.categories'])->latest()->get();
 
         return inertia('collections', compact('collections'));
     }
