@@ -62,6 +62,19 @@ export default function Borrowings({ ...props }: { borrowings: Borrowing[] }) {
                     rowsPerPage={rowsPerPage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                     rowsPerPageOptions={[4, 8, 16, 32]}
+                    sx={{
+                        color: 'inherit',
+                        '.MuiTablePagination-toolbar': {
+                            backgroundColor: 'transparent',
+                            color: 'inherit',
+                        },
+                        '.MuiTablePagination-selectLabel, .MuiTablePagination-input, .MuiTablePagination-displayedRows': {
+                            color: 'inherit',
+                        },
+                        '.MuiTablePagination-actions button': {
+                            color: 'inherit',
+                        },
+                    }}
                 />
             </div>
 

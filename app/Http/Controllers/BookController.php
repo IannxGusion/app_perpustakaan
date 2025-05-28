@@ -32,16 +32,6 @@ class BookController extends Controller
     }
 
     /**
-     * Show book details.
-     */
-    public function detail($id)
-    {
-        $book = Book::with('categories')->findOrFail($id);
-
-        return Inertia('book_detail', ['book' => $book]);
-    }
-
-    /**
      * Import books from a JSON file.
      */
     public function import(Request $request)

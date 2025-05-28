@@ -24,12 +24,9 @@ export default function Confirm({ book }: { book: Book }) {
             <AlertDialogContent>
 
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Syarat dan Ketentuan</AlertDialogTitle>
+                    <AlertDialogTitle>Konfirmasi</AlertDialogTitle>
                     <AlertDialogDescription>
-                        Dengan meminjam buku ini, Anda setuju untuk mematuhi semua syarat dan ketentuan yang berlaku. Pastikan untuk mengembalikan buku tepat waktu dan dalam kondisi baik.
-                        <br />
-                        <br />
-                        Jika Anda tidak setuju dengan syarat dan ketentuan ini, silakan batalkan peminjaman.
+                        Apakah Anda yakin ingin meminjam buku ini?
                     </AlertDialogDescription>
                 </AlertDialogHeader>
 

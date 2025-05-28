@@ -37,7 +37,7 @@ export default function Borrows_book({ ...props }: { book: Book }) {
             </section>
 
             {/* Content */}
-            <main className="max-w-6xl mx-auto p-6">
+            <main className="max-w-6xl mx-auto p-6 w-full">
                 <ToBorrows book={book} />
 
                 {/* Reviews */}

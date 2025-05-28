@@ -35,7 +35,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::controller(BookController::class)->group(function () {
         Route::get('books', 'index')->name('books.index');
         Route::get('books/borrow/{id}', 'show')->name('books.show');
-        Route::get('books/borrow/detail/{id}', 'detail')->name('books.detail');
         Route::get('borrowings/download/{id}', 'download')->name('book.download');
     });
 

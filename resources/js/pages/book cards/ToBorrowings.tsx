@@ -16,7 +16,7 @@ import { Check } from "lucide-react";
 
 export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
     return (
-        <Card className='flex flex-row drop-shadow-lg hover:drop-shadow-none hover:border-2 hover:border-black' key={borrowing.book.id}>
+        <Card className='flex flex-row drop-shadow-lg hover:drop-shadow-none hover:border-2 hover:border-black dark:hover:border-2 dark:hover:border-white dark:hover:drop-shadow-none' key={borrowing.book.id}>
             <CardHeader className='w-56'>
                 <img
                     src={`/storage/${borrowing.book.cover}`}

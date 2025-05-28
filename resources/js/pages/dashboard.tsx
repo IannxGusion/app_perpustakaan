@@ -26,11 +26,6 @@ export default function Dashboard() {
                 <Search />
 
             </section>
-
-            {/* Hero Banner */}
-
-            {/* Placeholder / kotak kosong untuk dashboard content */}
-
             <Highlight />
         </AppLayout>
     );

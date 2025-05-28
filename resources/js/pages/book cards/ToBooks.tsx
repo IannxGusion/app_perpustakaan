@@ -8,8 +8,7 @@ import Category from "@/components/element/category";
 export default function ToBooks({ book }: { book: Book }) {
 
     return (
-
-        <Card key={book.id} className="p-4 flex flex-col drop-shadow-sm hover:border-2 hover:border-black hover:drop-shadow-none">
+        <Card key={book.id} className="p-4 flex flex-col drop-shadow-sm hover:border-2 hover:border-black hover:drop-shadow-none dark:hover:border-2 dark:hover:border-white dark:hover:drop-shadow-none">
 
             <CardHeader className='flex-1'>
                 <div className="flex items-center space-x-2">
@@ -43,6 +42,5 @@ export default function ToBooks({ book }: { book: Book }) {
                 </Button>
             )}
         </Card>
-
     )
 }
