@@ -6,22 +6,23 @@ import {
 } from "@/components/ui/table"
 import type { Book } from '@/types';
 
-
 export default function TableInfo({ book }: { book: Book }) {
     return (
-        <Table className="min-w-full border border-gray-300">
+        <Table className="min-w-full border border-gray-300 my-3">
             <TableBody>
                 <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Id</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.id}</TableCell>
-                </TableRow>
-                <TableRow className="border-b border-gray-300">
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Judul</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.title}</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900 font-bold">{book.title}</TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-300">
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Genre</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.category.name}</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900">
+                        {Array.isArray(book.categories) &&
+                            book.categories.map((category: { name: string }, idx: number) => (
+                                <p className="underline" key={idx}>{category.name}</p>
+                            ))
+                        }
+                    </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-300">
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Sampul</TableCell>
@@ -32,10 +33,6 @@ export default function TableInfo({ book }: { book: Book }) {
                             className="w-full h-full border border-slate-700 dark:border-slate-300"
                         />
                     </TableCell>
-                </TableRow>
-                <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Isi</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.content.length > 10 ? book.content.slice(0, 10) + "..." : book.content}</TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-300">
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Penulis</TableCell>

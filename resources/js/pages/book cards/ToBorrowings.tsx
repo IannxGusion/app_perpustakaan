@@ -7,12 +7,14 @@ import { DialogHeader } from "@/components/ui/dialog";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Card, CardHeader, CardContent, CardTitle, CardDescription, CardAction } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area"
-
 import { Textarea } from "@/components/ui/textarea";
+
+// elment
 import Collect from "@/components/element/collect";
 import CSRF from "@/components/element/csrf";
 import Category from "@/components/element/category";
 import { Check } from "lucide-react";
+import TableInfo from "@/components/element/table-info";
 
 export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
     return (
@@ -34,7 +36,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                     {/* KOLEKSI */}
                     <div>
                         {borrowing.book.collected === 'Yes' && (
-                            <Button variant="ghost"><Check/>Disimpan</Button>
+                            <Button variant="ghost"><Check />Disimpan</Button>
                         )}
                         {borrowing.book.collected === 'No' && (
                             <Collect borrowing={borrowing} />
@@ -62,32 +64,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                                     <DialogTitle>Info Buku</DialogTitle>
                                 </DialogHeader>
 
-                                <table className="min-w-full border border-gray-300 my-3">
-                                    <tbody>
-                                        <tr className="border-b border-gray-300">
-                                            <td className="px-4 py-2 font-medium text-gray-700">Judul</td>
-                                            <td className="px-4 py-2 text-gray-900">{borrowing.book.title}</td>
-                                        </tr>
-                                        <tr className="border-b border-gray-300">
-                                            <td className="px-4 py-2 font-medium text-gray-700">Genre</td>
-                                            <td className="px-4 py-2 text-gray-900">
-                                                {borrowing.book.categories ? borrowing.book.categories.name : "Anonymous"}
-                                            </td>
-                                        </tr>
-                                        <tr className="border-b border-gray-300">
-                                            <td className="px-4 py-2 font-medium text-gray-700">Penulis</td>
-                                            <td className="px-4 py-2 text-gray-900">{borrowing.book.author}</td>
-                                        </tr>
-                                        <tr className="border-b border-gray-300">
-                                            <td className="px-4 py-2 font-medium text-gray-700">Penerbit</td>
-                                            <td className="px-4 py-2 text-gray-900">{borrowing.book.publisher}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="px-4 py-2 font-medium text-gray-700">Tgl. Terbit</td>
-                                            <td className="px-4 py-2 text-gray-900">{borrowing.book.publication_date}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <TableInfo book={borrowing.book} />
 
                                 <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="w-full">
                                     <CSRF />

@@ -9,7 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 
 // element
 import CollectionCard from '@/components/element/collectionCard';
-import ToBooks from './book cards/ToBooks';
+import ToCollections from './book cards/ToCollections';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -74,7 +74,7 @@ export default function Dashboard({ ...props }: { collections: Collection[] }) {
                         {/* Books Grid */}
                         <div className="grid gap-5 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-b-2 pb-10">
                             {paginatedBooks.map((book) => (
-                                <ToBooks key={book.id} book={book} />
+                                <ToCollections key={book.id} book={book} />
                             ))}
                         </div>
 
