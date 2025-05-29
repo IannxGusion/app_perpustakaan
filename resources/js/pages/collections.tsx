@@ -1,6 +1,6 @@
 import AppLayout from '@/layouts/user-layout';
-import { Collection, type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
+import { Collection, type BreadcrumbItem, Book } from '@/types';
+import { Head, router } from '@inertiajs/react';
 
 // ui
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -15,7 +15,6 @@ import {
     AlertDialogTrigger,
     AlertDialogAction
 } from "@/components/ui/alert-dialog"
-import TablePagination from '@mui/material/TablePagination';
 import React from 'react';
 import { Label } from '@/components/ui/label';
 import CSRF from '@/components/element/csrf';
@@ -34,35 +33,19 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Collections({ collections }: { collections: Collection[] }) {
-    // Pagination state
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(8);
+export default function Collections({ collections, books, selectedCollectionId }: {
+    collections: Collection[];
+    books: Book[];
+    selectedCollectionId: number | null;
+}) {
+    // Only render layout on client
+    if (typeof window === 'undefined') {
+        return null;
+    }
 
-    const handleChangePage = (
-        event: React.MouseEvent<HTMLButtonElement> | null,
-        newPage: number,
-    ) => {
-        setPage(newPage);
+    const handleSelectCollection = (id: number) => {
+        router.get('/collections', { selected_collection_id: id }, { preserveScroll: true });
     };
-
-    const handleChangeRowsPerPage = (
-        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
-
-    // Extract all books from collections (safely)
-    const books = collections
-        .map((collection) => collection.borrowing?.book)
-        .filter((book): book is NonNullable<typeof book> => book !== undefined && book !== null);
-
-    // Slice books for current page
-    const paginatedBooks = books.slice(
-        page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage
-    );
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -116,21 +99,28 @@ export default function Collections({ collections }: { collections: Collection[]
                 <section className="flex w-full overflow-hidden border border-gray-300 dark:border-sidebar-border rounded-lg shadow-sm">
 
                     {/* Sidebar with scroll */}
-                    <ScrollArea className="border-r h-96 w-1/4 bg-white dark:bg-gray-900">
+                    <ScrollArea className=" h-96 w-1/4 bg-white dark:bg-gray-900">
                         <div className="flex flex-col space-y-5 h-full p-6">
                             {collections.map((collection) => (
-                                <CollectionCard key={collection.id} collection={collection} />
+                                <div
+                                    key={collection.id}
+                                    onClick={() => handleSelectCollection(collection.id)}
+                                    className={`cursor-pointer ${selectedCollectionId === collection.id ? 'bg-gray-100 dark:bg-gray-800 rounded' : ''}`}
+                                >
+                                    <CollectionCard collection={collection} />
+                                </div>
                             ))}
                         </div>
+                        
                     </ScrollArea>
 
                     {/* Main Content Area */}
-                    <div className="flex flex-col flex-1 overflow-auto bg-slate-50 dark:bg-gray-950 p-6">
+                    <div className="border-l flex flex-col flex-1 overflow-auto bg-slate-50 dark:bg-gray-950 p-6">
 
                         {/* Books Grid */}
-                        <div className="grid gap-5 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-b pb-10">
-                            {paginatedBooks.length > 0 ? (
-                                paginatedBooks.map((book) => (
+                        <div className="grid gap-5 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pb-10">
+                            {books.length > 0 ? (
+                                books.map((book) => (
                                     <ToCollections key={book.id} book={book} />
                                 ))
                             ) : (
@@ -138,32 +128,6 @@ export default function Collections({ collections }: { collections: Collection[]
                                     Tidak ada buku untuk ditampilkan.
                                 </p>
                             )}
-                        </div>
-
-                        {/* Pagination */}
-                        <div className="flex justify-center mt-6">
-                            <TablePagination
-                                component="div"
-                                count={books.length}
-                                page={page}
-                                onPageChange={handleChangePage}
-                                rowsPerPage={rowsPerPage}
-                                onRowsPerPageChange={handleChangeRowsPerPage}
-                                rowsPerPageOptions={[4, 8, 16, 32]}
-                                sx={{
-                                    color: 'inherit',
-                                    '.MuiTablePagination-toolbar': {
-                                        backgroundColor: 'transparent',
-                                        color: 'inherit',
-                                    },
-                                    '.MuiTablePagination-selectLabel, .MuiTablePagination-input, .MuiTablePagination-displayedRows': {
-                                        color: 'inherit',
-                                    },
-                                    '.MuiTablePagination-actions button': {
-                                        color: 'inherit',
-                                    },
-                                }}
-                            />
                         </div>
                     </div>
 
