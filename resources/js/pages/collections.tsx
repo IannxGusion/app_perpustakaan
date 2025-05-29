@@ -4,12 +4,12 @@ import { Head } from '@inertiajs/react';
 
 // ui
 import { ScrollArea } from "@/components/ui/scroll-area"
-import * as React from 'react';
-import TablePagination from '@mui/material/TablePagination';
 
 // element
 import CollectionCard from '@/components/element/collectionCard';
 import ToCollections from './book cards/ToCollections';
+import TablePagination from '@mui/material/TablePagination';
+import React from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -18,7 +18,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Dashboard({ ...props }: { collections: Collection[] }) {
+export default function Collections({ ...props }: { collections: Collection[] }) {
     const { collections } = props;
 
     // Pagination state

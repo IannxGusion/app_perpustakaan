@@ -21,7 +21,7 @@ class Borrowing extends Model
         return $this->belongsTo(Book::class);
     }
 
-    public function collections()
+    public function collection()
     {
         return $this->belongsTo(Collection::class);
     }
@@ -32,5 +32,7 @@ class Borrowing extends Model
         'borrow_date',
         'return_date',
         'status',
+
+        'collection_id',
     ];
 }

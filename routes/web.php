@@ -46,7 +46,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('borrowings/review/{id}', [ReviewController::class, 'store'])->name('reviews.store');
 
-    Route::post('borrowings/collect/{id}', [CollectionController::class, 'store'])->name('collections.store');
+    Route::post('borrowings/collect/', [CollectionController::class, 'store'])->name('collections.store');
 
     Route::get('collections', [CollectionController::class, 'index'])->name('collections.index');
 });

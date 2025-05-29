@@ -32,11 +32,10 @@ export default function Collect({ borrowing }: { borrowing: Borrowing }) {
                     </AlertDialogDescription>
                 </AlertDialogHeader>
 
-                <form action={route("collections.store", borrowing.id)} method="POST" encType="multipart/form-data">
+                <form action={route("collections.store")} method="POST" encType="multipart/form-data">
                     {/* CSRF */}
                     <CSRF />
 
-                    <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
                     <div className="grid gap-4 py-4">
                         <Label htmlFor="collection_name">
                             Nama Koleksi

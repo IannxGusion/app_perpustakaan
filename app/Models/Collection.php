@@ -16,14 +16,13 @@ class Collection extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function borrowing()
+    public function borrowings()
     {
-        return $this->belongsTo(Borrowing::class);
+        return $this->hasMany(Borrowing::class);
     }
 
     protected $fillable = [
         'user_id',
-        'borrowing_id',
         'name',
     ];
 }

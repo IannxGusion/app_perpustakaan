@@ -9,29 +9,23 @@ use Illuminate\Support\Facades\Auth;
 
 class CollectionController extends Controller
 {
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $request->validate([
             'collection_name' => 'required|max:50',
-            'book_id' => 'required|exists:books,id',
         ]);
 
         Collection::create([
             'user_id' => Auth::id(),
-            'borrowing_id' => $id,
             'name' => $request->collection_name,
         ]);
 
-        $book = Book::findOrFail($request->book_id);
-        $book->collected = 'Yes';
-        $book->save();
-
-        return redirect()->route('collections.index');
+        return redirect()->back();
     }
 
     public function index()
     {
-        $collections = Collection::with(['borrowing.book.categories'])->latest()->get();
+        $collections = Collection::with('borrowings.book.categories')->latest()->get();
 
         return inertia('collections', compact('collections'));
     }
