@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Borrowing;
 use App\Models\Book;
+use App\Models\Borrowing;
 use App\Models\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +33,7 @@ class CollectionController extends Controller
             ->get();
 
         $selectedCollectionId = $request->query('selected_collection_id');
-        if (!$selectedCollectionId && $collections->count() > 0) {
+        if (! $selectedCollectionId && $collections->count() > 0) {
             $selectedCollectionId = $collections->first()->id;
         }
 
