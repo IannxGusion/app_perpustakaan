@@ -71,7 +71,7 @@ class BorrowingController extends Controller
      */
     public function adminIndex()
     {
-        $borrowings = Borrowing::with(['book.category', 'user'])->get();
+        $borrowings = Borrowing::with(['book.categories', 'user'])->get();
 
         return inertia('admin/borrowings/crud_peminjaman', compact('borrowings'));
     }
@@ -92,7 +92,7 @@ class BorrowingController extends Controller
      */
     public function librarianIndex()
     {
-        $borrowings = Borrowing::with(['book.category', 'user'])->get();
+        $borrowings = Borrowing::with(['book.categories', 'user'])->get();
 
         return inertia('librarian/work', compact('borrowings'));
     }

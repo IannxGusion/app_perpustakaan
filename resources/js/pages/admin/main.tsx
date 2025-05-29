@@ -4,13 +4,13 @@ import { Donut } from '@/components/element/donut';
 import { Multiple } from '@/components/element/multiple';
 import { CarouselPlugin } from '@/components/element/plugin';
 
-import type { Book, BreadcrumbItem, Category } from '@/types';
+import type { Book, BreadcrumbItem, Categories } from '@/types';
 
 const breadcrumbs: BreadcrumbItem[] = [
   { title: 'Dashboard', href: '/main' },
 ];
 
-export default function Dashboard({ ...props }: { books: Book[], categories: Category[] }) {
+export default function Dashboard({ ...props }: { books: Book[], categories: Categories[] }) {
   const { books, categories } = props;
 
   const totalBooks = books.length;

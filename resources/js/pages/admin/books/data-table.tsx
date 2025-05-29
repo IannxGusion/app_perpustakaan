@@ -88,7 +88,7 @@ export const columns: ColumnDef<Book>[] = [
   {
     accessorKey: "category",
     header: "Kategori",
-    cell: ({ row }) => <Category book={row.original} />
+    cell: ({ row }) => <Category categories={Array.isArray(row.original.categories) ? row.original.categories : [row.original.categories]} />
   },
   {
     accessorKey: "cover",

@@ -6,8 +6,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel"
 
 export function CarouselPlugin() {
@@ -35,8 +33,6 @@ export function CarouselPlugin() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
       <div className="py-2 text-center text-sm text-muted-foreground">
         Buku Yang Paling Banyak Dibaca
       </div>

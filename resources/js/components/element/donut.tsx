@@ -27,7 +27,7 @@ export function Donut({ books }: { books: Book[] }) {
     const booksPerCategory = useMemo(() => {
         const result: Record<string, number> = {}
         books.forEach(book => {
-            const category = book.category.name
+            const category = book.categories.name
             result[category] = (result[category] || 0) + 1
         })
         // Transform to array for chart
