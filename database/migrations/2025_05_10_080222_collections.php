@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
-            $table->string('name')->default('My Collection');
+            $table->string('name')->default('New Collection');
             $table->timestamps();
             $table->softDeletes();
         });

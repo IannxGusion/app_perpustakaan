@@ -18,7 +18,7 @@ class BorrowingController extends Controller
         $borrowings = Borrowing::with(['book.categories'])->latest()->get();
         $collections = Collection::all();
 
-        return inertia('borrowings', compact('collections'));
+        return inertia('borrowings', compact('borrowings', 'collections'));
     }
 
     /**
