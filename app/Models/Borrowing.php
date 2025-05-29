@@ -23,7 +23,7 @@ class Borrowing extends Model
 
     public function collection()
     {
-        return $this->belongsTo(Collection::class);
+        return $this->belongsToMany(Collection::class, 'borrowings_collection');
     }
 
     protected $fillable = [
@@ -33,6 +33,6 @@ class Borrowing extends Model
         'return_date',
         'status',
 
-        'collection_id',
+        'collections_id',
     ];
 }

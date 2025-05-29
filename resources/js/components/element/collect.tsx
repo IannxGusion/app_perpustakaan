@@ -20,7 +20,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { Input } from "@/components/ui/input"
+//import { Input } from "@/components/ui/input"
 
 export default function Collect({ borrowing, collections }: { borrowing: Borrowing, collections: Collection[] }) {
     return (
@@ -42,7 +42,7 @@ export default function Collect({ borrowing, collections }: { borrowing: Borrowi
 
                 {/* Form */}
                 <form
-                    action={route("collections.store")}
+                    action={route("collections.add", borrowing.id)}
                     method="POST"
                     encType="multipart/form-data"
                     className="space-y-4"
@@ -50,8 +50,7 @@ export default function Collect({ borrowing, collections }: { borrowing: Borrowi
                     {/* CSRF */}
                     <CSRF />
 
-                    {/* Tambah Koleksi Button */}
-                    <details className="hover:cursor-pointer">
+                    {/*<details className="hover:cursor-pointer">
                         <summary>
                             Tambah Koleksi
                         </summary>
@@ -64,10 +63,9 @@ export default function Collect({ borrowing, collections }: { borrowing: Borrowi
                             defaultValue="New collection"
                             className="col-span-3" />
 
-                    </details>
-                    {/* Pilih Koleksi Select */}
-                    <Label htmlFor="collection_id">Pilih Koleksi</Label>
+                    </details>*/}
 
+                    <Label htmlFor="collection_id">Pilih Koleksi</Label>
                     <Select
                         name="collection_id"
                     >

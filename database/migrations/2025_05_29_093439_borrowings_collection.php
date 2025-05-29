@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('borrowings_collection', function (Blueprint $table) {
             $table->id();
             $table->foreignId('collection_id')->constrained('collections')->onDelete('cascade');
-            $table->foreignId('borrowings_id')->constrained('borrowings')->onDelete('cascade');
+            $table->foreignId('borrowing_id')->constrained('borrowings')->onDelete('cascade');
             $table->timestamps();
         });
     }

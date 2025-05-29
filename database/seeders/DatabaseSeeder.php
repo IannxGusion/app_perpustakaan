@@ -13,20 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        /* User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);*/
-
-        // Create 10 categories
         $categories = Category::factory(10)->create();
 
-        // Create 20 books
         $books = Book::factory(20)->create();
 
-        // Attach random categories to each book (many-to-many)
+        // Attach random categories to each book
         foreach ($books as $book) {
             $book->categories()->attach(
                 $categories->random(rand(1, 3))->pluck('id')->toArray()
