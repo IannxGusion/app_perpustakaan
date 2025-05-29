@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-import type { Book, Category } from "@/types"
+import type { Book, Categories } from "@/types"
 import CSRF from "@/components/element/csrf"
 import { Textarea } from "@/components/ui/textarea"
 
@@ -19,7 +19,7 @@ import TableInfo from "@/components/element/table-info"
 
 type EditProps = {
   book?: Book;
-  categories?: Category[];
+  categories?: Categories[];
 };
 
 export default function Edit({ book, categories = [] }: EditProps) {
@@ -106,7 +106,7 @@ export default function Edit({ book, categories = [] }: EditProps) {
 
               <Select
                 name="category_id"
-                defaultValue={String(book.category?.id)} // current category
+                defaultValue={String(book.categories.id)} // current category
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Pilih kategori" />

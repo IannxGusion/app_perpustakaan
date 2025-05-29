@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Borrowing;
+use App\Models\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,8 +16,9 @@ class BorrowingController extends Controller
     public function index()
     {
         $borrowings = Borrowing::with(['book.categories'])->latest()->get();
+        $collections = Collection::all();
 
-        return inertia('borrowings', compact('borrowings'));
+        return inertia('borrowings', compact('collections'));
     }
 
     /**

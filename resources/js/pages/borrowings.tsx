@@ -1,5 +1,5 @@
 import AppLayout from '@/layouts/user-layout';
-import { type BreadcrumbItem, Borrowing } from '@/types';
+import { type BreadcrumbItem, Borrowing, Collection } from '@/types';
 import { Head } from '@inertiajs/react';
 
 import * as React from 'react';
@@ -14,8 +14,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Borrowings({ ...props }: { borrowings: Borrowing[] }) {
-    const { borrowings } = props;
+export default function Borrowings({ ...props }: { borrowings: Borrowing[], collections: Collection[] }) {
+    const { borrowings = [], collections = [] } = props;
 
     // Pagination state
     const [page, setPage] = React.useState(0);
@@ -50,7 +50,7 @@ export default function Borrowings({ ...props }: { borrowings: Borrowing[] }) {
             {/* borrowings List */}
             <div className="border-b-2 pb-20 space-y-7 mx-5">
                 {paginatedborrowings.map((borrowing) => (
-                    <ToBorrowings key={borrowing.id} borrowing={borrowing} />
+                    <ToBorrowings key={borrowing.id} borrowing={borrowing} collections={collections}/>
                 ))}
             </div>
             <div className="flex justify-center mt-4">

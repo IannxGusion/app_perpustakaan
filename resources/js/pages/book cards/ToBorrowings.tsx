@@ -1,4 +1,4 @@
-import { Borrowing } from "@/types";
+import { Borrowing, Collection } from "@/types";
 import { Link } from "@inertiajs/react";
 
 // ui
@@ -16,7 +16,7 @@ import Category from "@/components/element/category";
 import { Check } from "lucide-react";
 import TableInfo from "@/components/element/table-info";
 
-export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
+export default function ToBorrowings({ borrowing, collections }: { borrowing: Borrowing, collections: Collection[] }) {
     return (
         <Card className='flex flex-row drop-shadow-lg hover:drop-shadow-none hover:border-2 hover:border-black dark:hover:border-2 dark:hover:border-white dark:hover:drop-shadow-none' key={borrowing.book.id}>
             <CardHeader className='w-56'>
@@ -39,7 +39,7 @@ export default function ToBorrowings({ borrowing }: { borrowing: Borrowing }) {
                             <Button variant="ghost"><Check />Disimpan</Button>
                         )}
                         {borrowing.book.collected === 'No' && (
-                            <Collect borrowing={borrowing} />
+                            <Collect borrowing={borrowing} collections={collections}/>
                         )}
                     </div>
                 </CardTitle>
