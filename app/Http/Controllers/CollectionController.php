@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Collection;
 use App\Models\Borrowing;
+use App\Models\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,7 +33,7 @@ class CollectionController extends Controller
     public function add(Request $request, $id)
     {
         $request->validate([
-            //'borrowings_id' => 'required|exists:borrowings,id',
+            // 'borrowings_id' => 'required|exists:borrowings,id',
             'collection_id' => 'required|exists:collections,id',
         ]);
 
