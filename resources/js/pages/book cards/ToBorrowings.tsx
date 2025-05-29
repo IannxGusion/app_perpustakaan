@@ -22,7 +22,7 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
             <CardHeader className='w-56'>
                 <img
                     src={`/storage/${borrowing.book.cover}`}
-                    alt={borrowing.book.title}
+                    alt={borrowing.book.title.length > 50 ? borrowing.book.title.slice(0, 50) + "..." : borrowing.book.title}
                     className="w-full h-full object-cover shadow border border-slate-700 dark:border-slate-300" />
             </CardHeader>
 
@@ -39,7 +39,7 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
                             <Button variant="ghost"><Check />Disimpan</Button>
                         )}
                         {borrowing.book.collected === 'No' && (
-                            <Collect borrowing={borrowing} collections={collections}/>
+                            <Collect borrowing={borrowing} collections={collections} />
                         )}
                     </div>
                 </CardTitle>
@@ -50,7 +50,7 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
                         <DialogTrigger>
                             <Button asChild variant={'ghost'} className='my-1 p-0 hover:cursor-pointer'>
                                 <h2 className="text-xl font-bold text-black">
-                                    {borrowing.book.title}
+                                    {borrowing.book.title.length > 50 ? borrowing.book.title.slice(0, 50) + "..." : borrowing.book.title}
                                 </h2>
                             </Button>
                         </DialogTrigger>

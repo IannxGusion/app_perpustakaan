@@ -12,7 +12,7 @@ export default function TableInfo({ book }: { book: Book }) {
             <TableBody>
                 <TableRow className="border-b border-gray-300">
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Judul</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900 font-bold">{book.title}</TableCell>
+                    <TableCell className="px-4 py-2 text-gray-900 font-bold">{book.title.length > 50 ? book.title.slice(0, 50) + "..." : book.title}</TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-300">
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Genre</TableCell>
@@ -29,7 +29,7 @@ export default function TableInfo({ book }: { book: Book }) {
                     <TableCell className="px-4 py-2 text-gray-900">
                         <img
                             src={`/storage/${book.cover}`}
-                            alt={book.title}
+                            alt={book.title.length > 50 ? book.title.slice(0, 50) + "..." : book.title}
                             className="w-full h-full border border-slate-700 dark:border-slate-300"
                         />
                     </TableCell>

@@ -19,14 +19,15 @@ export default function ToBooks({ book }: { book: Book }) {
             <CardContent className='flex-1'>
                 <div className="content-center justify-center">
                     <img src={`/storage/${book.cover}`}
-                        alt={book.title}
+                        alt={book.title.length > 50 ? book.title.slice(0, 50) + "..." : book.title}
                         className="object-cover w-full h-fit border border-slate-700 dark:border-slate-300" />
                 </div>
             </CardContent>
 
             <CardFooter className='flex-1'>
                 <CardTitle>
-                    <p className='text-xl font-bold'>{book.title}</p>
+                    <p className='text-xl font-bold'>{book.title.length > 50 ? book.title.slice(0, 50) + "..." : book.title}
+                    </p>
                 </CardTitle>
             </CardFooter>
 

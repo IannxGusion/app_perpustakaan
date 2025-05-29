@@ -41,7 +41,7 @@ export default function ProductInfoCard({ book }: { book: Book })
                 {/* Gambar Buku */}
                 <div className="md:w-1/3 w-full border-r border-gray-200 p-4 flex justify-center items-start bg-white">
                     <img src={`/storage/${book.cover}`}
-                        alt={book.title}
+                        alt={book.title.length > 50 ? book.title.slice(0, 50) + "..." : book.title}
                         className="object-cover w-full h-fit border border-slate-700 dark:border-slate-300" />
                 </div>
 
@@ -53,7 +53,9 @@ export default function ProductInfoCard({ book }: { book: Book })
                             <Category categories={Array.isArray(book.categories) ? book.categories : [book.categories]} />
                         </div>
 
-                        <h1 className="text-2xl font-bold text-gray-800">{book.title}</h1>
+                        <h1 className="text-2xl font-bold text-gray-800">
+                            {book.title.length > 50 ? book.title.slice(0, 50) + "..." : book.title}
+                        </h1>
                         <p className="text-sm text-gray-600 italic">{book.author}</p>
                         <p className="text-sm text-gray-500 mb-4">{book.publisher}</p>
 
