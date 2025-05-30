@@ -47,9 +47,8 @@ export default function Borrows_book({ ...props }: { book: Book }) {
                         <Divider className='mt-10' />
                     </h3>
 
-                    {book.review ? (
-                        <Review book={book} />
-                    ) : null}
+                    {/* reviews of the book */}
+                    <Review />
                 </section>
             </main>
 

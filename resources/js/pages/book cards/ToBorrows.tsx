@@ -10,8 +10,14 @@ import { Head } from "@inertiajs/react";
 import CSRF from "@/components/element/csrf";
 import { Button } from "@mui/material";
 import { toast } from "sonner";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import { Textarea } from "@/components/ui/textarea";
 
 export default function ProductInfoCard({ book }: { book: Book }) {
+    const [value, setValue] = React.useState<number | null>(2);
+
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [showTerms, setShowTerms] = useState(false);
 
@@ -54,8 +60,18 @@ export default function ProductInfoCard({ book }: { book: Book }) {
                             {/* CSRF */}
                             <CSRF />
 
-                            <input type="hidden" name="book_id" id="book_id" value={book.id} required />
-                            <Button type="submit" onClick={() => toast.success("Ulasan terkrim!")}>
+                            <Box sx={{ '& > legend': { mt: 2 } }}>
+                                <Rating
+                                    name="star"
+                                    value={value}
+                                    onChange={(event, newValue) => {
+                                        setValue(newValue);
+                                    }}
+                                />
+                                <input type="hidden" name="star" value={value ?? 0} />
+                            </Box>
+                            <Textarea placeholder="Tulis Ulasan." name="comment" />
+                            <Button type="submit" onClick={() => toast.success("Ulasan terkirim!")}>
                                 Submit
                             </Button>
                         </form>

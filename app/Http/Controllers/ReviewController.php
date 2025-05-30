@@ -12,18 +12,30 @@ class ReviewController extends Controller
     public function store(Request $request, $id)
     {
         $request->validate([
-            'book_id' => 'required|exists:books,id',
-            'star' => 'required|integer',
-            'comment' => 'nullable|string',
+            'star' => 'required|integer|min:1|max:5',
+            'comment' => 'nullable|string|max:1000',
         ]);
 
-        Review::create([
+        $book = Book::findOrFail($id);
+
+        $review = Review::create([
             'user_id' => Auth::id(),
-            'book_id' => Book::findOrFail($id),
-            'star' => $request->star,
-            'comment' => $request->comment,
+            'star' => $request->input('star'),
+            'comment' => $request->input('comment'),
         ]);
 
-        return redirect()->back();
+        // Attach review to book
+        $book->reviews()->attach($review->id);
+
+        return redirect()->back()->with('success', 'Ulasan berhasil dikirim!');
+    }
+
+    public function show($id)
+    {
+        $book = Book::with(['categories', 'reviews.user'])->findOrFail($id);
+        return inertia('book cards/ToBorrows', [
+            'book' => $book,
+            'reviews' => $book->reviews()->with('user')->get(),
+        ]);
     }
 }

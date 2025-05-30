@@ -12,10 +12,11 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "../ui/carousel";
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
 
-import type { Book } from "@/types";
+export default function Review() {
 
-export default function Review({ book }: { book: Book }) {
   return (
     <div className="w-fit px-10">
       <Carousel
@@ -25,18 +26,24 @@ export default function Review({ book }: { book: Book }) {
         className="w-full"
       >
         <CarouselContent>
-          <CarouselItem key={book.review.id} className="md:basis-1/2 lg:basis-1/3">
+          <CarouselItem key={review.id} className="md:basis-1/2 lg:basis-1/3">
             <div className="p-1">
               <Card>
                 <CardHeader>
-                  <CardTitle>{book.review.star}</CardTitle>
+                  <CardTitle>
+                    {/* star */}
+                    <Box sx={{ '& > legend': { mt: 2 } }}>
+                      <Rating name="read-only" value={review.star} readOnly />
+                    </Box>
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>{book.review.comment}</p>
+                  {/* comment */}
+                  <p>{review.comment}</p>
                 </CardContent>
                 <CardFooter>
                   <p>
-                    {book.review.comment} • {book.review.created_at}
+                    {/* username of reviewer ->*/}{review}
                   </p>
                 </CardFooter>
               </Card>
