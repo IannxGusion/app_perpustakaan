@@ -33,8 +33,7 @@ class ReviewController extends Controller
     public function show($id)
     {
         $book = Book::with(['categories', 'reviews.user'])->findOrFail($id);
-
-        return inertia('book cards/ToBorrows', [
+        return inertia('borrows_book', [
             'book' => $book,
             'reviews' => $book->reviews()->with('user')->get(),
         ]);

@@ -1,7 +1,7 @@
 import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
-import type { Book } from '@/types';
+import type { Book, Review as ReviewType } from '@/types';
 
 // element
 import ToBorrows from '@/pages/book cards/ToBorrows';
@@ -20,8 +20,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Borrows_book({ ...props }: { book: Book }) {
-    const { book, } = props;
+export default function Borrows_book({ book, reviews }: { book: Book, reviews: ReviewType[] }) {
+    // const { book, } = props;
 
 
     return (
@@ -46,9 +46,8 @@ export default function Borrows_book({ ...props }: { book: Book }) {
                         Ulasan
                         <Divider className='mt-10' />
                     </h3>
-
-                    {/* reviews of the book */}
-                    <Review />
+                    {/* Pass reviews as prop */}
+                    <Review reviews={reviews} />
                 </section>
             </main>
 

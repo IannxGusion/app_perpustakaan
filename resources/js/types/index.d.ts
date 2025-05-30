@@ -87,3 +87,10 @@ export interface Collection {
     name: string;
     borrowing: Borrowing;
 }
+export interface Review {
+    id: number;
+    star: number;
+    comment: string;
+    created_at: string;
+    user?: User;
+}
