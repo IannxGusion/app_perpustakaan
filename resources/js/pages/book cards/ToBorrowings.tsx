@@ -7,7 +7,6 @@ import { DialogHeader } from "@/components/ui/dialog";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Card, CardHeader, CardContent, CardTitle, CardDescription, CardAction } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Textarea } from "@/components/ui/textarea";
 
 // elment
 import Collect from "@/components/element/collect";
@@ -75,27 +74,6 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
                                     </Button>
                                 </form>
 
-                                <details className="mt-10 hover:cursor-pointer rounded-sm border-2 p-2 border-primary-100">
-                                    <summary className="border-b-2 font-bold text-lg">
-                                        Ulas Buku
-                                    </summary>
-                                    <form action={route("reviews.store", borrowing.book.id)} method="POST" encType="multipart/form-data">
-                                        <CSRF />
-
-                                        <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
-                                        <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
-                                        <input type="number" name="star" id="star" defaultValue={0} className="my-2">
-                                        </input>
-                                        <Textarea name="comment" id="comment" placeholder="Tulis ulasan..." />
-                                        <Button className="w-full mt-2" type="submit">
-                                            Submit
-                                        </Button>
-                                    </form>
-                                </details>
-
-                                <div className="bg-slate-200">
-                                    {borrowing.book.review?.comment}
-                                </div>
                             </ScrollArea>
 
                         </DialogContent>
