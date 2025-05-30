@@ -11,10 +11,12 @@ import {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
-} from "../ui/carousel";
+} from "@/components/ui/carousel";
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import type { Review as ReviewType } from '@/types';
+
+//import { formatDistanceToNow } from 'date-fns';
 
 interface ReviewProps {
   reviews: ReviewType[];
@@ -44,9 +46,9 @@ export default function Review({ reviews }: ReviewProps) {
                     <p>{review.comment}</p>
                   </CardContent>
                   <CardFooter>
-                    <p className="text-xs text-gray-500">
-                      {review.user?.name ? `oleh ${review.user.name}` : "Anonim"}
-                    </p>
+                    <p className="text-xs text-gray-500 line-clamp-3 break-all">
+                      {/*     {review.user.name} - {formatDistanceToNow(new Date(review.created_at), { addSuffix: true })}
+                   */} </p>
                   </CardFooter>
                 </Card>
               </div>

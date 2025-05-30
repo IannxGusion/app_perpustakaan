@@ -92,5 +92,5 @@ export interface Review {
     star: number;
     comment: string;
     created_at: string;
-    user?: User;
+    user: User;
 }

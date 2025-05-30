@@ -30,12 +30,5 @@ class ReviewController extends Controller
         return redirect()->back()->with('success', 'Ulasan berhasil dikirim!');
     }
 
-    public function show($id)
-    {
-        $book = Book::with(['categories', 'reviews.user'])->findOrFail($id);
-        return inertia('borrows_book', [
-            'book' => $book,
-            'reviews' => $book->reviews()->with('user')->get(),
-        ]);
-    }
+    //public function index -> BookController as "show" method
 }

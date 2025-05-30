@@ -26,9 +26,11 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $book = Book::with('categories', 'reviews.user')->findOrFail($id);
-
-        return Inertia('borrows_book', ['book' => $book]);
+        $book = Book::with(['categories', 'reviews.user'])->findOrFail($id);
+        return inertia('borrows_book', [
+            'book' => $book,
+            'reviews' => $book->reviews()->with('user')->get(),
+        ]);
     }
 
     /**
