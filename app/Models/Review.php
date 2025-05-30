@@ -16,15 +16,15 @@ class Review extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function book()
+    public function books()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsToMany(Book::class, 'review_book');
     }
 
     protected $fillable = [
         'user_id',
-        'book_id',
         'star',
         'comment',
+
     ];
 }

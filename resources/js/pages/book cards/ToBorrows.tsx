@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import Confirm from "@/components/element/confirm";
@@ -9,28 +7,13 @@ import { DatePesan } from "@/components/pesan_buku";
 import type { Book } from "@/types";
 import Category from "@/components/element/category";
 import { Head } from "@inertiajs/react";
+import CSRF from "@/components/element/csrf";
+import { Button } from "@mui/material";
+import { toast } from "sonner";
 
-export default function ProductInfoCard({ book }: { book: Book })
-{
-    const [rating, setRating] = useState(0);
-    const [review, setReview] = useState("");
-    const [successMessage, setSuccessMessage] = useState("");
+export default function ProductInfoCard({ book }: { book: Book }) {
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [showTerms, setShowTerms] = useState(false);
-
-    const handleSubmitReview = () => {
-        if (review.trim() === "") {
-            alert("Ulasan tidak boleh kosong.");
-            return;
-        }
-
-        console.log("Review sent:", { bookId: book.id, rating, review });
-
-        setReview("");
-        setRating(0);
-        setSuccessMessage("✅ Ulasan Anda berhasil dikirim!");
-        setTimeout(() => setSuccessMessage(""), 3000);
-    };
 
     return (
         <>
@@ -67,42 +50,15 @@ export default function ProductInfoCard({ book }: { book: Book })
                             </p>
                         </details>
 
-                        {/* Rating */}
-                        <div className="mb-4">
-                            <div className="flex space-x-1">
-                                {[...Array(5)].map((_, i) => (
-                                    <span
-                                        key={i}
-                                        className={`text-xl cursor-pointer transition ${i < rating ? "text-yellow-400" : "text-gray-300"
-                                            }`}
-                                        onClick={() => setRating(i + 1)}
-                                    >
-                                        ★
-                                    </span>
-                                ))}
-                            </div>
-                            <p className="text-sm text-gray-600 mt-1">
-                                {rating > 0
-                                    ? `Anda memberi rating ${rating} bintang`
-                                    : "Klik bintang untuk memberi rating"}
-                            </p>
-                        </div>
+                        <form action={route("reviews.store", book.id)} method="POST" encType="multipart/form-data">
+                            {/* CSRF */}
+                            <CSRF />
 
-                        {/* Ulasan */}
-                        <Textarea
-                            value={review}
-                            onChange={(e) => setReview(e.target.value)}
-                            className="mb-2"
-                            rows={3}
-                            placeholder="Tulis ulasan anda di sini..."
-                        />
-                        <Button onClick={handleSubmitReview} className="bg-primary text-white hover:bg-primary/90 transition">
-                            Kirim Ulasan
-                        </Button>
-
-                        {successMessage && (
-                            <p className="text-green-600 text-sm mt-2">{successMessage}</p>
-                        )}
+                            <input type="hidden" name="book_id" id="book_id" value={book.id} required />
+                            <Button type="submit" onClick={() => toast.success("Ulasan terkrim!")}>
+                                Submit
+                            </Button>
+                        </form>
                     </div>
 
                     {/* Formulir Peminjaman */}

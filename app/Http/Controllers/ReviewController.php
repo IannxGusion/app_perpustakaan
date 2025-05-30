@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $request->validate([
             'book_id' => 'required|exists:books,id',
@@ -18,7 +19,7 @@ class ReviewController extends Controller
 
         Review::create([
             'user_id' => Auth::id(),
-            'book_id' => $request->book_id,
+            'book_id' => Book::findOrFail($id),
             'star' => $request->star,
             'comment' => $request->comment,
         ]);

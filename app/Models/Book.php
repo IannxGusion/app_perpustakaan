@@ -23,7 +23,7 @@ class Book extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->belongsToMany(Review::class, 'review_book');
     }
 
     protected $fillable = [
