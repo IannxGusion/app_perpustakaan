@@ -1,73 +1,63 @@
-import { useState, ChangeEvent, JSX } from "react";
-import { Button } from "@/components/ui/button";
+import * as React from "react"
+import { addDays, format } from "date-fns"
+import { CalendarIcon } from "lucide-react"
+import { DateRange } from "react-day-picker"
 
-export function DateRangePicker(): JSX.Element {
-    const [startDate, setStartDate] = useState<string>("");
-    const [endDate, setEndDate] = useState<string>("");
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
-    const handleStartChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const newStart = e.target.value;
-        setStartDate(newStart);
+export default function DateRangePicker({
+  className,
+}: React.HTMLAttributes<HTMLDivElement>) {
+  const [date, setDate] = React.useState<DateRange | undefined>({
+    from: new Date(2022, 0, 20),
+    to: addDays(new Date(2022, 0, 20), 20),
+  })
 
-        if (endDate && new Date(endDate) < new Date(newStart)) {
-            setEndDate("");
-        }
-    };
-
-    const handleEndChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setEndDate(e.target.value);
-    };
-
-    const clearDates = () => {
-        setStartDate("");
-        setEndDate("");
-    };
-
-    const formatDate = (dateStr: string): string => {
-        return new Date(dateStr).toLocaleDateString(undefined, {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-        });
-    };
-
-    return (
-        <div className="font-sans p-6 max-w-md mx-auto border rounded-lg bg-secondary">
-            <div className="flex flex-col gap-4">
-                <label className="font-bold">
-                    Start Date:
-                    <input
-                        type="date"
-                        value={startDate}
-                        onChange={handleStartChange}
-                        max={endDate || undefined}
-                        className="mt-1 p-2 text-sm border rounded w-full"
-                    />
-                </label>
-
-                <label className="font-bold">
-                    End Date:
-                    <input
-                        type="date"
-                        value={endDate}
-                        onChange={handleEndChange}
-                        min={startDate || undefined}
-                        className="mt-1 p-2 text-sm border rounded w-full"
-                    />
-                </label>
-            </div>
-
-            <Button
-                onClick={clearDates} className="mt-5" variant={'outline'}
-            >
-            Clear
-            </Button>
-
-            {startDate && endDate && (
-                <div className="mt-6 font-semibold text-gray-800">
-                    Selected Range: {formatDate(startDate)} - {formatDate(endDate)}
-                </div>
+  return (
+    <div className={cn("grid gap-2", className)}>
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button
+            id="date"
+            variant={"outline"}
+            className={cn(
+              "w-[300px] justify-start text-left font-normal",
+              !date && "text-muted-foreground"
             )}
-        </div>
-    );
+          >
+            <CalendarIcon />
+            {date?.from ? (
+              date.to ? (
+                <>
+                  {format(date.from, "LLL dd, y")} -{" "}
+                  {format(date.to, "LLL dd, y")}
+                </>
+              ) : (
+                format(date.from, "LLL dd, y")
+              )
+            ) : (
+              <span>Pick a date</span>
+            )}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0" align="start">
+          <Calendar
+            initialFocus
+            mode="range"
+            defaultMonth={date?.from}
+            selected={date}
+            onSelect={setDate}
+            numberOfMonths={2}
+          />
+        </PopoverContent>
+      </Popover>
+    </div>
+  )
 }

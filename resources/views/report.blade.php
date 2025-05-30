@@ -27,7 +27,11 @@
                 @foreach ($books as $book)
                     <tr class="bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition">
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ $book->title }}</td>
-                        <td class="px-6 py-4 text-gray-700 dark:text-gray-300">{{ $book->category->name }}</td>
+                        <td class="px-6 py-4 text-gray-700 dark:text-gray-300">
+                            @foreach ($book->categories as $category)
+                                {{ $category->name }}
+                            @endforeach
+                        </td>
                         <td class="px-6 py-4 text-gray-700 dark:text-gray-300">{{ $book->author }}</td>
                         <td class="px-6 py-4 text-gray-700 dark:text-gray-300">{{ $book->publisher }}</td>
                         <td class="px-6 py-4 text-gray-700 dark:text-gray-300">{{ $book->publication_date }}</td>
@@ -48,8 +52,10 @@
             <x-data-table :headers="$tableHeaders['borrowings']">
                 @foreach ($borrowings as $borrowing)
                     <tr class="bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition">
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ $borrowing->book->title }}</td>
-                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ $borrowing->user->name }}</td>
+                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ $borrowing->book->title }}
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ $borrowing->user->name }}
+                        </td>
                         <td class="px-6 py-4 text-gray-700 dark:text-gray-300">{{ $borrowing->borrow_date }}</td>
                         <td class="px-6 py-4 text-gray-700 dark:text-gray-300">{{ $borrowing->return_date }}</td>
                         <td class="px-6 py-4">

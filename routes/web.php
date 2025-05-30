@@ -57,9 +57,7 @@ Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(funct
     Route::get('work', [BorrowingController::class, 'librarianIndex'])->name('librarian.borrowings.index');
     Route::delete('work/borrowings/{id}', [BorrowingController::class, 'librarianDelete'])->name('librarian.borrowings.delete');
 
-    Route::get('report', function () {
-        return Inertia::render('librarian/report');
-    })->name('report');
+    Route::get('report', [ReportController::class, 'librarianChart'])->name('report');
     Route::get('report/download', [ReportController::class, 'librarianReport'])->name('librarian.report.download');
 
     Route::get('management', [BookController::class, 'librarianIndex'])->name('librarian.books.index');

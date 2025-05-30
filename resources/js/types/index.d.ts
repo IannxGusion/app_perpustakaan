@@ -73,6 +73,7 @@ export interface Borrowing {
     borrow_date: string;
     return_date: string;
     status: string;
+    created_at: string;
 }
 
 export interface ErrReview {
