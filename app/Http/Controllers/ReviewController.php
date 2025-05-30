@@ -30,5 +30,5 @@ class ReviewController extends Controller
         return redirect()->back()->with('success', 'Ulasan berhasil dikirim!');
     }
 
-    //public function index -> BookController as "show" method
+    // public function index -> BookController as "show" method
 }
