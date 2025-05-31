@@ -36,7 +36,6 @@ const mainNavItems: NavItem[] = [
         href: '/collections',
         icon: Bookmark,
     },
-
 ];
 
 const rightNavItems: NavItem[] = [
@@ -64,7 +63,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
     const getInitials = useInitials();
     return (
         <>
-            <div className="border-sidebar-border/80 border-b sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <div className="border-sidebar-border/80 bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40 border-b backdrop-blur">
                 <div className="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
                     {/* Mobile Menu */}
                     <div className="lg:hidden">
@@ -81,7 +80,6 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                 </SheetHeader>
                                 <div className="flex h-full flex-1 flex-col space-y-4 p-4">
                                     <div className="flex h-full flex-col justify-between text-sm">
-
                                         <div className="flex flex-col space-y-4">
                                             {mainNavItems.map((item) => (
                                                 <Link key={item.title} href={item.href} className="flex items-center space-x-2 font-medium">
@@ -186,13 +184,12 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
             </div>
 
             {breadcrumbs.length > 1 && (
-                <div className="border-sidebar-border/70 flex w-full border-b sticky top-16 z-30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                <div className="border-sidebar-border/70 bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-16 z-30 flex w-full border-b backdrop-blur">
                     <div className="mx-auto flex h-12 w-full items-center justify-start px-4 text-neutral-500 md:max-w-7xl">
                         <Breadcrumbs breadcrumbs={breadcrumbs} />
                     </div>
                 </div>
             )}
-
         </>
     );
 }

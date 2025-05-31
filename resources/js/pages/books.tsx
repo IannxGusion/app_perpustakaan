@@ -3,8 +3,8 @@ import { type BreadcrumbItem, Book } from '@/types';
 import { Head } from '@inertiajs/react';
 
 // ui
-import * as React from 'react';
 import TablePagination from '@mui/material/TablePagination';
+import * as React from 'react';
 
 // element
 import ToBooks from '@/pages/book cards/ToBooks';
@@ -23,16 +23,11 @@ export default function List({ ...props }: { books: Book[] }) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(8);
 
-    const handleChangePage = (
-        event: React.MouseEvent<HTMLButtonElement> | null,
-        newPage: number,
-    ) => {
+    const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
         setPage(newPage);
     };
 
-    const handleChangeRowsPerPage = (
-        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
@@ -45,18 +40,18 @@ export default function List({ ...props }: { books: Book[] }) {
             <Head title="Daftar Buku" />
 
             {/* Hero Section */}
-            <section className="bg-gray-200 text-center py-12 px-4 mt-4">
+            <section className="mt-4 bg-gray-200 px-4 py-12 text-center">
                 <h1 className="text-4xl font-bold">Daftar Buku</h1>
             </section>
 
             <div className="p-4">
                 {/*<Booklist />*/}
-                <div className="border-b-2 pb-20 grid gap-5 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div className="grid w-full gap-5 border-b-2 pb-20 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {paginatedBooks.map((book) => (
                         <ToBooks key={book.id} book={book} />
                     ))}
                 </div>
-                <div className="flex justify-center mt-4">
+                <div className="mt-4 flex justify-center">
                     <TablePagination
                         component="div"
                         count={books.length}
@@ -81,7 +76,6 @@ export default function List({ ...props }: { books: Book[] }) {
                     />
                 </div>
             </div>
-
         </AppLayout>
     );
 }

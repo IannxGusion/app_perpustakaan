@@ -23,12 +23,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 export default function Password() {
     const { auth } = usePage<SharedData>().props;
-    const Layout =
-        auth.user.role === 'ADMIN'
-            ? AdminLayout
-            : auth.user.role === 'PUSTAKAWAN'
-                ? PustakawanLayout
-                : UserLayout;
+    const Layout = auth.user.role === 'ADMIN' ? AdminLayout : auth.user.role === 'PUSTAKAWAN' ? PustakawanLayout : UserLayout;
 
     const passwordInput = useRef<HTMLInputElement>(null);
     const currentPasswordInput = useRef<HTMLInputElement>(null);

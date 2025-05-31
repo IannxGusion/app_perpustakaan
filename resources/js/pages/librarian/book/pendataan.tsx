@@ -19,7 +19,7 @@ export default function Dashboard({ ...props }: { books: Book[] }) {
             <Head title="Pendataan" />
 
             {/* Hero Section */}
-            <section className="bg-gray-200 text-center py-10 px-4 mt-4">
+            <section className="mt-4 bg-gray-200 px-4 py-10 text-center">
                 <h1 className="text-4xl font-bold">Pendataan Barang</h1>
             </section>
 
@@ -27,7 +27,6 @@ export default function Dashboard({ ...props }: { books: Book[] }) {
             <main className="flex-grow p-8">
                 <DataTable books={books} />
             </main>
-
         </AppLayout>
     );
 }

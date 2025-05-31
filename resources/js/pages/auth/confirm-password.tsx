@@ -23,10 +23,7 @@ export default function ConfirmPassword() {
     };
 
     return (
-        <AuthLayout
-            title="Konfirmasi password anda"
-            description="Ini adalah area ketat. Silahkan konfirmasi password anda sebelum melanjutkan."
-        >
+        <AuthLayout title="Konfirmasi password anda" description="Ini adalah area ketat. Silahkan konfirmasi password anda sebelum melanjutkan.">
             <Head title="Konfirmasi password" />
 
             <form onSubmit={submit}>

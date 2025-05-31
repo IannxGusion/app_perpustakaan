@@ -1,27 +1,25 @@
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableRow,
-} from "@/components/ui/table"
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import type { Book } from '@/types';
 
 export default function TableInfo({ book }: { book: Book }) {
     return (
-        <Table className="min-w-full border border-gray-300 my-3">
+        <Table className="my-3 min-w-full border border-gray-300">
             <TableBody>
                 <TableRow className="border-b border-gray-300">
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Judul</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900 font-bold">{book.title.length > 50 ? book.title.slice(0, 50) + "..." : book.title}</TableCell>
+                    <TableCell className="px-4 py-2 font-bold text-gray-900">
+                        {book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
+                    </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-300">
                     <TableCell className="px-4 py-2 font-medium text-gray-700">Genre</TableCell>
                     <TableCell className="px-4 py-2 text-gray-900">
                         {Array.isArray(book.categories) &&
                             book.categories.map((category: { name: string }, idx: number) => (
-                                <p className="underline" key={idx}>{category.name}</p>
-                            ))
-                        }
+                                <p className="underline" key={idx}>
+                                    {category.name}
+                                </p>
+                            ))}
                     </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-300">
@@ -29,8 +27,8 @@ export default function TableInfo({ book }: { book: Book }) {
                     <TableCell className="px-4 py-2 text-gray-900">
                         <img
                             src={`/storage/${book.cover}`}
-                            alt={book.title.length > 50 ? book.title.slice(0, 50) + "..." : book.title}
-                            className="w-full h-full border border-slate-700 dark:border-slate-300"
+                            alt={book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
+                            className="h-full w-full border border-slate-700 dark:border-slate-300"
                         />
                     </TableCell>
                 </TableRow>
@@ -48,5 +46,5 @@ export default function TableInfo({ book }: { book: Book }) {
                 </TableRow>
             </TableBody>
         </Table>
-    )
+    );
 }

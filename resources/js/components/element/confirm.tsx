@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
     AlertDialog,
     AlertDialogAction,
@@ -9,43 +8,41 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
     AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
 
 import type { Book } from '@/types';
-import CSRF from "./csrf";
-import { toast } from "sonner";
+import { toast } from 'sonner';
+import CSRF from './csrf';
 
 export default function Confirm({ book }: { book: Book }) {
     return (
         <AlertDialog>
-            <AlertDialogTrigger asChild className='w-full mt-4 hover:cursor-pointer'>
-                <Button variant="outline" className="bg-primary text-white">Pinjam Buku</Button>
+            <AlertDialogTrigger asChild className="mt-4 w-full hover:cursor-pointer">
+                <Button variant="outline" className="bg-primary text-white">
+                    Pinjam Buku
+                </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
-
                 <AlertDialogHeader>
                     <AlertDialogTitle>Konfirmasi</AlertDialogTitle>
-                    <AlertDialogDescription>
-                        Apakah Anda yakin ingin meminjam buku ini?
-                    </AlertDialogDescription>
+                    <AlertDialogDescription>Apakah Anda yakin ingin meminjam buku ini?</AlertDialogDescription>
                 </AlertDialogHeader>
 
                 <AlertDialogFooter>
                     <AlertDialogCancel type="button">Batal</AlertDialogCancel>
 
-                    <form action={route("borrowings.store", book.id)} method="POST" encType="multipart/form-data">
+                    <form action={route('borrowings.store', book.id)} method="POST" encType="multipart/form-data">
                         {/* CSRF */}
                         <CSRF />
 
                         <input type="hidden" name="book_id" id="book_id" value={book.id} required />
-                        <AlertDialogAction type="submit" onClick={() => toast.success("Anda telah berhasil meminjam buku di perpustakaan kami!!")}
-                        >Pinjam
+                        <AlertDialogAction type="submit" onClick={() => toast.success('Anda telah berhasil meminjam buku di perpustakaan kami!!')}>
+                            Pinjam
                         </AlertDialogAction>
                     </form>
-
                 </AlertDialogFooter>
-
             </AlertDialogContent>
         </AlertDialog>
-    )
+    );
 }

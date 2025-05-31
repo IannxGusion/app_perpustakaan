@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import {
     Drawer,
     DrawerClose,
@@ -7,8 +8,7 @@ import {
     DrawerHeader,
     DrawerTitle,
     DrawerTrigger,
-} from "@/components/ui/drawer"
-import { Button } from "@/components/ui/button"
+} from '@/components/ui/drawer';
 
 export function Pack() {
     return (
@@ -26,5 +26,5 @@ export function Pack() {
                 </DrawerFooter>
             </DrawerContent>
         </Drawer>
-    )
+    );
 }

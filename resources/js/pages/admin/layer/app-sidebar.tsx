@@ -1,16 +1,13 @@
-"use client"
+'use client';
 
-import * as React from "react"
-import {
-    Bolt,
-    BookOpen,
-    Folder,
-    List,
-} from "lucide-react"
+import { Bolt, BookOpen, Folder, List } from 'lucide-react';
+import * as React from 'react';
 
-import { NavMain } from "@/components/nav-main"
-import { NavHome } from "@/components/nav-cruds"
-import { NavUser } from "@/components/nav-user"
+import AppLogo from '@/components/app-logo';
+import { NavHome } from '@/components/nav-cruds';
+import { NavFooter } from '@/components/nav-footer';
+import { NavMain } from '@/components/nav-main';
+import { NavUser } from '@/components/nav-user';
 import {
     Sidebar,
     SidebarContent,
@@ -20,47 +17,45 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
     SidebarRail,
-} from "@/components/ui/sidebar"
-import { Link } from "@inertiajs/react"
-import AppLogo from "@/components/app-logo"
-import { NavFooter } from "@/components/nav-footer"
-import { NavItem } from "@/types"
+} from '@/components/ui/sidebar';
+import { NavItem } from '@/types';
+import { Link } from '@inertiajs/react';
 
 const data = {
     home: [
         {
-            name: "Main",
-            url: "/main",
+            name: 'Main',
+            url: '/main',
             icon: Bolt,
         },
     ],
     navMain: [
         {
-            title: "CRUD",
-            url: "#",
+            title: 'CRUD',
+            url: '#',
             icon: List,
             isActive: true,
             items: [
                 {
-                    title: "Buku",
-                    url: "/crud_books",
+                    title: 'Buku',
+                    url: '/crud_books',
                 },
                 {
-                    title: "Peminjaman",
-                    url: "/crud_borrowings",
+                    title: 'Peminjaman',
+                    url: '/crud_borrowings',
                 },
                 {
-                    title: "Pustakawan",
-                    url: "/crud_borrowers",
+                    title: 'Pustakawan',
+                    url: '/crud_borrowers',
                 },
                 {
-                    title: "Peminjam",
-                    url: "/crud_librarians",
+                    title: 'Peminjam',
+                    url: '/crud_librarians',
                 },
             ],
         },
     ],
-}
+};
 
 const footerNavItems: NavItem[] = [
     {
@@ -101,5 +96,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarFooter>
             <SidebarRail />
         </Sidebar>
-    )
+    );
 }

@@ -3,7 +3,7 @@ export default function CSRF() {
         <input
             type="hidden"
             name="_token"
-            value={typeof window !== "undefined" ? (document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '') : ''}
+            value={typeof window !== 'undefined' ? (document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '') : ''}
         />
-    )
+    );
 }

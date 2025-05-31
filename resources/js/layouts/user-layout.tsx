@@ -2,7 +2,7 @@ import AppLayoutTemplate from '@/layouts/app/app-header-layout'; // Layout templ
 import { type BreadcrumbItem } from '@/types';
 import { type ReactNode } from 'react';
 
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from '@/components/ui/sonner';
 
 interface UserLayoutProps {
     children: ReactNode;

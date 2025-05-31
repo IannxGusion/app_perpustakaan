@@ -19,12 +19,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 export default function Appearance() {
     const { auth } = usePage<SharedData>().props;
-    const Layout =
-        auth.user.role === 'ADMIN'
-            ? AdminLayout
-            : auth.user.role === 'PUSTAKAWAN'
-                ? PustakawanLayout
-                : UserLayout;
+    const Layout = auth.user.role === 'ADMIN' ? AdminLayout : auth.user.role === 'PUSTAKAWAN' ? PustakawanLayout : UserLayout;
 
     return (
         <Layout breadcrumbs={breadcrumbs}>

@@ -2,8 +2,8 @@ import AppLayout from '@/layouts/user-layout';
 import { type BreadcrumbItem, Borrowing, Collection } from '@/types';
 import { Head } from '@inertiajs/react';
 
-import * as React from 'react';
 import TablePagination from '@mui/material/TablePagination';
+import * as React from 'react';
 
 import ToBorrowings from '@/pages/book cards/ToBorrowings';
 
@@ -14,23 +14,18 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Borrowings({ ...props }: { borrowings: Borrowing[], collections: Collection[] }) {
+export default function Borrowings({ ...props }: { borrowings: Borrowing[]; collections: Collection[] }) {
     const { borrowings = [], collections = [] } = props;
 
     // Pagination state
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(8);
 
-    const handleChangePage = (
-        event: React.MouseEvent<HTMLButtonElement> | null,
-        newPage: number,
-    ) => {
+    const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
         setPage(newPage);
     };
 
-    const handleChangeRowsPerPage = (
-        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
@@ -43,17 +38,17 @@ export default function Borrowings({ ...props }: { borrowings: Borrowing[], coll
             <Head title="Riwayat Pinjaman" />
 
             {/* Hero Section */}
-            <section className="bg-gray-200 text-center py-12 px-4 mt-4">
+            <section className="mt-4 bg-gray-200 px-4 py-12 text-center">
                 <h1 className="text-4xl font-bold">Pinjaman</h1>
             </section>
 
             {/* borrowings List */}
-            <div className="border-b-2 pb-20 space-y-7 mx-5">
+            <div className="mx-5 space-y-7 border-b-2 pb-20">
                 {paginatedborrowings.map((borrowing) => (
-                    <ToBorrowings key={borrowing.id} borrowing={borrowing} collections={collections}/>
+                    <ToBorrowings key={borrowing.id} borrowing={borrowing} collections={collections} />
                 ))}
             </div>
-            <div className="flex justify-center mt-4">
+            <div className="mt-4 flex justify-center">
                 <TablePagination
                     component="div"
                     count={borrowings.length}
@@ -77,7 +72,6 @@ export default function Borrowings({ ...props }: { borrowings: Borrowing[], coll
                     }}
                 />
             </div>
-
         </AppLayout>
     );
 }

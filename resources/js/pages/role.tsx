@@ -1,34 +1,21 @@
-import { Button } from "@/components/ui/button"
-import {
-    Card,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-} from "@/components/ui/tabs"
-import { SharedData } from "@/types";
-import { Link, usePage } from "@inertiajs/react"
+import { Button } from '@/components/ui/button';
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { SharedData } from '@/types';
+import { Link, usePage } from '@inertiajs/react';
 
 // Assume role is passed as a prop, e.g., "PUSTAKAWAN" or "ADMIN"
 export default function TabsDemo() {
     const { auth } = usePage<SharedData>().props;
 
     return (
-        <div className="flex h-screen justify-center items-center">
+        <div className="flex h-screen items-center justify-center">
             {/* Show Card 1 only for PUSTAKAWAN */}
-            {auth.user.role === "PUSTAKAWAN" && (
+            {auth.user.role === 'PUSTAKAWAN' && (
                 <Card className="w-[400px]">
                     <CardHeader>
                         <CardTitle>Pustakawan</CardTitle>
-                        <CardDescription>
-                            Ganti jadi Pustakawan.
-                        </CardDescription>
+                        <CardDescription>Ganti jadi Pustakawan.</CardDescription>
                     </CardHeader>
                     <CardFooter>
                         <Button className="w-full" asChild>
@@ -39,7 +26,7 @@ export default function TabsDemo() {
             )}
 
             {/* Show Tabs only for ADMIN */}
-            {auth.user.role === "ADMIN" && (
+            {auth.user.role === 'ADMIN' && (
                 <Tabs defaultValue="Pustakawan" className="w-[400px]">
                     <TabsList className="grid w-full grid-cols-2">
                         <TabsTrigger value="Pustakawan">Pustakawan</TabsTrigger>
@@ -49,9 +36,7 @@ export default function TabsDemo() {
                         <Card>
                             <CardHeader>
                                 <CardTitle>Pustakawan</CardTitle>
-                                <CardDescription>
-                                    Ganti jadi Pustakawan.
-                                </CardDescription>
+                                <CardDescription>Ganti jadi Pustakawan.</CardDescription>
                             </CardHeader>
                             <CardFooter>
                                 <Button className="w-full" asChild>
@@ -64,9 +49,7 @@ export default function TabsDemo() {
                         <Card>
                             <CardHeader>
                                 <CardTitle>Admin</CardTitle>
-                                <CardDescription>
-                                    Ganti jadi Admin.
-                                </CardDescription>
+                                <CardDescription>Ganti jadi Admin.</CardDescription>
                             </CardHeader>
                             <CardFooter>
                                 <Button className="w-full" asChild>
@@ -78,5 +61,5 @@ export default function TabsDemo() {
                 </Tabs>
             )}
         </div>
-    )
+    );
 }

@@ -3,11 +3,10 @@ import { UserInfo } from '@/components/user-info';
 import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
 import { type User } from '@/types';
 
-import { router } from '@inertiajs/react';
-import { Link, usePage } from '@inertiajs/react';
 import { SharedData } from '@/types';
+import { Link, router, usePage } from '@inertiajs/react';
 
-import { LogOut, ArrowRightLeft, Settings } from 'lucide-react';
+import { ArrowRightLeft, LogOut, Settings } from 'lucide-react';
 
 interface UserMenuContentProps {
     user: User;
@@ -16,7 +15,6 @@ interface UserMenuContentProps {
 export function UserMenuContent({ user }: UserMenuContentProps) {
     const cleanup = useMobileNavigation();
     const { auth } = usePage<SharedData>().props;
-
 
     const handleLogout = () => {
         cleanup();
@@ -41,7 +39,7 @@ export function UserMenuContent({ user }: UserMenuContentProps) {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
 
-            {auth.user.role !== "PEMINJAM" && (
+            {auth.user.role !== 'PEMINJAM' && (
                 <div>
                     <DropdownMenuGroup asChild>
                         <DropdownMenuItem asChild>
