@@ -1,10 +1,11 @@
 import AppLayout from '@/pages/librarian/layer/user-layout';
-import { type BreadcrumbItem } from '@/types';
+import { Borrowing, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
 import DateRangePicker from '@/components/element/datepick';
 import { Button } from '@/components/ui/button';
 import { Link } from '@inertiajs/react';
+import { Log } from '@/components/element/log';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -13,7 +14,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Dashboard() {
+export default function Dashboard({ ...props }: { borrowings: Borrowing[] }) {
+    const { borrowings } = props;
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Laporan" />
@@ -22,9 +24,10 @@ export default function Dashboard() {
                 <h1 className="text-4xl font-bold">Laporan</h1>
             </section>
 
-            <DateRangePicker />
+            <Log borrowings={borrowings} />
 
             <div className="text-center">
+                <DateRangePicker />
                 <Button asChild className="bg-primary text mt-3 h-7 rounded text-white">
                     <Link target="_blank" href={route('librarian.report.download')}>
                         Buat Laporan

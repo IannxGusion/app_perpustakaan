@@ -13,23 +13,23 @@ import { useInitials } from '@/hooks/use-initials';
 import { cn } from '@/lib/utils';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpenIcon, Briefcase, FolderIcon, Magnet, Menu, User } from 'lucide-react';
+import { BetweenHorizonalEnd, BookOpenIcon, ChartNoAxesGantt, ClipboardEdit, FolderIcon, Menu } from 'lucide-react';
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Work',
+        title: 'Entri Peminjaman',
         href: '/work',
-        icon: Briefcase,
+        icon: BetweenHorizonalEnd,
     },
     {
         title: 'Laporan',
         href: '/report',
-        icon: User,
+        icon: ClipboardEdit,
     },
     {
         title: 'Pendataan',
         href: '/management',
-        icon: Magnet,
+        icon: ChartNoAxesGantt,
     },
 ];
 
