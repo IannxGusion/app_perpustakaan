@@ -20,6 +20,6 @@ class Category extends Model
         'name',
         'colour',
         'description',
-        'icon'
+        'icon',
     ];
 }
