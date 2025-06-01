@@ -35,9 +35,8 @@ class BookController extends Controller
     }
 
     /**
-     * Import books from a JSON file. (current manual input) public function import(){} 
+     * Import books from a JSON file. (current manual input) public function import(){}
      */
-    
     public function add(Request $request)
     {
         $request->validate([
@@ -48,7 +47,7 @@ class BookController extends Controller
             'content' => 'required|string',
         ]);
 
-        $book = new Book();
+        $book = new Book;
         $book->title = $request->title;
         $book->author = $request->author;
         $book->publisher = $request->publisher;
