@@ -80,7 +80,7 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
                 </CardDescription>
 
                 <CardAction className="h-full w-full">
-                    <Button asChild className="bg-primary text mt-3 h-7 w-full rounded text-white">
+                    <Button asChild className="text mt-3 h-7 w-full">
                         <Link target="_blank" href={`borrowings/download/${borrowing.book.id}`}>
                             Baca
                         </Link>
