@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
                 'string',
                 'email:rfc,dns',
                 'max:255',
-                'unique:' . User::class,
+                'unique:'.User::class,
                 'lowercase',
             ],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
