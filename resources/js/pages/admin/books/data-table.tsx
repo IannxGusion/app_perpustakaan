@@ -22,17 +22,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 
 import CSRF from '@/components/element/csrf';
 import TableInfo from '@/components/element/table-info';
-import {
-    AlertDialog,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import type { Book } from '@/types';
 import { Link } from '@inertiajs/react';
@@ -70,7 +59,18 @@ export const columns: ColumnDef<Book>[] = [
     {
         accessorKey: 'category',
         header: 'Kategori',
-        cell: ({ row }) => <Category categories={Array.isArray(row.original.categories) ? row.original.categories : [row.original.categories]} />,
+        cell: ({ row }) => {
+            let categories = row.original.categories;
+            if (!categories || (Array.isArray(categories) && categories.length === 0)) {
+                categories = {
+                    id: 0,
+                    name: 'Anonymous',
+                    colour: 'gray',
+                    icon: '',
+                };
+            }
+            return <Category categories={Array.isArray(categories) ? categories : [categories]} />;
+        },
     },
     {
         accessorKey: 'cover',
@@ -191,32 +191,12 @@ export function DataTable({ books }: { books: Book[] }) {
     return (
         <div className="w-full">
             <div className="flex justify-end space-x-2 py-4">
-                <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                        <Button variant="outline" className="ml-auto">
-                            Tambah <Plus />
-                        </Button>
-                    </AlertDialogTrigger>
-
-                    <AlertDialogContent>
-                        <AlertDialogHeader className='justify-start items-start'>
-                            <AlertDialogTitle>Tambah item</AlertDialogTitle>
-                            <AlertDialogDescription>
-                            </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <form action={route('admin.books.import')} method="POST" encType="multipart/form-data">
-                            <CSRF />
-                            <Label htmlFor="json_data">Upload data buku</Label>
-                            <Input id="json_data" name="json_data" type="file" accept=".json" required />
-                            <div className="mt-4 flex justify-end">
-                                <AlertDialogCancel type="button">Cancel</AlertDialogCancel>
-                                <Button type="submit" className="ml-2">
-                                    Import
-                                </Button>
-                            </div>
-                        </form>
-                    </AlertDialogContent>
-                </AlertDialog>
+                <Button variant={'outline'}>
+                    <Link target="_blank" href={route('admin.books.import')}>
+                        Tambah
+                    </Link>
+                    <Plus />
+                </Button>
 
                 <div>
                     <DropdownMenu>

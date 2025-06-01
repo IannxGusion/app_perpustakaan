@@ -75,7 +75,11 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
     Route::get('main', [BookController::class, 'adminMain'])->name('admin.main');
 
     Route::get('/crud_books', [BookController::class, 'adminIndex'])->name('admin.books.index');
-    Route::post('/crud_books/import', [BookController::class, 'import'])->name('admin.books.import');
+
+    Route::get('/crud_books/add', function () {
+        return view('add');
+    })->name('admin.books.import');
+    Route::get('/crud_books/add', [BookController::class, 'add'])->name('admin.books.add');
 
     Route::get('/crud_books/{id}', [BookController::class, 'adminDelete'])->name('admin.books.delete');
 
@@ -93,5 +97,5 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 });
 // *Admin* ==================================================================================
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';

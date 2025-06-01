@@ -35,36 +35,30 @@ class BookController extends Controller
     }
 
     /**
-     * Import books from a JSON file.
+     * Import books from a JSON file. (current manual input) public function import(){} 
      */
-    public function import(Request $request) 
+    
+    public function add(Request $request)
     {
         $request->validate([
-            'json_file' => 'required|file|mimes:json',
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'publisher' => 'required|string|max:255',
+            'publication_date' => 'required|date',
+            'content' => 'required|string',
         ]);
 
-        $json = file_get_contents($request->file('json_file')->getRealPath());
-        $data = json_decode($json, true);
+        $book = new Book();
+        $book->title = $request->title;
+        $book->author = $request->author;
+        $book->publisher = $request->publisher;
+        $book->publication_date = $request->publication_date;
+        $book->content = $request->content;
+        $book->save();
 
-        if (!is_array($data)) {
-            return back()->withErrors(['json_file' => 'Invalid JSON format.']);
-        }
-
-        foreach ($data as $item) {
-            // Extract category IDs if present
-            $categoryIds = $item['category_ids'] ?? [];
-            unset($item['category_ids']);
-
-            $book = Book::create($item);
-
-            if (!empty($categoryIds)) {
-                $book->categories()->sync($categoryIds);
-            }
-        }
-
-        return redirect()->back()->with('success', 'Books imported successfully.');
+        return redirect()->back()->with('success', 'Book added successfully.');
     }
-    
+
     /**
      * Download book as PDF.
      */
