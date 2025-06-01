@@ -24,15 +24,17 @@ export default function Dashboard({ ...props }: { borrowings: Borrowing[] }) {
                 <h1 className="text-4xl font-bold">Laporan</h1>
             </section>
 
-            <Log borrowings={borrowings} />
+            <div className='p-5 space-y-2.5'>
+                <Log borrowings={borrowings} />
 
-            <div className="text-center">
-                <DateRangePicker />
-                <Button asChild className="bg-primary text mt-3 h-7 rounded text-white">
-                    <Link target="_blank" href={route('librarian.report.download')}>
-                        Buat Laporan
-                    </Link>
-                </Button>
+                <div className="flex flex-row text-center justify-around">
+                    <DateRangePicker />
+                    <Button asChild className="bg-primary text h-full rounded text-white">
+                        <Link target="_blank" href={route('librarian.report.download')}>
+                            Buat Laporan
+                        </Link>
+                    </Button>
+                </div>
             </div>
         </AppLayout>
     );

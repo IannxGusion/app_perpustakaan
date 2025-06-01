@@ -37,38 +37,34 @@ class BookController extends Controller
     /**
      * Import books from a JSON file.
      */
-    public function import(Request $request)
+    public function import(Request $request) 
     {
         $request->validate([
-            'json' => 'required|file|mimes:json,txt',
+            'json_file' => 'required|file|mimes:json',
         ]);
 
-        $jsonFile = $request->file('json');
-        $jsonData = json_decode(file_get_contents($jsonFile->getRealPath()), true);
+        $json = file_get_contents($request->file('json_file')->getRealPath());
+        $data = json_decode($json, true);
 
-        if (! is_array($jsonData)) {
-            return back()->withErrors(['json' => 'Invalid JSON file.']);
+        if (!is_array($data)) {
+            return back()->withErrors(['json_file' => 'Invalid JSON format.']);
         }
 
-        foreach ($jsonData as $item) {
-            $book = Book::create([
-                'title' => $item['title'] ?? '',
-                'content' => $item['content'] ?? '',
-                'author' => $item['author'] ?? '',
-                'publisher' => $item['publisher'] ?? '',
-                'publication_date' => $item['publication_date'] ?? now(),
-                'status' => $item['status'] ?? 'Available',
-                'cover' => $item['cover'] ?? null,
-            ]);
+        foreach ($data as $item) {
+            // Extract category IDs if present
+            $categoryIds = $item['category_ids'] ?? [];
+            unset($item['category_ids']);
 
-            if (isset($item['category_ids']) && is_array($item['category_ids'])) {
-                $book->categories()->sync($item['category_ids']);
+            $book = Book::create($item);
+
+            if (!empty($categoryIds)) {
+                $book->categories()->sync($categoryIds);
             }
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Books imported successfully.');
     }
-
+    
     /**
      * Download book as PDF.
      */

@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Checkbox } from "@/components/ui/checkbox"
 
 import CSRF from '@/components/element/csrf';
 import { Textarea } from '@/components/ui/textarea';
@@ -78,23 +79,19 @@ export default function Edit({ book, categories = [] }: EditProps) {
                         </div>
 
                         <div>
-                            <Label htmlFor="category_id">Kategori</Label>
-
-                            <Select
-                                name="category_id"
-                                defaultValue={String(book.categories.id)} // current category
-                            >
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Pilih kategori" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {categories.map((category) => (
-                                        <SelectItem key={category.id} value={String(category.id)}>
-                                            {category.name}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
+                            <Label htmlFor="category_ids">Kategori</Label>
+                            <div className="flex flex-col gap-2">
+                                {categories.map((category) => (
+                                    <label key={category.id} className="flex items-center gap-2">
+                                        <Checkbox
+                                            name="category_ids[]"
+                                            value={category.id}
+                                            defaultChecked={book.categories.some((c: { id: number; }) => c.id === category.id)}
+                                        />
+                                        <span>{category.name}</span>
+                                    </label>
+                                ))}
+                            </div>
                         </div>
 
                         <div>

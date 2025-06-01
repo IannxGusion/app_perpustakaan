@@ -45,6 +45,7 @@ export interface User {
 }
 
 export interface Categories {
+    [x: string]: any;
     id: number;
     name: string;
     colour: string;

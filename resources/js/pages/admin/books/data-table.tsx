@@ -199,23 +199,22 @@ export function DataTable({ books }: { books: Book[] }) {
                     </AlertDialogTrigger>
 
                     <AlertDialogContent>
-                        <AlertDialogHeader>
+                        <AlertDialogHeader className='justify-start items-start'>
                             <AlertDialogTitle>Tambah item</AlertDialogTitle>
-
                             <AlertDialogDescription>
-                                <form action={route('admin.books.import')} method="POST" encType="multipart/form-data">
-                                    <CSRF />
-                                    <Label htmlFor="json">Upload JSON Buku</Label>
-                                    <Input id="json" name="json" type="file" accept=".json" required />
-                                    <div className="mt-4 flex justify-end">
-                                        <AlertDialogCancel type="button">Cancel</AlertDialogCancel>
-                                        <Button type="submit" className="ml-2">
-                                            Import
-                                        </Button>
-                                    </div>
-                                </form>
                             </AlertDialogDescription>
                         </AlertDialogHeader>
+                        <form action={route('admin.books.import')} method="POST" encType="multipart/form-data">
+                            <CSRF />
+                            <Label htmlFor="json_data">Upload data buku</Label>
+                            <Input id="json_data" name="json_data" type="file" accept=".json" required />
+                            <div className="mt-4 flex justify-end">
+                                <AlertDialogCancel type="button">Cancel</AlertDialogCancel>
+                                <Button type="submit" className="ml-2">
+                                    Import
+                                </Button>
+                            </div>
+                        </form>
                     </AlertDialogContent>
                 </AlertDialog>
 
