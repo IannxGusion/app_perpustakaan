@@ -37,7 +37,7 @@ class BookController extends Controller
     /**
      * Import books from a JSON file.
      */
-    public function import(Request $request) 
+    public function import(Request $request)
     {
         $request->validate([
             'json_file' => 'required|file|mimes:json',
@@ -46,7 +46,7 @@ class BookController extends Controller
         $json = file_get_contents($request->file('json_file')->getRealPath());
         $data = json_decode($json, true);
 
-        if (!is_array($data)) {
+        if (! is_array($data)) {
             return back()->withErrors(['json_file' => 'Invalid JSON format.']);
         }
 
@@ -57,14 +57,14 @@ class BookController extends Controller
 
             $book = Book::create($item);
 
-            if (!empty($categoryIds)) {
+            if (! empty($categoryIds)) {
                 $book->categories()->sync($categoryIds);
             }
         }
 
         return redirect()->back()->with('success', 'Books imported successfully.');
     }
-    
+
     /**
      * Download book as PDF.
      */
