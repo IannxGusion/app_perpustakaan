@@ -1,5 +1,5 @@
 import { Head, useForm } from '@inertiajs/react';
-import { CheckCircle2, Eye, EyeOff, Info, LoaderCircle, Lock, Mail } from 'lucide-react';
+import { Eye, EyeOff, Info, LoaderCircle, Lock, Mail } from 'lucide-react';
 import { FormEventHandler, useState } from 'react';
 
 import AppLogoIcon from '@/components/app-logo-icon';
@@ -22,7 +22,7 @@ interface LoginProps {
     canResetPassword: boolean;
 }
 
-export default function Login({ status, canResetPassword }: LoginProps) {
+export default function Login({ canResetPassword }: LoginProps) {
     const { data, setData, post, processing, errors, reset } = useForm<Required<LoginForm>>({
         email: '',
         password: '',
@@ -30,20 +30,25 @@ export default function Login({ status, canResetPassword }: LoginProps) {
     });
 
     const [showPassword, setShowPassword] = useState(false);
-    const [loginSuccess, setLoginSuccess] = useState(false);
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
         post(route('login'), {
             onFinish: () => {
                 reset('password');
-                setLoginSuccess(true);
             },
         });
     };
 
     return (
-        <div className="relative min-h-screen w-full bg-cover bg-center" style={{ backgroundImage: "url('/images/3.jpg')" }}>
+        <div
+            className="relative min-h-screen w-full bg-cover bg-center py-32"
+            style={{
+                backgroundColor: '#ffffff',
+                backgroundImage:
+                    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23004380' fill-opacity='0.51'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E\")",
+            }}
+        >
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
             <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
@@ -64,8 +69,8 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                             <Label htmlFor="email" className="mb-1 block font-semibold text-gray-700">
                                 Email address
                             </Label>
-                            <div className="flex items-center rounded-lg border border-gray-300 bg-white shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
-                                <div className="px-3 text-indigo-500">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border border-gray-300 bg-white shadow-sm focus-within:ring-1">
+                                <div className="text-primary-500 px-3">
                                     <Mail size={18} />
                                 </div>
                                 <Input
@@ -91,13 +96,13 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                     Password
                                 </Label>
                                 {canResetPassword && (
-                                    <TextLink href={route('password.request')} className="text-xs text-indigo-600 hover:underline" tabIndex={5}>
+                                    <TextLink href={route('password.request')} className="text-primary-600 text-xs hover:underline" tabIndex={5}>
                                         Lupa password?
                                     </TextLink>
                                 )}
                             </div>
-                            <div className="relative flex items-center rounded-lg border border-gray-300 bg-white shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
-                                <div className="px-3 text-indigo-500">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 relative flex items-center rounded-lg border border-gray-300 bg-white shadow-sm focus-within:ring-1">
+                                <div className="text-primary-500 px-3">
                                     <Lock size={18} />
                                 </div>
                                 <Input
@@ -114,7 +119,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute top-1/2 right-3 -translate-y-1/2 text-indigo-600 transition-colors hover:text-indigo-800"
+                                    className="text-primary-600 hover:text-primary-800 absolute top-1/2 right-3 -translate-y-1/2 transition-colors"
                                     aria-label={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
                                 >
                                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -140,7 +145,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                         {/* Submit */}
                         <Button
                             type="submit"
-                            className="w-full bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 active:bg-indigo-800"
+                            className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 active:bg-primary-800 w-full"
                             tabIndex={4}
                             disabled={processing}
                         >
@@ -163,7 +168,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                 <Button
                                     variant="outline"
                                     size="sm"
-                                    className="mx-auto flex items-center gap-1 text-xs text-indigo-600 hover:text-indigo-800"
+                                    className="text-primary-600 hover:text-primary-800 mx-auto flex items-center gap-1 text-xs"
                                 >
                                     <Info size={14} />
                                     Tips login aman
@@ -171,7 +176,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                             </DialogTrigger>
                             <DialogContent className="sm:max-w-md">
                                 <DialogHeader>
-                                    <DialogTitle className="font-semibold text-indigo-600">Tips Login Aman 🔒</DialogTitle>
+                                    <DialogTitle className="text-primary-600 font-semibold">Tips Login Aman 🔒</DialogTitle>
                                 </DialogHeader>
                                 <ul className="list-disc space-y-1 pl-5 text-sm text-gray-700">
                                     <li>Gunakan kombinasi huruf dan simbol.</li>
@@ -181,28 +186,6 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                             </DialogContent>
                         </Dialog>
                     </div>
-
-                    {/* Success popup */}
-                    {loginSuccess && (
-                        <Dialog open={loginSuccess} onOpenChange={setLoginSuccess}>
-                            <DialogContent className="animate-fadeIn rounded-2xl border-2 border-green-500 bg-green-50 text-center shadow-lg sm:max-w-sm">
-                                <DialogHeader>
-                                    <DialogTitle className="flex items-center justify-center gap-2 text-2xl font-bold text-green-700">
-                                        <CheckCircle2 size={28} className="animate-bounce" /> Login Berhasil!
-                                    </DialogTitle>
-                                </DialogHeader>
-                                <p className="mt-2 text-base text-green-800">Selamat datang kembali. Anda berhasil masuk.</p>
-                                <Button
-                                    className="mt-6 bg-green-600 hover:bg-green-700 focus:ring-green-500 active:bg-green-800"
-                                    onClick={() => setLoginSuccess(false)}
-                                >
-                                    Lanjutkan
-                                </Button>
-                            </DialogContent>
-                        </Dialog>
-                    )}
-
-                    {status && <div className="mt-3 text-center text-sm font-medium text-green-600">{status}</div>}
                 </div>
             </div>
         </div>

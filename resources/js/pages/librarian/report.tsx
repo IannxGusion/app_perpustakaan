@@ -3,9 +3,9 @@ import { Borrowing, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
 import DateRangePicker from '@/components/element/datepick';
+import { Log } from '@/components/element/log';
 import { Button } from '@/components/ui/button';
 import { Link } from '@inertiajs/react';
-import { Log } from '@/components/element/log';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

@@ -1,10 +1,13 @@
 import AppLogoIcon from '@/components/app-logo-icon';
 import { Footer } from '@/components/element/footer';
+import { MobileMenuToggle, MobileNav, NavLink } from '@/components/nav-component';
 import { type SharedData } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
+import { useState } from 'react';
 
 export default function Welcome() {
     const { auth } = usePage<SharedData>().props;
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
         <>
@@ -13,99 +16,59 @@ export default function Welcome() {
                 <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
             </Head>
 
-            <header>
-                <nav className="border-gray-200 bg-white px-4 py-2.5 lg:px-6 dark:bg-gray-800">
-                    <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
-                        <a href="https://flowbite.com" className="flex items-center">
-                            <AppLogoIcon className="h-15" />
-                            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Project Libary VI</span>
+            <header className="mb-10">
+                <nav className="relative border-b border-gray-200 bg-white px-4 py-3 shadow-sm sm:px-6 dark:border-gray-700 dark:bg-gray-900">
+                    <div className="mx-auto flex max-w-screen-xl items-center justify-between">
+                        {/* Logo */}
+                        <a href="/" className="flex items-center space-x-2">
+                            <AppLogoIcon className="h-10 w-10" />
+                            <span className="text-2xl font-bold tracking-tight text-gray-800 dark:text-white">Project Library VI</span>
                         </a>
 
-                        <div className="hidden w-full items-center justify-between lg:order-1 lg:flex lg:w-auto" id="mobile-menu-2">
-                            <ul className="mt-4 flex flex-col font-medium lg:mt-0 lg:flex-row lg:space-x-8">
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="bg-primary-700 lg:text-primary-700 block rounded py-2 pr-4 pl-3 text-white lg:bg-transparent lg:p-0 dark:text-white"
-                                        aria-current="page"
-                                    >
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#company"
-                                        className="lg:hover:text-primary-700 block border-b border-gray-100 py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 lg:border-0 lg:p-0 lg:hover:bg-transparent dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent lg:dark:hover:text-white"
-                                    >
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#rancang"
-                                        className="lg:hover:text-primary-700 block border-b border-gray-100 py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 lg:border-0 lg:p-0 lg:hover:bg-transparent dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent lg:dark:hover:text-white"
-                                    >
-                                        Marketplace
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="lg:hover:text-primary-700 block border-b border-gray-100 py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 lg:border-0 lg:p-0 lg:hover:bg-transparent dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent lg:dark:hover:text-white"
-                                    >
-                                        Features
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#team"
-                                        className="lg:hover:text-primary-700 block border-b border-gray-100 py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 lg:border-0 lg:p-0 lg:hover:bg-transparent dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent lg:dark:hover:text-white"
-                                    >
-                                        Team
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="lg:hover:text-primary-700 block border-b border-gray-100 py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 lg:border-0 lg:p-0 lg:hover:bg-transparent dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent lg:dark:hover:text-white"
-                                    >
-                                        Contact
-                                    </a>
-                                </li>
-                            </ul>
+                        {/* Desktop Nav */}
+                        <div className="hidden items-center space-x-8 lg:flex">
+                            <NavLink href="#" label="Home" active />
+                            <NavLink href="#company" label="Company" />
+                            <NavLink href="#rancang" label="Marketplace" />
+                            <NavLink href="#" label="Features" />
+                            <NavLink href="#team" label="Team" />
+                            <NavLink href="#" label="Contact" />
+                        </div>
 
-                            <nav className="ml-9 flex items-center justify-end gap-4">
-                                {auth.user ? (
-                                    <Link
-                                        href={route('dashboard')}
-                                        className="inline-block rounded-sm border border-[#19140035] px-36 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-white dark:hover:border-[#62605b]"
-                                    >
-                                        Dashboard
+                        {/* Actions (Auth Buttons) */}
+                        <div className="hidden items-center space-x-4 lg:flex">
+                            {auth.user ? (
+                                <Link
+                                    href={route('dashboard')}
+                                    className="rounded-md border border-gray-300 px-5 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 dark:border-gray-600 dark:text-white dark:hover:bg-gray-800"
+                                >
+                                    Dashboard
+                                </Link>
+                            ) : (
+                                <>
+                                    <Link href={route('login')} className="px-4 py-2 text-sm text-gray-800 hover:underline dark:text-white">
+                                        Log in
                                     </Link>
-                                ) : (
-                                    <>
-                                        <Link
-                                            href={route('login')}
-                                            className="inline-block rounded-sm border border-transparent px-19 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-white dark:hover:border-[#3E3E3A]"
-                                        >
-                                            Log in
-                                        </Link>
-                                        <Link
-                                            href={route('register')}
-                                            className="inline-block rounded-sm border border-[#19140035] px-12 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-white dark:hover:border-[#62605b]"
-                                        >
-                                            Daftar
-                                        </Link>
-                                    </>
-                                )}
-                            </nav>
+                                    <Link
+                                        href={route('register')}
+                                        className="bg-primary-800 hover:bg-primary-700 focus:ring-primary-500 rounded-md px-4 py-2 text-sm font-semibold text-white focus:ring-2 focus:ring-offset-2"
+                                    >
+                                        Daftar
+                                    </Link>
+                                </>
+                            )}
+                        </div>
+
+                        {/* Mobile Hamburger */}
+                        <div className="lg:hidden">
+                            <MobileMenuToggle onClick={() => setMobileMenuOpen(!mobileMenuOpen)} isOpen={mobileMenuOpen} />
                         </div>
                     </div>
+
+                    {/* Mobile Nav */}
+                    <MobileNav isAuthenticated={auth.user} isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
                 </nav>
             </header>
-
-            <br></br>
-            <br />
 
             <div className="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0">
                 <main className="flex w-full max-w-[335px] flex-col-reverse lg:max-w-4xl lg:flex-row">
