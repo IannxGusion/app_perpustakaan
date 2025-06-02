@@ -11,7 +11,7 @@ export function Footer() {
                             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Project Library VI</span>
                         </a>
                     </div>
-                    <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 sm:gap-6">
+                    <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 sm:gap-6">
                         <div>
                             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
                             <ul className="text-gray-600 dark:text-gray-400">
@@ -31,28 +31,13 @@ export function Footer() {
                             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
                             <ul className="text-gray-600 dark:text-gray-400">
                                 <li className="mb-4">
-                                    <a href="https://github.com/themesberg/flowbite" className="hover:underline">
+                                    <a href="https://github.com/Dirga36/app_perpustakaan.git" className="hover:underline">
                                         Github
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://discord.gg/4eeurUVvTy" className="hover:underline">
-                                        Discord
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
-                            <ul className="text-gray-600 dark:text-gray-400">
-                                <li className="mb-4">
-                                    <a href="#" className="hover:underline">
-                                        Privacy Policy
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="hover:underline">
-                                        Terms &amp; Conditions
+                                        WhatsApp
                                     </a>
                                 </li>
                             </ul>

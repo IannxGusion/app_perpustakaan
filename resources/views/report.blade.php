@@ -22,6 +22,15 @@
 
         {{-- Borrowings Table --}}
         <div class="w-full overflow-x-auto">
+            {{-- ...existing code... --}}
+            <div class="mb-6">
+                @if (isset($from) && isset($to))
+                    <div class="text-sm text-gray-600">
+                        Rentang tanggal: <strong>{{ $from }}</strong> s/d <strong>{{ $to }}</strong>
+                    </div>
+                @endif
+            </div>
+            {{-- ...existing code... --}}
             <x-data-table :headers="$tableHeaders['borrowings']">
                 @foreach ($borrowings as $borrowing)
                     <tr class="bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition">
@@ -43,7 +52,6 @@
             </x-data-table>
         </div>
     </div>
-
 
     <script type="text/javascript">
         window.print();

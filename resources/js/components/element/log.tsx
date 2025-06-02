@@ -1,10 +1,25 @@
 import * as React from 'react';
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import { Label } from "@/components/ui/label"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Borrowing } from '@/types'; // import type
+import { Borrowing } from '@/types';
+// import DateRangePicker from './datepick';
+import { Button } from '../ui/button';
+import { Link } from '@inertiajs/react';
+import { Input } from '../ui/input';
 
 export const description = 'An interactive area chart';
 
@@ -14,6 +29,9 @@ interface LogProps {
 
 export function Log({ borrowings }: LogProps) {
     const [timeRange, setTimeRange] = React.useState('90d');
+    const [customFromDate, setCustomFromDate] = React.useState<string>('');
+    const [customToDate, setCustomToDate] = React.useState<string>('');
+    const [openDialog, setOpenDialog] = React.useState(false);
 
     // Transform data: count Borrows and Returned per date
     const chartData = React.useMemo(() => {
@@ -28,19 +46,31 @@ export function Log({ borrowings }: LogProps) {
         return Array.from(map.values()).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
     }, [borrowings]);
 
-    const filteredData = chartData.filter((item) => {
-        const date = new Date(item.date);
-        const referenceDate = new Date();
-        let daysToSubtract = 90;
-        if (timeRange === '30d') {
-            daysToSubtract = 30;
-        } else if (timeRange === '7d') {
-            daysToSubtract = 7;
+    const filteredData = React.useMemo(() => {
+        if (timeRange === 'custom' && customFromDate && customToDate) {
+            const from = new Date(customFromDate);
+            const to = new Date(customToDate);
+            to.setHours(23, 59, 59, 999); // include the whole day
+            return chartData.filter((item) => {
+                const date = new Date(item.date);
+                return date >= from && date <= to;
+            });
+        } else {
+            const date = new Date();
+            let daysToSubtract = 90;
+            if (timeRange === '30d') {
+                daysToSubtract = 30;
+            } else if (timeRange === '7d') {
+                daysToSubtract = 7;
+            }
+            const startDate = new Date(date);
+            startDate.setDate(startDate.getDate() - daysToSubtract);
+            return chartData.filter((item) => {
+                const d = new Date(item.date);
+                return d >= startDate;
+            });
         }
-        const startDate = new Date(referenceDate);
-        startDate.setDate(startDate.getDate() - daysToSubtract);
-        return date >= startDate;
-    });
+    }, [chartData, timeRange, customFromDate, customToDate]);
 
     const chartConfig = {
         Borrows: {
@@ -53,15 +83,24 @@ export function Log({ borrowings }: LogProps) {
         },
     } satisfies ChartConfig;
 
+    // Handle custom date submit
+    const handleCustomDateSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (customFromDate && customToDate) {
+            setTimeRange('custom');
+            setOpenDialog(false);
+        }
+    };
+
     return (
         <Card className="pt-0">
-            <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
+            <CardHeader className="flex flex-col gap-2 space-y-3 border-b border-primary-50 py-5 sm:flex-row">
                 <div className="grid flex-1 gap-1">
                     <CardTitle>Area Chart - Interactive</CardTitle>
                     <CardDescription>Menampilkan total peminjaman berdasarkan status</CardDescription>
                 </div>
                 <Select value={timeRange} onValueChange={setTimeRange}>
-                    <SelectTrigger className="hidden w-[160px] rounded-lg sm:ml-auto sm:flex" aria-label="Select a value">
+                    <SelectTrigger className=" w-[160px] rounded-lg sm:ml-auto sm:flex" aria-label="Select a value">
                         <SelectValue placeholder="Last 3 months" />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl">
@@ -74,6 +113,60 @@ export function Log({ borrowings }: LogProps) {
                         <SelectItem value="7d" className="rounded-lg">
                             7 hari terakhir
                         </SelectItem>
+                        <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+                            <DialogTrigger asChild>
+                                <Button
+                                    variant="outline"
+                                    className="w-full"
+                                    type="button"
+                                    onClick={() => setOpenDialog(true)}
+                                >
+                                    Pilih rentang tanggal
+                                </Button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[425px]">
+                                <form onSubmit={handleCustomDateSubmit}>
+                                    <DialogHeader>
+                                        <DialogTitle>Pilih rentang waktu</DialogTitle>
+                                        <DialogDescription>
+                                            Pilih tanggal mulai dan akhir untuk filter data.
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <div className="grid gap-4 mt-5">
+                                        <div className="grid gap-3">
+                                            <Label htmlFor="from_date">Dari</Label>
+                                            <Input
+                                                id="from_date"
+                                                type="date"
+                                                value={customFromDate}
+                                                onChange={e => setCustomFromDate(e.target.value)}
+                                                max={customToDate || undefined}
+                                                required
+                                            />
+                                        </div>
+                                        <div className="grid gap-3">
+                                            <Label htmlFor="to_date">Hingga</Label>
+                                            <Input
+                                                id="to_date"
+                                                type="date"
+                                                value={customToDate}
+                                                onChange={e => setCustomToDate(e.target.value)}
+                                                min={customFromDate || undefined}
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                    <DialogFooter className='mt-4'>
+                                        <DialogClose asChild>
+                                            <Button variant="outline" type="button">Cancel</Button>
+                                        </DialogClose>
+                                        <Button type="submit" disabled={!customFromDate || !customToDate}>
+                                            Pilih
+                                        </Button>
+                                    </DialogFooter>
+                                </form>
+                            </DialogContent>
+                        </Dialog>
                     </SelectContent>
                 </Select>
             </CardHeader>
@@ -125,6 +218,20 @@ export function Log({ borrowings }: LogProps) {
                     </AreaChart>
                 </ChartContainer>
             </CardContent>
+
+            <CardFooter className="flex justify-end mt-4 border-t border-primary-50">
+                <Button asChild className="bg-primary text h-full rounded text-white">
+                    <Link
+                        target="_blank"
+                        href={route('librarian.report.download', {
+                            from: timeRange === 'custom' ? customFromDate : filteredData[0]?.date,
+                            to: timeRange === 'custom' ? customToDate : filteredData[filteredData.length - 1]?.date,
+                        })}
+                    >
+                        Buat Laporan
+                    </Link>
+                </Button>
+            </CardFooter>
         </Card>
     );
 }

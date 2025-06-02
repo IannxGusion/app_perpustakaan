@@ -9,12 +9,24 @@ class ReportController extends Controller
 {
     public function librarianReport()
     {
-        $books = Book::with('categories')->latest()->get();
-        $borrowings = Borrowing::with(['book'])->latest()->get();
+        $from = request('from');
+        $to = request('to');
 
-        return View('report', [
+        $query = \App\Models\Borrowing::with(['book']);
+
+        if ($from && $to) {
+            $query->whereDate('created_at', '>=', $from)
+                ->whereDate('created_at', '<=', $to);
+        }
+
+        $books = \App\Models\Book::with('categories')->latest()->get();
+        $borrowings = $query->latest()->get();
+
+        return view('report', [
             'books' => $books,
             'borrowings' => $borrowings,
+            'from' => $from,
+            'to' => $to,
         ]);
     }
 

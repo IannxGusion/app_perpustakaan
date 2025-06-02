@@ -36,18 +36,16 @@
                         <span class="font-semibold">Tanggal Terbit:</span>
                         <input type="date" name='publication_date' class="border" placeholder="publication_date">
                     </div>
-                    @foreach($categories as $idx => $category)
-                    <label class="flex items-center gap-2">
-                        <input type="checkbox" name="category_ids[]" value="{{ $category->id }}"
-                            @if(isset($book) && $book->categories && $book->categories->contains('id', $category->id))
-                                checked
+                    <span class="font-semibold">Kategori:</span>
+                    @foreach ($categories as $idx => $category)
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" name="category_ids[]" value="{{ $category->id }}"
+                                @if (isset($book) && $book->categories && $book->categories->contains('id', $category->id)) checked
                             @elseif((!isset($book) || !$book->categories || $book->categories->isEmpty()) && $idx === 0)
-                                checked
-                            @endif
-                            @if($idx === 0) required @endif
-                        >
-                        <span>{{ $category->name }}</span>
-                    </label>
+                                checked @endif
+                                @if ($idx === 0) required @endif>
+                            <span>{{ $category->name }}</span>
+                        </label>
                     @endforeach
                 </div>
             </div>
