@@ -81,12 +81,19 @@ export default function Edit({ book, categories = [] }: EditProps) {
                         <div>
                             <Label htmlFor="category_ids">Kategori</Label>
                             <div className="flex flex-col gap-2">
-                                {categories.map((category) => (
+                                {categories.map((category, idx) => (
                                     <label key={category.id} className="flex items-center gap-2">
                                         <Checkbox
                                             name="category_ids[]"
                                             value={category.id}
-                                            defaultChecked={book.categories.some((c: { id: number; }) => c.id === category.id)}
+                                            defaultChecked={
+                                                (Array.isArray(book.categories) && book.categories.some((c) => c.id === category.id)) ||
+                                                (
+                                                    // If no categories are checked, check the first one by default
+                                                    (!Array.isArray(book.categories) || book.categories.length === 0) && idx === 0
+                                                )
+                                            }
+                                            required={idx === 0}
                                         />
                                         <span>{category.name}</span>
                                     </label>

@@ -57,6 +57,9 @@ Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(funct
     Route::get('work', [BorrowingController::class, 'librarianIndex'])->name('librarian.borrowings.index');
     Route::delete('work/borrowings/{id}', [BorrowingController::class, 'librarianDelete'])->name('librarian.borrowings.delete');
 
+    Route::get('/management/import', [BookController::class, 'import'])->name('books.import');
+    Route::post('/management', [BookController::class, 'add'])->name('books.add');
+
     Route::get('report', [ReportController::class, 'librarianChart'])->name('report');
     Route::get('report/download', [ReportController::class, 'librarianReport'])->name('librarian.report.download');
 
@@ -76,10 +79,8 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 
     Route::get('/crud_books', [BookController::class, 'adminIndex'])->name('admin.books.index');
 
-    Route::get('/crud_books/add', function () {
-        return view('add');
-    })->name('admin.books.import');
-    Route::get('/crud_books/add', [BookController::class, 'add'])->name('admin.books.add');
+    Route::get('/crud_books/import', [BookController::class, 'import'])->name('books.import');
+    Route::post('/crud_books', [BookController::class, 'add'])->name('books.add');
 
     Route::get('/crud_books/{id}', [BookController::class, 'adminDelete'])->name('admin.books.delete');
 

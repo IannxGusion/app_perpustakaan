@@ -22,12 +22,12 @@ export default function Dashboard({ ...props }: { books: Book[]; categories: Cat
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard Admin" />
 
-            <div className="min-h-screen bg-gray-50 p-6 text-gray-900">
+            <div className="min-h-screen bg-gray-50 p-6 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
                 <div className="mx-auto max-w-7xl space-y-8">
                     {/* Header */}
                     <header>
                         <h1 className="mb-2 text-4xl font-bold">Dashboard Admin</h1>
-                        <p className="text-gray-600">Monitor kinerja sistem dan aktivitas terkini.</p>
+                        <p className="text-gray-600 dark:text-gray-300">Monitor kinerja sistem dan aktivitas terkini.</p>
                     </header>
 
                     {/* Summary Cards */}
@@ -40,35 +40,35 @@ export default function Dashboard({ ...props }: { books: Book[]; categories: Cat
                     {/* Main Content Grid */}
                     <section className="grid gap-6 md:grid-cols-3">
                         {/* Left: Donut Chart */}
-                        <div className="rounded-2xl bg-white p-6 shadow-lg">
+                        <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800 dark:shadow-white">
                             <h2 className="mb-4 text-xl font-semibold">Distribusi Buku</h2>
                             <Donut books={books} />
                         </div>
 
                         {/* Middle: Latest Books */}
-                        <div className="rounded-2xl bg-white p-6 shadow-lg">
+                        <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800 dark:shadow-white">
                             <h2 className="mb-4 text-xl font-semibold">📖 Buku Terbaru</h2>
                             <ul className="scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-transparent max-h-[280px] space-y-3 overflow-y-auto">
                                 {latestBooks.map((book, i) => (
-                                    <li key={i} className="cursor-pointer rounded-md bg-blue-50 p-3 transition hover:bg-blue-100">
+                                    <li key={i} className="cursor-pointer rounded-md bg-blue-50 p-3 transition hover:bg-blue-100 dark:bg-blue-900 dark:hover:bg-blue-800">
                                         <p className="font-semibold">{book.title}</p>
-                                        <p className="text-sm text-gray-600">{book.author}</p>
+                                        <p className="text-sm text-gray-600 dark:text-gray-300">{book.author}</p>
                                     </li>
                                 ))}
                             </ul>
                         </div>
 
                         {/* Right: Activity Feed */}
-                        <div className="flex flex-col rounded-2xl bg-white p-6 shadow-lg">
+                        <div className="flex flex-col rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800 dark:shadow-white">
                             <h2 className="mb-4 text-xl font-semibold">🕒 Aktivitas Terbaru</h2>
                             <ul className="scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-transparent max-h-[280px] flex-1 space-y-2 overflow-y-auto">
                                 {activities.map((act, i) => (
-                                    <li key={i} className="rounded-md bg-blue-50 p-3">
+                                    <li key={i} className="rounded-md bg-blue-50 p-3 dark:bg-blue-900">
                                         {act}
                                     </li>
                                 ))}
                             </ul>
-                            <button className="mt-4 self-end rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700">
+                            <button className="mt-4 self-end rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800">
                                 Lihat Semua
                             </button>
                         </div>
@@ -77,13 +77,13 @@ export default function Dashboard({ ...props }: { books: Book[]; categories: Cat
                     {/* Bottom Section */}
                     <section className="grid gap-6 md:grid-cols-2">
                         {/* Multiple Component */}
-                        <div className="rounded-2xl bg-white p-6 shadow-lg">
+                        <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800 dark:shadow-gray-900">
                             <h2 className="mb-4 text-xl font-semibold">Multi Actions</h2>
                             <Multiple />
                         </div>
 
                         {/* Carousel */}
-                        <div className="rounded-2xl bg-white p-6 shadow-lg">
+                        <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800 dark:shadow-gray-900">
                             <h2 className="mb-4 text-xl font-semibold">Informasi / Promo</h2>
                             <CarouselPlugin />
                         </div>
@@ -96,11 +96,11 @@ export default function Dashboard({ ...props }: { books: Book[]; categories: Cat
 
 function StatCard({ title, value, icon }: { title: string; value: string; icon: string }) {
     return (
-        <div className="flex cursor-default items-center gap-4 rounded-xl bg-white p-5 shadow-lg transition hover:shadow-xl">
+        <div className="flex cursor-default items-center gap-4 rounded-xl bg-white p-5 shadow-lg transition hover:shadow-xl dark:bg-gray-800 dark:shadow-white">
             <div className="text-4xl">{icon}</div>
             <div>
-                <p className="text-sm font-medium text-gray-500">{title}</p>
-                <p className="text-2xl font-bold text-gray-900">{value}</p>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-300">{title}</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{value}</p>
             </div>
         </div>
     );

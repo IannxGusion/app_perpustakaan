@@ -11,10 +11,7 @@ export default function Welcome() {
 
     return (
         <>
-            <Head title="Welcome">
-                <link rel="preconnect" href="https://fonts.bunny.net" />
-                <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-            </Head>
+            <Head title="Welcome" />
 
             <header className="mb-10">
                 <nav className="relative border-b border-gray-200 bg-white px-4 py-3 shadow-sm sm:px-6 dark:border-gray-700 dark:bg-gray-900">
@@ -28,11 +25,9 @@ export default function Welcome() {
                         {/* Desktop Nav */}
                         <div className="hidden items-center space-x-8 lg:flex">
                             <NavLink href="#" label="Home" active />
-                            <NavLink href="#company" label="Company" />
-                            <NavLink href="#rancang" label="Marketplace" />
-                            <NavLink href="#" label="Features" />
-                            <NavLink href="#team" label="Team" />
-                            <NavLink href="#" label="Contact" />
+                            <NavLink href="#learn" label="Learn" />
+                            <NavLink href="#feature" label="Features" />
+                            <NavLink href="#sponsor" label="Sponsor" />
                         </div>
 
                         {/* Actions (Auth Buttons) */}
@@ -160,24 +155,8 @@ export default function Welcome() {
                 </main>
             </div>
 
-            <section id="company" className="bg-primary/85 mt-20 mb-10 dark:bg-gray-900">
+            <section id="learn" className="bg-primary/85 pt-20 h-screen mt-20 mb-10 dark:bg-gray-900">
                 <div className="mx-auto max-w-screen-xl px-4 py-8 text-center lg:px-12 lg:py-16">
-                    <a
-                        href="#"
-                        className="bg-primary mb-7 inline-flex items-center justify-between rounded-full px-1 py-1 pr-4 text-sm text-gray-700 hover:bg-black dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
-                        role="alert"
-                    >
-                        <span className="bg-primary-600 mr-3 rounded-full px-4 py-1.5 text-xs text-white">New</span>{' '}
-                        <span className="text-sm font-medium text-white">Yes iam</span>
-                        <svg className="ml-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                fillRule="evenodd"
-                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                clipRule="evenodd"
-                            ></path>
-                        </svg>
-                    </a>
-
                     <h1 className="mb-4 text-4xl leading-none font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl dark:text-white">
                         “Jelajahi Dunia Melalui Buku”
                     </h1>
@@ -203,7 +182,7 @@ export default function Welcome() {
                 </div>
             </section>
 
-            <section id="rancang" className="bg-white dark:bg-gray-900">
+            <section id="feature" className="bg-white dark:bg-gray-900">
                 <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-16 lg:px-6">
                     <div className="mb-8 max-w-screen-md lg:mb-16">
                         <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
@@ -340,8 +319,7 @@ export default function Welcome() {
                 </div>
             </section>
 
-            <div id="team" className="hidden h-14.5 lg:block"></div>
-            <section className="bg-white dark:bg-gray-900">
+            <section id="sponsor" className="bg-white dark:bg-gray-900">
                 <div className="mx-auto max-w-screen-xl px-4 py-8 lg:py-16">
                     <h2 className="mb-10 text-center text-3xl leading-tight font-extrabold tracking-tight text-gray-900 md:text-4xl dark:text-white">
                         Disponsori Oleh

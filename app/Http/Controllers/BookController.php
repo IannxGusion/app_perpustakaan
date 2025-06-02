@@ -35,17 +35,28 @@ class BookController extends Controller
     }
 
     /**
-     * Import books from a JSON file. (current manual input) public function import(){} 
+     * Import books from a JSON file. (current manual input)
      */
-    
+    public function import()
+    {
+        $categories = Category::all();
+
+        return view('add', [
+            'categories' => $categories,
+        ]);
+    }
+
     public function add(Request $request)
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-            'publisher' => 'required|string|max:255',
+            'author' => 'required|string|max:50',
+            'publisher' => 'required|string|max:50',
             'publication_date' => 'required|date',
             'content' => 'required|string',
+            'cover' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            //'category_ids' => 'nullable|array',
+            //'category_ids.*' => 'exists:categories,id',
         ]);
 
         $book = new Book();
@@ -54,7 +65,20 @@ class BookController extends Controller
         $book->publisher = $request->publisher;
         $book->publication_date = $request->publication_date;
         $book->content = $request->content;
+
+        $book->status = 'Available';
+        $book->collected = 'No';
+
+        if ($request->hasFile('cover')) {
+            $imagePath = $request->file('cover')->store('covers', 'public');
+            $book->cover = $imagePath;
+        }
+
         $book->save();
+
+        if ($request->has('category_ids')) {
+            $book->categories()->sync($request->category_ids);
+        }
 
         return redirect()->back()->with('success', 'Book added successfully.');
     }
@@ -219,7 +243,7 @@ class BookController extends Controller
             $book->categories()->sync($request->category_ids);
         }
 
-        return redirect()->route('librarian.books.index');
+        return redirect()->route('admin.books.index');
     }
 
     /**

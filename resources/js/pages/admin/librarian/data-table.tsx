@@ -12,27 +12,25 @@ import {
     getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table';
-import { ChevronDown, MoreHorizontal } from 'lucide-react';
+import { ChevronDown, MoreHorizontal, Plus } from 'lucide-react';
 import * as React from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import {
-    DropdownMenu,
-    DropdownMenuCheckboxItem,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 import CSRF from '@/components/element/csrf';
+import TableInfo from '@/components/element/table-info';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import type { User } from '@/types';
+import type { Book } from '@/types';
+import { Link } from '@inertiajs/react';
 
-export const columns: ColumnDef<User>[] = [
+import Category from '@/components/element/category';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { ScrollArea } from '@/components/ui/scroll-area';
+
+export const columns: ColumnDef<Book>[] = [
     {
         id: 'select',
         header: ({ table }) => (
@@ -54,123 +52,125 @@ export const columns: ColumnDef<User>[] = [
         cell: ({ row }) => <div className="font-medium">{row.getValue('id')}</div>,
     },
     {
-        accessorKey: 'name',
-        header: 'Nama',
-        cell: ({ row }) => <div className="text-lg font-extrabold">{row.getValue('name')}</div>,
+        accessorKey: 'title',
+        header: 'Judul',
+        cell: ({ row }) => <div className="text-lg font-extrabold">{row.getValue('title')}</div>,
     },
     {
-        accessorKey: 'avatar',
-        header: 'Avatar',
-        cell: ({ row }) => <div>{row.getValue('avatar')}</div>,
+        accessorKey: 'category',
+        header: 'Kategori',
+        cell: ({ row }) => {
+            let categories = row.original.categories;
+            if (!categories || (Array.isArray(categories) && categories.length === 0)) {
+                categories = {
+                    id: 0,
+                    name: 'Anonymous',
+                    colour: 'gray',
+                    icon: '',
+                };
+            }
+            return <Category categories={Array.isArray(categories) ? categories : [categories]} />;
+        },
     },
     {
-        accessorKey: 'email',
-        header: 'E-mail',
-        cell: ({ row }) => <div>{row.getValue('email')}</div>,
+        accessorKey: 'cover',
+        header: 'Sampul',
+        cell: ({ row }) => {
+            const book = row.original;
+            return (
+                <img
+                    src={`/storage/${book.cover}`}
+                    alt={row.getValue('title')}
+                    className="h-full w-full border border-slate-700 dark:border-slate-300"
+                />
+            );
+        },
     },
     {
-        accessorKey: 'created_at',
-        header: 'Dibuat',
-        cell: ({ row }) => <div>{row.getValue('created_at')}</div>,
+        accessorKey: 'author',
+        header: 'Penulis',
+        cell: ({ row }) => <div>{row.getValue('author')}</div>,
     },
     {
-        accessorKey: 'updated_at',
-        header: 'Diperbarui',
-        cell: ({ row }) => <div>{row.getValue('updated_at')}</div>,
+        accessorKey: 'publisher',
+        header: 'Penerbit',
+        cell: ({ row }) => <div>{row.getValue('publisher')}</div>,
     },
     {
-        accessorKey: 'email_verified_at',
-        header: 'Terverivikasi pada',
-        cell: ({ row }) => <div>{row.getValue('email_verified_at')}</div>,
+        accessorKey: 'publication_date',
+        header: 'Tanggal Terbit',
+        cell: ({ row }) => <div>{row.getValue('publication_date')}</div>,
+    },
+    {
+        accessorKey: 'status',
+        header: 'Status',
+        cell: ({ row }) => <div className="font-bold underline">{row.getValue('status')}</div>,
     },
     {
         id: 'actions',
         enableHiding: false,
         cell: ({ row }) => {
-            const user = row.original;
+            const book = row.original;
 
             return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-
-                        <DropdownMenuItem onClick={() => navigator.clipboard.writeText(String(user.id))} className="underline">
-                            Copy book ID
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-
-                        <DropdownMenuItem>
-                            <Table className="min-w-full border border-gray-300">
-                                <TableBody>
-                                    <TableRow className="border-b border-gray-300">
-                                        <TableCell className="px-4 py-2 font-medium text-gray-700">Nama</TableCell>
-                                        <TableCell className="px-4 py-2 text-gray-900">{user.name}</TableCell>
-                                    </TableRow>
-                                    <TableRow className="border-b border-gray-300">
-                                        <TableCell className="px-4 py-2 font-medium text-gray-700">E-mail</TableCell>
-                                        <TableCell className="px-4 py-2 text-gray-900">{user.email}</TableCell>
-                                    </TableRow>
-                                    <TableRow className="border-b border-gray-300">
-                                        <TableCell className="px-4 py-2 font-medium text-gray-700">Avatar</TableCell>
-                                        <TableCell className="px-4 py-2 text-gray-900">{user.avatar}</TableCell>
-                                    </TableRow>
-                                    <TableRow className="border-b border-gray-300">
-                                        <TableCell className="px-4 py-2 font-medium text-gray-700">E-mail</TableCell>
-                                        <TableCell className="px-4 py-2 text-gray-900">{user.email}</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell className="px-4 py-2 font-medium text-gray-700">Dibuat</TableCell>
-                                        <TableCell className="px-4 py-2 text-gray-900">{user.created_at}</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell className="px-4 py-2 font-medium text-gray-700">Diperbarui</TableCell>
-                                        <TableCell className="px-4 py-2 text-gray-900">{user.updated_at}</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell className="px-4 py-2 font-medium text-gray-700">Terverivikasi pada</TableCell>
-                                        <TableCell className="px-4 py-2 text-gray-900">{user.email_verified_at}</TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-
-                        <DropdownMenuItem>
-                            <Button className="w-full" variant={'outline'}>
-                                Edit
+                <div className="flex">
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <Button variant="ghost" className="h-8 w-8 p-0">
+                                <span className="sr-only">Open menu</span>
+                                <MoreHorizontal />
                             </Button>
-                        </DropdownMenuItem>
+                        </DialogTrigger>
 
-                        <DropdownMenuItem>
-                            <form action={route('librarian.remove', user['id'])} method="DELETE" className="w-full">
-                                <CSRF />
+                        <DialogContent className="p-5">
+                            <ScrollArea className="mt-5 h-[500px] border-t-2 border-b-2 p-5">
+                                <DialogHeader className="pt-2">
+                                    <DialogTitle>Aksi Buku</DialogTitle>
+                                    <DialogDescription>Pilih aksi untuk buku ini.</DialogDescription>
+                                </DialogHeader>
 
-                                <Button className="w-full" type="submit" variant={'destructive'}>
-                                    Hapus
-                                </Button>
-                            </form>
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                                <div className="space-y-2">
+                                    <Button
+                                        variant="ghost"
+                                        className="w-full justify-start underline"
+                                        onClick={() => {
+                                            navigator.clipboard.writeText(String(book.id));
+                                        }}
+                                    >
+                                        Copy book ID
+                                    </Button>
+
+                                    <div className="@container/main flex flex-1 flex-col gap-2">
+                                        <TableInfo book={book} />
+                                    </div>
+
+                                    <Button asChild className="w-full" variant="outline">
+                                        <Link href={route('admin.books.edit', [book.id])}>Edit</Link>
+                                    </Button>
+                                    <form action={route('admin.books.delete', book['id'])} method="DELETE" className="w-full">
+                                        <CSRF />
+                                        <Button className="w-full" type="submit" variant="destructive">
+                                            Hapus
+                                        </Button>
+                                    </form>
+                                </div>
+                            </ScrollArea>
+                        </DialogContent>
+                    </Dialog>
+                </div>
             );
         },
     },
 ];
 
-export function DataTable({ users }: { users: User[] }) {
+export function DataTable({ books }: { books: Book[] }) {
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
     const [rowSelection, setRowSelection] = React.useState({});
 
     const table = useReactTable({
-        data: users,
+        data: books,
         columns,
         onSortingChange: setSorting,
         onColumnFiltersChange: setColumnFilters,
@@ -190,32 +190,42 @@ export function DataTable({ users }: { users: User[] }) {
 
     return (
         <div className="w-full">
-            <div className="flex items-center py-4">
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="ml-auto">
-                            Kolom <ChevronDown />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        {table
-                            .getAllColumns()
-                            .filter((column) => column.getCanHide())
-                            .map((column) => {
-                                return (
-                                    <DropdownMenuCheckboxItem
-                                        key={column.id}
-                                        className="capitalize"
-                                        checked={column.getIsVisible()}
-                                        onCheckedChange={(value) => column.toggleVisibility(!!value)}
-                                    >
-                                        {column.id}
-                                    </DropdownMenuCheckboxItem>
-                                );
-                            })}
-                    </DropdownMenuContent>
-                </DropdownMenu>
+            <div className="flex justify-end space-x-2 py-4">
+                <Button variant={'outline'}>
+                    <Link target="_blank" href={route('admin.books.import')}>
+                        Tambah
+                    </Link>
+                    <Plus />
+                </Button>
+
+                <div>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline" className="ml-auto">
+                                Kolom <ChevronDown />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            {table
+                                .getAllColumns()
+                                .filter((column) => column.getCanHide())
+                                .map((column) => {
+                                    return (
+                                        <DropdownMenuCheckboxItem
+                                            key={column.id}
+                                            className="capitalize"
+                                            checked={column.getIsVisible()}
+                                            onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                                        >
+                                            {column.id}
+                                        </DropdownMenuCheckboxItem>
+                                    );
+                                })}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
             </div>
+
             <div className="rounded-md border">
                 <Table>
                     <TableHeader>
