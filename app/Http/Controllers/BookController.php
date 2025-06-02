@@ -55,8 +55,8 @@ class BookController extends Controller
             'publication_date' => 'required|date',
             'content' => 'required|string',
             'cover' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            //'category_ids' => 'nullable|array',
-            //'category_ids.*' => 'exists:categories,id',
+            // 'category_ids' => 'nullable|array',
+            // 'category_ids.*' => 'exists:categories,id',
         ]);
 
         $book = new Book;
