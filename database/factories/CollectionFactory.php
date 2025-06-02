@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class CollectionFactory extends Factory
 {
     protected $model = \App\Models\Collection::class;
+
     /**
      * Define the model's default state.
      *
