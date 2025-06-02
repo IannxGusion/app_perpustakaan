@@ -59,7 +59,7 @@ class BookController extends Controller
             //'category_ids.*' => 'exists:categories,id',
         ]);
 
-        $book = new Book();
+        $book = new Book;
         $book->title = $request->title;
         $book->author = $request->author;
         $book->publisher = $request->publisher;
