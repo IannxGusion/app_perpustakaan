@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class BorrowingFactory extends Factory
 {
     protected $model = \App\Models\Borrowing::class;
+
     /**
      * Define the model's default state.
      *

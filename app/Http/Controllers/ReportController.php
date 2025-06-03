@@ -19,13 +19,13 @@ class ReportController extends Controller
         }
 */
         $books = \App\Models\Book::with('categories')->latest()->get();
-        $borrowings = /*$query->latest()->get();*/ Borrowing::all();
+        $borrowings = /* $query->latest()->get(); */ Borrowing::all();
 
         return view('report', [
             'books' => $books,
             'borrowings' => $borrowings,
-            //'from' => $from,
-            //'to' => $to,
+            // 'from' => $from,
+            // 'to' => $to,
         ]);
     }
 

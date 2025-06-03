@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class ReviewFactory extends Factory
 {
     protected $model = Review::class;
+
     /**
      * Define the model's default state.
      *

@@ -91,6 +91,9 @@
     "vite": "^6.0",
     "zod": "^3.25.12"
   },
+  "overrides": {
+    "react-is": "^19.0.0-rc-69d4b800-20241021"
+  },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.9.5",
     "@tailwindcss/oxide-linux-x64-gnu": "^4.0.1",
