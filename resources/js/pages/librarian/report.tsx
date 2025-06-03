@@ -2,7 +2,7 @@ import AppLayout from '@/pages/librarian/layer/user-layout';
 import { Borrowing, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
-import { Log } from '@/components/element/log';
+import Log from '@/components/element/log';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -29,7 +29,7 @@ export default function Dashboard({ ...props }: { borrowings: Borrowing[] }) {
             </section>
 
             <div className="space-y-2.5 p-5">
-                <Log />
+                <Log borrowings={borrowings}/>
             </div>
         </AppLayout>
     );
