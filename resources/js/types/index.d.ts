@@ -48,6 +48,7 @@ export interface Categories {
     [x: string]: unknown;
     id: number;
     name: string;
+    description: string;
     colour: string;
     icon: string;
 }

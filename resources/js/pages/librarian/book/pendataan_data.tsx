@@ -192,7 +192,7 @@ export function DataTable({ books }: { books: Book[] }) {
         <div className="w-full">
             <div className="flex justify-end space-x-2 py-4">
                 <Button variant={'outline'}>
-                    <Link target="_blank" href={route('books.import')}>
+                    <Link target="_blank" href={route('librarian.books.import')}>
                         Tambah
                     </Link>
                     <Plus />

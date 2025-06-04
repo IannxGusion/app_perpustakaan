@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <form action={{ route('books.add') }} method="POST" enctype="multipart/form-data">
+    <form action="{{ auth()->user()->role === 'admin' ? route('admin.books.add') : (auth()->user()->role === 'pustakawan' ? route('librarian.books.add') : '#') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="max-w-3xl mx-auto p-8">

@@ -55,14 +55,13 @@ Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(funct
     Route::get('work', [BorrowingController::class, 'librarianIndex'])->name('librarian.borrowings.index');
     Route::get('work/borrowings/{id}', [BorrowingController::class, 'librarianDelete'])->name('librarian.borrowings.delete');
 
-    Route::get('/management/import', [BookController::class, 'import'])->name('books.import');
-    Route::post('/management', [BookController::class, 'add'])->name('books.add');
-
     Route::get('report', [ReportController::class, 'librarianChart'])->name('report');
     Route::get('report/download', [ReportController::class, 'librarianReport'])->name('librarian.report.download');
 
     Route::get('management', [BookController::class, 'librarianIndex'])->name('librarian.books.index');
-    Route::post('management/books/import', [BookController::class, 'import'])->name('librarian.books.import');
+
+    Route::get('management/import', [BookController::class, 'librarianImport'])->name('librarian.books.import');
+    Route::post('/management', [BookController::class, 'librarianAdd'])->name('librarian.books.add');
 
     Route::get('management/books/{id}', [BookController::class, 'librarianDelete'])->name('librarian.books.delete');
 
@@ -77,8 +76,8 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 
     Route::get('/crud_books', [BookController::class, 'adminIndex'])->name('admin.books.index');
 
-    Route::get('/crud_books/import', [BookController::class, 'import'])->name('books.import');
-    Route::post('/crud_books', [BookController::class, 'add'])->name('books.add');
+    Route::get('/crud_books/import', [BookController::class, 'adminImport'])->name('admin.books.import');
+    Route::post('/crud_books', [BookController::class, 'adminAdd'])->name('admin.books.add');
 
     Route::get('/crud_books/{id}', [BookController::class, 'adminDelete'])->name('admin.books.delete');
 
@@ -96,5 +95,5 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 });
 // *Admin* ==================================================================================
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';

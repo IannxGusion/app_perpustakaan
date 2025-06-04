@@ -18,7 +18,7 @@ export default function Category({ categories }: { categories: Categories[] }) {
                             </Badge>
                         </TooltipTrigger>
                         <TooltipContent>
-                            <p>{category.name}</p>
+                            <p>{category.description}</p>
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>

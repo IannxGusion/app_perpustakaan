@@ -2,6 +2,7 @@ import * as React from "react"
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
 
 import { cn } from "@/lib/utils"
+//import { usePage } from "@inertiajs/react"
 
 function Avatar({
   className,
@@ -36,12 +37,18 @@ function AvatarFallback({
   className,
   ...props
 }: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+  //const page = usePage<SharedData>();
+  //const { auth } = page.props;
+
   return (
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
       className={cn(
         "bg-muted flex size-full items-center justify-center rounded-full",
-        className
+        //auth.user.role === "ADMIN" && "bg-red-400 dark:bg-red-700",
+        //auth.user.role === "PUSTAKAWAN" && "bg-green-400 dark:bg-green-700",
+        //auth.user.role === "PEMIJAM" && "bg-blue-400 dark:bg-blue-700",                                        >
+      className
       )}
       {...props}
     />

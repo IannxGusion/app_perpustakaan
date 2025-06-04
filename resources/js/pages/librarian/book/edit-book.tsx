@@ -38,7 +38,7 @@ export default function Edit({ book, categories = [] }: EditProps) {
                     <TableInfo book={book} />
                 </CardHeader>
 
-                <form action={route('admin.books.update', book.id)} method="POST" encType="multipart/form-data">
+                <form action={route('librarian.books.update', book.id)} method="POST" encType="multipart/form-data">
                     <CSRF />
                     <input type="hidden" name="_method" value="PUT" />
 
