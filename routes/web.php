@@ -22,9 +22,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', [BookController::class, 'highlight'])->name('dashboard');
 
     // static ------------
     Route::get('dashboard/details1/{id}', [BookController::class, 'details1'])->name('books.detail1');

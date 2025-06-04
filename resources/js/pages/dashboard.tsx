@@ -1,10 +1,11 @@
 import AppLayout from '@/layouts/user-layout';
-import { type BreadcrumbItem } from '@/types';
+import { Book, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
 // element
 import Highlight from '@/components/element/highlight';
 import Search from '@/components/element/search';
+import Heading from '@/components/heading';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -13,7 +14,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Dashboard() {
+export default function Dashboard({ ...props }: { books: Book[] }) {
+    const { books } = props;
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
@@ -28,7 +30,12 @@ export default function Dashboard() {
                 <h1 className="mb-2 text-4xl font-bold">Halaman Utama</h1>
                 <Search />
             </section>
-            <Highlight />
+
+            <main className='px-4'>
+                <Heading title='Top readings' description='Buku-buku yang paling sering dibaca saat ini.' />
+                <Highlight books={books} />
+            </main>
+
         </AppLayout>
     );
 }

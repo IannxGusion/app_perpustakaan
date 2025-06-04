@@ -15,10 +15,21 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::with('categories')->get();
+        $books = Book::with('categories')->inRandomOrder()->get();
         $categories = Category::all();
 
         return Inertia('books', compact('books', 'categories'));
+    }
+    
+    /**
+     * Display a listing of the books (HIGHLIGHTED).
+     */
+    public function highlight()
+    {
+        $books = Book::with('categories')->latest()->take(3)->get();
+        $categories = Category::all();
+
+        return Inertia('dashboard', compact('books', 'categories'));
     }
 
     /**
