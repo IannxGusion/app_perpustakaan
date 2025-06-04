@@ -42,7 +42,7 @@ export default function Login({ canResetPassword }: LoginProps) {
 
     return (
         <div
-            className="relative min-h-screen w-full bg-cover bg-center py-32"
+            className="relative min-h-screen w-full bg-cover bg-center py-32 dark:text-white"
             style={{
                 backgroundColor: '#ffffff',
                 backgroundImage:
@@ -52,7 +52,7 @@ export default function Login({ canResetPassword }: LoginProps) {
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
             <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
-                <div className="w-full max-w-md space-y-3 rounded-2xl bg-white/90 p-8 shadow-lg backdrop-blur-md">
+                <div className="w-full max-w-md space-y-3 rounded-2xl p-8 shadow-lg dark:bg-black">
                     <Head title="Login" />
 
                     {/* Logo */}
@@ -60,17 +60,17 @@ export default function Login({ canResetPassword }: LoginProps) {
                         <AppLogoIcon className="h-40 w-40 animate-pulse" />
                     </div>
 
-                    <h1 className="text-center text-2xl font-bold text-gray-900">Log in ke akun Anda</h1>
-                    <p className="mb-5 text-center text-sm text-gray-600">Masukkan email dan password Anda untuk log in</p>
+                    <h1 className="text-center text-2xl font-bold">Log in ke akun Anda</h1>
+                    <p className="mb-5 text-center text-sm">Masukkan email dan password Anda untuk log in</p>
 
                     <form className="flex flex-col gap-4" onSubmit={submit}>
                         {/* Email */}
                         <div>
-                            <Label htmlFor="email" className="mb-1 block font-semibold text-gray-700">
+                            <Label htmlFor="email" className="mb-1 block font-semibold">
                                 Email address
                             </Label>
-                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border border-gray-300 bg-white shadow-sm focus-within:ring-1">
-                                <div className="text-primary-500 px-3">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white dark:bg-black dark:border-2 dark:border-white shadow-sm focus-within:ring-1">
+                                <div className="px-3">
                                     <Mail size={18} />
                                 </div>
                                 <Input
@@ -81,7 +81,7 @@ export default function Login({ canResetPassword }: LoginProps) {
                                     tabIndex={1}
                                     autoComplete="email"
                                     placeholder="email@example.com"
-                                    className="rounded-r-lg border-none focus:ring-0"
+                                    className="rounded-l-none border-none focus:ring-0"
                                     value={data.email}
                                     onChange={(e) => setData('email', e.target.value)}
                                 />
@@ -92,17 +92,17 @@ export default function Login({ canResetPassword }: LoginProps) {
                         {/* Password */}
                         <div>
                             <div className="mb-1 flex items-center justify-between">
-                                <Label htmlFor="password" className="font-semibold text-gray-700">
+                                <Label htmlFor="password" className="font-semibold">
                                     Password
                                 </Label>
                                 {canResetPassword && (
-                                    <TextLink href={route('password.request')} className="text-primary-600 text-xs hover:underline" tabIndex={5}>
+                                    <TextLink href={route('password.request')} className="text-primary-500 text-xs hover:underline" tabIndex={5}>
                                         Lupa password?
                                     </TextLink>
                                 )}
                             </div>
-                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 relative flex items-center rounded-lg border border-gray-300 bg-white shadow-sm focus-within:ring-1">
-                                <div className="text-primary-500 px-3">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white dark:bg-black dark:border-2 dark:border-white shadow-sm focus-within:ring-1">
+                                <div className="px-3">
                                     <Lock size={18} />
                                 </div>
                                 <Input
@@ -112,14 +112,14 @@ export default function Login({ canResetPassword }: LoginProps) {
                                     tabIndex={2}
                                     autoComplete="current-password"
                                     placeholder="Password"
-                                    className="rounded-r-lg border-none pr-10 focus:ring-0"
+                                    className="rounded-l-none border-none focus:ring-0"
                                     value={data.password}
                                     onChange={(e) => setData('password', e.target.value)}
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="text-primary-600 hover:text-primary-800 absolute top-1/2 right-3 -translate-y-1/2 transition-colors"
+                                    className="absolute top-1/2 right-3 -translate-y-1/2 transition-colors"
                                     aria-label={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
                                 >
                                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -136,8 +136,9 @@ export default function Login({ canResetPassword }: LoginProps) {
                                 checked={data.remember}
                                 onClick={() => setData('remember', !data.remember)}
                                 tabIndex={3}
+                                className='dark:border dark:border-white'
                             />
-                            <Label htmlFor="remember" className="text-gray-700 select-none">
+                            <Label htmlFor="remember" className=" select-none">
                                 Remember me
                             </Label>
                         </div>
@@ -145,7 +146,7 @@ export default function Login({ canResetPassword }: LoginProps) {
                         {/* Submit */}
                         <Button
                             type="submit"
-                            className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 active:bg-primary-800 w-full"
+                            className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 active:bg-primary-800 w-full dark:text-white"
                             tabIndex={4}
                             disabled={processing}
                         >
@@ -154,9 +155,9 @@ export default function Login({ canResetPassword }: LoginProps) {
                         </Button>
                     </form>
 
-                    <div className="mt-4 text-center text-xs text-gray-600">
+                    <div className="mt-4 text-center text-xs">
                         Belum punya akun?{' '}
-                        <TextLink href={route('register')} tabIndex={5}>
+                        <TextLink href={route('register')} tabIndex={5} className='text-primary-500'>
                             Daftar
                         </TextLink>
                     </div>
@@ -168,7 +169,7 @@ export default function Login({ canResetPassword }: LoginProps) {
                                 <Button
                                     variant="outline"
                                     size="sm"
-                                    className="text-primary-600 hover:text-primary-800 mx-auto flex items-center gap-1 text-xs"
+                                    className="mx-auto flex items-center gap-1 text-xs hover:cursor-help"
                                 >
                                     <Info size={14} />
                                     Tips login aman
@@ -176,9 +177,9 @@ export default function Login({ canResetPassword }: LoginProps) {
                             </DialogTrigger>
                             <DialogContent className="sm:max-w-md">
                                 <DialogHeader>
-                                    <DialogTitle className="text-primary-600 font-semibold">Tips Login Aman 🔒</DialogTitle>
+                                    <DialogTitle className="font-semibold">Tips Login Aman 🔒</DialogTitle>
                                 </DialogHeader>
-                                <ul className="list-disc space-y-1 pl-5 text-sm text-gray-700">
+                                <ul className="list-disc space-y-1 pl-5 text-sm">
                                     <li>Gunakan kombinasi huruf dan simbol.</li>
                                     <li>Jangan bagikan informasi login.</li>
                                     <li>Logout dari perangkat publik.</li>
