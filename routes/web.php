@@ -53,7 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Pustakawan> ----------------------------------------------------------------------------------
 Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(function () {
     Route::get('work', [BorrowingController::class, 'librarianIndex'])->name('librarian.borrowings.index');
-    Route::delete('work/borrowings/{id}', [BorrowingController::class, 'librarianDelete'])->name('librarian.borrowings.delete');
+    Route::get('work/borrowings/{id}', [BorrowingController::class, 'librarianDelete'])->name('librarian.borrowings.delete');
 
     Route::get('/management/import', [BookController::class, 'import'])->name('books.import');
     Route::post('/management', [BookController::class, 'add'])->name('books.add');

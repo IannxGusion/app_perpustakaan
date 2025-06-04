@@ -131,12 +131,6 @@ export const columns: ColumnDef<Borrowing>[] = [
                         <DropdownMenuSeparator />
 
                         <DropdownMenuItem>
-                            <Button className="w-full" variant={'outline'}>
-                                Edit
-                            </Button>
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem>
                             <form action={route('admin.borrowings.delete', borrowing['id'])} method="DELETE" className="w-full">
                                 <CSRF />
 
