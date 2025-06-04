@@ -20,7 +20,7 @@ class BookController extends Controller
 
         return Inertia('books', compact('books', 'categories'));
     }
-    
+
     /**
      * Display a listing of the books (HIGHLIGHTED).
      */
