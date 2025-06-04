@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Checkbox } from "@/components/ui/checkbox"
 
 import CSRF from '@/components/element/csrf';
 import { Textarea } from '@/components/ui/textarea';
@@ -88,10 +88,8 @@ export default function Edit({ book, categories = [] }: EditProps) {
                                             value={category.id}
                                             defaultChecked={
                                                 (Array.isArray(book.categories) && book.categories.some((c) => c.id === category.id)) ||
-                                                (
-                                                    // If no categories are checked, check the first one by default
-                                                    (!Array.isArray(book.categories) || book.categories.length === 0) && idx === 0
-                                                )
+                                                // If no categories are checked, check the first one by default
+                                                ((!Array.isArray(book.categories) || book.categories.length === 0) && idx === 0)
                                             }
                                             required={idx === 0}
                                         />

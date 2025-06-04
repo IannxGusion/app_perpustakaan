@@ -13,7 +13,7 @@ import { useInitials } from '@/hooks/use-initials';
 import { cn } from '@/lib/utils';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { BetweenHorizonalEnd, BookOpenIcon, ChartNoAxesGantt, ClipboardEdit, FolderIcon, Menu } from 'lucide-react';
+import { BetweenHorizonalEnd, ChartNoAxesGantt, ClipboardEdit, Menu } from 'lucide-react';
 
 const mainNavItems: NavItem[] = [
     {
@@ -35,14 +35,14 @@ const mainNavItems: NavItem[] = [
 
 const rightNavItems: NavItem[] = [
     {
-        title: 'Repository',
-        href: 'https://github.com/Dirga36/app_perpustakaan.git',
-        icon: FolderIcon,
+        title: 'ssd',
+        href: '#',
+        icon: null,
     },
     {
-        title: 'Documentation',
-        href: 'https://github.com/Dirga36/app_perpustakaan/blob/c4ab7734a204083e87eccfcfe15e21dec17cce11/README.md',
-        icon: BookOpenIcon,
+        title: 'ssd',
+        href: '#',
+        icon: null,
     },
 ];
 

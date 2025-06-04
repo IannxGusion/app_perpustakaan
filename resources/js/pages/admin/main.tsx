@@ -42,7 +42,7 @@ export default function Dashboard({ ...props }: { books: Book[]; categories: Cat
                         {/* Left: Donut Chart */}
                         <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800 dark:shadow-white">
                             <h2 className="mb-4 text-xl font-semibold">Distribusi Buku</h2>
-                            <Donut books={books} />
+                            <Donut  />
                         </div>
 
                         {/* Middle: Latest Books */}
@@ -50,7 +50,10 @@ export default function Dashboard({ ...props }: { books: Book[]; categories: Cat
                             <h2 className="mb-4 text-xl font-semibold">📖 Buku Terbaru</h2>
                             <ul className="scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-transparent max-h-[280px] space-y-3 overflow-y-auto">
                                 {latestBooks.map((book, i) => (
-                                    <li key={i} className="cursor-pointer rounded-md bg-blue-50 p-3 transition hover:bg-blue-100 dark:bg-blue-900 dark:hover:bg-blue-800">
+                                    <li
+                                        key={i}
+                                        className="cursor-pointer rounded-md bg-blue-50 p-3 transition hover:bg-blue-100 dark:bg-blue-900 dark:hover:bg-blue-800"
+                                    >
                                         <p className="font-semibold">{book.title}</p>
                                         <p className="text-sm text-gray-600 dark:text-gray-300">{book.author}</p>
                                     </li>

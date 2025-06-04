@@ -1,58 +1,85 @@
-'use client';
+import { TrendingUp } from "lucide-react"
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"
 
-import { useMemo } from 'react';
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from 'recharts';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import {
+    ChartConfig,
+    ChartContainer,
+    ChartLegend,
+    ChartLegendContent,
+    ChartTooltip,
+    ChartTooltipContent,
+} from "@/components/ui/chart"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
-import { Book } from '@/types';
+export const description = "A radar chart with a legend"
 
-export function Donut({ books }: { books: Book[] }) {
-    // Aggregate books by category
-    const booksPerCategory = useMemo(() => {
-        const result: Record<string, number> = {};
-        books.forEach((book) => {
-            const category = book.categories.name;
-            result[category] = (result[category] || 0) + 1;
-        });
-        // Transform to array for chart
-        return Object.entries(result).map(([category, count]) => ({
-            category,
-            count,
-        }));
-    }, [books]);
+const chartData = [
+    { category: "Lorem", book: 186 },
+    { category: "Ipsum", book: 305 },
+    { category: "Dolor", book: 237 },
+    { category: "Sit", book: 73 },
+    { category: "Amet", book: 209 },
+    { category: "Qua", book: 214 },
+]
 
-    // Example chart config for categories
-    const categoryChartConfig = {
-        count: {
-            label: 'Books',
-            color: 'red',
-        },
-    } satisfies ChartConfig;
+const chartConfig = {
+    book: {
+        label: "Book",
+        color: "var(--chart-1)",
+    },
+} satisfies ChartConfig
 
+export function Donut() {
     return (
         <Card>
             <CardHeader className="items-center pb-4">
-                <CardTitle>Buku per Kategori</CardTitle>
-                <CardDescription>Jumlah books setiap kategori</CardDescription>
+                <CardTitle>Radar Chart - Legend</CardTitle>
+                <CardDescription>
+                    Showing total visitors for the last 6 months
+                </CardDescription>
             </CardHeader>
             <CardContent>
-                <ChartContainer config={categoryChartConfig} className="mx-auto aspect-square max-h-[250px]">
+                <ChartContainer
+                    config={chartConfig}
+                    className="mx-auto aspect-square max-h-[250px]"
+                >
                     <RadarChart
-                        data={booksPerCategory}
+                        data={chartData}
                         margin={{
                             top: -40,
                             bottom: -10,
                         }}
                     >
-                        <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
+                        <ChartTooltip
+                            cursor={false}
+                            content={<ChartTooltipContent indicator="line" />}
+                        />
                         <PolarAngleAxis dataKey="category" />
                         <PolarGrid />
-                        <Radar dataKey="count" fill="var(--color-count)" fillOpacity={0.6} />
+                        <Radar
+                            dataKey="book"
+                            fill="var(--color-book)"
+                            fillOpacity={0.6}
+                        />
                         <ChartLegend className="mt-8" content={<ChartLegendContent />} />
                     </RadarChart>
                 </ChartContainer>
             </CardContent>
+            <CardFooter className="flex-col gap-2 pt-4 text-sm">
+                <div className="flex items-center gap-2 leading-none font-medium">
+                    Trending up by 5.2% this category <TrendingUp className="h-4 w-4" />
+                </div>
+                <div className="text-muted-foreground flex items-center gap-2 leading-none">
+                    January - June 2024
+                </div>
+            </CardFooter>
         </Card>
-    );
+    )
 }

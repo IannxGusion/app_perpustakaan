@@ -35,7 +35,7 @@ export default function Register() {
 
     return (
         <div
-            className="relative min-h-screen w-full bg-cover bg-center py-32"
+            className="relative min-h-screen w-full bg-cover bg-center py-32 dark:text-white"
             style={{
                 backgroundColor: '#ffffff',
                 backgroundImage:
@@ -45,7 +45,7 @@ export default function Register() {
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
             <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
-                <div className="w-full max-w-md space-y-3 rounded-2xl bg-white/90 p-8 shadow-lg backdrop-blur-md">
+                <div className="w-full max-w-md space-y-3 rounded-2xl bg-white p-8 shadow-lg dark:bg-black">
                     <Head title="Daftar" />
 
                     {/* Logo */}
@@ -53,16 +53,16 @@ export default function Register() {
                         <AppLogoIcon className="h-40 w-40 animate-pulse" />
                     </div>
 
-                    <h1 className="text-center text-2xl font-bold text-gray-900">Buat akun baru</h1>
-                    <p className="mb-5 text-center text-sm text-gray-600">Masukkan detail Anda untuk membuat akun baru</p>
+                    <h1 className="text-center text-2xl font-bold ">Buat akun baru</h1>
+                    <p className="mb-5 text-center text-sm ">Masukkan detail Anda untuk membuat akun baru</p>
 
                     <form className="flex flex-col gap-4" onSubmit={submit}>
                         {/* Name */}
                         <div>
-                            <Label htmlFor="name" className="mb-1 block font-semibold text-gray-700">
+                            <Label htmlFor="name" className="mb-1 block font-semibold ">
                                 Nama lengkap
                             </Label>
-                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border border-gray-300 bg-white shadow-sm focus-within:ring-1">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white dark:bg-black dark:border-2 dark:border-white shadow-sm focus-within:ring-1">
                                 <div className="text-primary-500 px-3">
                                     <User size={18} />
                                 </div>
@@ -74,7 +74,7 @@ export default function Register() {
                                     tabIndex={1}
                                     autoComplete="name"
                                     placeholder="Nama lengkap"
-                                    className="rounded-r-lg border-none focus:ring-0"
+                                    className="rounded-l-none border-none focus:ring-0"
                                     value={data.name}
                                     onChange={(e) => setData('name', e.target.value)}
                                     disabled={processing}
@@ -85,10 +85,10 @@ export default function Register() {
 
                         {/* Email */}
                         <div>
-                            <Label htmlFor="email" className="mb-1 block font-semibold text-gray-700">
+                            <Label htmlFor="email" className="mb-1 block font-semibold ">
                                 Email address
                             </Label>
-                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border border-gray-300 bg-white shadow-sm focus-within:ring-1">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white dark:bg-black dark:border-2 dark:border-white shadow-sm focus-within:ring-1">
                                 <div className="text-primary-500 px-3">
                                     <Mail size={18} />
                                 </div>
@@ -99,7 +99,7 @@ export default function Register() {
                                     tabIndex={2}
                                     autoComplete="email"
                                     placeholder="email@example.com"
-                                    className="rounded-r-lg border-none focus:ring-0"
+                                    className="rounded-l-none border-none focus:ring-0"
                                     value={data.email}
                                     onChange={(e) => setData('email', e.target.value)}
                                     disabled={processing}
@@ -110,10 +110,10 @@ export default function Register() {
 
                         {/* Password */}
                         <div>
-                            <Label htmlFor="password" className="mb-1 block font-semibold text-gray-700">
+                            <Label htmlFor="password" className="mb-1 block font-semibold ">
                                 Password
                             </Label>
-                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border border-gray-300 bg-white shadow-sm focus-within:ring-1">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white dark:bg-black dark:border-2 dark:border-white shadow-sm focus-within:ring-1">
                                 <div className="text-primary-500 px-3">
                                     <Lock size={18} />
                                 </div>
@@ -124,7 +124,7 @@ export default function Register() {
                                     tabIndex={3}
                                     autoComplete="new-password"
                                     placeholder="Password"
-                                    className="rounded-r-lg border-none focus:ring-0"
+                                    className="rounded-l-none border-none focus:ring-0"
                                     value={data.password}
                                     onChange={(e) => setData('password', e.target.value)}
                                     disabled={processing}
@@ -135,10 +135,10 @@ export default function Register() {
 
                         {/* Password confirmation */}
                         <div>
-                            <Label htmlFor="password_confirmation" className="mb-1 block font-semibold text-gray-700">
+                            <Label htmlFor="password_confirmation" className="mb-1 block font-semibold ">
                                 Konfirmasi password
                             </Label>
-                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border border-gray-300 bg-white shadow-sm focus-within:ring-1">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white dark:bg-black dark:border-2 dark:border-white shadow-sm focus-within:ring-1">
                                 <div className="text-primary-500 px-3">
                                     <Lock size={18} />
                                 </div>
@@ -149,7 +149,7 @@ export default function Register() {
                                     tabIndex={4}
                                     autoComplete="new-password"
                                     placeholder="Konfirmasi password"
-                                    className="rounded-r-lg border-none focus:ring-0"
+                                    className="rounded-l-none border-none focus:ring-0"
                                     value={data.password_confirmation}
                                     onChange={(e) => setData('password_confirmation', e.target.value)}
                                     disabled={processing}
@@ -161,7 +161,7 @@ export default function Register() {
                         {/* Submit */}
                         <Button
                             type="submit"
-                            className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 active:bg-primary-800 w-full"
+                            className="w-full dark:text-white"
                             tabIndex={5}
                             disabled={processing}
                         >
@@ -170,9 +170,9 @@ export default function Register() {
                         </Button>
                     </form>
 
-                    <div className="mt-4 text-center text-xs text-gray-600">
+                    <div className="mt-4 text-center text-xs ">
                         Sudah punya akun?{' '}
-                        <TextLink href={route('login')} tabIndex={6}>
+                        <TextLink href={route('login')} tabIndex={6} className='text-primary-500'>
                             Log in
                         </TextLink>
                     </div>

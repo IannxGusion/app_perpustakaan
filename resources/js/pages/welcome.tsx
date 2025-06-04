@@ -155,7 +155,7 @@ export default function Welcome() {
                 </main>
             </div>
 
-            <section id="learn" className="bg-primary/85 pt-20 h-screen mt-20 mb-10 dark:bg-gray-900">
+            <section id="learn" className="bg-primary/85 mt-20 mb-10 h-screen pt-20 dark:bg-gray-900">
                 <div className="mx-auto max-w-screen-xl px-4 py-8 text-center lg:px-12 lg:py-16">
                     <h1 className="mb-4 text-4xl leading-none font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl dark:text-white">
                         “Jelajahi Dunia Melalui Buku”

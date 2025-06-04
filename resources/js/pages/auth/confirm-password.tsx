@@ -24,7 +24,7 @@ export default function ConfirmPassword() {
 
     return (
         <div
-            className="relative min-h-screen w-full bg-cover bg-center py-32"
+            className="relative min-h-screen w-full bg-cover bg-center py-32 dark:text-white"
             style={{
                 backgroundColor: '#ffffff',
                 backgroundImage:
@@ -33,7 +33,7 @@ export default function ConfirmPassword() {
         >
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
             <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
-                <div className="w-full max-w-md space-y-3 rounded-2xl bg-white/90 p-8 shadow-lg backdrop-blur-md">
+                <div className="w-full max-w-md space-y-3 rounded-2xl bg-white dark:bg-black p-8 shadow-lg">
                     <Head title="Konfirmasi password" />
                     <div className="mb-2 flex justify-center">
                         <AppLogoIcon className="h-40 w-40 animate-pulse" />
