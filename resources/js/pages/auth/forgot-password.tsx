@@ -61,7 +61,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
                             <InputError message={errors.email} />
                         </div>
                         <Button
-                            className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 dark:text-white active:bg-primary-800 w-full"
+                            className="dark:text-white active:bg-primary-800 w-full"
                             disabled={processing}
                         >
                             {processing && <LoaderCircle className="mr-2 inline-block h-5 w-5 animate-spin" />}

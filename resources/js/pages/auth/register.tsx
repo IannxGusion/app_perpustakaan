@@ -161,7 +161,7 @@ export default function Register() {
                         {/* Submit */}
                         <Button
                             type="submit"
-                            className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 active:bg-primary-800 w-full dark:text-white"
+                            className="w-full dark:text-white"
                             tabIndex={5}
                             disabled={processing}
                         >

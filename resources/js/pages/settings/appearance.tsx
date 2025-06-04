@@ -23,11 +23,11 @@ export default function Appearance() {
 
     return (
         <Layout breadcrumbs={breadcrumbs}>
-            <Head title="Appearance settings" />
+            <Head title="Pengaturan tampilan" />
 
             <SettingsLayout>
                 <div className="space-y-6">
-                    <HeadingSmall title="Appearance settings" description="Update your account's appearance settings" />
+                    <HeadingSmall title="Pengaturan tampilan" description="Update tampilan" />
                     <AppearanceTabs />
                 </div>
             </SettingsLayout>

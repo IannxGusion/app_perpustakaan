@@ -52,7 +52,7 @@ export default function Login({ canResetPassword }: LoginProps) {
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
             <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
-                <div className="w-full max-w-md space-y-3 rounded-2xl p-8 shadow-lg dark:bg-black">
+                <div className="w-full max-w-md space-y-3 rounded-2xl p-8 shadow-lg bg-white dark:bg-black">
                     <Head title="Login" />
 
                     {/* Logo */}
@@ -146,7 +146,7 @@ export default function Login({ canResetPassword }: LoginProps) {
                         {/* Submit */}
                         <Button
                             type="submit"
-                            className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 active:bg-primary-800 w-full dark:text-white"
+                            className="w-full dark:text-white"
                             tabIndex={4}
                             disabled={processing}
                         >
