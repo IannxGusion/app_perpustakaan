@@ -215,6 +215,10 @@ export default function Log( {borrowings} : { borrowings: Borrowing[] }) {
                     </Link>
                 </Button>
             </CardFooter>
+
+            <label htmlFor="SSD" className='hidden'>{borrowings.map((borrowing) => (
+                <p>{borrowing.status}</p>
+            ))}</label>
         </Card>
     );
 }
