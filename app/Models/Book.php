@@ -5,11 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class Book extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes, Searchable;
+
+    public function toSearchableArray()
+    {
+        return [
+            'title' => $this->title,
+            'author' => $this->author,
+            'publisher' => $this->publisher,
+            'publication_date' => $this->publication_date,
+        ];
+    }
 
     public function categories()
     {
