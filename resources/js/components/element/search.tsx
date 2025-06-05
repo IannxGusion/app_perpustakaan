@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
-import { Book } from "@/types"
 import { Search } from "lucide-react"
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
+import { Book } from '@/types';
+
+import { Link } from '@inertiajs/react';
 
 export default function SearchBlock() {
     const [query, setQuery] = useState("")
@@ -46,10 +50,34 @@ export default function SearchBlock() {
                 {loading && <p>Loading...</p>}
                 {!loading && books.length === 0 && query && <p>Tidak ditemukan.</p>}
                 {books.map(book => (
-                    <div key={book.id} className="rounded border p-2 shadow-sm">
-                        <h2 className="font-semibold">{book.title}</h2>
-                        <p className="text-sm text-gray-500">{book.author}</p>
-                    </div>
+                    <Card
+                        key={book.id}
+                        className="flex flex-col p-4"
+                    >
+                        <CardContent className="flex-1">
+                            <div className="content-center justify-center">
+                                <img
+                                    src={`/storage/${book.cover}`}
+                                    alt={book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
+                                    className="h-fit w-full border border-slate-700 object-cover dark:border-slate-300"
+                                />
+                            </div>
+                        </CardContent>
+
+                        <CardFooter className="flex-1">
+                            <CardTitle>
+                                <p className="text-xl font-bold">{book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}</p>
+                            </CardTitle>
+                        </CardFooter>
+
+                        {book.status === 'Available' && (
+                            <Button asChild>
+                                <Link href={route('books.show', book['id'])}>Pinjam</Link>
+                            </Button>
+                        )}
+
+                        {book.status === 'Not Available' && <Button variant={'ghost'}>Tidak tersedia</Button>}
+                    </Card>
                 ))}
             </div>
         </section>
