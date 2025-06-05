@@ -46,14 +46,12 @@ php artisan migrate
 composer run dev
 ```
 
+Open <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a> with your browser to see the result.
+
 ### Run Meilisearch
 ```powershell
 php artisan scout:flush "App\Models\Book"    
 php artisan scout:flush "App\Models\Category"    
-```
-```powershell
-php artisan scout:flush "App\Models\Category"; 
-php artisan scout:flush "App\Models\Book"
 ```
 
 ```powershell
@@ -68,4 +66,8 @@ php artisan migrate:fresh --seed
 ./meilisearch
 ```
 
-Open <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a> with your browser to see the result.
+_set meilisearch master key_
+Then rerun Meilisearch
+```powershell
+./meilisearch
+```
