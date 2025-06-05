@@ -52,6 +52,19 @@ php artisan scout:flush "App\Models\Book"
 php artisan scout:flush "App\Models\Category"    
 ```
 ```powershell
+php artisan scout:flush "App\Models\Category"; 
+php artisan scout:flush "App\Models\Book"
+```
+
+```powershell
+php artisan scout:sync-index-settings
+```
+
+```powershell
+php artisan migrate:fresh --seed
+```
+
+```powershell
 ./meilisearch
 ```
 
