@@ -15,7 +15,12 @@ class BorrowingController extends Controller
      */
     public function index()
     {
-        $borrowings = Borrowing::with(['book.categories'])->latest()->get();
+        $userId = Auth::id();
+        $borrowings = Borrowing::with(['book.categories'])
+            ->where('user_id', $userId)
+            ->latest()
+            ->get();
+
         $collections = Collection::where('user_id', Auth::id())->latest()->get();
 
         return inertia('borrowings', compact('borrowings', 'collections'));

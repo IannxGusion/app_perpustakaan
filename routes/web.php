@@ -6,6 +6,7 @@ use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AminMiddleware;
 use App\Http\Middleware\LibrarianMiddleware;
@@ -23,12 +24,8 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('dashboard', [BookController::class, 'highlight'])->name('dashboard');
-
-    // static ------------
-    Route::get('dashboard/details1/{id}', [BookController::class, 'details1'])->name('books.detail1');
-    Route::get('dashboard/details2/{id}', [BookController::class, 'details2'])->name('books.detail2');
-    Route::get('dashboard/details3/{id}', [BookController::class, 'details3'])->name('books.detail3');
-    // static ------------
+    // search route
+    Route::get('dashboard/search', [SearchController::class, 'search'])->name('dashboard.search');
 
     Route::controller(BookController::class)->group(function () {
         Route::get('books', 'index')->name('books.index');
