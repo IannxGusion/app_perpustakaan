@@ -1,51 +1,51 @@
-import { Link } from '@inertiajs/react'; // or wherever your Link comes from
-import Bleach from './Bleach';
-import Dilan from './dilan';
-import Sadako from './sadako';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Book } from '@/types';
 
-export default function Highlight() {
-    const books = [
-        {
-            id: 1,
-            d: 'Dilan',
-            dilan: <Dilan />,
-        },
-        {
-            id: 2,
-            s: 'Sadako',
-            sadako: <Sadako />,
-        },
-        {
-            id: 3,
-            b: 'Bleach',
-            bleach: <Bleach />,
-        },
-    ];
+import Category from '@/components/element/category';
+import { Link } from '@inertiajs/react';
 
+export default function Highlight({ books }: { books: Book[] }) {
     return (
-        <section className="px-4 py-10">
-            <h2 className="mb-6 text-2xl font-bold">Top Readings</h2>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-                {books.map((book, idx) => (
-                    <div key={book.id} className="rounded border p-4 shadow">
-                        <span className="rounded bg-black px-2 py-1 text-xs text-white">Top #{idx + 1}</span>
-                        <h3 className="mt-4 text-lg font-semibold">
-                            <Link href={route('books.detail1', 1)}>
-                                {book.d}
-                                {book.dilan}
-                            </Link>
-                            <Link href={route('books.detail2', 2)}>
-                                {book.s}
-                                {book.sadako}
-                            </Link>
-                            <Link href={route('books.detail3', 3)}>
-                                {book.b}
-                                {book.bleach}
-                            </Link>
-                        </h3>
-                    </div>
-                ))}
-            </div>
-        </section>
+        <>
+        <div className='grid grid-cols-3 gap-3'>
+            {books.map((book) => (
+                <Card
+                    key={book.id}
+                    className="flex flex-col p-4 drop-shadow-sm hover:border-2 hover:border-black hover:drop-shadow-none dark:hover:border-2 dark:hover:border-white dark:hover:drop-shadow-none">
+                    <CardHeader className="flex-1">
+                        <div className="flex items-center space-x-2">
+                            <Category categories={Array.isArray(book.categories) ? book.categories : [book.categories]} />
+                        </div>
+                    </CardHeader>
+
+                    <CardContent className="flex-1">
+                        <div className="content-center justify-center">
+                            <img
+                                src={`/storage/${book.cover}`}
+                                alt={book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
+                                className="h-fit w-full border border-slate-700 object-cover dark:border-slate-300"
+                            />
+                        </div>
+                    </CardContent>
+
+                    <CardFooter className="flex-1">
+                        <CardTitle>
+                            <p className="text-xl font-bold">{book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}</p>
+                        </CardTitle>
+                    </CardFooter>
+
+                    {book.status === 'Available' && (
+                        <Button asChild>
+                            <Link href={route('books.show', book['id'])}>Pinjam</Link>
+                        </Button>
+                    )}
+
+                    {book.status === 'Not Available' && <Button variant={'ghost'}>Tidak tersedia</Button>}
+                </Card>
+            ))}
+        </div>
+
+        </>
     );
 }

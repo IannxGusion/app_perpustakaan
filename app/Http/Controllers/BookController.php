@@ -15,10 +15,21 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::with('categories')->get();
+        $books = Book::with('categories')->inRandomOrder()->get();
         $categories = Category::all();
 
         return Inertia('books', compact('books', 'categories'));
+    }
+
+    /**
+     * Display a listing of the books (HIGHLIGHTED).
+     */
+    public function highlight()
+    {
+        $books = Book::with('categories')->latest()->take(3)->get();
+        $categories = Category::all();
+
+        return Inertia('dashboard', compact('books', 'categories'));
     }
 
     /**
@@ -35,9 +46,9 @@ class BookController extends Controller
     }
 
     /**
-     * Import books from a JSON file. (current manual input)
+     * Import books from a JSON file. (current: manual input)
      */
-    public function import()
+    public function adminImport()
     {
         $categories = Category::all();
 
@@ -46,7 +57,7 @@ class BookController extends Controller
         ]);
     }
 
-    public function add(Request $request)
+    public function adminAdd(Request $request)
     {
         $request->validate([
             'title' => 'required|string|max:255',
@@ -55,8 +66,8 @@ class BookController extends Controller
             'publication_date' => 'required|date',
             'content' => 'required|string',
             'cover' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            // 'category_ids' => 'nullable|array',
-            // 'category_ids.*' => 'exists:categories,id',
+            'category_ids' => 'nullable|array',
+            'category_ids.*' => 'exists:categories,id',
         ]);
 
         $book = new Book;
@@ -193,6 +204,52 @@ class BookController extends Controller
         return Inertia('librarian/book/pendataan', compact('books', 'categories'));
     }
 
+    public function librarianImport()
+    {
+        $categories = Category::all();
+
+        return view('add', [
+            'categories' => $categories,
+        ]);
+    }
+
+    public function librarianAdd(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:50',
+            'publisher' => 'required|string|max:50',
+            'publication_date' => 'required|date',
+            'content' => 'required|string',
+            'cover' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'category_ids' => 'nullable|array',
+            'category_ids.*' => 'exists:categories,id',
+        ]);
+
+        $book = new Book;
+        $book->title = $request->title;
+        $book->author = $request->author;
+        $book->publisher = $request->publisher;
+        $book->publication_date = $request->publication_date;
+        $book->content = $request->content;
+
+        $book->status = 'Available';
+        $book->collected = 'No';
+
+        if ($request->hasFile('cover')) {
+            $imagePath = $request->file('cover')->store('covers', 'public');
+            $book->cover = $imagePath;
+        }
+
+        $book->save();
+
+        if ($request->has('category_ids')) {
+            $book->categories()->sync($request->category_ids);
+        }
+
+        return redirect()->back()->with('success', 'Book added successfully.');
+    }
+
     /**
      * Librarian: Edit a book.
      */
@@ -243,7 +300,7 @@ class BookController extends Controller
             $book->categories()->sync($request->category_ids);
         }
 
-        return redirect()->route('admin.books.index');
+        return redirect()->route('librarian.books.index');
     }
 
     /**
