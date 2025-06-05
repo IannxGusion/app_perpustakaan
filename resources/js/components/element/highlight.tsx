@@ -8,43 +8,43 @@ import { Link } from '@inertiajs/react';
 export default function Highlight({ books }: { books: Book[] }) {
     return (
         <>
-        <div className='grid grid-cols-3 gap-3'>
-            {books.map((book) => (
-                <Card
-                    key={book.id}
-                    className="flex flex-col p-4 drop-shadow-sm hover:border-2 hover:border-black hover:drop-shadow-none dark:hover:border-2 dark:hover:border-white dark:hover:drop-shadow-none">
-                    <CardHeader className="flex-1">
-                        <div className="flex items-center space-x-2">
-                            <Category categories={Array.isArray(book.categories) ? book.categories : [book.categories]} />
-                        </div>
-                    </CardHeader>
+            <div className='grid gap-7 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+                {books.map((book) => (
+                    <Card
+                        key={book.id}
+                        className="flex flex-col p-4">
+                        <CardHeader className="flex-1">
+                            <div className="flex items-center space-x-2">
+                                <Category categories={Array.isArray(book.categories) ? book.categories : [book.categories]} />
+                            </div>
+                        </CardHeader>
 
-                    <CardContent className="flex-1">
-                        <div className="content-center justify-center">
-                            <img
-                                src={`/storage/${book.cover}`}
-                                alt={book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
-                                className="h-fit w-full border border-slate-700 object-cover dark:border-slate-300"
-                            />
-                        </div>
-                    </CardContent>
+                        <CardContent className="flex-1">
+                            <div className="content-center justify-center">
+                                <img
+                                    src={`/storage/${book.cover}`}
+                                    alt={book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
+                                    className="h-fit w-full border border-slate-700 object-cover dark:border-slate-300"
+                                />
+                            </div>
+                        </CardContent>
 
-                    <CardFooter className="flex-1">
-                        <CardTitle>
-                            <p className="text-xl font-bold">{book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}</p>
-                        </CardTitle>
-                    </CardFooter>
+                        <CardFooter className="flex-1">
+                            <CardTitle>
+                                <p className="text-xl font-bold">{book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}</p>
+                            </CardTitle>
+                        </CardFooter>
 
-                    {book.status === 'Available' && (
-                        <Button asChild>
-                            <Link href={route('books.show', book['id'])}>Pinjam</Link>
-                        </Button>
-                    )}
+                        {book.status === 'Available' && (
+                            <Button asChild>
+                                <Link href={route('books.show', book['id'])}>Pinjam</Link>
+                            </Button>
+                        )}
 
-                    {book.status === 'Not Available' && <Button variant={'ghost'}>Tidak tersedia</Button>}
-                </Card>
-            ))}
-        </div>
+                        {book.status === 'Not Available' && <Button variant={'ghost'}>Tidak tersedia</Button>}
+                    </Card>
+                ))}
+            </div>
 
         </>
     );

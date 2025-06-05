@@ -17,70 +17,73 @@ import { Check } from 'lucide-react';
 export default function ToBorrowings({ borrowing, collections }: { borrowing: Borrowing; collections: Collection[] }) {
     return (
         <Card
-            className="flex flex-row drop-shadow-lg hover:border-2 hover:border-black hover:drop-shadow-none dark:hover:border-2 dark:hover:border-white dark:hover:drop-shadow-none"
+            className="flex flex-col md:flex-row"
             key={borrowing.book.id}
         >
-            <CardHeader className="w-56">
+            <CardHeader className="w-full md:w-56">
                 <img
                     src={`/storage/${borrowing.book.cover}`}
                     alt={borrowing.book.title.length > 50 ? borrowing.book.title.slice(0, 50) + '...' : borrowing.book.title}
-                    className="h-full w-full border border-slate-700 object-cover shadow dark:border-slate-300"
+                    className="w-full h-64 md:h-full object-cover border border-slate-700 dark:border-slate-300 shadow"
                 />
             </CardHeader>
 
-            <CardContent className="my-8 h-full w-full">
-                <CardTitle className="flex flex-row justify-between">
-                    <div className="flex items-center space-x-2">
-                        <Category categories={Array.isArray(borrowing.book.categories) ? borrowing.book.categories : [borrowing.book.categories]} />
-                    </div>
+            <CardContent className="w-full p-4 flex flex-col justify-between">
+                <div>
+                    <CardTitle className="flex flex-row justify-between space-y-2">
+                        <div className="flex items-center space-x-2">
+                            <Category categories={Array.isArray(borrowing.book.categories) ? borrowing.book.categories : [borrowing.book.categories]} />
+                        </div>
 
-                    {/* KOLEKSI */}
-                    <div>
-                        {borrowing.book.collected === 'Yes' && (
-                            <Button variant="ghost">
-                                <Check />
-                                Disimpan
-                            </Button>
-                        )}
-                        {borrowing.book.collected === 'No' && <Collect borrowing={borrowing} collections={collections} />}
-                    </div>
-                </CardTitle>
+                        {/* KOLEKSI */}
+                        <div>
+                            {borrowing.book.collected === 'Yes' ? (
+                                <Button variant="ghost">
+                                    <Check />
+                                    Disimpan
+                                </Button>
+                            ) : (
+                                <Collect borrowing={borrowing} collections={collections} />
+                            )}
+                        </div>
+                    </CardTitle>
 
-                <CardDescription>
-                    <Dialog>
-                        <DialogTrigger>
-                            <Button asChild variant={'ghost'} className="my-1 p-0 hover:cursor-pointer">
-                                <h2 className="text-xl font-bold text-black">
-                                    {borrowing.book.title.length > 50 ? borrowing.book.title.slice(0, 50) + '...' : borrowing.book.title}
-                                </h2>
-                            </Button>
-                        </DialogTrigger>
+                    <CardDescription>
+                        <Dialog>
+                            <DialogTrigger>
+                                <Button asChild variant="ghost" className="my-1 p-0 hover:cursor-pointer">
+                                    <h2 className="text-lg md:text-xl font-bold">
+                                        {borrowing.book.title.length > 50 ? borrowing.book.title.slice(0, 50) + '...' : borrowing.book.title}
+                                    </h2>
+                                </Button>
+                            </DialogTrigger>
 
-                        <p>{borrowing.book.author}</p>
+                            <p className="text-sm">{borrowing.book.author}</p>
 
-                        <DialogContent className="sm:max-w-[600px]">
-                            <ScrollArea className="mt-5 h-[400px] border-r-2 px-10">
-                                <DialogHeader>
-                                    <DialogTitle>Info Buku</DialogTitle>
-                                </DialogHeader>
+                            <DialogContent className="sm:max-w-[600px]">
+                                <ScrollArea className="mt-5 h-[400px] border-r-2 px-10">
+                                    <DialogHeader>
+                                        <DialogTitle>Info Buku</DialogTitle>
+                                    </DialogHeader>
 
-                                <TableInfo book={borrowing.book} />
+                                    <TableInfo book={borrowing.book} />
 
-                                <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="w-full">
-                                    <CSRF />
-                                    <input type="hidden" name="book_id" id="book_id" value={borrowing.book.id} required />
-                                    <input type="hidden" name="borrowing_id" id="borrowing_id" value={borrowing.id} required />
-                                    <Button className="w-full" type="submit">
-                                        Kembalikan
-                                    </Button>
-                                </form>
-                            </ScrollArea>
-                        </DialogContent>
-                    </Dialog>
-                </CardDescription>
+                                    <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="w-full mt-4">
+                                        <CSRF />
+                                        <input type="hidden" name="book_id" value={borrowing.book.id} required />
+                                        <input type="hidden" name="borrowing_id" value={borrowing.id} required />
+                                        <Button className="w-full" type="submit">
+                                            Kembalikan
+                                        </Button>
+                                    </form>
+                                </ScrollArea>
+                            </DialogContent>
+                        </Dialog>
+                    </CardDescription>
+                </div>
 
-                <CardAction className="h-full w-full">
-                    <Button asChild className="text mt-3 h-7 w-full">
+                <CardAction className="mt-4 w-full">
+                    <Button asChild className="h-10 w-full">
                         <Link target="_blank" href={`borrowings/download/${borrowing.book.id}`}>
                             Baca
                         </Link>
