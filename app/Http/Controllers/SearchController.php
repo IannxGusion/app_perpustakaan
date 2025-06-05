@@ -12,7 +12,7 @@ class SearchController extends Controller
     {
         $query = $request->input('query');
 
-        if (!$query) {
+        if (! $query) {
             $books = Book::latest()->take(10)->get(); // default fallback
             $categories = Category::latest()->take(10)->get(); // default fallback
         } else {
@@ -22,7 +22,7 @@ class SearchController extends Controller
 
         return response()->json([
             'books' => $books,
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
 }
