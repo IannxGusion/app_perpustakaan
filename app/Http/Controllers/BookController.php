@@ -35,6 +35,7 @@ class BookController extends Controller
 
         return Inertia('dashboard', compact('books', 'categories'));
     }
+
     /**
      * Show a single book for borrowing.
      */
