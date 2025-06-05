@@ -22,16 +22,19 @@ class BookController extends Controller
     }
 
     /**
-     * Display a listing of the books (HIGHLIGHTED).
+     * Display a listing of the books (HIGHLIGHTED / top borrowed).
      */
     public function highlight()
     {
-        $books = Book::with('categories')->latest()->take(3)->get();
+        $books = Book::with('categories')
+            ->withCount('borrowings')
+            ->orderByDesc('borrowings_count')
+            ->take(3)
+            ->get();
         $categories = Category::all();
 
         return Inertia('dashboard', compact('books', 'categories'));
     }
-
     /**
      * Show a single book for borrowing.
      */
@@ -312,38 +315,6 @@ class BookController extends Controller
         $book->delete();
 
         return redirect()->back();
-    }
-    // ============================================================================================
-
-    // ============================================================================================
-    /**
-     * Show book details (variant 1).
-     */
-    public function details1($id)
-    {
-        $book = Book::with('categories')->findOrFail($id);
-
-        return Inertia('detail_buku1', ['book' => $book]);
-    }
-
-    /**
-     * Show book details (variant 2).
-     */
-    public function details2($id)
-    {
-        $book = Book::with('categories')->findOrFail($id);
-
-        return Inertia('detail_buku2', ['book' => $book]);
-    }
-
-    /**
-     * Show book details (variant 3).
-     */
-    public function details3($id)
-    {
-        $book = Book::with('categories')->findOrFail($id);
-
-        return Inertia('detail_buku3', ['book' => $book]);
     }
     // ============================================================================================
 }

@@ -27,12 +27,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // search route
     Route::get('dashboard/search', [SearchController::class, 'search'])->name('dashboard.search');
 
-    // static ------------
-    Route::get('dashboard/details1/{id}', [BookController::class, 'details1'])->name('books.detail1');
-    Route::get('dashboard/details2/{id}', [BookController::class, 'details2'])->name('books.detail2');
-    Route::get('dashboard/details3/{id}', [BookController::class, 'details3'])->name('books.detail3');
-    // static ------------
-
     Route::controller(BookController::class)->group(function () {
         Route::get('books', 'index')->name('books.index');
         Route::get('borrowings/download/{id}', 'download')->name('book.download');

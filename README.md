@@ -49,6 +49,10 @@ composer run dev
 Open <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a> with your browser to see the result.
 
 ### Run Meilisearch
+
+Download [https://sourceforge.net/projects/meilisearch.mirror/](https://sourceforge.net/projects/meilisearch.mirror/)
+
+
 ```powershell
 php artisan scout:flush "App\Models\Book"    
 php artisan scout:flush "App\Models\Category"    
