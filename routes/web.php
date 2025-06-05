@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\CollectionController;
@@ -23,6 +24,8 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('dashboard', [BookController::class, 'highlight'])->name('dashboard');
+    // search route
+    Route::get('dashboard/search', [SearchController::class, 'search'])->name('dashboard.search');
 
     // static ------------
     Route::get('dashboard/details1/{id}', [BookController::class, 'details1'])->name('books.detail1');

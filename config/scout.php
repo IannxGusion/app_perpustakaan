@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\Book;
 use App\Models\Category;
 
@@ -18,7 +19,7 @@ return [
     |
     */
 
-    'driver' => env('SCOUT_DRIVER', 'algolia'),
+    'driver' => env('SCOUT_DRIVER'),
 
     /*
     |--------------------------------------------------------------------------
@@ -44,7 +45,7 @@ return [
     |
     */
 
-    'queue' => env('SCOUT_QUEUE', false),
+    'queue' => env('SCOUT_QUEUE'),
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +87,7 @@ return [
     |
     */
 
-    'soft_delete' => false,
+    'soft_delete' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -101,7 +102,7 @@ return [
     |
     */
 
-    'identify' => env('SCOUT_IDENTIFY', false),
+    'identify' => env('SCOUT_IDENTIFY'),
 
     /*
     |--------------------------------------------------------------------------
@@ -139,16 +140,17 @@ return [
     */
 
     'meilisearch' => [
-        'host' => env('MEILISEARCH_HOST', 'http://localhost:7700'),
+        'host' => env('MEILISEARCH_HOST'),
         'key' => env('MEILISEARCH_KEY'),
         'index-settings' => [
             Book::class => [
                 'filterableAttributes' => ['title', 'author', 'publisher', 'publication_date'],
+                'sortableAttributes' => ['created_at'],
             ],
             Category::class => [
                 'filterableAttributes' => ['name', 'description'],
+                'sortableAttributes' => ['created_at'],
             ],
-
         ],
     ],
 
