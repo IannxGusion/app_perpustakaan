@@ -50,35 +50,41 @@ export default function Borrowings({ ...props }: { borrowings: Borrowing[]; coll
             </section>
 
             {/* borrowings List */}
-            <div className="mx-5 space-y-7 border-b-2 pb-20">
-                {paginatedborrowings.map((borrowing) => (
-                    <ToBorrowings key={borrowing.id} borrowing={borrowing} collections={collections} />
-                ))}
-            </div>
-            <div className="mt-4 flex justify-center">
-                <TablePagination
-                    component="div"
-                    count={borrowings.length}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    rowsPerPage={rowsPerPage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    rowsPerPageOptions={[4, 8, 16, 32]}
-                    sx={{
-                        color: 'inherit',
-                        '.MuiTablePagination-toolbar': {
-                            backgroundColor: 'transparent',
-                            color: 'inherit',
-                        },
-                        '.MuiTablePagination-selectLabel, .MuiTablePagination-input, .MuiTablePagination-displayedRows': {
-                            color: 'inherit',
-                        },
-                        '.MuiTablePagination-actions button': {
-                            color: 'inherit',
-                        },
-                    }}
-                />
-            </div>
+            {borrowings.length >= 1 ? (
+                <>
+                    <div className="mx-5 space-y-7 border-b-2 pb-20">
+                        {paginatedborrowings.map((borrowing) => (
+                            <ToBorrowings key={borrowing.id} borrowing={borrowing} collections={collections} />
+                        ))}
+                    </div>
+                    <div className="mt-4 flex justify-center">
+                        <TablePagination
+                            component="div"
+                            count={borrowings.length}
+                            page={page}
+                            onPageChange={handleChangePage}
+                            rowsPerPage={rowsPerPage}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                            rowsPerPageOptions={[4, 8, 16, 32]}
+                            sx={{
+                                color: 'inherit',
+                                '.MuiTablePagination-toolbar': {
+                                    backgroundColor: 'transparent',
+                                    color: 'inherit',
+                                },
+                                '.MuiTablePagination-selectLabel, .MuiTablePagination-input, .MuiTablePagination-displayedRows': {
+                                    color: 'inherit',
+                                },
+                                '.MuiTablePagination-actions button': {
+                                    color: 'inherit',
+                                },
+                            }}
+                        />
+                    </div>
+                </>
+            ) : (
+                <p className="text-muted-foreground col-span-full text-center">Riwayat kosong.</p>
+            )}
         </AppLayout>
     );
 }

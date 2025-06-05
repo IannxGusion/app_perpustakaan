@@ -17,7 +17,7 @@ import { Check } from 'lucide-react';
 export default function ToBorrowings({ borrowing, collections }: { borrowing: Borrowing; collections: Collection[] }) {
     return (
         <Card
-            className="flex flex-row drop-shadow-lg hover:border-2 hover:border-black hover:drop-shadow-none dark:hover:border-2 dark:hover:border-white dark:hover:drop-shadow-none"
+            className="flex flex-row"
             key={borrowing.book.id}
         >
             <CardHeader className="w-56">
