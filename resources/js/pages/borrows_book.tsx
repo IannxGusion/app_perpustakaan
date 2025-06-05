@@ -21,8 +21,6 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function Borrows_book({ book, reviews }: { book: Book; reviews: ReviewType[] }) {
-    // const { book, } = props;
-
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Pinjam Buku" />

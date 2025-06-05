@@ -52,7 +52,13 @@ export interface Categories {
     icon: string;
 }
 
+export interface Result {
+    id: number;
+    book: Book;
+}
+
 export interface Book {
+
     id: number;
     title: string;
     categories: Categories;

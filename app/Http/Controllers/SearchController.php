@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -11,9 +12,17 @@ class SearchController extends Controller
     {
         $query = $request->input('query');
 
-        // Perform search using Meilisearch
-        $books = Book::search($query)->get();
+        if (!$query) {
+            $books = Book::latest()->take(10)->get(); // default fallback
+            $categories = Category::latest()->take(10)->get(); // default fallback
+        } else {
+            $books = Book::search($query)->get();
+            $categories = Category::search($query)->get();
+        }
 
-        return inertia('dashboard', compact('books'));
+        return response()->json([
+            'books' => $books,
+            'categories' => $categories
+        ]);
     }
 }
