@@ -17,7 +17,7 @@ class SearchController extends Controller
             $categories = Category::latest()->take(10)->get(); // default fallback
         } else {
             $books = Book::search($query)->get();
-            $categories = Category::search($query)->get();
+            $categories = Category::all();
         }
 
         return response()->json([
