@@ -81,7 +81,7 @@ export const columns: ColumnDef<Book>[] = [
             return (
                 <img
                     src={`/storage/${book.cover}`}
-                    alt={row.getValue('title')}
+                    alt={book.title.length > 10 ? book.title.slice(0, 10) + '...' : book.title}
                     className="h-full w-full border border-slate-700 dark:border-slate-300"
                 />
             );
@@ -193,7 +193,7 @@ export function DataTable({ books }: { books: Book[] }) {
         <div className="w-full">
             <div className="flex justify-end space-x-2 py-4">
                 <Button variant={'outline'}>
-                    <Link target="_blank" href={route('books.import')}>
+                    <Link target="_blank" href={route('admin.books.import')}>
                         Tambah
                     </Link>
                     <Plus />
