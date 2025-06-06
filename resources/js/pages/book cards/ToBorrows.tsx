@@ -58,12 +58,12 @@ export default function ProductInfoCard({ book }: { book: Book }) {
                             </p>
                         </details>
 
-                        <form action={route('reviews.store', book.id)} method="POST" encType="multipart/form-data">
+                        <form className='space-y-1' action={route('reviews.store', book.id)} method="POST" encType="multipart/form-data">
                             {/* CSRF */}
                             <CSRF />
 
                             <Label htmlFor="star"><HeadingSmall title={'Ulas buku ini'}/></Label>
-                            <Box sx={{ '& > legend': { mt: 2 } }}>
+                            <Box>
                                 <Rating
                                     name="star"
                                     value={value}
