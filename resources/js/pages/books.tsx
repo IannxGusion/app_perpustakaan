@@ -16,9 +16,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function List({ ...props }: { books: Book[] }) {
-    const { books } = props;
-
+export default function List({ books }: { books: Book[] }) {
     // Pagination state
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(8);
@@ -53,35 +51,41 @@ export default function List({ ...props }: { books: Book[] }) {
 
             <div className="p-4">
                 {/*<Booklist />*/}
-                <div className="grid w-full gap-5 border-b-2 pb-20 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {paginatedBooks.map((book) => (
-                        <ToBooks key={book.id} book={book} />
-                    ))}
-                </div>
-                <div className="mt-4 flex justify-center">
-                    <TablePagination
-                        component="div"
-                        count={books.length}
-                        page={page}
-                        onPageChange={handleChangePage}
-                        rowsPerPage={rowsPerPage}
-                        onRowsPerPageChange={handleChangeRowsPerPage}
-                        rowsPerPageOptions={[4, 8, 16, 32]}
-                        sx={{
-                            color: 'inherit',
-                            '.MuiTablePagination-toolbar': {
-                                backgroundColor: 'transparent',
-                                color: 'inherit',
-                            },
-                            '.MuiTablePagination-selectLabel, .MuiTablePagination-input, .MuiTablePagination-displayedRows': {
-                                color: 'inherit',
-                            },
-                            '.MuiTablePagination-actions button': {
-                                color: 'inherit',
-                            },
-                        }}
-                    />
-                </div>
+                {books.length >= 1 ? (
+                    <>
+                        <div className="grid w-full gap-5 border-b-2 pb-20 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                            {paginatedBooks.map((book) => (
+                                <ToBooks key={book.id} book={book} />
+                            ))}
+                        </div>
+                        <div className="mt-4 flex justify-center">
+                            <TablePagination
+                                component="div"
+                                count={books.length}
+                                page={page}
+                                onPageChange={handleChangePage}
+                                rowsPerPage={rowsPerPage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                                rowsPerPageOptions={[4, 8, 16, 32]}
+                                sx={{
+                                    color: 'inherit',
+                                    '.MuiTablePagination-toolbar': {
+                                        backgroundColor: 'transparent',
+                                        color: 'inherit',
+                                    },
+                                    '.MuiTablePagination-selectLabel, .MuiTablePagination-input, .MuiTablePagination-displayedRows': {
+                                        color: 'inherit',
+                                    },
+                                    '.MuiTablePagination-actions button': {
+                                        color: 'inherit',
+                                    },
+                                }}
+                            />
+                        </div>
+                    </>
+                ) : (
+                    <p className="text-muted-foreground col-span-full text-center">Item kosong.</p>
+                )}
             </div>
         </AppLayout>
     );

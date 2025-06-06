@@ -1,6 +1,5 @@
 import { Book, LucideIcon } from 'lucide-react';
 import type { Config } from 'ziggy-js';
-
 export interface Auth {
     user: User;
 }
@@ -53,7 +52,13 @@ export interface Categories {
     icon: string;
 }
 
+export interface Result {
+    id: number;
+    book: Book;
+}
+
 export interface Book {
+
     id: number;
     title: string;
     categories: Categories;
@@ -96,4 +101,9 @@ export interface Review {
     comment: string;
     created_at: string;
     user: User;
+}
+
+export interface SearchResult {
+    books: Book[];
+    categories: Categories[];
 }

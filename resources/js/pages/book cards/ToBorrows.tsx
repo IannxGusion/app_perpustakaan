@@ -1,9 +1,11 @@
 import Category from '@/components/element/category';
 import Confirm from '@/components/element/confirm';
 import CSRF from '@/components/element/csrf';
+import HeadingSmall from '@/components/heading-small';
 import { DatePesan } from '@/components/pesan_buku';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
 import type { Book } from '@/types';
@@ -16,7 +18,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 export default function ProductInfoCard({ book }: { book: Book }) {
-    const [value, setValue] = React.useState<number | null>(2);
+    const [value, setValue] = React.useState<number | null>(0);
 
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [showTerms, setShowTerms] = useState(false);
@@ -28,7 +30,7 @@ export default function ProductInfoCard({ book }: { book: Book }) {
             {/* Kartu Informasi Buku */}
             <Card className="flex w-full flex-col overflow-hidden md:flex-row">
                 {/* Gambar Buku */}
-                <div className="flex w-full items-start justify-center border-r border-gray-200 bg-white p-4 md:w-1/3">
+                <div className="flex w-full items-start justify-center border-r dark:border-white p-4 md:w-1/3">
                     <img
                         src={`/storage/${book.cover}`}
                         alt={book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
@@ -44,23 +46,24 @@ export default function ProductInfoCard({ book }: { book: Book }) {
                             <Category categories={Array.isArray(book.categories) ? book.categories : [book.categories]} />
                         </div>
 
-                        <h1 className="text-2xl font-bold text-gray-800">{book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}</h1>
-                        <p className="text-sm text-gray-600 italic">{book.author}</p>
-                        <p className="mb-4 text-sm text-gray-500">{book.publisher}</p>
+                        <h1 className="text-2xl font-bold">{book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}</h1>
+                        <p className="text-sm italic">{book.author}</p>
+                        <p className="mb-4 text-sm">{book.publisher}</p>
 
                         {/* Sinopsis */}
                         <details className="mb-4">
                             <summary className="text-primary cursor-pointer font-semibold hover:underline">📖 Sinopsis</summary>
-                            <p className="mt-2 text-sm text-gray-700">
+                            <p className="mt-2 text-sm">
                                 {book.content.length > 300 ? book.content.slice(0, 300) + '...' : book.content}
                             </p>
                         </details>
 
-                        <form action={route('reviews.store', book.id)} method="POST" encType="multipart/form-data">
+                        <form className='space-y-1' action={route('reviews.store', book.id)} method="POST" encType="multipart/form-data">
                             {/* CSRF */}
                             <CSRF />
 
-                            <Box sx={{ '& > legend': { mt: 2 } }}>
+                            <Label htmlFor="star"><HeadingSmall title={'Ulas buku ini'}/></Label>
+                            <Box>
                                 <Rating
                                     name="star"
                                     value={value}
@@ -70,7 +73,7 @@ export default function ProductInfoCard({ book }: { book: Book }) {
                                 />
                                 <input type="hidden" name="star" value={value ?? 0} />
                             </Box>
-                            <Textarea placeholder="Tulis Ulasan." name="comment" />
+                            <Textarea className='dark:border-2 dark:border-white' placeholder="Tulis Ulasan." name="comment" />
                             <Button type="submit" onClick={() => toast.success('Ulasan terkirim!')}>
                                 Submit
                             </Button>
@@ -80,13 +83,13 @@ export default function ProductInfoCard({ book }: { book: Book }) {
                     {/* Formulir Peminjaman */}
                     <div className="mt-6">
                         <Separator className="mb-4" />
-                        <h3 className="mb-2 text-lg font-semibold text-gray-800">Formulir Peminjaman</h3>
-                        <p className="mb-2 text-sm text-gray-600">Silakan pilih tanggal dan setujui S&K terlebih dahulu.</p>
+                        <h3 className="mb-2 text-lg font-semibold">Formulir Peminjaman</h3>
+                        <p className="mb-2 text-sm">Silakan pilih tanggal dan setujui S&K terlebih dahulu.</p>
 
                         {/* Checkbox S&K */}
                         <div className="mb-3 flex items-start space-x-2">
-                            <Checkbox id="terms" checked={agreedToTerms} onCheckedChange={() => setAgreedToTerms(!agreedToTerms)} />
-                            <label htmlFor="terms" className="text-sm text-gray-700">
+                            <Checkbox id="terms" className='dark:border-white' checked={agreedToTerms} onCheckedChange={() => setAgreedToTerms(!agreedToTerms)} />
+                            <label htmlFor="terms" className="text-sm">
                                 Saya menyetujui{' '}
                                 <button onClick={() => setShowTerms(!showTerms)} className="text-blue-600 underline hover:text-blue-800">
                                     Syarat & Ketentuan
@@ -96,7 +99,7 @@ export default function ProductInfoCard({ book }: { book: Book }) {
 
                         {/* Teks Syarat & Ketentuan */}
                         {showTerms && (
-                            <div className="mb-4 rounded border border-gray-300 bg-gray-100 p-3 text-sm text-gray-700">
+                            <div className="mb-4 rounded border border-gray-300 bg-gray-100 dark:bg-gray-700 p-3 text-sm">
                                 <h4 className="mb-2 font-semibold">Syarat & Ketentuan Peminjaman</h4>
                                 <ul className="ml-5 list-disc space-y-1">
                                     <li>Buku hanya dapat dipinjam selama maksimal 30 hari.</li>

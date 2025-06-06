@@ -1,58 +1,105 @@
-import { Input } from '@/components/ui/input';
+import { useEffect, useState } from "react"
+import { Input } from "@/components/ui/input"
+import { Loader2Icon, Search } from "lucide-react"
+import { Book } from '@/types';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+
+import {
+    Command,
+    CommandGroup,
+    CommandItem,
+    CommandList,
+} from "@/components/ui/command"
+
 import { Link } from '@inertiajs/react';
-import { useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
+//import Category from "./category";
+import Heading from "../heading";
+import { ScrollArea } from "../ui/scroll-area";
+import { Button } from "../ui/button";
 
-// Buku dengan masing-masing route detail
-export default function Search() {
-    const books = [
-        { id: 1, title: 'Dilan', author: 'Pidibaiq', topic: 'Romantic', route: 'books.detail1' },
-        { id: 2, title: 'Sadako', author: 'Asep Dombang', topic: 'Horor', route: 'books.detail2' },
-        { id: 3, title: 'Bleach', author: 'Tite Kubo', topic: 'Fantasy', route: 'books.detail3' },
-    ];
+export default function SearchBlock() {
+    const [query, setQuery] = useState("")
+    const [books, setBooks] = useState<Book[]>([])
+    const [loading, setLoading] = useState(false)
 
-    const [query, setQuery] = useState('');
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            if (query.trim() === "") {
+                setBooks([])
+                return
+            }
 
-    const filteredBooks = books.filter(
-        (book) =>
-            book.title.toLowerCase().includes(query.toLowerCase()) ||
-            book.author.toLowerCase().includes(query.toLowerCase()) ||
-            book.topic.toLowerCase().includes(query.toLowerCase()),
-    );
+            setLoading(true)
+
+            fetch(`dashboard/search?query=${encodeURIComponent(query)}`)
+                .then(res => res.json())
+                .then(data => {
+                    setBooks(data.books)
+                    setLoading(false)
+                })
+                .catch(() => setLoading(false))
+        }, 300) // debounce 300ms
+
+        return () => clearTimeout(timeout)
+    }, [query])
 
     return (
         <section>
-            <div className="relative mx-auto w-full md:w-1/2">
-                <Input
-                    type="text"
-                    placeholder="Cari buku, penulis, atau topik..."
-                    className="w-full rounded border bg-gray-50 py-2 pr-4 pl-10 shadow-sm"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                />
-                <FaSearch className="absolute top-1/2 left-3 -translate-y-1/2 transform text-gray-400" size={20} />
-            </div>
+            <Dialog>
+                <DialogTrigger>
+                    <Button variant="secondary">
+                        <Search/>
+                        Cari buku, penulis, atau genre...
+                    </Button>
+                </DialogTrigger>
+                <DialogContent>
+                    <DialogHeader className="mr-4 mt-2">
+                        <DialogTitle>
+                            <div className="relative w-full mx-auto">
+                                <Input
+                                    type="text"
+                                    value={query}
+                                    onChange={(e) => setQuery(e.target.value)}
+                                    placeholder="buku, penulis, atau genre..."
+                                    className="w-full rounded border bg-gray-100 dark:bg-black dark:text-white py-2 pr-4 pl-10 shadow-sm"
+                                />
+                                <Search className="absolute top-1/2 left-3 -translate-y-1/2 transform text-gray-400" size={20} />
+                            </div>
+                        </DialogTitle>
+                        <DialogDescription>
+                            <ScrollArea className="h-[200px] p-4">
+                                {loading &&
+                                    <Button size="sm" disabled>
+                                        <Loader2Icon className="animate-spin" />
+                                        Loading
+                                    </Button>}
+                                {!loading && books.length === 0 && query && <p>Tidak ditemukan.</p>}
 
-            {query && (
-                <div className="mx-auto mt-6 w-full rounded bg-white p-4 text-left shadow md:w-1/2">
-                    <h2 className="mb-2 font-semibold">Hasil Pencarian:</h2>
-                    {filteredBooks.length > 0 ? (
-                        <ul>
-                            {filteredBooks.map((book) => (
-                                <li key={book.id} className="border-b py-2 last:border-b-0">
-                                    <Link href={route(book.route, 1)} className="text-black-600 hover:underline">
-                                        <strong>{book.title}</strong> oleh {book.author} ({book.topic})
-                                    </Link>
-
-                                    <Link href={route(book.route, 2)} className="text-black-600 hover:underline"></Link>
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <p>Tidak ada buku ditemukan.</p>
-                    )}
-                </div>
-            )}
+                                <Command>
+                                    {books.map(book => (
+                                        <CommandList>
+                                            <CommandGroup>
+                                                <CommandItem asChild>
+                                                    <Link href={route('books.show', book['id'])}>
+                                                        <Heading title={book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title} description={book.author} />
+                                                    </Link>
+                                                </CommandItem>
+                                            </CommandGroup>
+                                        </CommandList>
+                                    ))}
+                                </Command>
+                            </ScrollArea>
+                        </DialogDescription>
+                    </DialogHeader>
+                </DialogContent>
+            </Dialog>
         </section>
-    );
+    )
 }

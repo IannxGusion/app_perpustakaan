@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/react';
 
 // element
 import Highlight from '@/components/element/highlight';
-import Search from '@/components/element/search';
+import SearchBlock from '@/components/element/search';
 import Heading from '@/components/heading';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -14,8 +14,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Dashboard({ ...props }: { books: Book[] }) {
-    const { books } = props;
+export default function Dashboard({ books }: { books: Book[] }) {
+//    const { books } = props;
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
@@ -28,7 +28,7 @@ export default function Dashboard({ ...props }: { books: Book[] }) {
                 }}
             >
                 <h1 className="mb-2 text-4xl font-bold">Halaman Utama</h1>
-                <Search />
+                <SearchBlock/>
             </section>
 
             <main className='px-4'>

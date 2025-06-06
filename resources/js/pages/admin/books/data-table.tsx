@@ -65,6 +65,7 @@ export const columns: ColumnDef<Book>[] = [
                 categories = {
                     id: 0,
                     name: 'Anonymous',
+                    description: '',
                     colour: 'gray',
                     icon: '',
                 };
