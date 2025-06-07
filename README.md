@@ -5,7 +5,7 @@
 ### 1. install dependencies
 
 ```powershell
-npm install
+npm install --legacy-peer-deps
 composer install
 ```
 
