@@ -8,17 +8,17 @@ class UserController extends Controller
 {
     public function adminBorrowerIndex()
     {
-        $users = User::get();
+        $users = User::where('role', 'PEMINJAM')->get();
 
-        return Inertia('admin/borrower/crud_PEMINJAM', compact('users'));
+        return Inertia('admin/users/crud_PEMINJAM', compact('users'));
     }
     // PEMIJAM< -----------------------------------------------------------------------------
 
     // PUSTAKAWAN> -----------------------------------------------------------------------------
     public function adminLibrarianIndex()
     {
-        $users = User::get();
+        $users = User::where('role', 'PUSTAKAWAN')->get();
 
-        return Inertia('admin/librarian/crud_PUSTAKAWAN', compact('users'));
+        return Inertia('admin/users/crud_PUSTAKAWAN', compact('users'));
     }
 }
