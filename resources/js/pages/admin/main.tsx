@@ -5,6 +5,7 @@ import AppLayout from '@/pages/admin/layer/app-layout';
 import { Head } from '@inertiajs/react';
 
 import type { Book, BreadcrumbItem, Categories } from '@/types';
+import Heading from '@/components/heading';
 
 const breadcrumbs: BreadcrumbItem[] = [{ title: 'Dashboard', href: '/main' }];
 
@@ -13,7 +14,7 @@ export default function Dashboard({ ...props }: { books: Book[]; categories: Cat
 
     const totalBooks = books.length;
     const totalCategories = categories.length;
-    const activeBooks = books.filter((b) => b.status === 'active').length;
+    const activeBooks = books.filter((b) => b.status === 'Available').length;
     const latestBooks = books.slice(0, 5);
 
     const activities = ["Buku 'React Advanced' ditambahkan", 'Admin login pada 09:00', "Kategori 'Science' diperbarui", 'Backup database berhasil'];
@@ -33,7 +34,7 @@ export default function Dashboard({ ...props }: { books: Book[]; categories: Cat
                     {/* Summary Cards */}
                     <section className="grid grid-cols-1 gap-6 sm:grid-cols-3">
                         <StatCard title="Total Buku" value={totalBooks.toString()} icon="📚" />
-                        <StatCard title="Buku Aktif" value={activeBooks.toString()} icon="✅" />
+                        <StatCard title="Buku Tersedia" value={activeBooks.toString()} icon="✅" />
                         <StatCard title="Kategori" value={totalCategories.toString()} icon="🏷️" />
                     </section>
 
@@ -41,8 +42,9 @@ export default function Dashboard({ ...props }: { books: Book[]; categories: Cat
                     <section className="grid gap-6 md:grid-cols-3">
                         {/* Left: Donut Chart */}
                         <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800 dark:shadow-white">
-                            <h2 className="mb-4 text-xl font-semibold">Distribusi Buku</h2>
-                            <Donut  />
+                            <Heading title='Distribusi Buku' description='Menunjukkan total buku untuk setiap kategori
+'/>
+                            <Donut />
                         </div>
 
                         {/* Middle: Latest Books */}

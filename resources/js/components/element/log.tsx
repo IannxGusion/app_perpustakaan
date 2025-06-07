@@ -107,7 +107,7 @@ export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
     ];
 
     const chartConfig = {
-        visitors: {
+        buku: {
             label: 'Buku',
         },
         borrows: {
