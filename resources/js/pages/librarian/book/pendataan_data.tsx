@@ -65,6 +65,7 @@ export const columns: ColumnDef<Book>[] = [
                 categories = {
                     id: 0,
                     name: 'Anonymous',
+                    description: 'No description',
                     colour: 'gray',
                     icon: '',
                 };
@@ -79,9 +80,9 @@ export const columns: ColumnDef<Book>[] = [
             const book = row.original;
             return (
                 <img
-                    src={`/storage/${book.cover}`}
-                    alt={row.getValue('title')}
-                    className="h-full w-full border border-slate-700 dark:border-slate-300"
+                    src={`/storage/${book.cover}`} 
+                    alt={book.title.length > 10 ? book.title.slice(0, 10) + '...' : book.title}
+                    className="h-30 w-20 border border-slate-700 dark:border-slate-300"
                 />
             );
         },
