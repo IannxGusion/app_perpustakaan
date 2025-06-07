@@ -124,10 +124,11 @@ class BookController extends Controller
     {
         $data = \App\Models\Category::withCount('books')
             ->get()
-            ->map(fn($cat) => [
+            ->map(fn ($cat) => [
                 'category' => $cat->name,
                 'book' => $cat->books_count,
             ]);
+
         return response()->json($data);
     }
 

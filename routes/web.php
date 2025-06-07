@@ -71,7 +71,7 @@ Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(funct
 Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function () {
     Route::get('main', [BookController::class, 'adminMain'])->name('admin.main');
     Route::get('main/books-count', [BookController::class, 'booksCount']);
-    
+
     Route::get('/crud_books', [BookController::class, 'adminIndex'])->name('admin.books.index');
 
     Route::get('/crud_books/import', [BookController::class, 'adminImport'])->name('admin.books.import');
@@ -93,5 +93,5 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 });
 // *Admin* ==================================================================================
 
-require __DIR__ . '/settings.php';
-require __DIR__ . '/auth.php';
+require __DIR__.'/settings.php';
+require __DIR__.'/auth.php';
