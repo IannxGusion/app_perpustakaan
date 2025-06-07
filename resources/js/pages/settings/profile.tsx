@@ -9,12 +9,21 @@ import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
 import UserLayout from '@/layouts/user-layout';
 import AdminLayout from '@/pages/admin/layer/app-layout';
 import PustakawanLayout from '@/pages/librarian/layer/user-layout';
 
 import SettingsLayout from '@/layouts/settings/layout';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -54,6 +63,35 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                     <HeadingSmall title="Informasi profil" description="Update nama dan alamat email Anda" />
 
                     <form onSubmit={submit} className="space-y-6">
+                        <div className="grid gap-2">
+                            <Label htmlFor="name">Avatar</Label>
+
+                            <InputError className="mt-2" message={errors.name} />
+                            <Dialog>
+                                <DialogTrigger>
+                                    <Avatar className='size-24'>
+                                        <AvatarImage src="https://github.com/shadcn.png" />
+                                        <AvatarFallback>CN</AvatarFallback>
+                                    </Avatar>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>Are you absolutely sure?</DialogTitle>
+                                        <DialogDescription>
+                                            <Input
+                                                type='file'
+                                                id="name"
+                                                className="mt-1 block w-full"
+                                                value=''
+                                                onChange={(e) => setData('avatar', e.target.value)}
+                                                required
+                                            />
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                </DialogContent>
+                            </Dialog>
+                        </div>
+
                         <div className="grid gap-2">
                             <Label htmlFor="name">Nama</Label>
 
@@ -110,7 +148,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                         )}
 
                         <div className="flex items-center gap-4">
-                        <Button disabled={processing}>Simpan</Button>
+                            <Button disabled={processing}>Simpan</Button>
 
                             <Transition
                                 show={recentlySuccessful}
