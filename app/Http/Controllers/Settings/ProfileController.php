@@ -49,6 +49,23 @@ class ProfileController extends Controller
     }
 
     /**
+     * Update the user's Avatar settings.
+     */
+    public function updateAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            $imagePath = $request->file('avatar')->store('avatars', 'public');
+            $request->user()->avatar = $imagePath;
+        }
+
+        $request->user()->save();
+    }
+
+    /**
      * Delete the user's account.
      */
     public function destroy(Request $request): RedirectResponse

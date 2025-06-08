@@ -1,7 +1,8 @@
 import { type BreadcrumbItem, type SharedData } from '@/types';
 import { Transition } from '@headlessui/react';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
-import { FormEventHandler, useState } from 'react';
+import { FormEventHandler } from 'react';
+import { useInitials } from '@/hooks/use-initials';
 
 import DeleteUser from '@/components/delete-user';
 import HeadingSmall from '@/components/heading-small';
@@ -17,6 +18,13 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+
+import {
+    ContextMenu,
+    ContextMenuContent,
+    ContextMenuItem,
+    ContextMenuTrigger,
+} from "@/components/ui/context-menu"
 
 import UserLayout from '@/layouts/user-layout';
 import AdminLayout from '@/pages/admin/layer/app-layout';
@@ -35,7 +43,6 @@ const breadcrumbs: BreadcrumbItem[] = [
 type ProfileForm = {
     name: string;
     email: string;
-    avatar?: File | null;
 };
 
 export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: boolean; status?: string }) {
@@ -45,26 +52,9 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm<Required<ProfileForm>>({
         name: auth.user.name,
         email: auth.user.email,
-        avatar: null,
     });
 
-    // For previewing the selected avatar
-    const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
-
-    const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0] || null;
-        setData('avatar', file);
-        if (file) {
-            setAvatarPreview(`/storage/${avatar}`);
-        } else {
-            setAvatarPreview(null);
-        }
-    };
-
-    const handleAvatarRemove = () => {
-        setData('avatar', null);
-        setAvatarPreview(null);
-    };
+    const getInitials = useInitials();
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
@@ -84,38 +74,47 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
                     <div className="grid gap-2">
                         <Label htmlFor="name">Avatar</Label>
-
-                        <InputError className="mt-2" message={errors.avatar} />
                         <Dialog>
-                            <DialogTrigger>
-                                <Avatar className='size-24'>
-                                    <AvatarImage
-                                        src={avatarPreview || auth.user.avatar_url || "https://github.com/shadcn.png"} />
-                                    <AvatarFallback>
-                                        {auth.user.name?.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2)}
-                                    </AvatarFallback>
-                                </Avatar>
-                            </DialogTrigger>
+                            <ContextMenu>
+                                <ContextMenuTrigger>
+                                    <Avatar className='size-24'>
+                                        <AvatarImage
+                                            src={`/storage/${auth.user.avatar}`} />
+                                        <AvatarFallback>
+                                            {getInitials(auth.user.name)}
+                                        </AvatarFallback>
+                                    </Avatar>
+                                </ContextMenuTrigger>
+                                <ContextMenuContent className='space-y-2'>
+                                    <ContextMenuItem>
+                                        <DialogTrigger>
+                                            Edit
+                                        </DialogTrigger>
+                                    </ContextMenuItem>
+                                    <ContextMenuItem className='text-white bg-destructive hover:bg-destructive'>
+                                        Hapus
+                                    </ContextMenuItem>
+                                </ContextMenuContent>
+                            </ContextMenu>
+
                             <DialogContent>
                                 <DialogHeader>
                                     <DialogTitle>Ubah Avatar</DialogTitle>
-
-                                    <DialogDescription className='flex flex-row space-x-3'>
-                                        <Input
-                                            type='file'
-                                            id="avatar"
-                                            className="basis-1/2"
-                                            onChange={handleAvatarChange}
-                                        />
-                                        <p className='mt-2'>atau</p>
-                                        <Button
-                                            variant={'destructive'}
-                                            className='basis-1/2'
-                                            type="button"
-                                            onClick={handleAvatarRemove}>
-                                            Hapus
-                                        </Button>
-                                    </DialogDescription>
+                                    <form action={route('avatar.update')}>
+                                        <DialogDescription className='flex lg:flex-row md:flex-col sm:flex-col xs:flex-col space-x-3'>
+                                            <Input
+                                                type='file'
+                                                name='avatar'
+                                                id="avatar"
+                                                className="basis-2/2"
+                                            />
+                                            <Button
+                                                className='basis-1/3'
+                                                type="submit">
+                                                Simpan
+                                            </Button>
+                                        </DialogDescription>
+                                    </form>
                                 </DialogHeader>
                             </DialogContent>
                         </Dialog>
@@ -195,6 +194,6 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
                 <DeleteUser />
             </SettingsLayout>
-        </Layout>
+        </Layout >
     );
 }
