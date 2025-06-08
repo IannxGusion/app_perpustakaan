@@ -66,26 +66,28 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                         <div className="grid gap-2">
                             <Label htmlFor="name">Avatar</Label>
 
-                            <InputError className="mt-2" message={errors.name} />
+                            <InputError className="mt-2" message={errors.avatar} />
                             <Dialog>
                                 <DialogTrigger>
                                     <Avatar className='size-24'>
+                                        {/* static default avatar */}
                                         <AvatarImage src="https://github.com/shadcn.png" />
                                         <AvatarFallback>CN</AvatarFallback>
                                     </Avatar>
                                 </DialogTrigger>
                                 <DialogContent>
                                     <DialogHeader>
-                                        <DialogTitle>Are you absolutely sure?</DialogTitle>
-                                        <DialogDescription>
+                                        <DialogTitle>Ubah Avatar</DialogTitle>
+                                        <DialogDescription className='flex flex-row space-x-3'>
                                             <Input
                                                 type='file'
                                                 id="name"
-                                                className="mt-1 block w-full"
+                                                className="basis1/2"
                                                 value=''
                                                 onChange={(e) => setData('avatar', e.target.value)}
-                                                required
                                             />
+                                            <p className='mt-2'>atau</p>
+                                            <Button variant={'destructive'} className='basis1/2'>Hapus</Button>
                                         </DialogDescription>
                                     </DialogHeader>
                                 </DialogContent>

@@ -19,7 +19,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 export default function List({ books }: { books: Book[] }) {
     // Pagination state
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(8);
+    const [rowsPerPage, setRowsPerPage] = React.useState(4);
 
     const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
         setPage(newPage);
@@ -51,7 +51,7 @@ export default function List({ books }: { books: Book[] }) {
 
             <div className="p-4">
                 {/*<Booklist />*/}
-                {books.length >= 1 ? (
+                {books.length >= 5 ? (
                     <>
                         <div className="grid w-full gap-5 border-b-2 pb-20 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             {paginatedBooks.map((book) => (
@@ -83,6 +83,12 @@ export default function List({ books }: { books: Book[] }) {
                             />
                         </div>
                     </>
+                ) : books.length >= 1 ? (
+                    <div className="grid w-full gap-5 border-b-2 pb-20 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        {paginatedBooks.map((book) => (
+                            <ToBooks key={book.id} book={book} />
+                        ))}
+                    </div>
                 ) : (
                     <p className="text-muted-foreground col-span-full text-center">Item kosong.</p>
                 )}

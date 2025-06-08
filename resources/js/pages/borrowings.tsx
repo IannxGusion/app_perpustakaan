@@ -19,7 +19,7 @@ export default function Borrowings({ ...props }: { borrowings: Borrowing[]; coll
 
     // Pagination state
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(8);
+    const [rowsPerPage, setRowsPerPage] = React.useState(4);
 
     const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
         setPage(newPage);
@@ -50,14 +50,14 @@ export default function Borrowings({ ...props }: { borrowings: Borrowing[]; coll
             </section>
 
             {/* borrowings List */}
-            {borrowings.length >= 1 ? (
+            {borrowings.length >= 5 ? (
                 <>
-                    <div className="mx-5 space-y-7 border-b-2 pb-20">
+                    <div className="mx-5 space-y-7 pb-20">
                         {paginatedborrowings.map((borrowing) => (
                             <ToBorrowings key={borrowing.id} borrowing={borrowing} collections={collections} />
                         ))}
                     </div>
-                    <div className="mt-4 flex justify-center">
+                    <div className="mt-4 flex justify-center border-t-2">
                         <TablePagination
                             component="div"
                             count={borrowings.length}
@@ -82,6 +82,12 @@ export default function Borrowings({ ...props }: { borrowings: Borrowing[]; coll
                         />
                     </div>
                 </>
+            ) : borrowings.length >= 1 ? (
+                <div className="mx-5 space-y-7">
+                    {paginatedborrowings.map((borrowing) => (
+                        <ToBorrowings key={borrowing.id} borrowing={borrowing} collections={collections} />
+                    ))}
+                </div>
             ) : (
                 <p className="text-muted-foreground col-span-full text-center">Riwayat kosong.</p>
             )}
