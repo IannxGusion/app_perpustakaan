@@ -20,8 +20,8 @@ class ReviewController extends Controller
 
         $review = Review::create([
             'user_id' => Auth::id(),
-            'star' => $request->input('star'),
-            'comment' => $request->input('comment'),
+            'star' => $request->star,
+            'comment' => $request->comment ?? '_',
         ]);
 
         // Attach review to book

@@ -21,7 +21,7 @@ class BorrowingController extends Controller
             ->latest()
             ->get();
 
-        $collections = Collection::where('user_id', Auth::id())->latest()->get();
+        $collections = Collection::where('user_id', $userId)->latest()->get();
 
         return inertia('borrowings', compact('borrowings', 'collections'));
     }
@@ -33,13 +33,24 @@ class BorrowingController extends Controller
     {
         $request->validate([
             'book_id' => 'required|exists:books,id',
+            'return_date' => [
+                'required',
+                'date',
+                'after_or_equal:today',
+                function ($attribute, $value, $fail) {
+                    $maxDate = now()->addMonths(3)->endOfDay();
+                    if (strtotime($value) > $maxDate->timestamp) {
+                        $fail('The return date may not be more than 3 months from today.');
+                    }
+                },
+            ],
         ]);
 
         Borrowing::create([
             'user_id' => Auth::id(),
             'book_id' => $request->book_id,
             'borrow_date' => now(),
-            'return_date' => now()->addMonth(),
+            'return_date' => $request->return_date,
             'status' => 'Borrows',
         ]);
 
@@ -62,7 +73,7 @@ class BorrowingController extends Controller
 
         $borrowing = Borrowing::findOrFail($request->borrowing_id);
         $borrowing->status = 'Returned';
-        $borrowing->delete();
+        $borrowing->delete(); // will be disabled for READ
 
         $book = Book::findOrFail($request->book_id);
         $book->status = 'Available';

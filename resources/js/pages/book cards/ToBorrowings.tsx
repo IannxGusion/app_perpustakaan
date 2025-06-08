@@ -4,8 +4,14 @@ import { Link } from '@inertiajs/react';
 // ui
 import { Button } from '@/components/ui/button';
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent,  DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableRow,
+} from "@/components/ui/table"
 
 // elment
 import Category from '@/components/element/category';
@@ -13,6 +19,7 @@ import Collect from '@/components/element/collect';
 import CSRF from '@/components/element/csrf';
 import TableInfo from '@/components/element/table-info';
 import { Check } from 'lucide-react';
+import HeadingSmall from '@/components/heading-small';
 
 export default function ToBorrowings({ borrowing, collections }: { borrowing: Borrowing; collections: Collection[] }) {
     return (
@@ -51,8 +58,8 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
                     <CardDescription>
                         <Dialog>
                             <DialogTrigger>
-                                <Button asChild variant="ghost" className="my-1 p-0 hover:cursor-pointer">
-                                    <h2 className="text-lg md:text-xl font-bold">
+                                <Button asChild variant="ghost" className="rounded-none my-1 p-0 hover:cursor-pointer">
+                                    <h2 className="text-lg md:text-xl font-bold text-black">
                                         {borrowing.book.title.length > 50 ? borrowing.book.title.slice(0, 50) + '...' : borrowing.book.title}
                                     </h2>
                                 </Button>
@@ -60,13 +67,25 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
 
                             <p className="text-sm">{borrowing.book.author}</p>
 
-                            <DialogContent className="sm:max-w-[600px]">
-                                <ScrollArea className="mt-5 h-[400px] border-r-2 px-10">
-                                    <DialogHeader>
-                                        <DialogTitle>Info Buku</DialogTitle>
-                                    </DialogHeader>
+                            <DialogContent className="sm:max-w-[600px] px-5">
+                                <ScrollArea className="mt-5 h-[400px] border-r-2 p-5">
+                                    <HeadingSmall title={'Info Buku'} />
 
                                     <TableInfo book={borrowing.book} />
+
+                                    <HeadingSmall title={'Info Peminjaman'} />
+                                    <Table className="my-3 min-w-full border border-gray-300">
+                                        <TableBody>
+                                            <TableRow className="border-b border-gray-300">
+                                                <TableCell className="px-4 py-2 font-medium text-gray-700">Tgl. Meminjam</TableCell>
+                                                <TableCell className="px-4 py-2 font-medium text-gray-700">{borrowing.borrow_date}</TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell className="px-4 py-2 font-medium text-gray-700">Tenggat Pengembalian</TableCell>
+                                                <TableCell className="px-4 py-2 font-medium text-gray-700">{borrowing.return_date}</TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                    </Table>
 
                                     <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="w-full mt-4">
                                         <CSRF />

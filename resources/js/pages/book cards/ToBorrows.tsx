@@ -2,7 +2,6 @@ import Category from '@/components/element/category';
 import Confirm from '@/components/element/confirm';
 import CSRF from '@/components/element/csrf';
 import HeadingSmall from '@/components/heading-small';
-import { DatePesan } from '@/components/pesan_buku';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
@@ -73,7 +72,7 @@ export default function ProductInfoCard({ book }: { book: Book }) {
                                 />
                                 <input type="hidden" name="star" value={value ?? 0} />
                             </Box>
-                            <Textarea className='dark:border-2 dark:border-white' placeholder="Tulis Ulasan." name="comment" />
+                            <Textarea className='dark:border-2 dark:border-white' placeholder="Tulis Ulasan..." name="comment" />
                             <Button type="submit" onClick={() => toast.success('Ulasan terkirim!')}>
                                 Submit
                             </Button>
@@ -114,9 +113,6 @@ export default function ProductInfoCard({ book }: { book: Book }) {
                         {/* Date Picker dan Konfirmasi */}
                         {agreedToTerms ? (
                             <>
-                                <div className="mb-4">
-                                    <DatePesan />
-                                </div>
                                 <Confirm book={book} />
                             </>
                         ) : (

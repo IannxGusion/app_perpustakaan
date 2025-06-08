@@ -44,7 +44,7 @@ class BookController extends Controller
 
         return inertia('borrows_book', [
             'book' => $book,
-            'reviews' => $book->reviews()->with('user')->get(),
+            'reviews' => $book->reviews()->with('user')->latest()->get(),
         ]);
     }
 
