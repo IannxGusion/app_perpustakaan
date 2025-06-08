@@ -16,9 +16,8 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::with('categories')->inRandomOrder()->get();
-        $categories = Category::all();
 
-        return Inertia('books', compact('books', 'categories'));
+        return Inertia('books', compact('books'));
     }
 
     /**
@@ -120,15 +119,27 @@ class BookController extends Controller
         return Inertia('admin/main', compact('books', 'categories'));
     }
 
+    // chart
+    public function booksCount()
+    {
+        $data = \App\Models\Category::withCount('books')
+            ->get()
+            ->map(fn ($cat) => [
+                'category' => $cat->name,
+                'book' => $cat->books_count,
+            ]);
+
+        return response()->json($data);
+    }
+
     /**
      * Admin: List all books.
      */
     public function adminIndex()
     {
         $books = Book::with('categories')->get();
-        $categories = Category::all();
 
-        return Inertia('admin/books/crud_buku', compact('books', 'categories'));
+        return Inertia('admin/books/crud_buku', compact('books'));
     }
 
     /**
@@ -203,9 +214,8 @@ class BookController extends Controller
     public function librarianIndex()
     {
         $books = Book::with('categories')->get();
-        $categories = Category::all();
 
-        return Inertia('librarian/book/pendataan', compact('books', 'categories'));
+        return Inertia('librarian/book/pendataan', compact('books'));
     }
 
     public function librarianImport()

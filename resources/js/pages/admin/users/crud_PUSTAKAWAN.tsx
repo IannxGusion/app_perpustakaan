@@ -2,7 +2,7 @@ import AppLayout from '@/pages/admin/layer/app-sidebar-layout';
 import { type BreadcrumbItem, User } from '@/types';
 import { Head } from '@inertiajs/react';
 
-import { DataTable } from '@/pages/admin/borrower/data-table';
+import { DataTable } from './data-table';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

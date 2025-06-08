@@ -71,17 +71,40 @@ export const columns: ColumnDef<User>[] = [
     {
         accessorKey: 'created_at',
         header: 'Dibuat',
-        cell: ({ row }) => <div>{row.getValue('created_at')}</div>,
+        cell: ({ row }) => {
+            const created_at = row.original.created_at;
+
+            return (
+                <div>
+                    {created_at
+                        ? new Date(created_at).toLocaleString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric',
+                        })
+                        : 'Unknown date'}
+                </div>
+            );
+        }
     },
     {
         accessorKey: 'updated_at',
         header: 'Diperbarui',
-        cell: ({ row }) => <div>{row.getValue('updated_at')}</div>,
-    },
-    {
-        accessorKey: 'email_verified_at',
-        header: 'Terverivikasi pada',
-        cell: ({ row }) => <div>{row.getValue('email_verified_at')}</div>,
+        cell: ({ row }) => {
+            const updated_at = row.original.updated_at;
+
+            return (
+                <div>
+                    {updated_at
+                        ? new Date(updated_at).toLocaleString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric',
+                        })
+                        : 'Unknown date'}
+                </div>
+            );
+        }
     },
     {
         id: 'actions',
@@ -101,7 +124,7 @@ export const columns: ColumnDef<User>[] = [
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
                         <DropdownMenuItem onClick={() => navigator.clipboard.writeText(String(user.id))} className="underline">
-                            Copy book ID
+                            Copy User ID
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
 

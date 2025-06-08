@@ -10,7 +10,7 @@ import { Borrowing } from '@/types';
 
 export const description = 'An interactive area chart';
 
-export default function Log( {borrowings} : { borrowings: Borrowing[] }) {
+export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
 
     const chartData = [
         { date: '2024-04-01', borrows: 222, returned: 150 },
@@ -107,7 +107,7 @@ export default function Log( {borrowings} : { borrowings: Borrowing[] }) {
     ];
 
     const chartConfig = {
-        visitors: {
+        buku: {
             label: 'Buku',
         },
         borrows: {
@@ -216,9 +216,19 @@ export default function Log( {borrowings} : { borrowings: Borrowing[] }) {
                 </Button>
             </CardFooter>
 
-            <label htmlFor="SSD" className='hidden'>{borrowings.map((borrowing) => (
-                <p>{borrowing.status}</p>
-            ))}</label>
+            <label htmlFor="SSD" className='hidden'>
+                {borrowings.map((borrowing) => (
+                    <p key={borrowing.id}>
+                        {borrowing.updated_at
+                            ? new Date(borrowing.updated_at).toLocaleString('en-US', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric',
+                            })
+                            : 'Unknown date'}
+                    </p>
+                ))}
+            </label>
         </Card>
     );
 }

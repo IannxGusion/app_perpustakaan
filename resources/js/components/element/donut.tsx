@@ -1,13 +1,9 @@
-import { TrendingUp } from "lucide-react"
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"
+import React, { useEffect, useState } from "react"
 
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
 } from "@/components/ui/card"
 import {
     ChartConfig,
@@ -20,15 +16,6 @@ import {
 
 export const description = "A radar chart with a legend"
 
-const chartData = [
-    { category: "Lorem", book: 186 },
-    { category: "Ipsum", book: 305 },
-    { category: "Dolor", book: 237 },
-    { category: "Sit", book: 73 },
-    { category: "Amet", book: 209 },
-    { category: "Qua", book: 214 },
-]
-
 const chartConfig = {
     book: {
         label: "Book",
@@ -37,14 +24,17 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function Donut() {
+
+    const [chartData, setChartData] = useState<{ category: string, book: number }[]>([])
+
+    useEffect(() => {
+        fetch("main/books-count")
+            .then(res => res.json())
+            .then(data => setChartData(data))
+    }, [])
+
     return (
-        <Card>
-            <CardHeader className="items-center pb-4">
-                <CardTitle>Radar Chart - Legend</CardTitle>
-                <CardDescription>
-                    Showing total visitors for the last 6 months
-                </CardDescription>
-            </CardHeader>
+        <Card className="border-none shadow-none">
             <CardContent>
                 <ChartContainer
                     config={chartConfig}
@@ -72,14 +62,6 @@ export function Donut() {
                     </RadarChart>
                 </ChartContainer>
             </CardContent>
-            <CardFooter className="flex-col gap-2 pt-4 text-sm">
-                <div className="flex items-center gap-2 leading-none font-medium">
-                    Trending up by 5.2% this category <TrendingUp className="h-4 w-4" />
-                </div>
-                <div className="text-muted-foreground flex items-center gap-2 leading-none">
-                    January - June 2024
-                </div>
-            </CardFooter>
         </Card>
     )
 }
