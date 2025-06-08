@@ -35,6 +35,14 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
+        // Remove avatar if requested
+        if ($request->input('remove_avatar')) {
+            $request->user()->avatar = null;
+        } elseif ($request->hasFile('avatar')) {
+            $imagePath = $request->file('avatar')->store('avatars', 'public');
+            $request->user()->avatar = $imagePath;
+        }
+
         $request->user()->save();
 
         return to_route('profile.edit');

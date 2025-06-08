@@ -1,7 +1,7 @@
 import { type BreadcrumbItem, type SharedData } from '@/types';
 import { Transition } from '@headlessui/react';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
+import { FormEventHandler, useState } from 'react';
 
 import DeleteUser from '@/components/delete-user';
 import HeadingSmall from '@/components/heading-small';
@@ -35,6 +35,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 type ProfileForm = {
     name: string;
     email: string;
+    avatar?: File | null;
 };
 
 export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: boolean; status?: string }) {
@@ -44,7 +45,26 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm<Required<ProfileForm>>({
         name: auth.user.name,
         email: auth.user.email,
+        avatar: null,
     });
+
+    // For previewing the selected avatar
+    const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+
+    const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0] || null;
+        setData('avatar', file);
+        if (file) {
+            setAvatarPreview(`/storage/${avatar}`);
+        } else {
+            setAvatarPreview(null);
+        }
+    };
+
+    const handleAvatarRemove = () => {
+        setData('avatar', null);
+        setAvatarPreview(null);
+    };
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
@@ -62,38 +82,46 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                 <div className="space-y-6">
                     <HeadingSmall title="Informasi profil" description="Update nama dan alamat email Anda" />
 
+                    <div className="grid gap-2">
+                        <Label htmlFor="name">Avatar</Label>
+
+                        <InputError className="mt-2" message={errors.avatar} />
+                        <Dialog>
+                            <DialogTrigger>
+                                <Avatar className='size-24'>
+                                    <AvatarImage
+                                        src={avatarPreview || auth.user.avatar_url || "https://github.com/shadcn.png"} />
+                                    <AvatarFallback>
+                                        {auth.user.name?.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2)}
+                                    </AvatarFallback>
+                                </Avatar>
+                            </DialogTrigger>
+                            <DialogContent>
+                                <DialogHeader>
+                                    <DialogTitle>Ubah Avatar</DialogTitle>
+
+                                    <DialogDescription className='flex flex-row space-x-3'>
+                                        <Input
+                                            type='file'
+                                            id="avatar"
+                                            className="basis-1/2"
+                                            onChange={handleAvatarChange}
+                                        />
+                                        <p className='mt-2'>atau</p>
+                                        <Button
+                                            variant={'destructive'}
+                                            className='basis-1/2'
+                                            type="button"
+                                            onClick={handleAvatarRemove}>
+                                            Hapus
+                                        </Button>
+                                    </DialogDescription>
+                                </DialogHeader>
+                            </DialogContent>
+                        </Dialog>
+                    </div>
+
                     <form onSubmit={submit} className="space-y-6">
-                        <div className="grid gap-2">
-                            <Label htmlFor="name">Avatar</Label>
-
-                            <InputError className="mt-2" message={errors.avatar} />
-                            <Dialog>
-                                <DialogTrigger>
-                                    <Avatar className='size-24'>
-                                        {/* static default avatar */}
-                                        <AvatarImage src="https://github.com/shadcn.png" />
-                                        <AvatarFallback>CN</AvatarFallback>
-                                    </Avatar>
-                                </DialogTrigger>
-                                <DialogContent>
-                                    <DialogHeader>
-                                        <DialogTitle>Ubah Avatar</DialogTitle>
-                                        <DialogDescription className='flex flex-row space-x-3'>
-                                            <Input
-                                                type='file'
-                                                id="name"
-                                                className="basis1/2"
-                                                value=''
-                                                onChange={(e) => setData('avatar', e.target.value)}
-                                            />
-                                            <p className='mt-2'>atau</p>
-                                            <Button variant={'destructive'} className='basis1/2'>Hapus</Button>
-                                        </DialogDescription>
-                                    </DialogHeader>
-                                </DialogContent>
-                            </Dialog>
-                        </div>
-
                         <div className="grid gap-2">
                             <Label htmlFor="name">Nama</Label>
 
