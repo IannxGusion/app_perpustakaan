@@ -95,9 +95,15 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                                             Edit
                                         </DialogTrigger>
                                     </ContextMenuItem>
-                                    <ContextMenuItem className='text-white bg-destructive hover:bg-destructive'>
-                                        Hapus
-                                    </ContextMenuItem>
+                                    <form action={route('avatar.delete')} method="DELETE" encType="multipart/form-data"
+                                        className="w-full">
+                                        <CSRF />
+                                        <ContextMenuItem className='text-white bg-destructive hover:bg-destructive'>
+                                            <button type='submit'>
+                                                Hapus
+                                            </button>
+                                        </ContextMenuItem>
+                                    </form>
                                 </ContextMenuContent>
                             </ContextMenu>
 

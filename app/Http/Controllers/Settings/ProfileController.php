@@ -73,6 +73,23 @@ class ProfileController extends Controller
     }
 
     /**
+     * Delete the user's avatar.
+     */
+    public function deleteAvatar()
+    {
+        $user = Auth::user();
+
+        if ($user instanceof \App\Models\User && $user->avatar) {
+            // Optionally, delete the file from storage
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($user->avatar);
+            $user->avatar = null;
+            $user->save();
+        }
+
+        return redirect()->back();
+    }
+
+    /**
      * Delete the user's account.
      */
     public function destroy(Request $request): RedirectResponse
