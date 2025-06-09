@@ -31,6 +31,17 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import CSRF from '@/components/element/csrf';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import type { User } from '@/types';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
+// Helper function to get initials from a name
+function getInitials(name: string): string {
+    if (!name) return '';
+    return name
+        .split(' ')
+        .map((n) => n[0])
+        .join('')
+        .toUpperCase();
+}
 
 export const columns: ColumnDef<User>[] = [
     {
@@ -61,7 +72,18 @@ export const columns: ColumnDef<User>[] = [
     {
         accessorKey: 'avatar',
         header: 'Avatar',
-        cell: ({ row }) => <div>{row.getValue('avatar')}</div>,
+        cell: ({ row }) => {
+            const user = row.original;
+            return (
+                <Avatar className='size-20'>
+                    <AvatarImage
+                        src={`/storage/${user.avatar}`} />
+                    <AvatarFallback>
+                        {getInitials(user.name)}
+                    </AvatarFallback>
+                </Avatar>
+            )
+        },
     },
     {
         accessorKey: 'email',
@@ -141,7 +163,15 @@ export const columns: ColumnDef<User>[] = [
                                     </TableRow>
                                     <TableRow className="border-b border-gray-300">
                                         <TableCell className="px-4 py-2 font-medium text-gray-700">Avatar</TableCell>
-                                        <TableCell className="px-4 py-2 text-gray-900">{user.avatar}</TableCell>
+                                        <TableCell className="px-4 py-2 text-gray-900">
+                                            <Avatar className='size-14'>
+                                                <AvatarImage
+                                                    src={`/storage/${user.avatar}`} />
+                                                <AvatarFallback>
+                                                    {getInitials(user.name)}
+                                                </AvatarFallback>
+                                            </Avatar>
+                                        </TableCell>
                                     </TableRow>
                                     <TableRow className="border-b border-gray-300">
                                         <TableCell className="px-4 py-2 font-medium text-gray-700">E-mail</TableCell>

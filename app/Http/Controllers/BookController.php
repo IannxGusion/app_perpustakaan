@@ -114,9 +114,15 @@ class BookController extends Controller
     public function adminMain()
     {
         $books = Book::with('categories')->get();
+        $highlights = Book::with('categories')
+            ->withCount('borrowings')
+            ->orderByDesc('borrowings_count')
+            ->take(3)
+            ->get();
+
         $categories = Category::all();
 
-        return Inertia('admin/main', compact('books', 'categories'));
+        return Inertia('admin/main', compact('books', 'categories', 'highlights'));
     }
 
     // chart
@@ -124,7 +130,7 @@ class BookController extends Controller
     {
         $data = \App\Models\Category::withCount('books')
             ->get()
-            ->map(fn ($cat) => [
+            ->map(fn($cat) => [
                 'category' => $cat->name,
                 'book' => $cat->books_count,
             ]);

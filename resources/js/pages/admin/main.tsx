@@ -9,8 +9,8 @@ import Heading from '@/components/heading';
 
 const breadcrumbs: BreadcrumbItem[] = [{ title: 'Dashboard', href: '/main' }];
 
-export default function Dashboard({ ...props }: { books: Book[]; categories: Categories[] }) {
-    const { books, categories } = props;
+export default function Dashboard({ ...props }: { books: Book[]; categories: Categories[], highlights: Book[]; }) {
+    const { books, categories, highlights } = props;
 
     const totalBooks = books.length;
     const totalCategories = categories.length;
@@ -90,7 +90,7 @@ export default function Dashboard({ ...props }: { books: Book[]; categories: Cat
                         {/* Carousel */}
                         <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800 dark:shadow-gray-900">
                             <h2 className="mb-4 text-xl font-semibold">Informasi / Promo</h2>
-                            <CarouselPlugin />
+                            <CarouselPlugin books={highlights} />
                         </div>
                     </section>
                 </div>

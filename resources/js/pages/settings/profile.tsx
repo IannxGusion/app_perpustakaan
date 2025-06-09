@@ -76,7 +76,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                     <div className="grid gap-2">
                         <Label htmlFor="name">
                             <h3>Avatar</h3>
-                            <p className='text-xs font-medium italic'>klik kanan untuk info lebih lanjut</p>
+                            <p className='text-xs font-medium italic'>klik kanan untuk menu lebih lanjut</p>
                         </Label>
                         <Dialog>
                             <ContextMenu>

@@ -1,10 +1,12 @@
 import Autoplay from 'embla-carousel-autoplay';
 import * as React from 'react';
 
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import Category from './category';
+import { Book } from '@/types';
 
-export function CarouselPlugin() {
+export function CarouselPlugin({ books }: { books: Book[] }) {
     const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
     return (
@@ -15,13 +17,25 @@ export function CarouselPlugin() {
             onMouseLeave={plugin.current.reset}
         >
             <CarouselContent>
-                {Array.from({ length: 5 }).map((_, index) => (
-                    <CarouselItem key={index}>
+                {books.map((book) => (
+                    <CarouselItem key={book.id}>
                         <div className="p-1">
-                            <Card>
-                                <CardContent className="flex aspect-square items-center justify-center p-6">
-                                    <span className="text-4xl font-semibold">{index + 1}</span>
+                            <Card className="p-2">
+                                <CardHeader className="py-2 px-3">
+                                    <div className="flex items-center space-x-2">
+                                        <Category categories={Array.isArray(book.categories) ? book.categories : [book.categories]} />
+                                    </div>
+                                </CardHeader>
+                                <CardContent className="p-2 flex items-center justify-center">
+                                    <img
+                                        src={`/storage/${book.cover}`}
+                                        alt={book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
+                                        className="h-32 w-full border border-slate-700 object-cover dark:border-slate-300"
+                                    />
                                 </CardContent>
+                                <CardFooter className="py-2 px-3">
+                                    <p className="text-base font-bold truncate">{book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}</p>
+                                </CardFooter>
                             </Card>
                         </div>
                     </CarouselItem>
