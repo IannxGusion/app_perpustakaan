@@ -98,13 +98,13 @@ class BookController extends Controller
     }
 
     /**
-     * Download book as PDF.
+     * view book as PDF.
      */
     public function download($id)
     {
-        $book = Book::with('categories')->findOrFail($id);
+        $book = Book::findOrFail($id);
 
-        return view('pdf', ['book' => $book]);
+        return view('pdf', compact('book'));
     }
 
     // ============================================================================================

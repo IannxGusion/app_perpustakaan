@@ -32,6 +32,7 @@ import PustakawanLayout from '@/pages/librarian/layer/user-layout';
 
 import SettingsLayout from '@/layouts/settings/layout';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import CSRF from '@/components/element/csrf';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -70,10 +71,13 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
             <SettingsLayout>
                 <div className="space-y-6">
-                    <HeadingSmall title="Informasi profil" description="Update nama dan alamat email Anda" />
+                    <HeadingSmall title="Informasi profil" description="Update identitas Anda" />
 
                     <div className="grid gap-2">
-                        <Label htmlFor="name">Avatar</Label>
+                        <Label htmlFor="name">
+                            <h3>Avatar</h3>
+                            <p className='text-xs font-medium italic'>klik kanan untuk info lebih lanjut</p>
+                        </Label>
                         <Dialog>
                             <ContextMenu>
                                 <ContextMenuTrigger>
@@ -87,7 +91,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                                 </ContextMenuTrigger>
                                 <ContextMenuContent className='space-y-2'>
                                     <ContextMenuItem>
-                                        <DialogTrigger>
+                                        <DialogTrigger className='w-full text-start'>
                                             Edit
                                         </DialogTrigger>
                                     </ContextMenuItem>
@@ -100,8 +104,13 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                             <DialogContent>
                                 <DialogHeader>
                                     <DialogTitle>Ubah Avatar</DialogTitle>
-                                    <form action={route('avatar.update')}>
-                                        <DialogDescription className='flex lg:flex-row md:flex-col sm:flex-col xs:flex-col space-x-3'>
+                                    <DialogDescription>
+                                        <form className='flex lg:flex-row md:flex-col sm:flex-col xs:flex-col space-x-3'
+                                            action={route('avatar.update')}
+                                            method="POST" encType="multipart/form-data">
+                                            <CSRF />
+                                            <input type="hidden" name="_method" value="PUT" />
+
                                             <Input
                                                 type='file'
                                                 name='avatar'
@@ -113,8 +122,8 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                                                 type="submit">
                                                 Simpan
                                             </Button>
-                                        </DialogDescription>
-                                    </form>
+                                        </form>
+                                    </DialogDescription>
                                 </DialogHeader>
                             </DialogContent>
                         </Dialog>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -57,12 +58,18 @@ class ProfileController extends Controller
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        if ($request->hasFile('avatar')) {
-            $imagePath = $request->file('avatar')->store('avatars', 'public');
-            $request->user()->avatar = $imagePath;
+        $user = Auth::user();
+
+        if ($user instanceof \App\Models\User) {
+            if ($request->hasFile('avatar')) {
+                $imagePath = $request->file('avatar')->store('avatars', 'public');
+                $user->avatar = $imagePath;
+            }
+
+            $user->save();
         }
 
-        $request->user()->save();
+        return redirect()->back();
     }
 
     /**

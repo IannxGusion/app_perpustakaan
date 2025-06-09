@@ -75,7 +75,7 @@ export default function Edit({ book, categories = [] }: EditProps) {
 
                         <div>
                             <Label htmlFor="publication_date">Tgl. Terbit</Label>
-                            <Input id="publication_date" name="publication_date" type="date" defaultValue={book.publication_date} />
+                            <Input className='justify-between' id="publication_date" name="publication_date" type="date" defaultValue={book.publication_date} />
                         </div>
 
                         <div>
