@@ -7,6 +7,10 @@ use App\Http\Controllers\Settings\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+Route::get('settings/appearance', function () {
+    return Inertia::render('settings/appearance');
+})->name('appearance');
+
 Route::middleware('auth')->group(function () {
     Route::redirect('settings', 'settings/profile');
 
@@ -22,10 +26,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('settings/admin_mode', [AdminController::class, 'index'])->name('admin.edit');
     Route::get('settings/librarian_mode', [LibrarianController::class, 'index'])->name('ibrarian.edit');
-
-    Route::get('settings/appearance', function () {
-        return Inertia::render('settings/appearance');
-    })->name('appearance');
 
     Route::get('role', function () {
         return Inertia::render('role');

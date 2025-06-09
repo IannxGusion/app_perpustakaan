@@ -10,7 +10,7 @@ import { useInitials } from '@/hooks/use-initials';
 import { cn } from '@/lib/utils';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { BookCheck, Bookmark, LayoutDashboardIcon, ListEndIcon, Menu } from 'lucide-react';
+import { BookCheck, Bookmark, LayoutDashboardIcon, ListEndIcon, Menu, Settings } from 'lucide-react';
 import AppLogo from './app-logo';
 import AppLogoIcon from './app-logo-icon';
 
@@ -113,7 +113,12 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
 
                     <div className="ml-auto flex items-center space-x-2">
                         <div className="relative flex items-center space-x-1">
+                            {/* rightnav */}
+                            <Link className="flex flex-row w-full" href={route('appearance')} as="button" prefetch>
+                                <Settings className="mr-2" />
+                            </Link>
                         </div>
+
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="ghost" className="size-10 rounded-full p-1">

@@ -1,5 +1,6 @@
 <?php
 
+// Controllers
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowingController;
@@ -10,31 +11,31 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AminMiddleware;
 use App\Http\Middleware\LibrarianMiddleware;
-// Controllers
 use Illuminate\Support\Facades\Route;
+
 use Inertia\Inertia;
 
-Route::get('books/download/{id}', [BookController::class, 'download'])->name('books.download');
-
-// *USER* =====================================================================================
 Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
 
+// *USER* =====================================================================================
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('dashboard', [BookController::class, 'highlight'])->name('dashboard');
-    // search route
+
     Route::get('dashboard/search', [SearchController::class, 'search'])->name('dashboard.search');
 
     Route::controller(BookController::class)->group(function () {
         Route::get('books', 'index')->name('books.index');
         Route::get('borrowings/download/{id}', 'download')->name('book.download');
     });
-    Route::get('books/{id}', [BookController::class, 'show'])->name('books.show');
 
+    Route::get('books/{id}', [BookController::class, 'show'])->name('books.show');
+    
     Route::controller(BorrowingController::class)->group(function () {
-        Route::post('books/borrow/borrows/{id}', 'store')->name('borrowings.store');
+        Route::post('/borrows/{id}', 'store')->name('borrowings.store');
         Route::get('borrowings', 'index')->name('borrowings.index');
         Route::get('borrowings/{id}', 'return')->name('borrowings.return');
     });
@@ -49,6 +50,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // Pustakawan> ----------------------------------------------------------------------------------
 Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(function () {
+
     Route::get('work', [BorrowingController::class, 'librarianIndex'])->name('librarian.borrowings.index');
     Route::get('work/borrowings/{id}', [BorrowingController::class, 'librarianDelete'])->name('librarian.borrowings.delete');
 
@@ -93,5 +95,5 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 });
 // *Admin* ==================================================================================
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';
