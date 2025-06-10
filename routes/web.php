@@ -12,7 +12,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Middleware\AminMiddleware;
 use App\Http\Middleware\LibrarianMiddleware;
 use Illuminate\Support\Facades\Route;
-
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -33,7 +32,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::get('books/{id}', [BookController::class, 'show'])->name('books.show');
-    
+
     Route::controller(BorrowingController::class)->group(function () {
         Route::post('/borrows/{id}', 'store')->name('borrowings.store');
         Route::get('borrowings', 'index')->name('borrowings.index');
@@ -95,5 +94,5 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 });
 // *Admin* ==================================================================================
 
-require __DIR__ . '/settings.php';
-require __DIR__ . '/auth.php';
+require __DIR__.'/settings.php';
+require __DIR__.'/auth.php';
