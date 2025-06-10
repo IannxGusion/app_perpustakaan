@@ -265,7 +265,7 @@ class BookController extends Controller
             $book->categories()->sync($request->category_ids);
         }
 
-        return redirect()->back()->with('success', 'Book added successfully.');
+        return redirect()->route('librarian.books.index');
     }
 
     /**
