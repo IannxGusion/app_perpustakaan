@@ -67,7 +67,7 @@ Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(funct
     Route::get('management/{id}/edit', [BookController::class, 'librarianEdit'])->name('librarian.books.edit');
     Route::put('management/{id}', [BookController::class, 'librarianUpdate'])->name('librarian.books.update');
 
-    //category CRUD
+    // category CRUD
     Route::resource('categories', \App\Http\Controllers\CategoryController::class);
 });
 // *USER* =====================================================================================
@@ -98,5 +98,5 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 });
 // *Admin* ==================================================================================
 
-require __DIR__ . '/settings.php';
-require __DIR__ . '/auth.php';
+require __DIR__.'/settings.php';
+require __DIR__.'/auth.php';
