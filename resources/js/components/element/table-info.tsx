@@ -6,14 +6,14 @@ export default function TableInfo({ book }: { book: Book }) {
         <Table className="my-3 min-w-full border border-gray-300">
             <TableBody>
                 <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Judul</TableCell>
-                    <TableCell className="px-4 py-2 font-bold text-gray-900">
+                    <TableCell className="px-4 py-2 font-medium ">Judul</TableCell>
+                    <TableCell className="px-4 py-2 font-bold ">
                         {book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
                     </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Genre</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">
+                    <TableCell className="px-4 py-2 font-medium ">Genre</TableCell>
+                    <TableCell className="px-4 py-2 ">
                         {Array.isArray(book.categories) &&
                             book.categories.map((category: { name: string }, idx: number) => (
                                 <p className="underline" key={idx}>
@@ -23,8 +23,8 @@ export default function TableInfo({ book }: { book: Book }) {
                     </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Sampul</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">
+                    <TableCell className="px-4 py-2 font-medium ">Sampul</TableCell>
+                    <TableCell className="px-4 py-2 ">
                         <img
                             src={`/storage/${book.cover}`}
                             alt={book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
@@ -33,16 +33,16 @@ export default function TableInfo({ book }: { book: Book }) {
                     </TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Penulis</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.author}</TableCell>
+                    <TableCell className="px-4 py-2 font-medium ">Penulis</TableCell>
+                    <TableCell className="px-4 py-2 ">{book.author}</TableCell>
                 </TableRow>
                 <TableRow className="border-b border-gray-300">
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Penerbit</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.publisher}</TableCell>
+                    <TableCell className="px-4 py-2 font-medium ">Penerbit</TableCell>
+                    <TableCell className="px-4 py-2 ">{book.publisher}</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell className="px-4 py-2 font-medium text-gray-700">Tgl. Terbit</TableCell>
-                    <TableCell className="px-4 py-2 text-gray-900">{book.publication_date}</TableCell>
+                    <TableCell className="px-4 py-2 font-medium ">Tgl. Terbit</TableCell>
+                    <TableCell className="px-4 py-2 ">{book.publication_date}</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

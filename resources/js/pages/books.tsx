@@ -8,6 +8,7 @@ import * as React from 'react';
 
 // element
 import ToBooks from '@/pages/book cards/ToBooks';
+import SearchBlock from '@/components/element/search';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -47,6 +48,7 @@ export default function List({ books }: { books: Book[] }) {
                 }}
             >
                 <h1 className="text-4xl font-bold">Daftar Buku</h1>
+                <SearchBlock/>
             </section>
 
             <div className="p-4">

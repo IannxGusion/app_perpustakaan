@@ -53,7 +53,7 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
                         <Dialog>
                             <DialogTrigger>
                                 <Button asChild variant="ghost" className="my-1 rounded-none p-0 hover:cursor-pointer">
-                                    <h2 className="text-lg font-bold text-black md:text-xl">
+                                    <h2 className="text-lg font-bold text-black dark:text-white md:text-xl">
                                         {borrowing.book.title.length > 50 ? borrowing.book.title.slice(0, 50) + '...' : borrowing.book.title}
                                     </h2>
                                 </Button>
@@ -71,12 +71,12 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
                                     <Table className="my-3 min-w-full border border-gray-300">
                                         <TableBody>
                                             <TableRow className="border-b border-gray-300">
-                                                <TableCell className="px-4 py-2 font-medium text-gray-700">Tgl. Meminjam</TableCell>
-                                                <TableCell className="px-4 py-2 font-medium text-gray-700">{borrowing.borrow_date}</TableCell>
+                                                <TableCell className="px-4 py-2 font-medium ">Tgl. Meminjam</TableCell>
+                                                <TableCell className="px-4 py-2 font-medium ">{borrowing.borrow_date}</TableCell>
                                             </TableRow>
                                             <TableRow>
-                                                <TableCell className="px-4 py-2 font-medium text-gray-700">Tenggat Pengembalian</TableCell>
-                                                <TableCell className="px-4 py-2 font-medium text-gray-700">{borrowing.return_date}</TableCell>
+                                                <TableCell className="px-4 py-2 font-medium ">Tenggat Pengembalian</TableCell>
+                                                <TableCell className="px-4 py-2 font-medium ">{borrowing.return_date}</TableCell>
                                             </TableRow>
                                         </TableBody>
                                     </Table>

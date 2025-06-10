@@ -18,16 +18,17 @@ Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
 
+Route::get('dashboard', [BookController::class, 'highlight'])->name('dashboard');
+
+Route::get('dashboard/search', [SearchController::class, 'search'])->name('dashboard.search');
+
+Route::get('books', [BookController::class, 'index'])->name('books.index');
+
 // *USER* =====================================================================================
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('dashboard', [BookController::class, 'highlight'])->name('dashboard');
-
-    Route::get('dashboard/search', [SearchController::class, 'search'])->name('dashboard.search');
-
     Route::controller(BookController::class)->group(function () {
-        Route::get('books', 'index')->name('books.index');
         Route::get('borrowings/download/{id}', 'download')->name('book.download');
     });
 
@@ -94,5 +95,5 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
 });
 // *Admin* ==================================================================================
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';
