@@ -3,8 +3,19 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import type { Review as ReviewType } from '@/types';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
 import { formatDistanceToNow } from 'date-fns';
+import { Button } from '../ui/button';
+import { ChevronsUpDown } from 'lucide-react';
+import { ScrollArea } from '../ui/scroll-area';
 
 interface ReviewProps {
     reviews: ReviewType[];
@@ -30,9 +41,40 @@ export default function Review({ reviews }: ReviewProps) {
                                             </Box>
                                         </CardTitle>
                                     </CardHeader>
-                                    <CardContent>
-                                        <p>{review.comment}</p>
-                                    </CardContent>
+                                    {review.comment && (
+                                        <CardContent>
+                                            <p>
+                                                {review.comment.length > 300 ? (
+                                                    <>
+                                                        {review.comment.slice(0, 300) + '...'}
+                                                        <Dialog>
+                                                            <DialogTrigger>
+                                                                <Button variant="link">
+                                                                    read more
+                                                                    <ChevronsUpDown />
+                                                                </Button>
+                                                            </DialogTrigger>
+                                                            <DialogContent>
+                                                                <DialogHeader>
+                                                                    <Box sx={{ '& > legend': { mt: 2 } }}>
+                                                                        <Rating name="read-only" value={review.star} readOnly />
+                                                                    </Box>
+                                                                    <DialogTitle className='font-light'>Ulasan dari <span className='font-bold'>{review.user.name}</span></DialogTitle>
+                                                                    <DialogDescription>
+                                                                        <ScrollArea className="h-[200px] rounded-md border p-4">
+                                                                            {review.comment}
+                                                                        </ScrollArea>
+                                                                    </DialogDescription>
+                                                                </DialogHeader>
+                                                            </DialogContent>
+                                                        </Dialog>
+                                                    </>
+                                                ) : (
+                                                    review.comment
+                                                )}
+                                            </p>
+                                        </CardContent>
+                                    )}
                                     <CardFooter>
                                         <p className="line-clamp-3 text-xs break-all text-gray-500">
                                             {review.user.name} - {formatDistanceToNow(new Date(review.created_at), { addSuffix: true })}
