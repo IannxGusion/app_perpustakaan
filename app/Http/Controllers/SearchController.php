@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Models\Category;
+//use App\Models\Category;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -13,11 +13,11 @@ class SearchController extends Controller
         $query = $request->input('query');
 
         $books = Book::search($query)->get();
-        $categories = Category::all();
+        //$categories = Category::all();
 
         return response()->json([
             'books' => $books,
-            'categories' => $categories,
+            //'categories' => $categories,
         ]);
     }
 }

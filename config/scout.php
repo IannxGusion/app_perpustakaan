@@ -144,11 +144,11 @@ return [
         'key' => env('MEILISEARCH_KEY'),
         'index-settings' => [
             Book::class => [
-                'filterableAttributes' => ['title', 'author', 'publisher', 'publication_date'],
+                'filterableAttributes' => ['title', 'author'],
                 'sortableAttributes' => ['created_at'],
             ],
             Category::class => [
-                'filterableAttributes' => ['name', 'description'],
+                'filterableAttributes' => ['name'],
                 'sortableAttributes' => ['created_at'],
             ],
         ],

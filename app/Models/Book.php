@@ -16,8 +16,6 @@ class Book extends Model
         return [
             'title' => $this->title,
             'author' => $this->author,
-            'publisher' => $this->publisher,
-            'publication_date' => $this->publication_date,
         ];
     }
 

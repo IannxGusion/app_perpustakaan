@@ -15,7 +15,6 @@ class Category extends Model
     {
         return [
             'name' => $this->name,
-            'description' => $this->description,
         ];
     }
 

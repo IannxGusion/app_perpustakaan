@@ -4,6 +4,9 @@ import { Book } from '@/types';
 import { Loader2Icon, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+import { usePage } from '@inertiajs/react';
+import { SharedData } from '@/types';
+
 import { Command, CommandGroup, CommandItem, CommandList } from '@/components/ui/command';
 
 import { Link } from '@inertiajs/react';
@@ -13,6 +16,8 @@ import { Button } from '../ui/button';
 import { ScrollArea } from '../ui/scroll-area';
 
 export default function SearchBlock() {
+    const { auth } = usePage<SharedData>().props;
+
     const [query, setQuery] = useState('');
     const [books, setBooks] = useState<Book[]>([]);
     const [loading, setLoading] = useState(false);
@@ -76,12 +81,19 @@ export default function SearchBlock() {
                                         <CommandList>
                                             <CommandGroup>
                                                 <CommandItem asChild>
-                                                    <Link href={route('books.show', book['id'])}>
+                                                    {auth.user ? (
+                                                        <Link href={route('books.show', book['id'])}>
+                                                            <Heading
+                                                                title={book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
+                                                                description={book.author}
+                                                            />
+                                                        </Link>
+                                                    ) : (
                                                         <Heading
                                                             title={book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
                                                             description={book.author}
                                                         />
-                                                    </Link>
+                                                    )}
                                                 </CommandItem>
                                             </CommandGroup>
                                         </CommandList>
