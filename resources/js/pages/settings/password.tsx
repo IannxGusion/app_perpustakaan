@@ -60,7 +60,10 @@ export default function Password() {
 
             <SettingsLayout>
                 <div className="space-y-6">
-                    <HeadingSmall title="Update password" description="Pastikan akun Anda menggunakan kata sandi yang panjang dan acak untuk menjaga keamanannya" />
+                    <HeadingSmall
+                        title="Update password"
+                        description="Pastikan akun Anda menggunakan kata sandi yang panjang dan acak untuk menjaga keamanannya"
+                    />
 
                     <form onSubmit={updatePassword} className="space-y-6">
                         <div className="grid gap-2">

@@ -1,38 +1,26 @@
+import { useInitials } from '@/hooks/use-initials';
 import { type BreadcrumbItem, type SharedData } from '@/types';
 import { Transition } from '@headlessui/react';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
-import { useInitials } from '@/hooks/use-initials';
 
 import DeleteUser from '@/components/delete-user';
 import HeadingSmall from '@/components/heading-small';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
 
-import {
-    ContextMenu,
-    ContextMenuContent,
-    ContextMenuItem,
-    ContextMenuTrigger,
-} from "@/components/ui/context-menu"
+import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from '@/components/ui/context-menu';
 
 import UserLayout from '@/layouts/user-layout';
 import AdminLayout from '@/pages/admin/layer/app-layout';
 import PustakawanLayout from '@/pages/librarian/layer/user-layout';
 
-import SettingsLayout from '@/layouts/settings/layout';
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import CSRF from '@/components/element/csrf';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import SettingsLayout from '@/layouts/settings/layout';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -76,32 +64,24 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                     <div className="grid gap-2">
                         <Label htmlFor="name">
                             <h3>Avatar</h3>
-                            <p className='text-xs font-medium italic'>klik kanan untuk menu lebih lanjut</p>
+                            <p className="text-xs font-medium italic">klik kanan untuk menu lebih lanjut</p>
                         </Label>
                         <Dialog>
                             <ContextMenu>
                                 <ContextMenuTrigger>
-                                    <Avatar className='size-24'>
-                                        <AvatarImage
-                                            src={`/storage/${auth.user.avatar}`} />
-                                        <AvatarFallback>
-                                            {getInitials(auth.user.name)}
-                                        </AvatarFallback>
+                                    <Avatar className="size-24">
+                                        <AvatarImage src={`/storage/${auth.user.avatar}`} />
+                                        <AvatarFallback>{getInitials(auth.user.name)}</AvatarFallback>
                                     </Avatar>
                                 </ContextMenuTrigger>
-                                <ContextMenuContent className='space-y-2'>
+                                <ContextMenuContent className="space-y-2">
                                     <ContextMenuItem>
-                                        <DialogTrigger className='w-full text-start'>
-                                            Edit
-                                        </DialogTrigger>
+                                        <DialogTrigger className="w-full text-start">Edit</DialogTrigger>
                                     </ContextMenuItem>
-                                    <form action={route('avatar.delete')} method="DELETE" encType="multipart/form-data"
-                                        className="w-full">
+                                    <form action={route('avatar.delete')} method="DELETE" encType="multipart/form-data" className="w-full">
                                         <CSRF />
-                                        <ContextMenuItem className='text-white bg-destructive hover:bg-destructive'>
-                                            <button type='submit'>
-                                                Hapus
-                                            </button>
+                                        <ContextMenuItem className="bg-destructive hover:bg-destructive text-white">
+                                            <button type="submit">Hapus</button>
                                         </ContextMenuItem>
                                     </form>
                                 </ContextMenuContent>
@@ -111,21 +91,17 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                                 <DialogHeader>
                                     <DialogTitle>Ubah Avatar</DialogTitle>
                                     <DialogDescription>
-                                        <form className='flex lg:flex-row md:flex-col sm:flex-col xs:flex-col space-x-3'
+                                        <form
+                                            className="xs:flex-col flex space-x-3 sm:flex-col md:flex-col lg:flex-row"
                                             action={route('avatar.update')}
-                                            method="POST" encType="multipart/form-data">
+                                            method="POST"
+                                            encType="multipart/form-data"
+                                        >
                                             <CSRF />
                                             <input type="hidden" name="_method" value="PUT" />
 
-                                            <Input
-                                                type='file'
-                                                name='avatar'
-                                                id="avatar"
-                                                className="basis-2/2"
-                                            />
-                                            <Button
-                                                className='basis-1/3'
-                                                type="submit">
+                                            <Input type="file" name="avatar" id="avatar" className="basis-2/2" />
+                                            <Button className="basis-1/3" type="submit">
                                                 Simpan
                                             </Button>
                                         </form>
@@ -209,6 +185,6 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
                 <DeleteUser />
             </SettingsLayout>
-        </Layout >
+        </Layout>
     );
 }

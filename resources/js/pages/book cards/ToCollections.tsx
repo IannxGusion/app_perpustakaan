@@ -7,10 +7,7 @@ import { Link } from '@inertiajs/react';
 
 export default function ToCollections({ book }: { book: Book }) {
     return (
-        <Card
-            key={book.id}
-            className="flex flex-col p-4"
-        >
+        <Card key={book.id} className="flex flex-col p-4">
             <CardHeader className="flex-1">
                 <div className="flex items-center space-x-2">
                     <Category categories={Array.isArray(book.categories) ? book.categories : [book.categories]} />

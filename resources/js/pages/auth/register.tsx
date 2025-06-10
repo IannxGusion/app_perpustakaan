@@ -53,16 +53,16 @@ export default function Register() {
                         <AppLogoIcon className="h-40 w-40 animate-pulse" />
                     </div>
 
-                    <h1 className="text-center text-2xl font-bold ">Buat akun baru</h1>
-                    <p className="mb-5 text-center text-sm ">Masukkan detail Anda untuk membuat akun baru</p>
+                    <h1 className="text-center text-2xl font-bold">Buat akun baru</h1>
+                    <p className="mb-5 text-center text-sm">Masukkan detail Anda untuk membuat akun baru</p>
 
                     <form className="flex flex-col gap-4" onSubmit={submit}>
                         {/* Name */}
                         <div>
-                            <Label htmlFor="name" className="mb-1 block font-semibold ">
+                            <Label htmlFor="name" className="mb-1 block font-semibold">
                                 Nama lengkap
                             </Label>
-                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white dark:bg-black dark:border-2 dark:border-white shadow-sm focus-within:ring-1">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white shadow-sm focus-within:ring-1 dark:border-2 dark:border-white dark:bg-black">
                                 <div className="text-primary-500 px-3">
                                     <User size={18} />
                                 </div>
@@ -85,10 +85,10 @@ export default function Register() {
 
                         {/* Email */}
                         <div>
-                            <Label htmlFor="email" className="mb-1 block font-semibold ">
+                            <Label htmlFor="email" className="mb-1 block font-semibold">
                                 Email address
                             </Label>
-                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white dark:bg-black dark:border-2 dark:border-white shadow-sm focus-within:ring-1">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white shadow-sm focus-within:ring-1 dark:border-2 dark:border-white dark:bg-black">
                                 <div className="text-primary-500 px-3">
                                     <Mail size={18} />
                                 </div>
@@ -110,10 +110,10 @@ export default function Register() {
 
                         {/* Password */}
                         <div>
-                            <Label htmlFor="password" className="mb-1 block font-semibold ">
+                            <Label htmlFor="password" className="mb-1 block font-semibold">
                                 Password
                             </Label>
-                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white dark:bg-black dark:border-2 dark:border-white shadow-sm focus-within:ring-1">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white shadow-sm focus-within:ring-1 dark:border-2 dark:border-white dark:bg-black">
                                 <div className="text-primary-500 px-3">
                                     <Lock size={18} />
                                 </div>
@@ -135,10 +135,10 @@ export default function Register() {
 
                         {/* Password confirmation */}
                         <div>
-                            <Label htmlFor="password_confirmation" className="mb-1 block font-semibold ">
+                            <Label htmlFor="password_confirmation" className="mb-1 block font-semibold">
                                 Konfirmasi password
                             </Label>
-                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white dark:bg-black dark:border-2 dark:border-white shadow-sm focus-within:ring-1">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white shadow-sm focus-within:ring-1 dark:border-2 dark:border-white dark:bg-black">
                                 <div className="text-primary-500 px-3">
                                     <Lock size={18} />
                                 </div>
@@ -159,20 +159,15 @@ export default function Register() {
                         </div>
 
                         {/* Submit */}
-                        <Button
-                            type="submit"
-                            className="w-full dark:text-white"
-                            tabIndex={5}
-                            disabled={processing}
-                        >
+                        <Button type="submit" className="w-full dark:text-white" tabIndex={5} disabled={processing}>
                             {processing && <LoaderCircle className="mr-2 inline-block h-5 w-5 animate-spin" />}
                             Buat akun
                         </Button>
                     </form>
 
-                    <div className="mt-4 text-center text-xs ">
+                    <div className="mt-4 text-center text-xs">
                         Sudah punya akun?{' '}
-                        <TextLink href={route('login')} tabIndex={6} className='text-primary-500'>
+                        <TextLink href={route('login')} tabIndex={6} className="text-primary-500">
                             Log in
                         </TextLink>
                     </div>

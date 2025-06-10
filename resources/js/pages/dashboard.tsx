@@ -15,7 +15,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function Dashboard({ books }: { books: Book[] }) {
-//    const { books } = props;
+    //    const { books } = props;
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
@@ -28,14 +28,13 @@ export default function Dashboard({ books }: { books: Book[] }) {
                 }}
             >
                 <h1 className="mb-2 text-4xl font-bold">Halaman Utama</h1>
-                <SearchBlock/>
+                <SearchBlock />
             </section>
 
-            <main className='px-4'>
-                <Heading title='Top readings' description='Buku-buku yang paling sering dibaca saat ini.' />
+            <main className="px-4">
+                <Heading title="Top readings" description="Buku-buku yang paling sering dibaca saat ini." />
                 <Highlight books={books} />
             </main>
-
         </AppLayout>
     );
 }

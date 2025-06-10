@@ -52,7 +52,7 @@ export default function Login({ canResetPassword }: LoginProps) {
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
             <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
-                <div className="w-full max-w-md space-y-3 rounded-2xl p-8 shadow-lg bg-white dark:bg-black">
+                <div className="w-full max-w-md space-y-3 rounded-2xl bg-white p-8 shadow-lg dark:bg-black">
                     <Head title="Login" />
 
                     {/* Logo */}
@@ -69,7 +69,7 @@ export default function Login({ canResetPassword }: LoginProps) {
                             <Label htmlFor="email" className="mb-1 block font-semibold">
                                 Email address
                             </Label>
-                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white dark:bg-black dark:border-2 dark:border-white shadow-sm focus-within:ring-1">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white shadow-sm focus-within:ring-1 dark:border-2 dark:border-white dark:bg-black">
                                 <div className="px-3">
                                     <Mail size={18} />
                                 </div>
@@ -101,7 +101,7 @@ export default function Login({ canResetPassword }: LoginProps) {
                                     </TextLink>
                                 )}
                             </div>
-                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white dark:bg-black dark:border-2 dark:border-white shadow-sm focus-within:ring-1">
+                            <div className="focus-within:border-primary-500 focus-within:ring-primary-500 flex items-center rounded-lg border bg-white shadow-sm focus-within:ring-1 dark:border-2 dark:border-white dark:bg-black">
                                 <div className="px-3">
                                     <Lock size={18} />
                                 </div>
@@ -136,20 +136,15 @@ export default function Login({ canResetPassword }: LoginProps) {
                                 checked={data.remember}
                                 onClick={() => setData('remember', !data.remember)}
                                 tabIndex={3}
-                                className='dark:border dark:border-white'
+                                className="dark:border dark:border-white"
                             />
-                            <Label htmlFor="remember" className=" select-none">
+                            <Label htmlFor="remember" className="select-none">
                                 Remember me
                             </Label>
                         </div>
 
                         {/* Submit */}
-                        <Button
-                            type="submit"
-                            className="w-full dark:text-white"
-                            tabIndex={4}
-                            disabled={processing}
-                        >
+                        <Button type="submit" className="w-full dark:text-white" tabIndex={4} disabled={processing}>
                             {processing && <LoaderCircle className="mr-2 inline-block h-5 w-5 animate-spin" />}
                             Log in
                         </Button>
@@ -157,7 +152,7 @@ export default function Login({ canResetPassword }: LoginProps) {
 
                     <div className="mt-4 text-center text-xs">
                         Belum punya akun?{' '}
-                        <TextLink href={route('register')} tabIndex={5} className='text-primary-500'>
+                        <TextLink href={route('register')} tabIndex={5} className="text-primary-500">
                             Daftar
                         </TextLink>
                     </div>
@@ -166,11 +161,7 @@ export default function Login({ canResetPassword }: LoginProps) {
                     <div className="mt-4 text-center">
                         <Dialog>
                             <DialogTrigger asChild>
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="mx-auto flex items-center gap-1 text-xs hover:cursor-help"
-                                >
+                                <Button variant="outline" size="sm" className="mx-auto flex items-center gap-1 text-xs hover:cursor-help">
                                     <Info size={14} />
                                     Tips login aman
                                 </Button>

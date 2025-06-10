@@ -29,7 +29,7 @@ export default function Dashboard({ ...props }: { borrowings: Borrowing[] }) {
             </section>
 
             <div className="space-y-2.5 p-5">
-                <Log borrowings={borrowings}/>
+                <Log borrowings={borrowings} />
             </div>
         </AppLayout>
     );

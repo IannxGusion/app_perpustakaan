@@ -74,7 +74,6 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                                 </Link>
                                             ))}
                                         </div>
-
                                     </div>
                                 </div>
                             </SheetContent>
@@ -114,7 +113,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                     <div className="ml-auto flex items-center space-x-2">
                         <div className="relative flex items-center space-x-1">
                             {/* rightnav */}
-                            <Link className="flex flex-row w-full" href={route('appearance')} as="button" prefetch>
+                            <Link className="flex w-full flex-row" href={route('appearance')} as="button" prefetch>
                                 <Settings className="mr-2" />
                             </Link>
                         </div>

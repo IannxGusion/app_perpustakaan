@@ -34,55 +34,55 @@ export default function DeleteUser() {
         <div className="space-y-6">
             <HeadingSmall title="Hapus akun" description="Hapus akun Anda dan semua sumber dayanya" />
             <div className="space-y-4 rounded-lg border border-red-100 bg-red-50 p-4 dark:border-red-200/10 dark:bg-red-700/10">
-            <div className="relative space-y-0.5 text-red-600 dark:text-red-100">
-                <p className="font-medium">Peringatan</p>
-                <p className="text-sm">Harap lanjutkan dengan hati-hati, tindakan ini tidak dapat dibatalkan.</p>
-            </div>
+                <div className="relative space-y-0.5 text-red-600 dark:text-red-100">
+                    <p className="font-medium">Peringatan</p>
+                    <p className="text-sm">Harap lanjutkan dengan hati-hati, tindakan ini tidak dapat dibatalkan.</p>
+                </div>
 
-            <Dialog>
-                <DialogTrigger asChild>
-                <Button variant="destructive">Hapus akun</Button>
-                </DialogTrigger>
-                <DialogContent>
-                <DialogTitle>Apakah Anda yakin ingin menghapus akun Anda?</DialogTitle>
-                <DialogDescription>
-                    Setelah akun Anda dihapus, semua sumber daya dan data juga akan dihapus secara permanen. Silakan masukkan kata sandi Anda
-                    untuk mengonfirmasi bahwa Anda benar-benar ingin menghapus akun Anda secara permanen.
-                </DialogDescription>
-                <form className="space-y-6" onSubmit={deleteUser}>
-                    <div className="grid gap-2">
-                    <Label htmlFor="password" className="sr-only">
-                        Kata Sandi
-                    </Label>
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button variant="destructive">Hapus akun</Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogTitle>Apakah Anda yakin ingin menghapus akun Anda?</DialogTitle>
+                        <DialogDescription>
+                            Setelah akun Anda dihapus, semua sumber daya dan data juga akan dihapus secara permanen. Silakan masukkan kata sandi Anda
+                            untuk mengonfirmasi bahwa Anda benar-benar ingin menghapus akun Anda secara permanen.
+                        </DialogDescription>
+                        <form className="space-y-6" onSubmit={deleteUser}>
+                            <div className="grid gap-2">
+                                <Label htmlFor="password" className="sr-only">
+                                    Kata Sandi
+                                </Label>
 
-                    <Input
-                        id="password"
-                        type="password"
-                        name="password"
-                        ref={passwordInput}
-                        value={data.password}
-                        onChange={(e) => setData('password', e.target.value)}
-                        placeholder="Password"
-                        autoComplete="current-password"
-                    />
+                                <Input
+                                    id="password"
+                                    type="password"
+                                    name="password"
+                                    ref={passwordInput}
+                                    value={data.password}
+                                    onChange={(e) => setData('password', e.target.value)}
+                                    placeholder="Password"
+                                    autoComplete="current-password"
+                                />
 
-                    <InputError message={errors.password} />
-                    </div>
+                                <InputError message={errors.password} />
+                            </div>
 
-                    <DialogFooter className="gap-2">
-                    <DialogClose asChild>
-                        <Button variant="secondary" onClick={closeModal}>
-                        Batal
-                        </Button>
-                    </DialogClose>
+                            <DialogFooter className="gap-2">
+                                <DialogClose asChild>
+                                    <Button variant="secondary" onClick={closeModal}>
+                                        Batal
+                                    </Button>
+                                </DialogClose>
 
-                    <Button variant="destructive" disabled={processing} asChild>
-                        <button type="submit">Hapus akun</button>
-                    </Button>
-                    </DialogFooter>
-                </form>
-                </DialogContent>
-            </Dialog>
+                                <Button variant="destructive" disabled={processing} asChild>
+                                    <button type="submit">Hapus akun</button>
+                                </Button>
+                            </DialogFooter>
+                        </form>
+                    </DialogContent>
+                </Dialog>
             </div>
         </div>
     );

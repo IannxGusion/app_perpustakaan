@@ -29,9 +29,9 @@ import {
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 import CSRF from '@/components/element/csrf';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import type { User } from '@/types';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 // Helper function to get initials from a name
 function getInitials(name: string): string {
@@ -75,14 +75,11 @@ export const columns: ColumnDef<User>[] = [
         cell: ({ row }) => {
             const user = row.original;
             return (
-                <Avatar className='size-20'>
-                    <AvatarImage
-                        src={`/storage/${user.avatar}`} />
-                    <AvatarFallback>
-                        {getInitials(user.name)}
-                    </AvatarFallback>
+                <Avatar className="size-20">
+                    <AvatarImage src={`/storage/${user.avatar}`} />
+                    <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
                 </Avatar>
-            )
+            );
         },
     },
     {
@@ -100,14 +97,14 @@ export const columns: ColumnDef<User>[] = [
                 <div>
                     {created_at
                         ? new Date(created_at).toLocaleString('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric',
-                        })
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric',
+                          })
                         : 'Unknown date'}
                 </div>
             );
-        }
+        },
     },
     {
         accessorKey: 'updated_at',
@@ -119,14 +116,14 @@ export const columns: ColumnDef<User>[] = [
                 <div>
                     {updated_at
                         ? new Date(updated_at).toLocaleString('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric',
-                        })
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric',
+                          })
                         : 'Unknown date'}
                 </div>
             );
-        }
+        },
     },
     {
         id: 'actions',
@@ -164,12 +161,9 @@ export const columns: ColumnDef<User>[] = [
                                     <TableRow className="border-b border-gray-300">
                                         <TableCell className="px-4 py-2 font-medium text-gray-700">Avatar</TableCell>
                                         <TableCell className="px-4 py-2 text-gray-900">
-                                            <Avatar className='size-14'>
-                                                <AvatarImage
-                                                    src={`/storage/${user.avatar}`} />
-                                                <AvatarFallback>
-                                                    {getInitials(user.name)}
-                                                </AvatarFallback>
+                                            <Avatar className="size-14">
+                                                <AvatarImage src={`/storage/${user.avatar}`} />
+                                                <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
                                             </Avatar>
                                         </TableCell>
                                     </TableRow>

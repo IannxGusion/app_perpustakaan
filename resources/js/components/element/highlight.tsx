@@ -8,11 +8,9 @@ import { Link } from '@inertiajs/react';
 export default function Highlight({ books }: { books: Book[] }) {
     return (
         <>
-            <div className='grid gap-7 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+            <div className="grid gap-7 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {books.map((book) => (
-                    <Card
-                        key={book.id}
-                        className="flex flex-col p-4">
+                    <Card key={book.id} className="flex flex-col p-4">
                         <CardHeader className="flex-1">
                             <div className="flex items-center space-x-2">
                                 <Category categories={Array.isArray(book.categories) ? book.categories : [book.categories]} />
@@ -45,7 +43,6 @@ export default function Highlight({ books }: { books: Book[] }) {
                     </Card>
                 ))}
             </div>
-
         </>
     );
 }

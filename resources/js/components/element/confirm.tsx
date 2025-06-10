@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import {
     AlertDialog,
@@ -17,46 +17,40 @@ import type { Book } from '@/types';
 import { toast } from 'sonner';
 import CSRF from './csrf';
 
-import * as React from "react"
-import { parseDate } from "chrono-node"
-import { CalendarIcon } from "lucide-react"
+import { parseDate } from 'chrono-node';
+import { CalendarIcon } from 'lucide-react';
+import * as React from 'react';
 
-import { Calendar } from "@/components/ui/calendar"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
+import { Calendar } from '@/components/ui/calendar';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 function formatDate(date: Date | undefined) {
     if (!date) {
-        return ""
+        return '';
     }
 
-    return date.toLocaleDateString("id-ID", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-    })
+    return date.toLocaleDateString('id-ID', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+    });
 }
 
 function formatDateForInput(date: Date | undefined) {
-    if (!date) return "";
+    if (!date) return '';
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
 }
 
 export default function Confirm({ book }: { book: Book }) {
-    const [open, setOpen] = React.useState(false)
-    const [value, setValue] = React.useState("In 2 days")
-    const [date, setDate] = React.useState<Date | undefined>(
-        parseDate(value) || undefined
-    )
-    const [month, setMonth] = React.useState<Date | undefined>(date)
+    const [open, setOpen] = React.useState(false);
+    const [value, setValue] = React.useState('In 2 days');
+    const [date, setDate] = React.useState<Date | undefined>(parseDate(value) || undefined);
+    const [month, setMonth] = React.useState<Date | undefined>(date);
 
     return (
         <>
@@ -71,27 +65,23 @@ export default function Confirm({ book }: { book: Book }) {
                         placeholder="Tomorrow or next week"
                         className="bg-background pr-10"
                         onChange={(e) => {
-                            setValue(e.target.value)
-                            const date = parseDate(e.target.value)
+                            setValue(e.target.value);
+                            const date = parseDate(e.target.value);
                             if (date) {
-                                setDate(date)
-                                setMonth(date)
+                                setDate(date);
+                                setMonth(date);
                             }
                         }}
                         onKeyDown={(e) => {
-                            if (e.key === "ArrowDown") {
-                                e.preventDefault()
-                                setOpen(true)
+                            if (e.key === 'ArrowDown') {
+                                e.preventDefault();
+                                setOpen(true);
                             }
                         }}
                     />
                     <Popover open={open} onOpenChange={setOpen}>
                         <PopoverTrigger asChild>
-                            <Button
-                                id="date-picker"
-                                variant="ghost"
-                                className="absolute top-1/2 right-2 size-6 -translate-y-1/2"
-                            >
+                            <Button id="date-picker" variant="ghost" className="absolute top-1/2 right-2 size-6 -translate-y-1/2">
                                 <CalendarIcon className="size-3.5" />
                                 <span className="sr-only">Select date</span>
                             </Button>
@@ -104,17 +94,16 @@ export default function Confirm({ book }: { book: Book }) {
                                 month={month}
                                 onMonthChange={setMonth}
                                 onSelect={(date) => {
-                                    setDate(date)
-                                    setValue(formatDate(date))
-                                    setOpen(false)
+                                    setDate(date);
+                                    setValue(formatDate(date));
+                                    setOpen(false);
                                 }}
                             />
                         </PopoverContent>
                     </Popover>
                 </div>
                 <div className="text-muted-foreground px-1 text-sm">
-                    Tanggal pengembalian: {" "}
-                    <span className="font-medium">{formatDate(date)}</span>.
+                    Tanggal pengembalian: <span className="font-medium">{formatDate(date)}</span>.
                 </div>
             </div>
 
@@ -137,16 +126,12 @@ export default function Confirm({ book }: { book: Book }) {
                             {/* CSRF */}
                             <CSRF />
 
-                            <input
-                                type="date"
-                                id="return_date"
-                                name="return_date"
-                                value={formatDateForInput(date)}
-                                required
-                                hidden
-                            />
+                            <input type="date" id="return_date" name="return_date" value={formatDateForInput(date)} required hidden />
                             <input type="hidden" name="book_id" id="book_id" value={book.id} required />
-                            <AlertDialogAction type="submit" onClick={() => toast.success('Anda telah berhasil meminjam buku di perpustakaan kami!!')}>
+                            <AlertDialogAction
+                                type="submit"
+                                onClick={() => toast.success('Anda telah berhasil meminjam buku di perpustakaan kami!!')}
+                            >
                                 Pinjam
                             </AlertDialogAction>
                         </form>
@@ -154,5 +139,5 @@ export default function Confirm({ book }: { book: Book }) {
                 </AlertDialogContent>
             </AlertDialog>
         </>
-    )
+    );
 }

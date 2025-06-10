@@ -4,12 +4,12 @@ import { CarouselPlugin } from '@/components/element/plugin';
 import AppLayout from '@/pages/admin/layer/app-layout';
 import { Head } from '@inertiajs/react';
 
-import type { Book, BreadcrumbItem, Categories } from '@/types';
 import Heading from '@/components/heading';
+import type { Book, BreadcrumbItem, Categories } from '@/types';
 
 const breadcrumbs: BreadcrumbItem[] = [{ title: 'Dashboard', href: '/main' }];
 
-export default function Dashboard({ ...props }: { books: Book[]; categories: Categories[], highlights: Book[]; }) {
+export default function Dashboard({ ...props }: { books: Book[]; categories: Categories[]; highlights: Book[] }) {
     const { books, categories, highlights } = props;
 
     const totalBooks = books.length;
@@ -42,8 +42,11 @@ export default function Dashboard({ ...props }: { books: Book[]; categories: Cat
                     <section className="grid gap-6 md:grid-cols-3">
                         {/* Left: Donut Chart */}
                         <div className="rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-800 dark:shadow-white">
-                            <Heading title='Distribusi Buku' description='Menunjukkan total buku untuk setiap kategori
-'/>
+                            <Heading
+                                title="Distribusi Buku"
+                                description="Menunjukkan total buku untuk setiap kategori
+"
+                            />
                             <Donut />
                         </div>
 

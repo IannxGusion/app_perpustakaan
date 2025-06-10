@@ -32,7 +32,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
         >
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
             <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
-                <div className="w-full max-w-md space-y-3 rounded-2xl bg-white dark:bg-black p-8 shadow-lg">
+                <div className="w-full max-w-md space-y-3 rounded-2xl bg-white p-8 shadow-lg dark:bg-black">
                     <Head title="Lupa password" />
                     <div className="mb-2 flex justify-center">
                         <AppLogoIcon className="h-40 w-40 animate-pulse" />
@@ -60,17 +60,16 @@ export default function ForgotPassword({ status }: { status?: string }) {
                             </div>
                             <InputError message={errors.email} />
                         </div>
-                        <Button
-                            className="dark:text-white active:bg-primary-800 w-full"
-                            disabled={processing}
-                        >
+                        <Button className="active:bg-primary-800 w-full dark:text-white" disabled={processing}>
                             {processing && <LoaderCircle className="mr-2 inline-block h-5 w-5 animate-spin" />}
                             Email password reset link
                         </Button>
                     </form>
                     <div className="text-muted-foreground mt-4 space-x-1 text-center text-sm">
                         <span>Atau, kembali ke</span>
-                        <TextLink href={route('login')} className='text-primary-500'>log in</TextLink>
+                        <TextLink href={route('login')} className="text-primary-500">
+                            log in
+                        </TextLink>
                     </div>
                 </div>
             </div>

@@ -58,7 +58,6 @@ export interface Result {
 }
 
 export interface Book {
-
     id: number;
     title: string;
     categories: Categories;

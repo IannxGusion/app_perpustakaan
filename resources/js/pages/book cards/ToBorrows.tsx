@@ -29,7 +29,7 @@ export default function ProductInfoCard({ book }: { book: Book }) {
             {/* Kartu Informasi Buku */}
             <Card className="flex w-full flex-col overflow-hidden md:flex-row">
                 {/* Gambar Buku */}
-                <div className="flex w-full items-start justify-center border-r dark:border-white p-4 md:w-1/3">
+                <div className="flex w-full items-start justify-center border-r p-4 md:w-1/3 dark:border-white">
                     <img
                         src={`/storage/${book.cover}`}
                         alt={book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
@@ -52,16 +52,16 @@ export default function ProductInfoCard({ book }: { book: Book }) {
                         {/* Sinopsis */}
                         <details className="mb-4">
                             <summary className="text-primary cursor-pointer font-semibold hover:underline">📖 Sinopsis</summary>
-                            <p className="mt-2 text-sm">
-                                {book.content.length > 300 ? book.content.slice(0, 300) + '...' : book.content}
-                            </p>
+                            <p className="mt-2 text-sm">{book.content.length > 300 ? book.content.slice(0, 300) + '...' : book.content}</p>
                         </details>
 
-                        <form className='space-y-1' action={route('reviews.store', book.id)} method="POST" encType="multipart/form-data">
+                        <form className="space-y-1" action={route('reviews.store', book.id)} method="POST" encType="multipart/form-data">
                             {/* CSRF */}
                             <CSRF />
 
-                            <Label htmlFor="star"><HeadingSmall title={'Ulas buku ini'}/></Label>
+                            <Label htmlFor="star">
+                                <HeadingSmall title={'Ulas buku ini'} />
+                            </Label>
                             <Box>
                                 <Rating
                                     name="star"
@@ -72,7 +72,7 @@ export default function ProductInfoCard({ book }: { book: Book }) {
                                 />
                                 <input type="hidden" name="star" value={value ?? 0} />
                             </Box>
-                            <Textarea className='dark:border-2 dark:border-white' placeholder="Tulis Ulasan..." name="comment" />
+                            <Textarea className="dark:border-2 dark:border-white" placeholder="Tulis Ulasan..." name="comment" />
                             <Button type="submit" onClick={() => toast.success('Ulasan terkirim!')}>
                                 Submit
                             </Button>
@@ -87,7 +87,12 @@ export default function ProductInfoCard({ book }: { book: Book }) {
 
                         {/* Checkbox S&K */}
                         <div className="mb-3 flex items-start space-x-2">
-                            <Checkbox id="terms" className='dark:border-white' checked={agreedToTerms} onCheckedChange={() => setAgreedToTerms(!agreedToTerms)} />
+                            <Checkbox
+                                id="terms"
+                                className="dark:border-white"
+                                checked={agreedToTerms}
+                                onCheckedChange={() => setAgreedToTerms(!agreedToTerms)}
+                            />
                             <label htmlFor="terms" className="text-sm">
                                 Saya menyetujui{' '}
                                 <button onClick={() => setShowTerms(!showTerms)} className="text-blue-600 underline hover:text-blue-800">
@@ -98,7 +103,7 @@ export default function ProductInfoCard({ book }: { book: Book }) {
 
                         {/* Teks Syarat & Ketentuan */}
                         {showTerms && (
-                            <div className="mb-4 rounded border border-gray-300 bg-gray-100 dark:bg-gray-700 p-3 text-sm">
+                            <div className="mb-4 rounded border border-gray-300 bg-gray-100 p-3 text-sm dark:bg-gray-700">
                                 <h4 className="mb-2 font-semibold">Syarat & Ketentuan Peminjaman</h4>
                                 <ul className="ml-5 list-disc space-y-1">
                                     <li>Buku hanya dapat dipinjam selama maksimal 30 hari.</li>

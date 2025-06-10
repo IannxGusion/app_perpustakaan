@@ -332,23 +332,14 @@ export default function Welcome() {
                             rel="noopener noreferrer"
                             className="flex flex-col items-center justify-center space-y-2 transition-colors hover:text-blue-600"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 300 300"
-                                width="40"
-                                height="40"
-                                fill="none"
-                            >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="40" height="40" fill="none">
                                 <path
                                     d="M150 30c-66.3 0-120 53.7-120 120s53.7 120 120 120c30.9 0 59.1-11.5 80.8-30.4l-32.4-32.4c-13.5 11.3-30.9 18-48.4 18-39.7 0-72-32.3-72-72s32.3-72 72-72c19.9 0 38.1 8.1 51.4 21.1l-51.4.1v48h108v-18C258 80.7 208.7 30 150 30z"
                                     fill="#007bff"
                                 />
                             </svg>
-                            <span className="text-base font-semibold tracking-tight text-center ">
-                                Gramedia
-                            </span>
+                            <span className="text-center text-base font-semibold tracking-tight">Gramedia</span>
                         </a>
-
 
                         <a
                             href="https://books.google.com/"
@@ -356,12 +347,7 @@ export default function Welcome() {
                             rel="noopener noreferrer"
                             className="flex flex-col items-center justify-center space-y-2 transition-colors hover:text-orange-500"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="40"
-                                height="40"
-                                viewBox="0 0 48 48"
-                            >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48">
                                 <path
                                     fill="#4285F4"
                                     d="M24 9.5c3.1 0 5.7 1.1 7.6 2.9l5.6-5.6C33.6 3.5 29.1 1.5 24 1.5 14.8 1.5 6.9 7.7 3.4 16.1l6.9 5.3C12.4 14 17.7 9.5 24 9.5z"
@@ -370,18 +356,13 @@ export default function Welcome() {
                                     fill="#34A853"
                                     d="M46.5 24c0-1.6-.1-2.8-.4-4.1H24v7.8h12.7c-.6 3.4-2.7 6.3-5.7 8.3v6.6h9.2c5.4-5 6.8-12.4 6.8-18.6z"
                                 />
-                                <path
-                                    fill="#FBBC05"
-                                    d="M10.3 28.5c-1-3-1-6.2 0-9.1l-6.9-5.3C.3 20.5.3 27.5 3.4 33.9l6.9-5.4z"
-                                />
+                                <path fill="#FBBC05" d="M10.3 28.5c-1-3-1-6.2 0-9.1l-6.9-5.3C.3 20.5.3 27.5 3.4 33.9l6.9-5.4z" />
                                 <path
                                     fill="#EA4335"
                                     d="M24 46.5c6.3 0 11.5-2.1 15.3-5.7l-9.2-6.6c-2.3 1.6-5.3 2.5-8.5 2.5-6.3 0-11.6-4.2-13.4-10l-6.9 5.3C6.9 40.3 14.8 46.5 24 46.5z"
                                 />
                             </svg>
-                            <span className="text-base font-semibold tracking-tight text-center">
-                                Google Books
-                            </span>
+                            <span className="text-center text-base font-semibold tracking-tight">Google Books</span>
                         </a>
 
                         <a
@@ -390,24 +371,11 @@ export default function Welcome() {
                             rel="noopener noreferrer"
                             className="flex flex-col items-center justify-center space-y-2 transition-colors hover:text-green-600"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="40"
-                                height="40"
-                                viewBox="0 0 64 64"
-                            >
-                                <path
-                                    d="M32 4 L39 24 H60 L42 38 L48 58 L32 46 Z"
-                                    fill="#00A651"
-                                />
-                                <path
-                                    d="M32 4 L32 46 L16 58 L22 38 L4 24 H25 Z"
-                                    fill="#0072BC"
-                                />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 64 64">
+                                <path d="M32 4 L39 24 H60 L42 38 L48 58 L32 46 Z" fill="#00A651" />
+                                <path d="M32 4 L32 46 L16 58 L22 38 L4 24 H25 Z" fill="#0072BC" />
                             </svg>
-                            <span className="text-base font-semibold tracking-tight text-center">
-                                iPusnas
-                            </span>
+                            <span className="text-center text-base font-semibold tracking-tight">iPusnas</span>
                         </a>
 
                         <a
@@ -416,34 +384,18 @@ export default function Welcome() {
                             rel="noopener noreferrer"
                             className="flex flex-col items-center justify-center space-y-2 transition-colors hover:text-purple-600"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 64 64"
-                                width="40"
-                                height="40"
-                                fill="none"
-                            >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" fill="none">
                                 {/* Buku terbuka bergaya digital */}
                                 <rect x="6" y="12" width="20" height="40" rx="2" fill="#5B21B6" />
                                 <rect x="24" y="12" width="8" height="40" rx="1" fill="#7C3AED" />
                                 <rect x="32" y="12" width="20" height="40" rx="2" fill="#8B5CF6" />
 
                                 {/* Tulisan iBI di tengah */}
-                                <text
-                                    x="32"
-                                    y="38"
-                                    textAnchor="middle"
-                                    fill="white"
-                                    fontSize="14"
-                                    fontWeight="bold"
-                                    fontFamily="Arial, sans-serif"
-                                >
+                                <text x="32" y="38" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold" fontFamily="Arial, sans-serif">
                                     iBI
                                 </text>
                             </svg>
-                            <span className="text-base font-semibold tracking-tight text-center ">
-                                iBI Library
-                            </span>
+                            <span className="text-center text-base font-semibold tracking-tight">iBI Library</span>
                         </a>
 
                         <a
@@ -452,38 +404,16 @@ export default function Welcome() {
                             rel="noopener noreferrer"
                             className="flex flex-col items-center justify-center space-y-2 transition-colors hover:text-blue-700"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 64 64"
-                                width="40"
-                                height="40"
-                                fill="none"
-                            >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" fill="none">
                                 {/* Buku terbuka digital */}
-                                <path
-                                    d="M10 12h18c1.1 0 2 .9 2 2v36c0 1.1-.9 2-2 2H10c-1.1 0-2-.9-2-2V14c0-1.1.9-2 2-2z"
-                                    fill="#0D47A1"
-                                />
-                                <path
-                                    d="M36 12h18c1.1 0 2 .9 2 2v36c0 1.1-.9 2-2 2H36c-1.1 0-2-.9-2-2V14c0-1.1.9-2 2-2z"
-                                    fill="#1976D2"
-                                />
+                                <path d="M10 12h18c1.1 0 2 .9 2 2v36c0 1.1-.9 2-2 2H10c-1.1 0-2-.9-2-2V14c0-1.1.9-2 2-2z" fill="#0D47A1" />
+                                <path d="M36 12h18c1.1 0 2 .9 2 2v36c0 1.1-.9 2-2 2H36c-1.1 0-2-.9-2-2V14c0-1.1.9-2 2-2z" fill="#1976D2" />
                                 {/* Tulisan eR */}
-                                <text
-                                    x="32"
-                                    y="38"
-                                    textAnchor="middle"
-                                    fill="white"
-                                    fontSize="14"
-                                    fontWeight="bold"
-                                    fontFamily="Arial, sans-serif"
-                                >
+                                <text x="32" y="38" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold" fontFamily="Arial, sans-serif">
                                     eR
                                 </text>
                             </svg>
-                            <span className="text-base font-semibold tracking-tight text-center">
-                                e-Resources Perpusnas
-                            </span>
+                            <span className="text-center text-base font-semibold tracking-tight">e-Resources Perpusnas</span>
                         </a>
 
                         <a
@@ -492,36 +422,19 @@ export default function Welcome() {
                             rel="noopener noreferrer"
                             className="flex flex-col items-center justify-center space-y-2 transition-colors hover:text-teal-600"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 64 64"
-                                width="40"
-                                height="40"
-                                fill="none"
-                            >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" fill="none">
                                 {/* Buku terbuka */}
                                 <rect x="6" y="12" width="22" height="40" rx="2" fill="#00695C" />
                                 <rect x="28" y="12" width="8" height="40" rx="1" fill="#26A69A" />
                                 <rect x="36" y="12" width="22" height="40" rx="2" fill="#4DB6AC" />
 
                                 {/* Tulisan iJ di tengah */}
-                                <text
-                                    x="32"
-                                    y="38"
-                                    textAnchor="middle"
-                                    fill="white"
-                                    fontSize="14"
-                                    fontWeight="bold"
-                                    fontFamily="Arial, sans-serif"
-                                >
+                                <text x="32" y="38" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold" fontFamily="Arial, sans-serif">
                                     iJ
                                 </text>
                             </svg>
-                            <span className="text-base font-semibold tracking-tight text-center">
-                                iJakarta
-                            </span>
+                            <span className="text-center text-base font-semibold tracking-tight">iJakarta</span>
                         </a>
-
                     </div>
                 </div>
             </section>

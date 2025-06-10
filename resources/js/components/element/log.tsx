@@ -4,14 +4,13 @@ import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Borrowing } from '@/types';
 import { Link } from '@inertiajs/react';
 import { Button } from '../ui/button';
-import { Borrowing } from '@/types';
 
 export const description = 'An interactive area chart';
 
 export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
-
     const chartData = [
         { date: '2024-04-01', borrows: 222, returned: 150 },
         { date: '2024-04-02', borrows: 97, returned: 180 },
@@ -216,15 +215,15 @@ export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
                 </Button>
             </CardFooter>
 
-            <label htmlFor="SSD" className='hidden'>
+            <label htmlFor="SSD" className="hidden">
                 {borrowings.map((borrowing) => (
                     <p key={borrowing.id}>
                         {borrowing.updated_at
                             ? new Date(borrowing.updated_at).toLocaleString('en-US', {
-                                year: 'numeric',
-                                month: 'short',
-                                day: 'numeric',
-                            })
+                                  year: 'numeric',
+                                  month: 'short',
+                                  day: 'numeric',
+                              })
                             : 'Unknown date'}
                     </p>
                 ))}

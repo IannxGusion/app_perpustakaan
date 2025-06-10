@@ -4,42 +4,36 @@ import { Link } from '@inertiajs/react';
 // ui
 import { Button } from '@/components/ui/button';
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Dialog, DialogContent,  DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableRow,
-} from "@/components/ui/table"
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 
 // elment
 import Category from '@/components/element/category';
 import Collect from '@/components/element/collect';
 import CSRF from '@/components/element/csrf';
 import TableInfo from '@/components/element/table-info';
-import { Check } from 'lucide-react';
 import HeadingSmall from '@/components/heading-small';
+import { Check } from 'lucide-react';
 
 export default function ToBorrowings({ borrowing, collections }: { borrowing: Borrowing; collections: Collection[] }) {
     return (
-        <Card
-            className="flex flex-col md:flex-row"
-            key={borrowing.book.id}
-        >
+        <Card className="flex flex-col md:flex-row" key={borrowing.book.id}>
             <CardHeader className="w-full md:w-56">
                 <img
                     src={`/storage/${borrowing.book.cover}`}
                     alt={borrowing.book.title.length > 50 ? borrowing.book.title.slice(0, 50) + '...' : borrowing.book.title}
-                    className="w-full h-64 md:h-full object-cover border border-slate-700 dark:border-slate-300 shadow"
+                    className="h-64 w-full border border-slate-700 object-cover shadow md:h-full dark:border-slate-300"
                 />
             </CardHeader>
 
-            <CardContent className="w-full p-4 flex flex-col justify-between">
+            <CardContent className="flex w-full flex-col justify-between p-4">
                 <div>
                     <CardTitle className="flex flex-row justify-between space-y-2">
                         <div className="flex items-center space-x-2">
-                            <Category categories={Array.isArray(borrowing.book.categories) ? borrowing.book.categories : [borrowing.book.categories]} />
+                            <Category
+                                categories={Array.isArray(borrowing.book.categories) ? borrowing.book.categories : [borrowing.book.categories]}
+                            />
                         </div>
 
                         {/* KOLEKSI */}
@@ -58,8 +52,8 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
                     <CardDescription>
                         <Dialog>
                             <DialogTrigger>
-                                <Button asChild variant="ghost" className="rounded-none my-1 p-0 hover:cursor-pointer">
-                                    <h2 className="text-lg md:text-xl font-bold text-black">
+                                <Button asChild variant="ghost" className="my-1 rounded-none p-0 hover:cursor-pointer">
+                                    <h2 className="text-lg font-bold text-black md:text-xl">
                                         {borrowing.book.title.length > 50 ? borrowing.book.title.slice(0, 50) + '...' : borrowing.book.title}
                                     </h2>
                                 </Button>
@@ -67,7 +61,7 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
 
                             <p className="text-sm">{borrowing.book.author}</p>
 
-                            <DialogContent className="sm:max-w-[600px] px-5">
+                            <DialogContent className="px-5 sm:max-w-[600px]">
                                 <ScrollArea className="mt-5 h-[400px] border-r-2 p-5">
                                     <HeadingSmall title={'Info Buku'} />
 
@@ -87,7 +81,7 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
                                         </TableBody>
                                     </Table>
 
-                                    <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="w-full mt-4">
+                                    <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="mt-4 w-full">
                                         <CSRF />
                                         <input type="hidden" name="book_id" value={borrowing.book.id} required />
                                         <input type="hidden" name="borrowing_id" value={borrowing.id} required />

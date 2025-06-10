@@ -3,8 +3,8 @@ import * as React from 'react';
 
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
-import Category from './category';
 import { Book } from '@/types';
+import Category from './category';
 
 export function CarouselPlugin({ books }: { books: Book[] }) {
     const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
@@ -21,20 +21,22 @@ export function CarouselPlugin({ books }: { books: Book[] }) {
                     <CarouselItem key={book.id}>
                         <div className="p-1">
                             <Card className="p-2">
-                                <CardHeader className="py-2 px-3">
+                                <CardHeader className="px-3 py-2">
                                     <div className="flex items-center space-x-2">
                                         <Category categories={Array.isArray(book.categories) ? book.categories : [book.categories]} />
                                     </div>
                                 </CardHeader>
-                                <CardContent className="p-2 flex items-center justify-center">
+                                <CardContent className="flex items-center justify-center p-2">
                                     <img
                                         src={`/storage/${book.cover}`}
                                         alt={book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
                                         className="h-32 w-full border border-slate-700 object-cover dark:border-slate-300"
                                     />
                                 </CardContent>
-                                <CardFooter className="py-2 px-3">
-                                    <p className="text-base font-bold truncate">{book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}</p>
+                                <CardFooter className="px-3 py-2">
+                                    <p className="truncate text-base font-bold">
+                                        {book.title.length > 50 ? book.title.slice(0, 50) + '...' : book.title}
+                                    </p>
                                 </CardFooter>
                             </Card>
                         </div>
