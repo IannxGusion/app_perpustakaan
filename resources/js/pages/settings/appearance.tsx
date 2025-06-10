@@ -1,8 +1,8 @@
 import { Head, usePage } from '@inertiajs/react';
+import { SharedData, type BreadcrumbItem } from '@/types';
 
 import AppearanceTabs from '@/components/appearance-tabs';
 import HeadingSmall from '@/components/heading-small';
-import { SharedData, type BreadcrumbItem } from '@/types';
 
 import SettingsLayout from '@/layouts/settings/layout';
 
