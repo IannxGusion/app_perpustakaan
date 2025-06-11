@@ -243,7 +243,7 @@ class BookController extends Controller
             'category_ids' => 'nullable|array',
             'category_ids.*' => 'exists:categories,id',
 
-            'source' => 'nullable|string|max:255'
+            'source' => 'nullable|string|max:255',
         ]);
 
         $book = new Book;
