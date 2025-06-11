@@ -43,7 +43,7 @@ export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
     const filteredData = chartData.filter((item) => {
         const date = new Date(item.date);
         const referenceDate = new Date();
-        let daysToSubtract = 11961;
+        let daysToSubtract = 90;
         if (timeRange === '30d') {
             daysToSubtract = 30;
         } else if (timeRange === '7d') {
@@ -84,7 +84,7 @@ export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
                         <SelectValue placeholder="Last 3 months" />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl">
-                        <SelectItem value="11961d" className="rounded-lg">
+                        <SelectItem value="90d" className="rounded-lg">
                             3 Bulan Terakhir
                         </SelectItem>
                         <SelectItem value="30d" className="rounded-lg">

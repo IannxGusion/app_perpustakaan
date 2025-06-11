@@ -126,7 +126,7 @@ class BookController extends Controller
     // chart
     public function booksCount()
     {
-        $data = \App\Models\Category::withCount('books')
+        $data = Category::withCount('books')
             ->get()
             ->map(fn ($cat) => [
                 'category' => $cat->name,
@@ -242,6 +242,8 @@ class BookController extends Controller
             'cover' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'category_ids' => 'nullable|array',
             'category_ids.*' => 'exists:categories,id',
+
+            'source' => 'nullable|string|max:255'
         ]);
 
         $book = new Book;
@@ -253,6 +255,7 @@ class BookController extends Controller
 
         $book->status = 'Available';
         $book->collected = 'No';
+        $book->source = $request->source;
 
         if ($request->hasFile('cover')) {
             $imagePath = $request->file('cover')->store('covers', 'public');

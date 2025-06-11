@@ -84,12 +84,26 @@
                             @endforeach
                         </div>
                         <span class="text-red-500 text-sm hidden" id="error-kategori">Pilih minimal satu
-                            kategori.</span>
+                            kategori.
+                        </span>
 
                         <div class="mt-6">
                             <label class="block text-sm font-medium">Deskripsi / Konten</label>
                             <textarea name="content" id="content" rows="5" placeholder="Masukkan sinopsis atau catatan penting buku..."
                                 class="mt-1 block w-full border rounded-lg p-3"></textarea>
+                            <span class="text-red-500 text-sm hidden" id="error-content">Konten wajib diisi.</span>
+                        </div>
+
+                        <div class="mt-6">
+                            <details class="block text-sm font-medium">
+                                <summary class="hover:cursor-pointer">
+                                    Ini buku bersumber?
+                                </summary>
+                                <label for="source" class="hidden">Link menuju sumber buku</label>
+                                <input type="text" name="source" id="source"
+                                    placeholder="Link menuju sumber buku"
+                                    class="mt-1 block w-full border rounded-lg p-2" />
+                            </details>
                             <span class="text-red-500 text-sm hidden" id="error-content">Konten wajib diisi.</span>
                         </div>
                     </div>

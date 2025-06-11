@@ -23,6 +23,7 @@ return new class extends Migration
 
             $table->enum('status', ['Available', 'Not Available'])->default('Available');
             $table->enum('collected', ['Yes', 'No'])->default('No');
+            $table->string('source')->nullable();
 
             $table->softDeletes();
         });

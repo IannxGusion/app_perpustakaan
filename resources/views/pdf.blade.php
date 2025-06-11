@@ -25,6 +25,14 @@
                     <span class="font-semibold">Tanggal Terbit:</span>
                     {{ \Carbon\Carbon::parse($book->publication_date)->format('d M Y') }}
                 </div>
+
+                @if ($book->source ?? 'Book Detail')
+                    <div class="mb-2">
+                        <span class="font-semibold">Sumber:</span>
+                        <a class=" underline" href="{{ $book->source }}">{{ $book->source }}</a>
+                    </div>
+                @endif
+
             </div>
         </div>
         <hr>
