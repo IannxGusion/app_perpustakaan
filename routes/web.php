@@ -33,6 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::controller(BookController::class)->group(function () {
         Route::get('borrowings/download/{id}', 'download')->name('book.download');
+        Route::get('preview/{id}', 'download')->name('book.preview');
     });
 
     Route::controller(BorrowingController::class)->group(function () {

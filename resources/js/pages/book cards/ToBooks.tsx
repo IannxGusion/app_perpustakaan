@@ -30,13 +30,20 @@ export default function ToBooks({ book }: { book: Book }) {
                 </CardTitle>
             </CardFooter>
 
-            {book.status === 'Available' && (
-                <Button asChild>
-                    <Link href={route('books.show', book['id'])}>Pinjam</Link>
+            {book.source ? (
+                <Button asChild variant="outline">
+                    <Link target="_blank" href={`preview/${book.id}`}>
+                        Preview
+                    </Link>
                 </Button>
+            ) : book.status === 'Available' ? (
+                <Button asChild>
+                    <Link href={route('books.show', book.id)}>Pinjam</Link>
+                </Button>
+            ) : (
+                <Button variant="ghost">Tidak tersedia</Button>
             )}
 
-            {book.status === 'Not Available' && <Button variant={'ghost'}>Tidak tersedia</Button>}
         </Card>
     );
 }

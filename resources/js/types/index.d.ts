@@ -70,6 +70,7 @@ export interface Book {
 
     review: ErrReview;
     collected: string;
+    source: string;
 }
 
 export interface Borrowing {
