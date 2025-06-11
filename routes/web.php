@@ -68,15 +68,15 @@ Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(funct
     Route::get('management/{id}/edit', [BookController::class, 'librarianEdit'])->name('librarian.books.edit');
     Route::put('management/{id}', [BookController::class, 'librarianUpdate'])->name('librarian.books.update');
 
-Route::prefix('catalogue')->name('categories.')->group(function () {
-    Route::get('/', [CategoryController::class, 'index'])->name('index');
-    Route::get('/create', [CategoryController::class, 'create'])->name('create');
-    Route::post('/', [CategoryController::class, 'store'])->name('store');
-    Route::get('/show/{id}', [CategoryController::class, 'show'])->name('show');
-    Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [CategoryController::class, 'update'])->name('update');
-    Route::get('/destroy/{id}', [CategoryController::class, 'destroy'])->name('destroy'); // consider using DELETE instead
-});
+    Route::prefix('catalogue')->name('categories.')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('create');
+        Route::post('/', [CategoryController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [CategoryController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [CategoryController::class, 'update'])->name('update');
+        Route::get('/destroy/{id}', [CategoryController::class, 'destroy'])->name('destroy'); // consider using DELETE instead
+    });
 });
 // *USER* =====================================================================================
 
