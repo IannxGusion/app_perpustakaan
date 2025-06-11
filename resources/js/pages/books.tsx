@@ -20,7 +20,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 export default function List({ books }: { books: Book[] }) {
     // Pagination state
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(4);
+    const [rowsPerPage, setRowsPerPage] = React.useState(16);
 
     const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
         setPage(newPage);

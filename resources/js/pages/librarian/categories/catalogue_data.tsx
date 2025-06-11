@@ -23,10 +23,12 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import CSRF from '@/components/element/csrf';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import type { Categories } from '@/types';
-import { Link } from '@inertiajs/react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 export const columns: ColumnDef<Categories>[] = [
     {
@@ -76,7 +78,7 @@ export const columns: ColumnDef<Categories>[] = [
                         </DialogTrigger>
 
                         <DialogContent className="p-5">
-                            <ScrollArea className="mt-5 h-[200px] border-t-2 border-b-2 p-5">
+                            <ScrollArea className="mt-5 h-[300px] px-5">
                                 <DialogHeader className="pt-2">
                                     <DialogTitle>Aksi Kategori</DialogTitle>
                                     <DialogDescription>Pilih aksi untuk kategori ini.</DialogDescription>
@@ -110,15 +112,46 @@ export const columns: ColumnDef<Categories>[] = [
                                         </Table>
                                     </div>
 
-                                    <Button asChild className="w-full" variant="outline">
-                                        <Link href={route('categories.edit', category.id)}>Edit</Link>
-                                    </Button>
-                                    <form action={route('categories.destroy', category.id)} method="DELETE" className="w-full">
-                                        <CSRF />
-                                        <Button className="w-full" type="submit" variant="destructive">
-                                            Hapus
-                                        </Button>
-                                    </form>
+                                    <Tabs defaultValue="hapus" className="w-[400px] mt-10">
+                                        <TabsList>
+                                            <TabsTrigger value="hapus">
+                                                Hapus
+                                            </TabsTrigger>
+                                            <TabsTrigger value="edit">
+                                                Edit
+                                            </TabsTrigger>
+                                        </TabsList>
+                                        <TabsContent value="edit">
+                                            <form action={route('categories.update', category.id)} method="POST" encType="multipart/form-data">
+                                                <CSRF />
+                                                <input type="hidden" name="_method" value="PUT" />
+
+                                                <div className="space-y-4">
+                                                    <div>
+                                                        <Label htmlFor="name">Nama</Label>
+                                                        <Input id="name" name="name" placeholder="Masukkan nama kategori" defaultValue={category.name} />
+                                                    </div>
+
+                                                    <div>
+                                                        <Label htmlFor="description">Deskripsi</Label>
+                                                        <Input id="description" name="description" placeholder="Masukkan deskripsi kategori" defaultValue={category.description} />
+                                                    </div>
+                                                </div>
+
+                                                <div className="mt-5 flex justify-end">
+                                                    <Button type="submit">Simpan</Button>
+                                                </div>
+                                            </form>
+                                        </TabsContent>
+                                        <TabsContent value="hapus">
+                                            <form className='w-full' action={route('categories.destroy', category.id)} method="DELETE">
+                                                <CSRF />
+                                                <Button className="w-full" type="submit" variant="destructive">
+                                                    Hapus
+                                                </Button>
+                                            </form>
+                                        </TabsContent>
+                                    </Tabs>
                                 </div>
                             </ScrollArea>
                         </DialogContent>
@@ -157,12 +190,42 @@ export function DataTable({ categories }: { categories: Categories[] }) {
     return (
         <div className="w-full">
             <div className="flex justify-end space-x-2 py-4">
-                <Button variant={'outline'}>
-                    <Link href={route('categories.create')}>
-                        Tambah
-                    </Link>
-                    <Plus />
-                </Button>
+                <Dialog>
+                    <DialogTrigger>
+                        <Button variant={'outline'}>
+                            Tambah
+                            <Plus />
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <form action={route('categories.store')} method="POST" encType="multipart/form-data">
+                            <CSRF />
+                            <DialogHeader>
+                                <DialogTitle>Tambah kategori</DialogTitle>
+                                <DialogDescription>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <Label htmlFor="name">Nama</Label>
+                                            <Input id="name" name="name" placeholder="Masukkan nama kategori" />
+                                        </div>
+
+                                        <div>
+                                            <Label htmlFor="description">Deskripsi</Label>
+                                            <Input id="description" name="description" placeholder="Masukkan deskripsi kategori" />
+                                        </div>
+                                    </div>
+                                </DialogDescription>
+                            </DialogHeader>
+
+                            <DialogFooter className='mt-5'>
+                                <DialogClose>Batal</DialogClose>
+                                <Button type='submit'>Tambah</Button>
+                            </DialogFooter>
+                        </form>
+
+                    </DialogContent>
+                </Dialog>
 
                 <div>
                     <DropdownMenu>
