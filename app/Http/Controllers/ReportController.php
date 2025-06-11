@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Borrowing;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection;
 
 class ReportController extends Controller
 {
@@ -49,7 +47,7 @@ class ReportController extends Controller
         $borrowings = Borrowing::with('book')->latest()->get();
 
         return Inertia('librarian/report', [
-            //'borrowings' => $borrowings,
+            // 'borrowings' => $borrowings,
             'report' => $chartData,
         ]);
     }
