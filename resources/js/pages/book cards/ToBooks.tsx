@@ -40,8 +40,10 @@ export default function ToBooks({ book }: { book: Book }) {
                 <Button asChild>
                     <Link href={route('books.show', book.id)}>Pinjam</Link>
                 </Button>
-            ) : (
+            ) : book.status === 'Not Available' ? (
                 <Button variant="ghost">Tidak tersedia</Button>
+            ) : (
+                <></>
             )}
 
         </Card>

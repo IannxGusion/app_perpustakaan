@@ -167,7 +167,7 @@ export default function Welcome() {
                     </p>
                     <div className="mb-8 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4 lg:mb-16">
                         <a
-                            href="#"
+                            href="https://github.com/Dirga36/app_perpustakaan/wiki/First-Wiki"
                             className="bg-primary hover:bg-primary-800 focus:ring-primary-300 dark:focus:ring-primary-900 inline-flex items-center justify-center rounded-lg px-5 py-3 text-center text-base font-medium text-white focus:ring-4 dark:text-black"
                         >
                             Learn more
