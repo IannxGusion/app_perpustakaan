@@ -4,12 +4,12 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BorrowingController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Middleware\AminMiddleware;
 use App\Http\Middleware\LibrarianMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -68,7 +68,7 @@ Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(funct
     Route::get('management/{id}/edit', [BookController::class, 'librarianEdit'])->name('librarian.books.edit');
     Route::put('management/{id}', [BookController::class, 'librarianUpdate'])->name('librarian.books.update');
 
-    //category CRUD
+    // category CRUD
     Route::get('catalogue', [CategoryController::class, 'index'])->name('categories.index');
     Route::get('catalogue/create', [CategoryController::class, 'create'])->name('categories.create');
     Route::post('/catalogue', [CategoryController::class, 'store'])->name('categories.store');

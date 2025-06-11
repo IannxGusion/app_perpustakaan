@@ -13,6 +13,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+
         return Inertia('librarian/categories/catalogue', compact('categories'));
     }
 
@@ -48,6 +49,7 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         $category = Category::findOrFail($id);
+
         return Inertia('categories.show', compact('category'));
     }
 
@@ -57,6 +59,7 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $category = Category::findOrFail($id);
+
         return Inertia('librarian/categories/edit-category', compact('category'));
     }
 
