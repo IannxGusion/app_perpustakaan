@@ -1,8 +1,9 @@
 import AppLayout from '@/pages/librarian/layer/user-layout';
 import { Borrowing, type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 import Log from '@/components/element/log';
+import { Button } from '@/components/ui/button';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -11,8 +12,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Dashboard({ ...props }: { borrowings: Borrowing[] }) {
-    const { borrowings } = props;
+export default function Dashboard({ ...props }: { report: Borrowing[] }) {
+    const { report } = props;
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Laporan" />
@@ -29,8 +30,15 @@ export default function Dashboard({ ...props }: { borrowings: Borrowing[] }) {
             </section>
 
             <div className="space-y-2.5 p-5">
-                <Log borrowings={borrowings} />
+                <Log borrowings={report} />
             </div>
+            
+            <Button asChild className="bg-primary text h-full rounded text-white">
+                <Link target="_blank" href={route('librarian.report.download')}>
+                    Buat Laporan
+                </Link>
+            </Button>
+
         </AppLayout>
     );
 }

@@ -11,13 +11,7 @@ import { Button } from '../ui/button';
 export const description = 'An interactive area chart';
 
 export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
-    const chartData = [
-        { date: '2024-06-26', borrows: 434, returned: 380 },
-        { date: '2024-06-27', borrows: 448, returned: 490 },
-        { date: '2024-06-28', borrows: 149, returned: 200 },
-        { date: '2024-06-29', borrows: 103, returned: 160 },
-        { date: '2024-06-30', borrows: 446, returned: 400 },
-    ];
+    const chartData = borrowings;
 
     const chartConfig = {
         buku: {
@@ -36,7 +30,7 @@ export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
     const [timeRange, setTimeRange] = React.useState('90d');
 
     const filteredData = chartData.filter((item) => {
-        const date = new Date(item.date);
+        const date = new Date(item.updated_at);
         const referenceDate = new Date('2024-06-30');
         let daysToSubtract = 90;
         if (timeRange === '30d') {
