@@ -81,10 +81,11 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
                                         </TableBody>
                                     </Table>
 
-                                    <form action={route('borrowings.return', borrowing['id'])} method="DELETE" className="mt-4 w-full">
+                                    <form action={route('borrowings.return', borrowing.id)} method="POST" className="mt-4 w-full">
                                         <CSRF />
-                                        <input type="hidden" name="book_id" value={borrowing.book.id} required />
+                                        <input type="hidden" name="_method" value="PUT" />
                                         <input type="hidden" name="borrowing_id" value={borrowing.id} required />
+                                        <input type="hidden" name="book_id" value={borrowing.book.id} required />
                                         <Button className="w-full" type="submit">
                                             Kembalikan
                                         </Button>
@@ -96,11 +97,17 @@ export default function ToBorrowings({ borrowing, collections }: { borrowing: Bo
                 </div>
 
                 <CardAction className="mt-4 w-full">
-                    <Button asChild className="h-10 w-full">
-                        <Link target="_blank" href={`borrowings/download/${borrowing.book.id}`}>
-                            Baca
-                        </Link>
-                    </Button>
+                    {borrowing.status === 'Borrows' ? (
+                        <Button asChild className="h-10 w-full">
+                            <Link target="_blank" href={`borrowings/download/${borrowing.book.id}`}>
+                                Baca
+                            </Link>
+                        </Button>
+                    ) : (
+                        <Button variant='ghost' className="h-10 w-full">
+                            Dikembalikan
+                        </Button>
+                    )}
                 </CardAction>
             </CardContent>
         </Card>

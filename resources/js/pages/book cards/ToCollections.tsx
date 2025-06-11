@@ -30,11 +30,17 @@ export default function ToCollections({ book }: { book: Book }) {
                 </CardTitle>
             </CardFooter>
 
-            <Button asChild className="bg-primary text mt-3 h-7 w-full rounded-md text-white">
-                <Link target="_blank" href={`borrowings/download/${book.id}`}>
-                    Baca
-                </Link>
-            </Button>
+            {book.status === 'Not Available' ? (
+                <Button asChild className="text mt-3 h-7 w-full rounded-md">
+                    <Link target="_blank" href={`borrowings/download/${book.id}`}>
+                        Baca
+                    </Link>
+                </Button>
+            ) : book.status === 'Available' && (
+                <Button asChild variant={'ghost'} className="text mt-3 h-7 w-full rounded-md">
+                    Not Available
+                </Button>
+            )}
         </Card>
     );
 }

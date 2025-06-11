@@ -39,7 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::controller(BorrowingController::class)->group(function () {
         Route::post('/borrows/{id}', 'store')->name('borrowings.store');
         Route::get('borrowings', 'index')->name('borrowings.index');
-        Route::get('borrowings/{id}', 'return')->name('borrowings.return');
+        Route::put('borrowings/{id}', 'return')->name('borrowings.return');
     });
 
     Route::post('borrowings/review/{id}', [ReviewController::class, 'store'])->name('reviews.store');

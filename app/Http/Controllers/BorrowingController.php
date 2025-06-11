@@ -73,7 +73,7 @@ class BorrowingController extends Controller
 
         $borrowing = Borrowing::findOrFail($request->borrowing_id);
         $borrowing->status = 'Returned';
-        $borrowing->delete(); // will be disabled for READ
+        $borrowing->save();
 
         $book = Book::findOrFail($request->book_id);
         $book->status = 'Available';
