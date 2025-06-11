@@ -1,5 +1,5 @@
 import AppLayout from '@/pages/librarian/layer/user-layout';
-import { Borrowing, type BreadcrumbItem } from '@/types';
+import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 
 import Log from '@/components/element/log';
@@ -11,6 +11,12 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/aporan',
     },
 ];
+
+interface Borrowing {
+    date: string;      // e.g., "2024-06-26"
+    borrows: number;   // number of borrows on that day
+    returned: number;  // number of returns on that day
+}
 
 export default function Dashboard({ ...props }: { report: Borrowing[] }) {
     const { report } = props;
@@ -32,7 +38,7 @@ export default function Dashboard({ ...props }: { report: Borrowing[] }) {
             <div className="space-y-2.5 p-5">
                 <Log borrowings={report} />
             </div>
-            
+
             <Button asChild className="bg-primary text h-full rounded text-white">
                 <Link target="_blank" href={route('librarian.report.download')}>
                     Buat Laporan

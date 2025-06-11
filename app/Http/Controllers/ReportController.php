@@ -18,8 +18,8 @@ class ReportController extends Controller
 
     public function librarianChart(Request $request)
     {
-        $from_date = $request->input('from_date');
-        $to_date = $request->input('to_date');
+        $from_date = '0000-00-00';
+        $to_date = now()->toDateString(); // Gets today's date as 'YYYY-MM-DD'
 
         $report = Borrowing::whereBetween('borrow_date', [$from_date, $to_date])
             ->orWhereBetween('return_date', [$from_date, $to_date])

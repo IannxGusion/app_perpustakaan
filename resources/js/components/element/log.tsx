@@ -4,9 +4,20 @@ import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Borrowing } from '@/types';
 import { Link } from '@inertiajs/react';
 import { Button } from '../ui/button';
+
+interface Borrowing {
+    date: string;      // e.g., "2024-06-26"
+    borrows: number;   // number of borrows on that day
+    returned: number;  // number of returns on that day
+}
+
+const cellStyle: React.CSSProperties = {
+    border: '1px solid #ccc',
+    padding: '8px',
+    textAlign: 'left',
+};
 
 export const description = 'An interactive area chart';
 
@@ -30,9 +41,9 @@ export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
     const [timeRange, setTimeRange] = React.useState('90d');
 
     const filteredData = chartData.filter((item) => {
-        const date = new Date(item.updated_at);
-        const referenceDate = new Date('2024-06-30');
-        let daysToSubtract = 90;
+        const date = new Date(item.date);
+        const referenceDate = new Date();
+        let daysToSubtract = 11961;
         if (timeRange === '30d') {
             daysToSubtract = 30;
         } else if (timeRange === '7d') {
@@ -45,6 +56,24 @@ export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
 
     return (
         <Card className="pt-0">
+            <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+                <thead>
+                    <tr>
+                        <th style={cellStyle}>Date</th>
+                        <th style={cellStyle}>Borrows</th>
+                        <th style={cellStyle}>Returned</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {chartData.map(({ date, borrows, returned }) => (
+                        <tr key={date}>
+                            <td style={cellStyle}>{date}</td>
+                            <td style={cellStyle}>{borrows}</td>
+                            <td style={cellStyle}>{returned}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
             <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
                 <div className="grid flex-1 gap-1">
                     <CardTitle>Area Chart - Interactive</CardTitle>
@@ -55,7 +84,7 @@ export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
                         <SelectValue placeholder="Last 3 months" />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl">
-                        <SelectItem value="90d" className="rounded-lg">
+                        <SelectItem value="11961d" className="rounded-lg">
                             3 Bulan Terakhir
                         </SelectItem>
                         <SelectItem value="30d" className="rounded-lg">
@@ -90,6 +119,7 @@ export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
                             tickFormatter={(value) => {
                                 const date = new Date(value);
                                 return date.toLocaleDateString('en-US', {
+                                    year: 'numeric',
                                     month: 'short',
                                     day: 'numeric',
                                 });
@@ -115,6 +145,8 @@ export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
                     </AreaChart>
                 </ChartContainer>
             </CardContent>
+
+            {/* unused (not the part of the chart) */}
             <CardFooter className="border-primary-50 mt-4 flex justify-end border-t">
                 <Button asChild className="bg-primary text h-full rounded text-white">
                     <Link target="_blank" href={route('librarian.report.download')}>
@@ -122,20 +154,6 @@ export default function Log({ borrowings }: { borrowings: Borrowing[] }) {
                     </Link>
                 </Button>
             </CardFooter>
-
-            <label htmlFor="SSD" className="hidden">
-                {borrowings.map((borrowing) => (
-                    <p key={borrowing.id}>
-                        {borrowing.updated_at
-                            ? new Date(borrowing.updated_at).toLocaleString('en-US', {
-                                  year: 'numeric',
-                                  month: 'short',
-                                  day: 'numeric',
-                              })
-                            : 'Unknown date'}
-                    </p>
-                ))}
-            </label>
         </Card>
     );
 }
