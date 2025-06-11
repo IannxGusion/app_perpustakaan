@@ -45,7 +45,7 @@ const rightNavItems: NavItem[] = [
         icon: null,
     },
     {
-        title: 'ssd',
+        title: 'ssds',
         href: '#',
         icon: null,
     },

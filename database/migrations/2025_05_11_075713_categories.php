@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('colour');
+            $table->string('colour')->nullable();
             $table->enum('icon', [
                 'home',
                 'search',
@@ -26,8 +26,8 @@ return new class extends Migration
                 'menu',
                 'check',
                 'x',
-            ])->default('x');
-            $table->text('description')->nullable();
+            ])->default('x')->nullable();
+            $table->text('description');
             $table->timestamps();
 
             $table->softDeletes();

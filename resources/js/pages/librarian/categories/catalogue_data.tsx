@@ -22,13 +22,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 
 import CSRF from '@/components/element/csrf';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import type { Book } from '@/types';
+import type { Categories } from '@/types';
 import { Link } from '@inertiajs/react';
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-export const columns: ColumnDef<Book>[] = [
+export const columns: ColumnDef<Categories>[] = [
     {
         id: 'select',
         header: ({ table }) => (
@@ -52,18 +52,18 @@ export const columns: ColumnDef<Book>[] = [
     {
         accessorKey: 'name',
         header: 'Nama',
-        cell: ({ row }) => <div className="text-lg font-extrabold">{row.getValue('title')}</div>,
+        cell: ({ row }) => <div className="text-lg font-extrabold">{row.getValue('name')}</div>,
     },
     {
         accessorKey: 'description',
         header: 'Deskripsi',
-        cell: ({ row }) => <div className="font-medium">{row.getValue('id')}</div>,
+        cell: ({ row }) => <div className="font-medium">{row.getValue('description')}</div>,
     },
     {
         id: 'actions',
         enableHiding: false,
         cell: ({ row }) => {
-            const book = row.original;
+            const category = row.original;
 
             return (
                 <div className="flex">
@@ -76,9 +76,9 @@ export const columns: ColumnDef<Book>[] = [
                         </DialogTrigger>
 
                         <DialogContent className="p-5">
-                            <ScrollArea className="mt-5 h-[500px] border-t-2 border-b-2 p-5">
+                            <ScrollArea className="mt-5 h-[200px] border-t-2 border-b-2 p-5">
                                 <DialogHeader className="pt-2">
-                                    <DialogTitle>Aksi Buku</DialogTitle>
+                                    <DialogTitle>Aksi Kategori</DialogTitle>
                                     <DialogDescription>Pilih aksi untuk kategori ini.</DialogDescription>
                                 </DialogHeader>
 
@@ -87,7 +87,7 @@ export const columns: ColumnDef<Book>[] = [
                                         variant="ghost"
                                         className="w-full justify-start underline"
                                         onClick={() => {
-                                            navigator.clipboard.writeText(String(book.id));
+                                            navigator.clipboard.writeText(String(category.id));
                                         }}
                                     >
                                         Copy category ID
@@ -99,21 +99,21 @@ export const columns: ColumnDef<Book>[] = [
                                             {/* ifo */}
                                             <TableBody>
                                                 <TableRow className="border-b border-gray-300">
-                                                    <TableCell className="px-4 py-2 font-medium ">Penulis</TableCell>
-                                                    <TableCell className="px-4 py-2 ">{book.author}</TableCell>
+                                                    <TableCell className="px-4 py-2 font-medium ">Nama</TableCell>
+                                                    <TableCell className="px-4 py-2 ">{category.name}</TableCell>
                                                 </TableRow>
                                                 <TableRow className="border-b border-gray-300">
-                                                    <TableCell className="px-4 py-2 font-medium ">Penerbit</TableCell>
-                                                    <TableCell className="px-4 py-2 ">{book.publisher}</TableCell>
+                                                    <TableCell className="px-4 py-2 font-medium ">Deskripsi</TableCell>
+                                                    <TableCell className="px-4 py-2 ">{category.description}</TableCell>
                                                 </TableRow>
                                             </TableBody>
                                         </Table>
                                     </div>
 
                                     <Button asChild className="w-full" variant="outline">
-                                        <Link href={route('librarian.books.edit', [book.id])}>Edit</Link>
+                                        <Link href={route('categories.edit', category.id)}>Edit</Link>
                                     </Button>
-                                    <form action={route('librarian.books.delete', book['id'])} method="DELETE" className="w-full">
+                                    <form action={route('categories.destroy', category.id)} method="DELETE" className="w-full">
                                         <CSRF />
                                         <Button className="w-full" type="submit" variant="destructive">
                                             Hapus
@@ -129,14 +129,14 @@ export const columns: ColumnDef<Book>[] = [
     },
 ];
 
-export function DataTable({ books }: { books: Book[] }) {
+export function DataTable({ categories }: { categories: Categories[] }) {
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
     const [rowSelection, setRowSelection] = React.useState({});
 
     const table = useReactTable({
-        data: books,
+        data: categories,
         columns,
         onSortingChange: setSorting,
         onColumnFiltersChange: setColumnFilters,
@@ -158,7 +158,7 @@ export function DataTable({ books }: { books: Book[] }) {
         <div className="w-full">
             <div className="flex justify-end space-x-2 py-4">
                 <Button variant={'outline'}>
-                    <Link target="_blank" href={route('librarian.books.import')}>
+                    <Link href={route('categories.create')}>
                         Tambah
                     </Link>
                     <Plus />

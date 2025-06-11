@@ -8,6 +8,8 @@ import CSRF from '@/components/element/csrf';
 import type { Book, Categories } from '@/types';
 
 import TableInfo from '@/components/element/table-info';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 type EditProps = {
     book?: Book;
@@ -41,6 +43,51 @@ export default function Edit({ book, categories = [] }: EditProps) {
                     <input type="hidden" name="_method" value="PUT" />
 
                     <CardContent className="space-y-4">
+                        <div className='hidden'>
+                            <Label htmlFor="title">Judul</Label>
+                            <Input id="title"
+                            type='hidden'
+                            name="title"
+                            placeholder="Masukkan judul buku"
+                            defaultValue={book.title} />
+                        </div>
+
+                        <div className='hidden'>
+                            <Label htmlFor="content">Konten buku</Label>
+                            <Textarea
+                                id="content"
+                                name="content"
+                                placeholder="Masukkan Konten buku"
+                                defaultValue={book.content.length > 150 ? book.content.slice(0, 150) + '...' : book.content}
+                            />
+                        </div>
+
+                        <div className='hidden'>
+                            <Label htmlFor="cover">Sampul</Label>
+                            <Input id="cover" name="cover" type="file" />
+                        </div>
+
+                        <div className='hidden'>
+                            <Label htmlFor="author">Penulis</Label>
+                            <Input id="author" name="author" placeholder="Masukkan nama penulis" defaultValue={book.author} />
+                        </div>
+
+                        <div className='hidden'>
+                            <Label htmlFor="publisher">Penerbit</Label>
+                            <Input id="publisher" name="publisher" placeholder="Masukkan nama penerbit" defaultValue={book.publisher} />
+                        </div>
+
+                        <div className='hidden'>
+                            <Label htmlFor="publication_date">Tgl. Terbit</Label>
+                            <Input
+                                className="justify-between"
+                                id="publication_date"
+                                name="publication_date"
+                                type="date"
+                                defaultValue={book.publication_date}
+                            />
+                        </div>
+
                         <div>
                             <Label htmlFor="category_ids">Kategori</Label>
                             <div className="flex flex-col gap-2">
@@ -54,7 +101,6 @@ export default function Edit({ book, categories = [] }: EditProps) {
                                                 // If no categories are checked, check the first one by default
                                                 ((!Array.isArray(book.categories) || book.categories.length === 0) && idx === 0)
                                             }
-                                            required={idx === 0}
                                         />
                                         <span>{category.name}</span>
                                     </label>

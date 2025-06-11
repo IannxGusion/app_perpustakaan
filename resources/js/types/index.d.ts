@@ -48,8 +48,8 @@ export interface Categories {
     id: number;
     name: string;
     description: string;
-    colour: string;
-    icon: string;
+    colour?: string;
+    icon?: string;
 }
 
 export interface Result {

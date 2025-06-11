@@ -13,7 +13,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return inertia('librarian/categories/catalogue', compact('categories'));
+        return Inertia('librarian/categories/catalogue', compact('categories'));
     }
 
     /**
@@ -21,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return inertia('categories.create');
+        return Inertia('librarian/categories/create-category');
     }
 
     /**
@@ -48,7 +48,7 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         $category = Category::findOrFail($id);
-        return inertia('categories.show', compact('category'));
+        return Inertia('categories.show', compact('category'));
     }
 
     /**
@@ -57,13 +57,13 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $category = Category::findOrFail($id);
-        return inertia('librarian/categories/edit-category', compact('category'));
+        return Inertia('librarian/categories/edit-category', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:50',
@@ -71,10 +71,10 @@ class CategoryController extends Controller
         ]);
 
         $category = Category::findOrFail($id);
-        $category->update([
-            'name' => $request->name,
-            'description' => $request->description,
-        ]);
+        $category->name = $request->name;
+        $category->description = $request->description;
+
+        $category->save();
 
         return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }

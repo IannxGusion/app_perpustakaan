@@ -9,6 +9,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Middleware\AminMiddleware;
 use App\Http\Middleware\LibrarianMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -68,7 +69,13 @@ Route::middleware(['auth', 'verified', LibrarianMiddleware::class])->group(funct
     Route::put('management/{id}', [BookController::class, 'librarianUpdate'])->name('librarian.books.update');
 
     //category CRUD
-    Route::resource('categories', \App\Http\Controllers\CategoryController::class);
+    Route::get('catalogue', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('catalogue/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/catalogue', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('catalogue/show/{id}', [CategoryController::class, 'show'])->name('categories.show');
+    Route::get('catalogue/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('catalogue/{id}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::get('/catalogue/destroy/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 });
 // *USER* =====================================================================================
 
@@ -88,7 +95,7 @@ Route::middleware(['auth', 'verified', AminMiddleware::class])->group(function (
     Route::put('/crud_books/{id}', [BookController::class, 'adminUpdate'])->name('admin.books.update');
 
     Route::get('/crud_borrowings', [BorrowingController::class, 'adminIndex'])->name('admin.borrowings.index');
-    Route::delete('/crud_borrowings/{id}', [BorrowingController::class, 'adminDelete'])->name('admin.borrowings.delete');
+    Route::get('/crud_borrowings/{id}', [BorrowingController::class, 'adminDelete'])->name('admin.borrowings.delete');
 
     Route::get('/crud_borrowers', [UserController::class, 'adminBorrowerIndex'])->name('admin.borrowers.index');
     Route::get('/borrowers/{id}', [AuthenticatedSessionController::class, 'destroy'])->name('admin.borrowers.delete');

@@ -1,5 +1,5 @@
 import AppLayout from '@/pages/librarian/layer/user-layout';
-import { Borrowing, type BreadcrumbItem } from '@/types';
+import { Categories, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
 import { DataTable } from './catalogue_data';
@@ -11,8 +11,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Dashboard({ ...props }: { borrowings: Borrowing[] }) {
-    const { borrowings } = props;
+export default function CRUD_category({ ...props }: { categories: Categories[] }) {
+    const { categories } = props;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -32,7 +32,7 @@ export default function Dashboard({ ...props }: { borrowings: Borrowing[] }) {
 
             {/* Main Content */}
             <main className="flex-grow p-8">
-                <DataTable borrowings={borrowings} />
+                <DataTable categories={categories} />
             </main>
         </AppLayout>
     );
